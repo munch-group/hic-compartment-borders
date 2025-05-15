@@ -1,4 +1,4 @@
-# Title
+# HiC compartment borders with pymc
 
 *In the link below, replace analysis-template with your repository name and then delete this text*
 
