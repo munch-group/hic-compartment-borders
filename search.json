@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "projectname",
+    "title": "hic-compartment-borders",
     "section": "",
     "text": "Preface\nThese pages are generated from a Git repository…",
     "crumbs": [
@@ -12,9 +12,9 @@
   {
     "objectID": "index.html#section",
     "href": "index.html#section",
-    "title": "projectname",
+    "title": "hic-compartment-borders",
     "section": "Section",
-    "text": "Section\nNullam dapibus cursus dolor sit amet consequat. Nulla facilisi. Curabitur vel nulla non magna lacinia tincidunt. Duis porttitor quam leo, et blandit velit efficitur ut. Etiam auctor tincidunt porttitor. Phasellus sed accumsan mi. Fusce ut erat dui. Suspendisse eu augue eget turpis condimentum finibus eu non lorem. Donec finibus eros eu ante condimentum, sed pharetra sapien sagittis. Phasellus non dolor ac ante mollis auctor nec et sapien. Pellentesque vulputate at nisi eu tincidunt. Vestibulum at dolor aliquam, hendrerit purus eu, eleifend massa. Morbi consectetur eros id tincidunt gravida. Fusce ut enim quis orci hendrerit lacinia sed vitae enim.",
+    "text": "Section\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis posuere ligula sit amet lacinia. Duis dignissim pellentesque magna, rhoncus congue sapien finibus mollis. Ut eu sem laoreet, vehicula ipsum in, convallis erat. Vestibulum magna sem, blandit pulvinar augue sit amet, auctor malesuada sapien. Nullam faucibus leo eget eros hendrerit, non laoreet ipsum lacinia. Curabitur cursus diam elit, non tempus ante volutpat a. Quisque hendrerit blandit purus non fringilla. Integer sit amet elit viverra ante dapibus semper. Vestibulum viverra rutrum enim, at luctus enim posuere eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
     "crumbs": [
       "Preface"
     ]
@@ -22,9 +22,9 @@
   {
     "objectID": "index.html#section-1",
     "href": "index.html#section-1",
-    "title": "projectname",
+    "title": "hic-compartment-borders",
     "section": "Section",
-    "text": "Section\nDuis urna urna, pellentesque eu urna ut, malesuada bibendum dolor. Suspendisse potenti. Vivamus ornare, arcu quis molestie ultrices, magna est accumsan augue, auctor vulputate erat quam quis neque. Nullam scelerisque odio vel ultricies facilisis. Ut porta arcu non magna sagittis lacinia. Cras ornare vulputate lectus a tristique. Pellentesque ac arcu congue, rhoncus mi id, dignissim ligula.",
+    "text": "Section\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis posuere ligula sit amet lacinia. Duis dignissim pellentesque magna, rhoncus congue sapien finibus mollis. Ut eu sem laoreet, vehicula ipsum in, convallis erat. Vestibulum magna sem, blandit pulvinar augue sit amet, auctor malesuada sapien. Nullam faucibus leo eget eros hendrerit, non laoreet ipsum lacinia. Curabitur cursus diam elit, non tempus ante volutpat a. Quisque hendrerit blandit purus non fringilla. Integer sit amet elit viverra ante dapibus semper. Vestibulum viverra rutrum enim, at luctus enim posuere eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
     "crumbs": [
       "Preface"
     ]
@@ -32,7 +32,7 @@
   {
     "objectID": "index.html#install",
     "href": "index.html#install",
-    "title": "projectname",
+    "title": "hic-compartment-borders",
     "section": "Install",
     "text": "Install\nconda install -c conda-forge git git-lfs\ngit lfs install",
     "crumbs": [
@@ -42,7 +42,7 @@
   {
     "objectID": "index.html#configure",
     "href": "index.html#configure",
-    "title": "projectname",
+    "title": "hic-compartment-borders",
     "section": "Configure",
     "text": "Configure\ngit lfs track \"*.h5\"\ngit add .gitattributes ; git commit -m 'Added LFS' ; git push\nFrom now, on all h5 files add added to the repo will go on lfs.\nhttps://docs.github.com/en/repositories/working-with-files/managing-large-files/configuring-git-large-file-storage",
     "crumbs": [
@@ -52,7 +52,7 @@
   {
     "objectID": "index.html#managing-files",
     "href": "index.html#managing-files",
-    "title": "projectname",
+    "title": "hic-compartment-borders",
     "section": "Managing files",
     "text": "Managing files\n\n\n\n\n\n\nWarning\n\n\n\nManaging files is for the PI only.\n\n\nhttps://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-git-lfs-objects-in-archives-of-your-repository # Submodules\nSubmodules are useful if you have analysis components that are used across many projects or if results from several past/ongoing projects need to be integrated in a project as a third-party library.\nThe repos can each have their own adjustable workflow as decribed here, that are then easily put together in a larger workflow as described here.\n\n\n\n\n\n\nImportant\n\n\n\nMake sure you install the current version of Git in your environments. The one on the cluster is ancient.\nconda install -c conda-forge git\nI also set these configs for each environment to get nicer/safer commands (commands below assume these are set):\ngit config --global diff.submodule log\ngit config status.submodulesummary 1\ngit config push.recurseSubmodules check",
     "crumbs": [
@@ -62,7 +62,7 @@
   {
     "objectID": "index.html#tldr",
     "href": "index.html#tldr",
-    "title": "projectname",
+    "title": "hic-compartment-borders",
     "section": "TLDR;",
     "text": "TLDR;\n# clone repository as submodule\ngit submodule add git@github.com:munch-group/${REPO}.git\n\n# initialize it\ngit submodule init ${REPO} # initialize it\n\n# and pull the current state of the submodule repo\ngit submodule update ${REPO}\n\n# track new .gitmodules\ngit add .gitmodules ${REPO} && git commit -m \"Added ${REPO} as submodule\" && git push \n\n# checkout main or some other branch)\ncd ${REPO} && git checkout main && cd .. \n\n# config sensible defaults for diff, status, and push\ngit config --global diff.submodule log\ngit config status.submodulesummary 1\ngit config push.recurseSubmodules check",
     "crumbs": [
@@ -72,7 +72,7 @@
   {
     "objectID": "index.html#add-a-submodule",
     "href": "index.html#add-a-submodule",
-    "title": "projectname",
+    "title": "hic-compartment-borders",
     "section": "Add a submodule",
     "text": "Add a submodule\nNow, say you have a project repo called “umbrella” that will contain other projects and that you have cloned that:\ngit clone git@github.com:kaspermunch/umbrella.git\nYou want to use an rfmix pipeline in your project. So you clone this repository as submodule:\n\n\nTerminal\n\ngit submodule add git@github.com:munch-group/rfmix.git\n\nand pull the current state of the submodule repo:\n\n\nTerminal\n\ngit submodule init rfmix\ngit submodule update rfmix\n\nThis also generates a .gitmodules configuration file that git uses to keep track of submodules. Commit that the addalong with the submodule:\n\n\nTerminal\n\ngit add .gitmodules rfmix\ngit commit -m 'Added rfmix as submodule'\ngit push\n\nIf you want to work on/change submodule repo you need to check out a branch to work on (main or some other). Always do this. If you decide to make changes later and forgot you did not check out a branch you could loose those changes:\n\n\nTerminal\n\ncd rfmix\ngit checkout main  # (or some other branch)",
     "crumbs": [
@@ -82,7 +82,7 @@
   {
     "objectID": "index.html#making-changes-to-the-submodule",
     "href": "index.html#making-changes-to-the-submodule",
-    "title": "projectname",
+    "title": "hic-compartment-borders",
     "section": "Making changes to the submodule",
     "text": "Making changes to the submodule\nnow you can then do some work on the tester repo (E.g. change the README.md) and add, commit as usual:\n\n\nTerminal\n\ncd rfmix\n# change README.md\ngit add README.md\ngit commit",
     "crumbs": [
@@ -92,7 +92,7 @@
   {
     "objectID": "index.html#publishing-submodule-changes-to-github",
     "href": "index.html#publishing-submodule-changes-to-github",
-    "title": "projectname",
+    "title": "hic-compartment-borders",
     "section": "Publishing submodule changes to GitHub",
     "text": "Publishing submodule changes to GitHub\nTo publish your submodule commit to the tester repo on GitHub you run:\n\n\nTerminal\n\ncd rfmix\ngit push",
     "crumbs": [
@@ -102,7 +102,7 @@
   {
     "objectID": "index.html#getting-submodule-changes-from-github",
     "href": "index.html#getting-submodule-changes-from-github",
-    "title": "projectname",
+    "title": "hic-compartment-borders",
     "section": "Getting submodule changes from GitHub",
     "text": "Getting submodule changes from GitHub\nif you run “git pull” in the umbrella repo, you pull upstream changes to the umbrella repo including the recorded state (commit) of the tester submodule:\n\n\nTerminal\n\ngit pull\n\nbut it does not pull the tester submodule itself. To do that you run pull in the submodule:\n\n\nTerminal\n\ncd rfmix\ngit pull",
     "crumbs": [
@@ -112,7 +112,7 @@
   {
     "objectID": "index.html#multiple-submodules",
     "href": "index.html#multiple-submodules",
-    "title": "projectname",
+    "title": "hic-compartment-borders",
     "section": "Multiple submodules",
     "text": "Multiple submodules\nYou can have as many submodules as you want. With more submodules, each update command updates all submodules.",
     "crumbs": [
@@ -575,7 +575,7 @@
     "href": "reports/example.html#section",
     "title": "Markdown in Quarto",
     "section": "Section",
-    "text": "Section\nProin sodales neque erat, varius cursus diam tincidunt sit amet. Etiam scelerisque fringilla nisl eu venenatis. Donec sem ipsum, scelerisque ac venenatis quis, hendrerit vel mauris. Praesent semper erat sit amet purus condimentum, sit amet auctor mi feugiat. In hac habitasse platea dictumst. Nunc ac mauris in massa feugiat bibendum id in dui. Praesent accumsan urna at lacinia aliquet. Proin ultricies eu est quis pellentesque. In vel lorem at nisl rhoncus cursus eu quis mi. In eu rutrum ante, quis placerat justo. Etiam euismod nibh nibh, sed elementum nunc imperdiet in. Praesent gravida nunc vel odio lacinia, at tempus nisl placerat. Aenean id ipsum sed est sagittis hendrerit non in tortor.\n\nSubsection\nDuis ornare ex ac iaculis pretium. Maecenas sagittis odio id erat pharetra, sit amet consectetur quam sollicitudin. Vivamus pharetra quam purus, nec sagittis risus pretium at. Nullam feugiat, turpis ac accumsan interdum, sem tellus blandit neque, id vulputate diam quam semper nisl. Donec sit amet enim at neque porttitor aliquet. Phasellus facilisis nulla eget placerat eleifend. Vestibulum non egestas eros, eget lobortis ipsum. Nulla rutrum massa eget enim aliquam, id porttitor erat luctus. Nunc sagittis quis eros eu sagittis. Pellentesque dictum, erat at pellentesque sollicitudin, justo augue pulvinar metus, quis rutrum est mi nec felis. Vestibulum efficitur mi lorem, at elementum purus tincidunt a. Aliquam finibus enim magna, vitae pellentesque erat faucibus at. Nulla mauris tellus, imperdiet id lobortis et, dignissim condimentum ipsum. Morbi nulla orci, varius at aliquet sed, facilisis id tortor. Donec ut urna nisi.\n\n\nSubsubsection\nMaecenas turpis velit, ultricies non elementum vel, luctus nec nunc. Nulla a diam interdum, faucibus sapien viverra, finibus metus. Donec non tortor diam. In ut elit aliquet, bibendum sem et, aliquam tortor. Donec congue, sem at rhoncus ultrices, nunc augue cursus erat, quis porttitor mauris libero ut ex. Nullam quis leo urna. Donec faucibus ligula eget pellentesque interdum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rhoncus interdum erat ut ultricies. Aenean tempus ex non elit suscipit, quis dignissim enim efficitur. Proin laoreet enim massa, vitae laoreet nulla mollis quis.\n\n\n\n\nDutheil, Julien Y, Kasper Munch, Kiwoong Nam, Thomas Mailund, and Mikkel H Schierup. 2015. “Strong Selective Sweeps on the X Chromosome in the Human-Chimpanzee Ancestor Explain Its Low Divergence.” PLOS Genetics 11 (8): e1005451. https://doi.org/10.1371/journal.pgen.1005451.\n\n\nMunch, Kasper, Thomas Mailund, Julien Y Dutheil, and Mikkel Schierup. 2014. “A fine-scale recombination map of the human–chimpanzee ancestor reveals faster change in humans than in chimpanzees and a strong impact of GC-biased gene conversion.” Genome Research 24 (3): 467–74. https://doi.org/10.1101/gr.158469.113.\n\n\nNam, Kiwoong, Kasper Munch, Asger Hobolth, Julien Dutheil, Krishna R Veeramah, August E Woerner, Michael F Hammer, et al. 2015. “Extreme selective sweeps independently targeted the X chromosomes of the great apes.” Proceedings of the National Academy of Sciences 112 (20): 6413–18. https://doi.org/10.1073/pnas.1419306112.\n\n\nNielsen, Rasmgb, and Montgomery Slatkin. 2016. An Introduction to Population Genetics: Theory and Applications.\n\n\nPrüfer, Kay, Kasper Munch, Ines Hellmann, Keiko Akagi, Jason R. Miller, Brian Walenz, Sergey Koren, et al. 2012. “The bonobo genome compared with the chimpanzee and human genomes.” Nature 486 (7404): 527–31. https://doi.org/10.1038/nature11128.\n\n\nSkov, Laurits, Moisès Coll Macià, Elise Anne Lucotte, Maria Izabel Alvez Cavassim, David Castellano, Mikkel Heide Schierup, and Kasper Munch. 2023. “Extraordinary selection on the human X chromosome associated with archaic admixture.” Cell Genomics, 100274. https://doi.org/10.1016/j.xgen.2023.100274.",
+    "text": "Section\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis posuere ligula sit amet lacinia. Duis dignissim pellentesque magna, rhoncus congue sapien finibus mollis. Ut eu sem laoreet, vehicula ipsum in, convallis erat. Vestibulum magna sem, blandit pulvinar augue sit amet, auctor malesuada sapien. Nullam faucibus leo eget eros hendrerit, non laoreet ipsum lacinia. Curabitur cursus diam elit, non tempus ante volutpat a. Quisque hendrerit blandit purus non fringilla. Integer sit amet elit viverra ante dapibus semper. Vestibulum viverra rutrum enim, at luctus enim posuere eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nSubsection\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis posuere ligula sit amet lacinia. Duis dignissim pellentesque magna, rhoncus congue sapien finibus mollis. Ut eu sem laoreet, vehicula ipsum in, convallis erat. Vestibulum magna sem, blandit pulvinar augue sit amet, auctor malesuada sapien. Nullam faucibus leo eget eros hendrerit, non laoreet ipsum lacinia. Curabitur cursus diam elit, non tempus ante volutpat a. Quisque hendrerit blandit purus non fringilla. Integer sit amet elit viverra ante dapibus semper. Vestibulum viverra rutrum enim, at luctus enim posuere eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\n\nSubsubsection\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis posuere ligula sit amet lacinia. Duis dignissim pellentesque magna, rhoncus congue sapien finibus mollis. Ut eu sem laoreet, vehicula ipsum in, convallis erat. Vestibulum magna sem, blandit pulvinar augue sit amet, auctor malesuada sapien. Nullam faucibus leo eget eros hendrerit, non laoreet ipsum lacinia. Curabitur cursus diam elit, non tempus ante volutpat a. Quisque hendrerit blandit purus non fringilla. Integer sit amet elit viverra ante dapibus semper. Vestibulum viverra rutrum enim, at luctus enim posuere eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\n\n\n\nDutheil, Julien Y, Kasper Munch, Kiwoong Nam, Thomas Mailund, and Mikkel H Schierup. 2015. “Strong Selective Sweeps on the X Chromosome in the Human-Chimpanzee Ancestor Explain Its Low Divergence.” PLOS Genetics 11 (8): e1005451. https://doi.org/10.1371/journal.pgen.1005451.\n\n\nMunch, Kasper, Thomas Mailund, Julien Y Dutheil, and Mikkel Schierup. 2014. “A fine-scale recombination map of the human–chimpanzee ancestor reveals faster change in humans than in chimpanzees and a strong impact of GC-biased gene conversion.” Genome Research 24 (3): 467–74. https://doi.org/10.1101/gr.158469.113.\n\n\nNam, Kiwoong, Kasper Munch, Asger Hobolth, Julien Dutheil, Krishna R Veeramah, August E Woerner, Michael F Hammer, et al. 2015. “Extreme selective sweeps independently targeted the X chromosomes of the great apes.” Proceedings of the National Academy of Sciences 112 (20): 6413–18. https://doi.org/10.1073/pnas.1419306112.\n\n\nNielsen, Rasmgb, and Montgomery Slatkin. 2016. An Introduction to Population Genetics: Theory and Applications.\n\n\nPrüfer, Kay, Kasper Munch, Ines Hellmann, Keiko Akagi, Jason R. Miller, Brian Walenz, Sergey Koren, et al. 2012. “The bonobo genome compared with the chimpanzee and human genomes.” Nature 486 (7404): 527–31. https://doi.org/10.1038/nature11128.\n\n\nSkov, Laurits, Moisès Coll Macià, Elise Anne Lucotte, Maria Izabel Alvez Cavassim, David Castellano, Mikkel Heide Schierup, and Kasper Munch. 2023. “Extraordinary selection on the human X chromosome associated with archaic admixture.” Cell Genomics, 100274. https://doi.org/10.1016/j.xgen.2023.100274.",
     "crumbs": [
       "Reports",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Markdown in Quarto</span>"
