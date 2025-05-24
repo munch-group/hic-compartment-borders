@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Søren Jørgensen">
+<meta name="dcterms.date" content="2025-05-24">
 
-<title>GWF workflow – hic-compartment-borders</title>
+<title>master_workflow – hic-compartment-borders</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -66,7 +33,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./reports/example.html" rel="next">
-<link href="./notebooks/example.html" rel="prev">
+<link href="./master_workflow.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -76,7 +43,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ab767124c6a833fa2bbfbd801b8d2961.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-02d7654a0ad9d4caed0fef654f8ad003.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -123,7 +90,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./workflow.html">Workflows</a></li><li class="breadcrumb-item"><a href="./workflow.html"><span class="chapter-title">GWF workflow</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./master_workflow.html">Workflows</a></li><li class="breadcrumb-item"><a href="./workflow.html"><span class="chapter-title">master_workflow</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -217,7 +184,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/example.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Workplace interaction</span></a>
+  <a href="./notebooks/01_preliminary_bayes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Probabilistic Modeling of A/B Compartments from E1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebooks/02_prep_e1_values.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Preparing the E1 values from the raw HIC data, but mapped to the new reference T2T-MMUv1</span></a>
   </div>
 </li>
       </ul>
@@ -233,7 +205,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workflow.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">GWF workflow</span></a>
+  <a href="./master_workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">GWF workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workflow.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">master_workflow</span></a>
   </div>
 </li>
       </ul>
@@ -264,25 +241,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#imports-and-utility-functions" id="toc-imports-and-utility-functions" class="nav-link active" data-scroll-target="#imports-and-utility-functions">Imports and utility functions</a></li>
-  <li><a href="#template-functions" id="toc-template-functions" class="nav-link" data-scroll-target="#template-functions">Template functions:</a></li>
-  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow:</a></li>
+  <li><a href="#index-the-reference-genome" id="toc-index-the-reference-genome" class="nav-link active" data-scroll-target="#index-the-reference-genome">Index the reference genome</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/munch-group/hic-compartment-borders/edit/main/workflow.py" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/munch-group/hic-compartment-borders/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/munch-group/hic-compartment-borders/blob/main/workflow.py" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./workflow.html">Workflows</a></li><li class="breadcrumb-item"><a href="./workflow.html"><span class="chapter-title">GWF workflow</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./master_workflow.html">Workflows</a></li><li class="breadcrumb-item"><a href="./workflow.html"><span class="chapter-title">master_workflow</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">GWF workflow</span></h1>
+<h1 class="title"><span class="chapter-title">master_workflow</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Søren Jørgensen </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 24, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -292,306 +279,182 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>r”“”</p>
-<p>Example workflow using mapping between intput and output of each target. It is made to show all the ways information may be passed through an workflow.</p>
-<pre class="plaintext"><code>                        input_file1.txt                        input_file2.txt
-                                                                                                                
-file label:             'raw_path'                              'raw_path'                                
-                            |                                       |                                  
-                            |                                       |                         
-template:               uppercase_names                         uppercase_names                         
-                            |                                       |                          
-                            |                                       |                         
-file label:            'uppercased_path'                       'uppercased_path'                         
-                            |                                       |                          
-                            |                                       |                         
-template:                divide_names                            divide_names                         
-                         /          \                            /          \                          
-                        /            \                          /            \                         
-file label:    'filt_me_path'  'filt_other_path'      'filt_me_path'  'filt_other_path'                         
-                        \           /                           \           /                         
-                         \         /                             \         /                         
-template:                 unique_names                            unique_names                         
-                           |      |                                |      |  
-                           |      |                                |      |  
-file label:      'uniq_me_path'  'uniq_other_path'       'uniq_me_path'  'uniq_other_path'
-                            \            \                        /           /
-                             \            - - - - - - - - - - - / - - -     /  
-                              \  / - - - - - - - -- - - - - - -         \  /
-                               |                                          |                          
-file label:     (collected) 'uniq_me_paths'              (collected) 'uniq_other_paths'                         
-                               |                                          |
-                               |                                          |
-template:                   merge_names                                merge_names
-                               |                                          |                          
-                               |                                          |                          
-file label:                'output_path'                              'output_path'                         </code></pre>
-<p>““”</p>
-<section id="imports-and-utility-functions" class="level2">
-<h2 class="anchored" data-anchor-id="imports-and-utility-functions">Imports and utility functions</h2>
-<div id="0cae5161" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gwf <span class="im">import</span> Workflow, AnonymousTarget</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gwf.workflow <span class="im">import</span> collect</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Instantiate the workflow with the name of the project folder:</p>
-<div id="9e59daac" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate the workflow</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gwf <span class="op">=</span> Workflow(defaults<span class="op">=</span>{<span class="st">'account'</span>: <span class="st">'your-project-folder-name'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Utility functions:</p>
-<div id="576de5ef" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># utility function</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> modify_path(path, <span class="op">**</span>kwargs):</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Utility function for modifying file paths substituting</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    the directory (dir), base name (base), or file suffix (suffix).</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key <span class="kw">in</span> [<span class="st">'dir'</span>, <span class="st">'base'</span>, <span class="st">'suffix'</span>]:</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        kwargs.setdefault(key, <span class="va">None</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(kwargs) <span class="op">==</span> <span class="dv">3</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    par, name <span class="op">=</span> os.path.split(path)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    name_no_suffix, suf <span class="op">=</span> os.path.splitext(name)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">type</span>(kwargs[<span class="st">'suffix'</span>]) <span class="kw">is</span> <span class="bu">str</span>:</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        suf <span class="op">=</span> kwargs[<span class="st">'suffix'</span>]</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> kwargs[<span class="st">'dir'</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        par <span class="op">=</span> kwargs[<span class="st">'dir'</span>]</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> kwargs[<span class="st">'base'</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        name_no_suffix <span class="op">=</span> kwargs[<span class="st">'base'</span>]</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    new_path <span class="op">=</span> os.path.join(par, name_no_suffix <span class="op">+</span> suf)</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">type</span>(kwargs[<span class="st">'suffix'</span>]) <span class="kw">is</span> <span class="bu">tuple</span>:</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="bu">len</span>(kwargs[<span class="st">'suffix'</span>]) <span class="op">==</span> <span class="dv">2</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        new_path, nsubs <span class="op">=</span> re.subn(<span class="vs">r'{}</span><span class="dv">$</span><span class="vs">'</span>.<span class="bu">format</span>(kwargs[<span class="st">'suffix'</span>][<span class="dv">0</span>]), kwargs[<span class="st">'suffix'</span>][<span class="dv">1</span>], new_path)</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> nsubs <span class="op">==</span> <span class="dv">1</span>, nsubs</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>from gwf import * import os import subprocess import os.path as op import pandas as pd from cooler.fileops import list_coolers from pprintpp import pprint as pp</p>
+<section id="section" class="level38">
+<p class="heading"></p>
+<p><code>gwf</code> workflow for the full pipeline from downloading raw reads to compartmentalization analysis. We are using <code>bwa mem</code> for mapping.</p>
+<p>How to run: conda activate hic gwf -f master_workflow.py status</p>
+<p>Workflow: 1a bwa_index : Index the reference genome with <code>bwa index</code> 1b sam_index : Index the fasta again with <code>samtools faidx</code> 1c download_reads : Download raw reads from SRA <code>sra-downloader</code> with SRR IDs (paired-end reads) 2 bwa_map : Map reads (PE) to the reference with <code>bwa mem</code> 3 pair_sort : Pair the merged alignments from mate-pair sequencing with <code>pairtools parse</code>, then sort with <code>pairtools sort</code> 4 dedup : Deduplicate the sorted pairs with <code>pairtools dedup</code> 5 make_pairs_cool : Create a .cool file from the deduplicated pairs with <code>cooler cload pairs</code></p>
 </section>
-<section id="template-functions" class="level2">
-<h2 class="anchored" data-anchor-id="template-functions">Template functions:</h2>
-<div id="efebe2da" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># task template function</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> uppercase_names(raw_path): </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Formats names to uppercase.</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dir for files produces by task</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    output_dir <span class="op">=</span> <span class="st">'steps/upper_cased'</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># path of output file</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    uppercased_path <span class="op">=</span> modify_path(raw_path, <span class="bu">dir</span><span class="op">=</span>output_dir, suffix<span class="op">=</span><span class="st">'_uppercased.txt'</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># input specification</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> [raw_path]</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># output specification mapping a label to each file</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> {<span class="st">'uppercased_path'</span>: uppercased_path}</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># resource specification</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    options <span class="op">=</span> {<span class="st">'memory'</span>: <span class="st">'8g'</span>, <span class="st">'walltime'</span>: <span class="st">'00:10:00'</span>} </span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># tmporary output file path</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    tmp_uppercased_path <span class="op">=</span> modify_path(raw_path, <span class="bu">dir</span><span class="op">=</span><span class="st">'/tmp'</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># commands to run in task (bash script)</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we write to a tmp file and move that to the output directory </span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># only if the command succeds (the &amp;&amp; takes care of that)</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    spec <span class="op">=</span> <span class="ss">f"""</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="ss">    mkdir -p </span><span class="sc">{</span>output_dir<span class="sc">}</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="ss">    cat </span><span class="sc">{</span>raw_path<span class="sc">}</span><span class="ss"> | tr [:lower:] [:upper:] &gt; </span><span class="sc">{</span>tmp_uppercased_path<span class="sc">}</span><span class="ss"> &amp;&amp;</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="ss">        mv </span><span class="sc">{</span>tmp_uppercased_path<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>uppercased_path<span class="sc">}</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="ss">    """</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return target</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> AnonymousTarget(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, options<span class="op">=</span>options, spec<span class="op">=</span>spec)</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co"># task template function</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> divide_names(uppercased_path, me<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co">    Splits names into two files. One with my name and one with other names.</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># uppercased version of the me argument</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    uppercased_me <span class="op">=</span> me.upper()</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dir for files produces by task</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    output_dir <span class="op">=</span> <span class="st">'steps/filtered_names'</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># path of output file with names matching me</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    filt_me_path <span class="op">=</span> modify_path(uppercased_path, <span class="bu">dir</span><span class="op">=</span>output_dir, suffix<span class="op">=</span><span class="ss">f'_</span><span class="sc">{</span>me<span class="sc">}</span><span class="ss">.txt'</span>)</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># path of output file with other names</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    filt_other_path <span class="op">=</span> modify_path(uppercased_path, <span class="bu">dir</span><span class="op">=</span>output_dir, suffix<span class="op">=</span><span class="ss">f'_not_</span><span class="sc">{</span>me<span class="sc">}</span><span class="ss">.txt'</span>)</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># input specification</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> [uppercased_path]</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># output specification mapping a label to each file</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> {<span class="st">'filt_me_path'</span>: filt_me_path, <span class="st">'filt_other_path'</span>: filt_other_path}</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># resource specification</span></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    options <span class="op">=</span> {<span class="st">'memory'</span>: <span class="st">'8g'</span>, <span class="st">'walltime'</span>: <span class="st">'00:10:00'</span>} </span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># tmporary output file paths</span></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    tmp_filt_me_path <span class="op">=</span> modify_path(filt_me_path, <span class="bu">dir</span><span class="op">=</span><span class="st">'/tmp'</span>)</span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    tmp_filt_other_path <span class="op">=</span> modify_path(filt_other_path, <span class="bu">dir</span><span class="op">=</span><span class="st">'/tmp'</span>)</span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    <span class="co"># commands to run in task (bash script)</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we write to tmp files and move them to the output directory </span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># only if the command succeds (the &amp;&amp; takes care of that)</span></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>    spec <span class="op">=</span> <span class="ss">f"""</span></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="ss">    mkdir -p </span><span class="sc">{</span>output_dir<span class="sc">}</span><span class="ss">    </span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="ss">    grep </span><span class="sc">{</span>uppercased_me<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>uppercased_path<span class="sc">}</span><span class="ss"> &gt; </span><span class="sc">{</span>tmp_filt_me_path<span class="sc">}</span><span class="ss"> &amp;&amp;  </span></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="ss">        grep -v </span><span class="sc">{</span>uppercased_me<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>uppercased_path<span class="sc">}</span><span class="ss"> &gt; </span><span class="sc">{</span>tmp_filt_other_path<span class="sc">}</span><span class="ss"> &amp;&amp;  </span></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="ss">        mv </span><span class="sc">{</span>tmp_filt_me_path<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>filt_me_path<span class="sc">}</span><span class="ss"> &amp;&amp;  </span></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="ss">        mv </span><span class="sc">{</span>tmp_filt_other_path<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>filt_other_path<span class="sc">}</span></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="ss">    """</span></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return target</span></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> AnonymousTarget(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, options<span class="op">=</span>options, spec<span class="op">=</span>spec)</span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="co"># task template function</span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> unique_names(filt_me_path, filt_other_path): </span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="co">    Extracts unique names from a file.</span></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dir for files produces by task</span></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>    output_dir <span class="op">=</span> <span class="st">'steps/unique_names'</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># path of output file with unique names matching me</span></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>    uniq_me_path <span class="op">=</span> modify_path(filt_me_path, <span class="bu">dir</span><span class="op">=</span>output_dir, suffix<span class="op">=</span><span class="st">'_unique.txt'</span>)</span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># path of output file with unique other names</span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>    uniq_other_path <span class="op">=</span> modify_path(filt_other_path, <span class="bu">dir</span><span class="op">=</span>output_dir, suffix<span class="op">=</span><span class="st">'_unique.txt'</span>)</span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>    <span class="co"># input specification</span></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> [filt_me_path, filt_other_path]</span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>    <span class="co"># output specification mapping a label to each file</span></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> {<span class="st">'unique_me_path'</span>: uniq_me_path, <span class="st">'unique_other_path'</span>: uniq_other_path}</span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>    <span class="co"># resource specification</span></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>    options <span class="op">=</span> {<span class="st">'memory'</span>: <span class="st">'8g'</span>, <span class="st">'walltime'</span>: <span class="st">'00:10:00'</span>} </span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>    <span class="co"># tmporary output file paths</span></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>    tmp_uniq_me_path <span class="op">=</span> modify_path(uniq_me_path, <span class="bu">dir</span><span class="op">=</span><span class="st">'/tmp'</span>)</span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>    tmp_uniq_other_path <span class="op">=</span> modify_path(uniq_other_path, <span class="bu">dir</span><span class="op">=</span><span class="st">'/tmp'</span>)</span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>    <span class="co"># commands to run in task (bash script)</span></span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we write to tmp files and move them to the output directory </span></span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>    <span class="co"># only if the command succeds (the &amp;&amp; takes care of that)</span></span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>    spec <span class="op">=</span> <span class="ss">f"""</span></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="ss">    mkdir -p </span><span class="sc">{</span>output_dir<span class="sc">}</span><span class="ss">    </span></span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="ss">    sort </span><span class="sc">{</span>filt_me_path<span class="sc">}</span><span class="ss"> | uniq &gt; </span><span class="sc">{</span>tmp_uniq_me_path<span class="sc">}</span><span class="ss"> &amp;&amp; </span></span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a><span class="ss">        sort </span><span class="sc">{</span>filt_other_path<span class="sc">}</span><span class="ss"> | uniq &gt; </span><span class="sc">{</span>tmp_uniq_other_path<span class="sc">}</span><span class="ss"> &amp;&amp; </span></span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a><span class="ss">        mv </span><span class="sc">{</span>tmp_uniq_me_path<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>uniq_me_path<span class="sc">}</span><span class="ss"> &amp;&amp; </span></span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="ss">        mv </span><span class="sc">{</span>tmp_uniq_other_path<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>uniq_other_path<span class="sc">}</span></span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="ss">    """</span></span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return target</span></span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> AnonymousTarget(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, options<span class="op">=</span>options, spec<span class="op">=</span>spec)</span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="co"># task template function</span></span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> merge_names(paths, output_path): </span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a><span class="co">    Merges names from many files.</span></span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dir for files produces by task</span></span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>    output_dir <span class="op">=</span> modify_path(output_path, base<span class="op">=</span><span class="st">''</span>, suffix<span class="op">=</span><span class="st">''</span>)</span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>    <span class="co"># input specification</span></span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> [paths]</span>
-<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>    <span class="co"># output specification mapping a label to the file</span></span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> {<span class="st">'path'</span>: output_path}</span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>    <span class="co"># tmporary output file path</span></span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>    tmp_output_path <span class="op">=</span>  modify_path(output_path, <span class="bu">dir</span><span class="op">=</span><span class="st">'/tmp'</span>)</span>
-<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>    <span class="co"># resource specification</span></span>
-<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>    options <span class="op">=</span> {<span class="st">'memory'</span>: <span class="st">'8g'</span>, <span class="st">'walltime'</span>: <span class="st">'00:10:00'</span>} </span>
-<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>    <span class="co"># commands to run in task (bash script)</span></span>
-<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we write to tmp files and move them to the output directory </span></span>
-<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>    <span class="co"># only if the command succeds (the &amp;&amp; takes care of that)</span></span>
-<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>    spec <span class="op">=</span> <span class="ss">f"""</span></span>
-<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a><span class="ss">    mkdir -p </span><span class="sc">{</span>output_dir<span class="sc">}</span></span>
-<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a><span class="ss">    cat </span><span class="sc">{</span><span class="st">' '</span><span class="sc">.</span>join(paths)<span class="sc">}</span><span class="ss"> &gt; </span><span class="sc">{</span>tmp_output_path<span class="sc">}</span><span class="ss"> &amp;&amp; </span></span>
-<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a><span class="ss">        mv </span><span class="sc">{</span>tmp_output_path<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>output_path<span class="sc">}</span></span>
-<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a><span class="ss">    """</span></span>
-<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return target</span></span>
-<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> AnonymousTarget(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, options<span class="op">=</span>options, spec<span class="op">=</span>spec)</span>
-<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="co"># task template function</span></span>
-<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_notebook(path, dependencies, memory<span class="op">=</span><span class="st">'8g'</span>, walltime<span class="op">=</span><span class="st">'00:10:00'</span>, cores<span class="op">=</span><span class="dv">1</span>):    </span>
-<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a><span class="co">    Executes a notebook inplace and saves the output.</span></span>
-<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>    <span class="co"># path of output sentinel file</span></span>
-<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>    sentinel <span class="op">=</span> modify_path(path, base<span class="op">=</span><span class="ss">f'.</span><span class="sc">{</span><span class="bu">str</span>(Path(path).name)<span class="sc">}</span><span class="ss">'</span>, suffix<span class="op">=</span><span class="st">'.sentinel'</span>)</span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sentinel = path.parent / f'.{path.name}'</span></span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>    <span class="co"># input specification</span></span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> [path] <span class="op">+</span> dependencies</span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>    <span class="co"># output specification mapping a label to each file</span></span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> {<span class="st">'sentinel'</span>: sentinel}</span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>    <span class="co"># resource specification</span></span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>    options <span class="op">=</span> {<span class="st">'memory'</span>: memory, <span class="st">'walltime'</span>: walltime, <span class="st">'cores'</span>: cores} </span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>    <span class="co"># commands to run in task (bash script)</span></span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>    spec <span class="op">=</span> <span class="ss">f"""</span></span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="ss">    jupyter nbconvert --to notebook --execute --inplace </span><span class="sc">{</span>path<span class="sc">}</span><span class="ss"> &amp;&amp; touch </span><span class="sc">{</span>sentinel<span class="sc">}</span></span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="ss">    """</span></span>
-<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return target</span></span>
-<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> AnonymousTarget(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, options<span class="op">=</span>options, spec<span class="op">=</span>spec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="section-1" class="level38">
+<p class="heading"></p>
+<p>Create a workflow object gwf = Workflow(defaults={‘nodes’: 1, ‘queue’:“normal”, ‘account’:“hic-spermatogenesis”})</p>
+<section id="section-2" class="level44">
+<p class="heading"></p>
 </section>
-<section id="workflow" class="level2">
-<h2 class="anchored" data-anchor-id="workflow">Workflow:</h2>
-<div id="d9fd7ab6" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate the workflow</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gwf <span class="op">=</span> Workflow(defaults<span class="op">=</span>{<span class="st">'account'</span>: <span class="st">'your-project-folder-name'</span>})</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># input files for workflow</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>input_file_names <span class="op">=</span> [<span class="st">'data/input_file1.txt'</span>, <span class="st">'data/input_file2.txt'</span>]</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># workflow parameter</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>myname <span class="op">=</span> <span class="st">'Kasper'</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># run an uppercase_names task for each input file</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>uppercase_names_targets <span class="op">=</span> gwf.<span class="bu">map</span>(uppercase_names, input_file_names)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># run an divide_names task for each output file from uppercase_names</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>filter_names_targets <span class="op">=</span> gwf.<span class="bu">map</span>(divide_names, uppercase_names_targets.outputs, extra<span class="op">=</span><span class="bu">dict</span>(me<span class="op">=</span>myname))</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># run an unique_names task for each output file from divide_names</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>unique_names_targets <span class="op">=</span> gwf.<span class="bu">map</span>(unique_names, filter_names_targets.outputs)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># collect the outputs labelled 'unique_me_path' from all the outputs of unique_names </span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>collected_outputs <span class="op">=</span> collect(unique_names_targets.outputs, [<span class="st">'unique_me_path'</span>])</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># create a single task to merge all those files into one</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>merge_me_target <span class="op">=</span> gwf.target_from_template(</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'merge_not_me_name_files'</span>,</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    merge_names(collected_outputs[<span class="st">'unique_me_paths'</span>], <span class="st">"results/merged_me_names.txt"</span>)</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co"># collect the outputs labelled 'unique_other_path' from all the outputs of unique_names </span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>collected_outputs <span class="op">=</span> collect(unique_names_targets.outputs, [<span class="st">'unique_other_path'</span>])</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># create a single task to merge all those files into one</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>merge_other_target <span class="op">=</span> gwf.target_from_template(</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">'merge_me_name_files'</span>,</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    merge_names(collected_outputs[<span class="st">'unique_other_paths'</span>], <span class="st">"results/merged_not_me_names.txt"</span>)</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># make notebooks depend on all output files from workflow</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>notebook_dependencies <span class="op">=</span> []</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> gwf.targets.values():</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> x.outputs</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">type</span>(outputs) <span class="kw">is</span> <span class="bu">dict</span>:</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> o <span class="kw">in</span> outputs.values():</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>            notebook_dependencies.append(o)</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">type</span>(outputs) <span class="kw">is</span> <span class="bu">list</span>:</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>        notebook_dependencies.extend(outputs)</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co">#  run notebooks in sorted order nb01_, nb02_, ...</span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> path <span class="kw">in</span> glob.glob(<span class="st">'notebooks/*.ipynb'</span>):</span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>    target <span class="op">=</span> gwf.target_from_template(</span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>        os.path.basename(path), run_notebook(path, notebook_dependencies))</span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># make notebooks depend on all previous notebooks</span></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    notebook_dependencies.append(target.outputs[<span class="st">'sentinel'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+</section>
+<section id="templates" class="level14">
+<p class="heading">Templates</p>
+<section id="section-3" class="level44">
+<p class="heading"></p>
+<p>def download_index_reference(name, refdir): ““” Download the reference genome from NCBI, and index it for bwa ““” out_dir = op.join(refdir, name) inputs = [] outputs = [f”{out_dir}/index/bwa/{name}.fa”, f”{out_dir}/index/bwa/{name}.fa.amb”, f”{out_dir}/index/bwa/{name}.fa.ann”, f”{out_dir}/index/bwa/{name}.fa.bwt”, f”{out_dir}/index/bwa/{name}.fa.pac”, f”{out_dir}/index/bwa/{name}.fa.sa”, f”{out_dir}/assembly_report.txt”, f”{out_dir}/{name}.fa.sizes”, f”{out_dir}/{name}.fa.fai”, f”{out_dir}/{name}.gaps.bed”, ] options = { ‘memory’: ‘16g’, ‘walltime’: ‘01:00:00’, ‘cores’: 8, } spec = f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic genomepy plugin enable bwa &amp;&amp;<br>
+genomepy install {name} –provider ncbi –genomes_dir {refdir} –threads 8 ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
+<p>def download_reads(sra_downloader, srr_id, read_dir): “““Download raw reads from SRA”“” inputs = [sra_downloader] outputs = [f”{read_dir}/{srr_id}_1.fastq.gz”, f”{read_dir}/{srr_id}<em>2.fastq.gz”, f”{read_dir}/dl</em>{srr_id}.done”] options = {‘cores’:16, ‘memory’: “4g”, ‘walltime’:“06:00:00”} spec = f”“” singularity run {sra_downloader} {srr_id} –save-dir {read_dir} –cores 16 &amp;&amp;<br>
+touch {read_dir}/dl_{srr_id}.done ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
+<p>def bwa_index(ref_genome): “““Template for indexing the reference genome with bwa”“” inputs = [ref_genome] outputs = [f”{ref_genome}.amb”, f”{ref_genome}.ann”, f”{ref_genome}.bwt”, f”{ref_genome}.pac”, f”{ref_genome}.sa”] options = {‘cores’:1, ‘memory’: “8g”, ‘walltime’:“02:00:00”} spec = f’’’ source $(conda info –base)/etc/profile.d/conda.sh conda activate hic bwa index -p {ref_genome} -a bwtsw {ref_genome} ’’’ return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
+<p>def sam_index(ref_genome): “““Creating a fasta index. <code>bwa mem</code> also needs a fasta index generated by samtools”“” inputs = [ref_genome] outputs = [f”{ref_genome}.fai”] options = {‘cores’:1, ‘memory’:“1g”, ‘walltime’:“00:20:00”} spec=f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic samtools faidx {ref_genome} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
+<p>def bwa_map(ref_genome, mate_1, mate_2, download_ok, out_bam): ““” Template for mapping reads to a reference genome using <code>bwa</code> and <code>samtools</code>. NB! Here, we map the mates together, as bwa states it is no problem for Hi-C reads. ““” threads = 32 inputs = [f”{ref_genome}.amb”, f”{ref_genome}.ann”, f”{ref_genome}.bwt”, f”{ref_genome}.pac”, f”{ref_genome}.sa”, #f”{ref_genome}.fai”, mate_1, mate_2, download_ok] outputs = [out_bam] options = {‘cores’:threads, ‘memory’: “32g”, ‘walltime’:“24:00:00”} spec = f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic bwa mem -t {threads} -SP {ref_genome} {mate_1} {mate_2} &gt; {out_bam} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
+<p>Updated version uses –walks-policy 5unique in stead of mask def pair_sort_alignments(chromsizes, bam_merged, sorted_pairs): “““Convert the paired-end alignments to .pairs with <code>pairtools parse</code>, then sort”“” inputs = [bam_merged] outputs = [f”{bam_merged}_parsed.stats”, sorted_pairs] options = {‘cores’:32, ‘memory’:“16g”, ‘walltime’:“10:00:00”} spec=f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic pairtools parse<br>
+-c {chromsizes}<br>
+–drop-sam –drop-seq<br>
+–output-stats {bam_merged}_parsed.stats<br>
+–add-columns mapq<br>
+–assembly rheMac10<br>
+–walks-policy 5unique<br>
+{bam_merged} |<br>
+pairtools sort -o {sorted_pairs} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
+<p>def dedup(sorted_pairs, chromsizes): “““Deduplicate the sorted pairs with <code>pairtools dedup</code>”“” pairs_prefix = sorted_pairs.split(“.sorted”)[0] inputs = [sorted_pairs] outputs = [f”{pairs_prefix}.nodups.pairs.gz”, f”{pairs_prefix}.unmapped.pairs.gz”, f”{pairs_prefix}.dups.pairs.gz”, f”{pairs_prefix}.dedup.stats”, f”{pairs_prefix}.dedup.done”] options = {‘cores’:12, ‘memory’: “4g”, ‘walltime’: “03:30:00”} spec = f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic pairtools dedup<br>
+–max-mismatch 3<br>
+–mark-dups<br>
+–chunksize 100000<br>
+–chrom-subset {chromsizes}<br>
+–output {pairs_prefix}.nodups.pairs.gz<br>
+–output-unmapped {pairs_prefix}.unmapped.pairs.gz<br>
+–output-stats {pairs_prefix}.dedup.stats<br>
+–output-dups {pairs_prefix}.dups.pairs.gz<br>
+{sorted_pairs} &amp;&amp;<br>
+touch {pairs_prefix}.dedup.done ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
+<p>Updated version uses pairtools select to filter out low quality reads def make_pairs_cool(chromsizes, pairs, cool_out): “““Create coolers from pairs with <code>cooler cload pairs</code>”“” base = os.path.basename(pairs).split(“.pairs.gz”)[0] inputs = [pairs] outputs = [cool_out] options = {‘cores’:1, ‘memory’:“8g”, ‘walltime’:“06:30:00”} spec = f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic pairtools select “(mapq1&gt;=30) and (mapq2&gt;=30)” {pairs} |<br>
+cooler cload pairs<br>
+-c1 2 -p1 3 -c2 4 -p2 5<br>
+–assembly ‘T2T-MMU8v1’<br>
+–chunksize 200000<br>
+{chromsizes}:1000<br>
+-<br>
+{cool_out} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
+<p>def merge_zoomify_balance(cooler_list, merged, mcool): “““Merge a given list of coolers with <code>cooler merge</code> and then zoomify the merged cooler with <code>cooler zoomify</code>”“” cooler_list_unix_str = ” “.join(cooler_list) inputs = [cooler_list] outputs = [merged, mcool] options = {‘cores’:16, ‘memory’:”32g”, ‘walltime’:“08:00:00”} spec = f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic cooler merge -c 50000000 {merged} {cooler_list_unix_str} &amp;&amp;<br>
+cooler zoomify –nproc 16<br>
+–resolutions 1000,5000,10000,50000,100000<br>
+–balance<br>
+–balance-args ‘–nproc 16’<br>
+-o {mcool}<br>
+{merged} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
+<p>DRAFT: Not implemented as a target yet def balance_cooler_cis(cool_in, cool_out): “““Balance a cooler with <code>cooler balance</code>”“” mcool = cool_in.split(“::”)[0] inputs = [mcool] outputs = [cool_out] options = {‘cores’:8, ‘memory’:“32g”, ‘walltime’:“03:00:00”} spec = f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic cooler balance -p 32 –cis-only –name cis_weights {cool_in} &amp;&amp;<br>
+touch {cool_out} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
+<section id="section-4" class="level47">
+<p class="heading"></p>
+<p>Set up the folder structure for the workflow # ###############################################</p>
+<p># Define our working dir main_dir = op.dirname(<strong>file</strong>) msc_dir = op.join(main_dir, “../hic-spermatogenesis/”)</p>
+<p>Define the reads directory (download reads here) reads_dir = op.join(“steps/macaque_raw/downloaded/”)</p>
+<p>Check to find SRA-downloader, else pull from docker sra_downloader = “steps/sra-downloader.sif”</p>
+<p>if not op.exists(sra_downloader): command = [“singularity”, “pull”, sra_downloader, “docker://wwydmanski/sra-downloader”] try: result = subprocess.run(command, check=True, capture_output=True, text=True) print(result.stdout) print(result.stderr) except subprocess.CalledProcessError as e: print(e.stdout) print(e.stderr)</p>
+<p>Define subdirs for tissue type, strip_whitespace and make lowercase sra_runtable = pd.read_csv(“data/SraRunTable.txt”) reads_subdirs = set(sra_runtable[“source_name”])</p>
+<p>Make a dict mapping the tissue type [‘source_name’] to the SRR IDs [‘Run’] tissue_dict = {tissue: sra_runtable[sra_runtable[“source_name”]==tissue][“Run”].tolist() for tissue in reads_subdirs}</p>
+<p>Define the output dirs for files bam_dir = op.join(main_dir,“steps/bamfiles”) pair_dir = op.join(main_dir, “steps/pairs”)<br>
+cool_dir = op.join(main_dir, “steps/cool”)</p>
+</section>
+</section>
+<section id="section-5" class="level44">
+<p class="heading"></p>
+</section>
+</section>
+<section id="targets" class="level14">
+<p class="heading">Targets</p>
+<section id="section-6" class="level44">
+<p class="heading"></p>
+<p>Download the reference genome ref_name = “T2T-MMU8v1.0” ref_dir = op.join(main_dir, “steps/ref”)</p>
+<p>T0 = gwf.target_from_template( f”install_T2T_MMU8V1”, download_index_reference(ref_name, ref_dir) )</p>
+<p>ref_genome = T0.outputs[0] ref_dir = op.join(ref_dir, ref_name) ## Update ref_dir chromsizes = op.join(ref_dir, f”{ref_name}.fa.sizes”)</p>
+</section>
+</section>
+<section id="index-the-reference-genome" class="level1">
+<h1>Index the reference genome</h1>
+<p>T1a = gwf.target_from_template(f”bwa_index_{os.path.basename(ref_genome).split(‘.’)[0]}“, bwa_index(ref_genome=ref_genome)) T1b = gwf.target_from_template(f”sam_index_{os.path.basename(ref_genome).split(‘.’)[0]}“, sam_index(ref_genome=ref_genome))</p>
+<p>T5out is a dict to store the cool files for each tissue type to be merged in the end T5out = {}</p>
+<p>T1c target for each ID in the SRA runtable for id in sra_runtable[“Run”]:</p>
+<pre><code># Do some stuff before downloading the reads
+# Get the tissue type for the ID, and assign a subdirectory for the reads
+sub_dir = None
+for cell_type, ids in tissue_dict.items():
+    if id in ids:
+        sub_dir = cell_type.lower().replace(" ", "_")
+        break
+if sub_dir is None:
+    raise ValueError(f"ID {id} not found in any tissue type")
+
+fastq_dir = op.join(reads_dir, sub_dir)
+
+# Create subdirs if they don't exist
+if not op.exists(fastq_dir):
+    os.makedirs(fastq_dir)
+
+# T1c: Download SRA ID
+T1c = gwf.target_from_template(f"dl_{id}",
+                              download_reads(
+                                    sra_downloader = sra_downloader,
+                                    srr_id = id,
+                                    read_dir = fastq_dir
+                                ))
+
+
+# T2: Map the reads to the reference genome
+bam_wdir = op.join(bam_dir, sub_dir)
+out_bam = op.join(bam_wdir, f"{id}.bam")
+
+if not op.exists(bam_wdir):
+    os.makedirs(bam_wdir)
+
+T2 = gwf.target_from_template(f"bwa_map_{id}", 
+                              bwa_map(ref_genome=ref_genome, 
+                                      mate_1=T1c.outputs[0], mate_2=T1c.outputs[1], 
+                                      download_ok=T1c.outputs[2],
+                                      out_bam=out_bam))
+
+# T3: pair and sort the alignments
+pair_subdir = op.join(pair_dir, sub_dir)
+sorted_pairs = op.join(pair_subdir, f"{id}.sorted.pairs.gz")
+
+if not op.exists(pair_subdir):
+    os.makedirs(pair_subdir)
+
+T3 = gwf.target_from_template(f"parse_{id}",
+                                pair_sort_alignments(chromsizes=chromsizes, 
+                                                     bam_merged=T2.outputs[0], 
+                                                     sorted_pairs=sorted_pairs))
+
+# T4: Deduplicate the sorted pairs
+# Dedup dir is the same as pair dir
+# NB we are using the reduced chromsizes file (only 'real' chromosomes)
+T4 = gwf.target_from_template(f"dedup_{id}",
+                                dedup(sorted_pairs=T3.outputs[1],
+                                        chromsizes=chromsizes))
+
+# T5: Create a .cool file from the deduplicated pairs
+cool_subdir = op.join(cool_dir, sub_dir)
+
+if not op.exists(cool_subdir):
+    os.makedirs(cool_subdir)
+
+T4outpairs = [x for x in T4.outputs if x.endswith(".pairs.gz")]
+if sub_dir not in T5out:
+    T5out[sub_dir] = []
+
+
+
+for T4out in T4outpairs:
+    # Filter to be removed if we want to
+    # Only make a cool file of the 'nodups' pairs
+    if 'nodups' not in T4out:
+        continue
+
+    cool_name = f"{id}"
+    cool_file = os.path.join(cool_subdir, f"{cool_name}.1000.cool")
+
+    T5 = gwf.target_from_template(f"coolify_{cool_name}",
+                                    make_pairs_cool(chromsizes, pairs=T4out, cool_out=cool_file))
+    T5out[sub_dir].append(T5.outputs[0])
+    </code></pre>
+<p>Merge the coolers for each tissue type (group) T6out = {} for subdir,cool_list in T5out.items(): T6out[subdir] = gwf.target_from_template(f”merge_zoom_balance_{subdir}“, merge_zoomify_balance(cooler_list=cool_list, merged=op.join(cool_dir, subdir, f”{subdir}.merged.cool”), mcool=op.join(cool_dir, subdir, f”{subdir}.merged.mcool”))) pp(T6out[subdir].inputs[0])</p>
 
 
 </section>
@@ -998,8 +861,8 @@ file label:                'output_path'                              'output_pa
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./notebooks/example.html" class="pagination-link" aria-label="Workplace interaction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Workplace interaction</span></span>
+      <a href="./master_workflow.html" class="pagination-link" aria-label="GWF workflow">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">GWF workflow</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
