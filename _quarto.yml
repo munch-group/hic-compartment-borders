@@ -1,10 +1,10 @@
 project:
   type: book
-  post-render: 
-    # - quarto render --profile slides
-    - quarto render slides/
-    - quarto render thesis/
-    - quarto render manuscript/
+  # post-render: 
+  #   # - quarto render --profile slides
+  #   - quarto render slides/
+  #   - quarto render thesis/
+  #   - quarto render manuscript/
     
 execute:
   freeze: auto
@@ -51,9 +51,11 @@ book:
       - slides/index.qmd 
     - part: "Notebooks"
       chapters: 
-      - notebooks/example.ipynb
+      - notebooks/01_preliminary_bayes.ipynb
+      - notebooks/02_prep_e1_values.ipynb
     - part: "Workflows"
       chapters: 
+      - master_workflow.py
       - workflow.py
     - part: "Reports"
       chapters: 

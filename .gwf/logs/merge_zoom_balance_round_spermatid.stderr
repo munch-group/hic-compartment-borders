@@ -1,0 +1,536 @@
+INFO:cooler.reduce:Merging:
+/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/SRR7345460.1000.cool
+/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/SRR7345461.1000.cool
+/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/SRR7349192.1000.cool
+/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/SRR6502351.1000.cool
+/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/SRR6502352.1000.cool
+/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/SRR6502353.1000.cool
+INFO:cooler.create:Creating cooler at "/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/round_spermatid.merged.cool::/"
+INFO:cooler.create:Writing chroms
+INFO:cooler.create:Writing bins
+INFO:cooler.create:Writing pixels
+INFO:cooler.reduce:n_merge_epochs: 17
+INFO:cooler.reduce:nnzs: [90298670, 187757812, 186582747, 81589057, 147914263, 122995450]
+INFO:cooler.reduce:records consumed: [5791490, 11600461, 11338557, 4889882, 8959059, 7420229]
+INFO:cooler.reduce:records consumed: [11587493, 23188705, 22688167, 9807621, 17960747, 14766809]
+INFO:cooler.reduce:records consumed: [17271030, 34638041, 34105218, 14733693, 26959569, 22291889]
+INFO:cooler.reduce:records consumed: [22904880, 46001945, 45573980, 19701519, 36030325, 29786682]
+INFO:cooler.reduce:records consumed: [28447703, 57231795, 57102871, 24678848, 45102349, 37435759]
+INFO:cooler.reduce:records consumed: [34047694, 68614171, 68562760, 29644562, 54152815, 44976931]
+INFO:cooler.reduce:records consumed: [39463979, 79759947, 80144616, 34634260, 63241214, 52754585]
+INFO:cooler.reduce:records consumed: [44880124, 90932712, 91718252, 39637606, 72339990, 60489700]
+INFO:cooler.reduce:records consumed: [50562107, 102626412, 103031335, 44578847, 81321801, 67877575]
+INFO:cooler.reduce:records consumed: [56055777, 114063424, 114482009, 49572601, 90383390, 75440564]
+INFO:cooler.reduce:records consumed: [61593091, 125614314, 125871403, 54562920, 99426535, 82929474]
+INFO:cooler.reduce:records consumed: [67188499, 137452725, 137144405, 59541979, 108443653, 90226200]
+INFO:cooler.reduce:records consumed: [72550521, 148916078, 148592148, 64580795, 117525552, 97832032]
+INFO:cooler.reduce:records consumed: [77901134, 160511833, 159987896, 69617204, 126594609, 105384330]
+INFO:cooler.reduce:records consumed: [83330446, 172387542, 171248897, 74657398, 135621033, 112751455]
+INFO:cooler.reduce:records consumed: [88555069, 184055755, 182599469, 79790206, 144737055, 120259051]
+INFO:cooler.reduce:records consumed: [90298670, 187757812, 186582747, 81589057, 147914263, 122995450]
+INFO:cooler.create:Writing indexes
+INFO:cooler.create:Writing info
+INFO:cooler.cli.zoomify:Recursively aggregating "/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/round_spermatid.merged.cool"
+INFO:cooler.cli.zoomify:Writing to "/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/round_spermatid.merged.mcool"
+INFO:cooler.reduce:Copying base matrices and producing 5 new zoom levels.
+INFO:cooler.reduce:Bin size: 1000
+INFO:cooler.reduce:Aggregating from 1000 to 5000.
+INFO:cooler.create:Creating cooler at "/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/round_spermatid.merged.mcool::/resolutions/5000"
+INFO:cooler.create:Writing chroms
+INFO:cooler.create:Writing bins
+INFO:cooler.create:Writing pixels
+INFO:cooler.reduce:0 10000979
+INFO:cooler.reduce:10000979 20000530
+INFO:cooler.reduce:20000530 30001559
+INFO:cooler.reduce:60000878 70000054
+INFO:cooler.reduce:30001559 40001312
+INFO:cooler.reduce:80000526 90000509
+INFO:cooler.reduce:40001312 50000645
+INFO:cooler.reduce:50000645 60000878
+INFO:cooler.reduce:120000792 130000102
+INFO:cooler.reduce:70000054 80000526
+INFO:cooler.reduce:90000509 100001104
+INFO:cooler.reduce:130000102 140000505
+INFO:cooler.reduce:100001104 110001095
+INFO:cooler.reduce:110001095 120000792
+INFO:cooler.reduce:140000505 150000757
+INFO:cooler.reduce:150000757 160000042
+INFO:cooler.reduce:170000287 180001126
+INFO:cooler.reduce:160000042 170000287
+INFO:cooler.reduce:210000328 220000461
+INFO:cooler.reduce:180001126 190001077
+INFO:cooler.reduce:200000091 210000328
+INFO:cooler.reduce:240000688 250001498
+INFO:cooler.reduce:230001106 240000688
+INFO:cooler.reduce:190001077 200000091
+INFO:cooler.reduce:250001498 260001331
+INFO:cooler.reduce:260001331 270000776
+INFO:cooler.reduce:220000461 230001106
+INFO:cooler.reduce:270000776 280000982
+INFO:cooler.reduce:290000727 300001057
+INFO:cooler.reduce:300001057 310001094
+INFO:cooler.reduce:280000982 290000727
+INFO:cooler.reduce:310001094 320000333
+INFO:cooler.reduce:320000333 330000679
+INFO:cooler.reduce:340000110 350000673
+INFO:cooler.reduce:380001136 390000278
+INFO:cooler.reduce:360000681 370001250
+INFO:cooler.reduce:410000885 420000714
+INFO:cooler.reduce:330000679 340000110
+INFO:cooler.reduce:370001250 380001136
+INFO:cooler.reduce:350000673 360000681
+INFO:cooler.reduce:430000745 440000119
+INFO:cooler.reduce:470001085 480000026
+INFO:cooler.reduce:390000278 400001468
+INFO:cooler.reduce:400001468 410000885
+INFO:cooler.reduce:420000714 430000745
+INFO:cooler.reduce:440000119 450001479
+INFO:cooler.reduce:460000868 470001085
+INFO:cooler.reduce:450001479 460000868
+INFO:cooler.reduce:510000160 520000811
+INFO:cooler.reduce:500000141 510000160
+INFO:cooler.reduce:480000026 490000454
+INFO:cooler.reduce:490000454 500000141
+INFO:cooler.reduce:530000310 540000257
+INFO:cooler.reduce:520000811 530000310
+INFO:cooler.reduce:550000705 560000617
+INFO:cooler.reduce:570000327 580000537
+INFO:cooler.reduce:540000257 550000705
+INFO:cooler.reduce:560000617 570000327
+INFO:cooler.reduce:590000281 600000066
+INFO:cooler.reduce:580000537 590000281
+INFO:cooler.reduce:600000066 610000299
+INFO:cooler.reduce:620000937 630000336
+INFO:cooler.reduce:610000299 620000937
+INFO:cooler.reduce:630000336 640000589
+INFO:cooler.reduce:700000060 706219794
+INFO:cooler.reduce:640000589 650001026
+INFO:cooler.reduce:650001026 660000551
+INFO:cooler.reduce:680000256 690000570
+INFO:cooler.reduce:690000570 700000060
+INFO:cooler.reduce:670000413 680000256
+INFO:cooler.reduce:660000551 670000413
+INFO:cooler.create:Writing indexes
+INFO:cooler.create:Writing info
+INFO:cooler.reduce:Aggregating from 5000 to 10000.
+INFO:cooler.create:Creating cooler at "/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/round_spermatid.merged.mcool::/resolutions/10000"
+INFO:cooler.create:Writing chroms
+INFO:cooler.create:Writing bins
+INFO:cooler.create:Writing pixels
+INFO:cooler.reduce:0 10002232
+INFO:cooler.reduce:20000841 30001640
+INFO:cooler.reduce:10002232 20000841
+INFO:cooler.reduce:70001581 80001594
+INFO:cooler.reduce:40001325 50001145
+INFO:cooler.reduce:140000376 150000050
+INFO:cooler.reduce:60000449 70001581
+INFO:cooler.reduce:110001732 120001949
+INFO:cooler.reduce:30001640 40001325
+INFO:cooler.reduce:50001145 60000449
+INFO:cooler.reduce:80001594 90000960
+INFO:cooler.reduce:90000960 100001742
+INFO:cooler.reduce:100001742 110001732
+INFO:cooler.reduce:150000050 160001045
+INFO:cooler.reduce:120001949 130002130
+INFO:cooler.reduce:130002130 140000376
+INFO:cooler.reduce:170001248 180002022
+INFO:cooler.reduce:160001045 170001248
+INFO:cooler.reduce:250001569 260000378
+INFO:cooler.reduce:240000837 250001569
+INFO:cooler.reduce:270000689 280000519
+INFO:cooler.reduce:280000519 290000719
+INFO:cooler.reduce:260000378 270000689
+INFO:cooler.reduce:180002022 190000059
+INFO:cooler.reduce:310000308 320000632
+INFO:cooler.reduce:200000864 210000868
+INFO:cooler.reduce:190000059 200000864
+INFO:cooler.reduce:210000868 220001880
+INFO:cooler.reduce:220001880 230002395
+INFO:cooler.reduce:230002395 240000837
+INFO:cooler.reduce:300001809 310000308
+INFO:cooler.reduce:290000719 300001809
+INFO:cooler.reduce:370000859 380001263
+INFO:cooler.reduce:390000986 400001506
+INFO:cooler.reduce:400001506 410000068
+INFO:cooler.reduce:320000632 330001628
+INFO:cooler.reduce:330001628 340001093
+INFO:cooler.reduce:450001855 460000528
+INFO:cooler.reduce:460000528 470000341
+INFO:cooler.reduce:470000341 480000104
+INFO:cooler.reduce:340001093 350001657
+INFO:cooler.reduce:360000935 370000859
+INFO:cooler.reduce:380001263 390000986
+INFO:cooler.reduce:350001657 360000935
+INFO:cooler.reduce:410000068 420001139
+INFO:cooler.reduce:420001139 430000608
+INFO:cooler.reduce:440000962 450001855
+INFO:cooler.reduce:430000608 440000962
+INFO:cooler.reduce:590000478 594158242
+INFO:cooler.reduce:500001291 510000949
+INFO:cooler.reduce:520001102 530001339
+INFO:cooler.reduce:580000452 590000478
+INFO:cooler.reduce:560000545 570001182
+INFO:cooler.reduce:570001182 580000452
+INFO:cooler.reduce:550001716 560000545
+INFO:cooler.reduce:480000104 490001329
+INFO:cooler.reduce:490001329 500001291
+INFO:cooler.reduce:510000949 520001102
+INFO:cooler.reduce:540001758 550001716
+INFO:cooler.reduce:530001339 540001758
+INFO:cooler.create:Writing indexes
+INFO:cooler.create:Writing info
+INFO:cooler.reduce:Aggregating from 10000 to 50000.
+INFO:cooler.create:Creating cooler at "/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/round_spermatid.merged.mcool::/resolutions/50000"
+INFO:cooler.create:Writing chroms
+INFO:cooler.create:Writing bins
+INFO:cooler.create:Writing pixels
+INFO:cooler.reduce:10006771 20017146
+INFO:cooler.reduce:150011113 160001581
+INFO:cooler.reduce:50003796 60011416
+INFO:cooler.reduce:130000849 140003117
+INFO:cooler.reduce:70004655 80002049
+INFO:cooler.reduce:100012679 110007162
+INFO:cooler.reduce:140003117 150011113
+INFO:cooler.reduce:110007162 120010061
+INFO:cooler.reduce:30004267 40004630
+INFO:cooler.reduce:40004630 50003796
+INFO:cooler.reduce:0 10006771
+INFO:cooler.reduce:20017146 30004267
+INFO:cooler.reduce:80002049 90014404
+INFO:cooler.reduce:90014404 100012679
+INFO:cooler.reduce:60011416 70004655
+INFO:cooler.reduce:120010061 130000849
+INFO:cooler.reduce:200003166 210001283
+INFO:cooler.reduce:190003879 200003166
+INFO:cooler.reduce:250003826 260005831
+INFO:cooler.reduce:210001283 220006985
+INFO:cooler.reduce:260005831 270000320
+INFO:cooler.reduce:170004221 180000164
+INFO:cooler.reduce:300003825 310005401
+INFO:cooler.reduce:240006710 250003826
+INFO:cooler.reduce:220006985 230008177
+INFO:cooler.reduce:160001581 170004221
+INFO:cooler.reduce:230008177 240006710
+INFO:cooler.reduce:180000164 190003879
+INFO:cooler.reduce:310005401 320000345
+INFO:cooler.reduce:280010668 290001745
+INFO:cooler.reduce:270000320 280010668
+INFO:cooler.reduce:290001745 300003825
+INFO:cooler.reduce:330010401 340001316
+INFO:cooler.reduce:390005160 400004296
+INFO:cooler.reduce:420006637 430004594
+INFO:cooler.reduce:320000345 330010401
+INFO:cooler.reduce:360006434 370004782
+INFO:cooler.reduce:340001316 350001990
+INFO:cooler.reduce:380003344 390005160
+INFO:cooler.reduce:440001865 450000052
+INFO:cooler.reduce:400004296 410002396
+INFO:cooler.reduce:410002396 420006637
+INFO:cooler.reduce:450000052 460003457
+INFO:cooler.reduce:350001990 360006434
+INFO:cooler.reduce:470003298 480004311
+INFO:cooler.reduce:430004594 440001865
+INFO:cooler.reduce:460003457 470003298
+INFO:cooler.reduce:370004782 380003344
+INFO:cooler.reduce:510004139 518669443
+INFO:cooler.reduce:480004311 490001414
+INFO:cooler.reduce:500003723 510004139
+INFO:cooler.reduce:490001414 500003723
+INFO:cooler.create:Writing indexes
+INFO:cooler.create:Writing info
+INFO:cooler.reduce:Aggregating from 50000 to 100000.
+INFO:cooler.create:Creating cooler at "/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/round_spermatid.merged.mcool::/resolutions/100000"
+INFO:cooler.create:Writing chroms
+INFO:cooler.create:Writing bins
+INFO:cooler.create:Writing pixels
+INFO:cooler.reduce:70003740 80008789
+INFO:cooler.reduce:40014154 50019581
+INFO:cooler.reduce:10003641 20020587
+INFO:cooler.reduce:30010483 40014154
+INFO:cooler.reduce:90002575 100002387
+INFO:cooler.reduce:110001198 120003626
+INFO:cooler.reduce:80008789 90002575
+INFO:cooler.reduce:120003626 130010500
+INFO:cooler.reduce:50019581 60010148
+INFO:cooler.reduce:20020587 30010483
+INFO:cooler.reduce:0 10003641
+INFO:cooler.reduce:60010148 70003740
+INFO:cooler.reduce:140017014 150008464
+INFO:cooler.reduce:150008464 160007929
+INFO:cooler.reduce:130010500 140017014
+INFO:cooler.reduce:100002387 110001198
+INFO:cooler.reduce:310002201 314053311
+INFO:cooler.reduce:200003576 210005000
+INFO:cooler.reduce:230011274 240011172
+INFO:cooler.reduce:160007929 170010149
+INFO:cooler.reduce:190001431 200003576
+INFO:cooler.reduce:220011237 230011274
+INFO:cooler.reduce:250001158 260003475
+INFO:cooler.reduce:270007432 280001479
+INFO:cooler.reduce:280001479 290004424
+INFO:cooler.reduce:210005000 220011237
+INFO:cooler.reduce:240011172 250001158
+INFO:cooler.reduce:180011423 190001431
+INFO:cooler.reduce:260003475 270007432
+INFO:cooler.reduce:300000298 310002201
+INFO:cooler.reduce:170010149 180011423
+INFO:cooler.reduce:290004424 300000298
+INFO:cooler.create:Writing indexes
+INFO:cooler.create:Writing info
+INFO:cooler.cli.zoomify:Balancing zoom level with bin size 1000
+INFO:cooler.cli.balance:Balancing "/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/round_spermatid.merged.mcool::resolutions/1000"
+INFO:cooler.balance:variance is 44901.92162256565
+INFO:cooler.balance:variance is 9533.849389664663
+INFO:cooler.balance:variance is 2507.9601353799717
+INFO:cooler.balance:variance is 2846.214550272782
+INFO:cooler.balance:variance is 1055.9363011722453
+INFO:cooler.balance:variance is 963.4656653790194
+INFO:cooler.balance:variance is 433.8190054643643
+INFO:cooler.balance:variance is 342.6782581680476
+INFO:cooler.balance:variance is 174.05503405851755
+INFO:cooler.balance:variance is 125.47686661501989
+INFO:cooler.balance:variance is 68.70549197989712
+INFO:cooler.balance:variance is 46.76487577538848
+INFO:cooler.balance:variance is 26.83063583527545
+INFO:cooler.balance:variance is 17.61829872380109
+INFO:cooler.balance:variance is 10.405263385299477
+INFO:cooler.balance:variance is 6.681455134900561
+INFO:cooler.balance:variance is 4.017433753854967
+INFO:cooler.balance:variance is 2.54406262547257
+INFO:cooler.balance:variance is 1.546767694406682
+INFO:cooler.balance:variance is 0.971080823843649
+INFO:cooler.balance:variance is 0.594476059412984
+INFO:cooler.balance:variance is 0.3712269419081759
+INFO:cooler.balance:variance is 0.2282249203654055
+INFO:cooler.balance:variance is 0.14204528291653876
+INFO:cooler.balance:variance is 0.08755714369685913
+INFO:cooler.balance:variance is 0.054382876815751914
+INFO:cooler.balance:variance is 0.03357631525358325
+INFO:cooler.balance:variance is 0.0208281317978622
+INFO:cooler.balance:variance is 0.012872357366223249
+INFO:cooler.balance:variance is 0.007978709714812232
+INFO:cooler.balance:variance is 0.004934132570214548
+INFO:cooler.balance:variance is 0.0030568431504355313
+INFO:cooler.balance:variance is 0.001891118031781686
+INFO:cooler.balance:variance is 0.0011712498691644794
+INFO:cooler.balance:variance is 0.0007247673144146257
+INFO:cooler.balance:variance is 0.0004487951402759041
+INFO:cooler.balance:variance is 0.0002777546185656529
+INFO:cooler.balance:variance is 0.00017197307374792692
+INFO:cooler.balance:variance is 0.00010644206043353419
+INFO:cooler.balance:variance is 6.589936729629865e-05
+INFO:cooler.balance:variance is 4.0790461821854055e-05
+INFO:cooler.balance:variance is 2.5252668839858994e-05
+INFO:cooler.balance:variance is 1.563147147329153e-05
+INFO:cooler.balance:variance is 9.676907025132456e-06
+INFO:cooler.cli.zoomify:Balancing zoom level with bin size 5000
+INFO:cooler.cli.balance:Balancing "/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/round_spermatid.merged.mcool::resolutions/5000"
+INFO:cooler.balance:variance is 408328.2329604389
+INFO:cooler.balance:variance is 197153.51570343235
+INFO:cooler.balance:variance is 51592.12130628098
+INFO:cooler.balance:variance is 57076.99852627517
+INFO:cooler.balance:variance is 20962.993154777752
+INFO:cooler.balance:variance is 18436.57454248747
+INFO:cooler.balance:variance is 8241.364590236739
+INFO:cooler.balance:variance is 6271.586031100345
+INFO:cooler.balance:variance is 3158.2629626836347
+INFO:cooler.balance:variance is 2198.192352673874
+INFO:cooler.balance:variance is 1190.1740255196232
+INFO:cooler.balance:variance is 784.2644210992322
+INFO:cooler.balance:variance is 443.7142073939219
+INFO:cooler.balance:variance is 282.7802802439497
+INFO:cooler.balance:variance is 164.30593317063042
+INFO:cooler.balance:variance is 102.60562228409422
+INFO:cooler.balance:variance is 60.58569666835815
+INFO:cooler.balance:variance is 37.37023821166653
+INFO:cooler.balance:variance is 22.282014902396448
+INFO:cooler.balance:variance is 13.641338368378545
+INFO:cooler.balance:variance is 8.181690126976335
+INFO:cooler.balance:variance is 4.98624093026248
+INFO:cooler.balance:variance is 3.001275056955611
+INFO:cooler.balance:variance is 1.8240675220403622
+INFO:cooler.balance:variance is 1.100293990817003
+INFO:cooler.balance:variance is 0.6676055016116543
+INFO:cooler.balance:variance is 0.4032305794115292
+INFO:cooler.balance:variance is 0.24441406802998317
+INFO:cooler.balance:variance is 0.14774132087776584
+INFO:cooler.balance:variance is 0.08949715903180258
+INFO:cooler.balance:variance is 0.05412427247170636
+INFO:cooler.balance:variance is 0.03277469229365858
+INFO:cooler.balance:variance is 0.019826530195052313
+INFO:cooler.balance:variance is 0.012003170414035218
+INFO:cooler.balance:variance is 0.007262394950592696
+INFO:cooler.balance:variance is 0.004396126941443981
+INFO:cooler.balance:variance is 0.0026601123679418975
+INFO:cooler.balance:variance is 0.0016101068385828725
+INFO:cooler.balance:variance is 0.0009743437590123818
+INFO:cooler.balance:variance is 0.0005897193017849454
+INFO:cooler.balance:variance is 0.0003568778976422623
+INFO:cooler.balance:variance is 0.00021599302514153194
+INFO:cooler.balance:variance is 0.00013071463079919812
+INFO:cooler.balance:variance is 7.91109084480534e-05
+INFO:cooler.balance:variance is 4.7877007365610166e-05
+INFO:cooler.balance:variance is 2.8975729817502326e-05
+INFO:cooler.balance:variance is 1.753592706913059e-05
+INFO:cooler.balance:variance is 1.0612879237034788e-05
+INFO:cooler.balance:variance is 6.422880212668478e-06
+INFO:cooler.cli.zoomify:Balancing zoom level with bin size 10000
+INFO:cooler.cli.balance:Balancing "/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/round_spermatid.merged.mcool::resolutions/10000"
+INFO:cooler.balance:variance is 1115437.9164385786
+INFO:cooler.balance:variance is 745413.2368180626
+INFO:cooler.balance:variance is 192233.49774331343
+INFO:cooler.balance:variance is 208587.6847705311
+INFO:cooler.balance:variance is 76015.00431676702
+INFO:cooler.balance:variance is 65287.52034437183
+INFO:cooler.balance:variance is 29006.95500996954
+INFO:cooler.balance:variance is 21555.79179688214
+INFO:cooler.balance:variance is 10780.524640076157
+INFO:cooler.balance:variance is 7336.942610218915
+INFO:cooler.balance:variance is 3938.8049928071023
+INFO:cooler.balance:variance is 2542.040021522129
+INFO:cooler.balance:variance is 1423.6749141558596
+INFO:cooler.balance:variance is 889.958491244064
+INFO:cooler.balance:variance is 511.1579371271909
+INFO:cooler.balance:variance is 313.4791875447481
+INFO:cooler.balance:variance is 182.7766016901607
+INFO:cooler.balance:variance is 110.81693759592746
+INFO:cooler.balance:variance is 65.19354255607794
+INFO:cooler.balance:variance is 39.25741245078308
+INFO:cooler.balance:variance is 23.218524171924518
+INFO:cooler.balance:variance is 13.924489547261166
+INFO:cooler.balance:variance is 8.26172500404408
+INFO:cooler.balance:variance is 4.942624548023586
+INFO:cooler.balance:variance is 2.938124812192534
+INFO:cooler.balance:variance is 1.7551976996977796
+INFO:cooler.balance:variance is 1.0445467800911947
+INFO:cooler.balance:variance is 0.6234580944606579
+INFO:cooler.balance:variance is 0.3712792120341995
+INFO:cooler.balance:variance is 0.22149070959086203
+INFO:cooler.balance:variance is 0.13195401114410824
+INFO:cooler.balance:variance is 0.07869436063661173
+INFO:cooler.balance:variance is 0.046893669802573375
+INFO:cooler.balance:variance is 0.027961175014164456
+INFO:cooler.balance:variance is 0.01666432511179306
+INFO:cooler.balance:variance is 0.009935308068129752
+INFO:cooler.balance:variance is 0.005921754871442934
+INFO:cooler.balance:variance is 0.0035303329197351797
+INFO:cooler.balance:variance is 0.0021042952289890044
+INFO:cooler.balance:variance is 0.0012544547282422895
+INFO:cooler.balance:variance is 0.0007477545537881639
+INFO:cooler.balance:variance is 0.00044575611062932163
+INFO:cooler.balance:variance is 0.0002657107757009717
+INFO:cooler.balance:variance is 0.00015839497329026394
+INFO:cooler.balance:variance is 9.441867448163396e-05
+INFO:cooler.balance:variance is 5.6284205957998416e-05
+INFO:cooler.balance:variance is 3.355102672708212e-05
+INFO:cooler.balance:variance is 2.0000107186860907e-05
+INFO:cooler.balance:variance is 1.192211328233767e-05
+INFO:cooler.balance:variance is 7.1068717611167195e-06
+INFO:cooler.cli.zoomify:Balancing zoom level with bin size 50000
+INFO:cooler.cli.balance:Balancing "/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/round_spermatid.merged.mcool::resolutions/50000"
+INFO:cooler.balance:variance is 16197187.98768722
+INFO:cooler.balance:variance is 16019534.842501542
+INFO:cooler.balance:variance is 3995757.8176246425
+INFO:cooler.balance:variance is 4075353.590294472
+INFO:cooler.balance:variance is 1460984.7972590327
+INFO:cooler.balance:variance is 1172298.450587274
+INFO:cooler.balance:variance is 513081.95343033585
+INFO:cooler.balance:variance is 356991.9265817679
+INFO:cooler.balance:variance is 175160.66357556035
+INFO:cooler.balance:variance is 112139.43167123453
+INFO:cooler.balance:variance is 58745.68761577247
+INFO:cooler.balance:variance is 35839.73808542034
+INFO:cooler.balance:variance is 19491.386171506605
+INFO:cooler.balance:variance is 11565.766567556168
+INFO:cooler.balance:variance is 6425.966640934749
+INFO:cooler.balance:variance is 3752.723223180077
+INFO:cooler.balance:variance is 2110.631416038434
+INFO:cooler.balance:variance is 1221.3819410801864
+INFO:cooler.balance:variance is 691.7429019852844
+INFO:cooler.balance:variance is 398.2088109747347
+INFO:cooler.balance:variance is 226.42954697436898
+INFO:cooler.balance:variance is 129.9566124434814
+INFO:cooler.balance:variance is 74.0641986133346
+INFO:cooler.balance:variance is 42.435505370422014
+INFO:cooler.balance:variance is 24.216070219068325
+INFO:cooler.balance:variance is 13.861143101494589
+INFO:cooler.balance:variance is 7.915818460036552
+INFO:cooler.balance:variance is 4.528431281663128
+INFO:cooler.balance:variance is 2.587193216549334
+INFO:cooler.balance:variance is 1.479590833983312
+INFO:cooler.balance:variance is 0.845528113162803
+INFO:cooler.balance:variance is 0.4834607710556838
+INFO:cooler.balance:variance is 0.2763171677665495
+INFO:cooler.balance:variance is 0.15797761750203473
+INFO:cooler.balance:variance is 0.09029768228419757
+INFO:cooler.balance:variance is 0.05162241096310453
+INFO:cooler.balance:variance is 0.029507947305488415
+INFO:cooler.balance:variance is 0.016868862969057083
+INFO:cooler.balance:variance is 0.009642680355893682
+INFO:cooler.balance:variance is 0.005512341070442965
+INFO:cooler.balance:variance is 0.003151044014048983
+INFO:cooler.balance:variance is 0.001801307763207325
+INFO:cooler.balance:variance is 0.0010296982706988749
+INFO:cooler.balance:variance is 0.0005886276474001717
+INFO:cooler.balance:variance is 0.0003364843112412847
+INFO:cooler.balance:variance is 0.0001923507593691623
+INFO:cooler.balance:variance is 0.00010995608515211186
+INFO:cooler.balance:variance is 6.285610223408281e-05
+INFO:cooler.balance:variance is 3.5931346857070605e-05
+INFO:cooler.balance:variance is 2.0540033866727744e-05
+INFO:cooler.balance:variance is 1.1741608560497385e-05
+INFO:cooler.balance:variance is 6.712046550852824e-06
+INFO:cooler.cli.zoomify:Balancing zoom level with bin size 100000
+INFO:cooler.cli.balance:Balancing "/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/cool/round_spermatid/round_spermatid.merged.mcool::resolutions/100000"
+INFO:cooler.balance:variance is 55201043.679735355
+INFO:cooler.balance:variance is 58096504.05775824
+INFO:cooler.balance:variance is 14237266.788976267
+INFO:cooler.balance:variance is 13928730.459221229
+INFO:cooler.balance:variance is 4947872.49967971
+INFO:cooler.balance:variance is 3802158.884955196
+INFO:cooler.balance:variance is 1648075.2298053326
+INFO:cooler.balance:variance is 1100852.9470469595
+INFO:cooler.balance:variance is 533178.648140714
+INFO:cooler.balance:variance is 328820.4870205627
+INFO:cooler.balance:variance is 169423.36498487683
+INFO:cooler.balance:variance is 99886.08991392083
+INFO:cooler.balance:variance is 53268.60619382007
+INFO:cooler.balance:variance is 30622.187451970844
+INFO:cooler.balance:variance is 16646.247167643094
+INFO:cooler.balance:variance is 9435.16647117053
+INFO:cooler.balance:variance is 5183.852336074035
+INFO:cooler.balance:variance is 2915.166014346914
+INFO:cooler.balance:variance is 1611.156164814549
+INFO:cooler.balance:variance is 902.0688829703172
+INFO:cooler.balance:variance is 500.2010737301571
+INFO:cooler.balance:variance is 279.372037853035
+INFO:cooler.balance:variance is 155.19722758334078
+INFO:cooler.balance:variance is 86.56246329208847
+INFO:cooler.balance:variance is 48.136414127822775
+INFO:cooler.balance:variance is 26.82805879001598
+INFO:cooler.balance:variance is 14.927257898081319
+INFO:cooler.balance:variance is 8.315946431542445
+INFO:cooler.balance:variance is 4.628494864944809
+INFO:cooler.balance:variance is 2.577917635500966
+INFO:cooler.balance:variance is 1.4350716661482885
+INFO:cooler.balance:variance is 0.7991822335310385
+INFO:cooler.balance:variance is 0.44493127768015583
+INFO:cooler.balance:variance is 0.24776126855879535
+INFO:cooler.balance:variance is 0.13794444955049903
+INFO:cooler.balance:variance is 0.07681163854727453
+INFO:cooler.balance:variance is 0.04276722180177026
+INFO:cooler.balance:variance is 0.023813541819919397
+INFO:cooler.balance:variance is 0.013259139796721383
+INFO:cooler.balance:variance is 0.007382829218922321
+INFO:cooler.balance:variance is 0.004110723532051339
+INFO:cooler.balance:variance is 0.002288878236274692
+INFO:cooler.balance:variance is 0.0012744429938602697
+INFO:cooler.balance:variance is 0.000709615568704503
+INFO:cooler.balance:variance is 0.0003951137358299065
+INFO:cooler.balance:variance is 0.00022000061892983797
+INFO:cooler.balance:variance is 0.00012249647779872174
+INFO:cooler.balance:variance is 6.820635628116678e-05
+INFO:cooler.balance:variance is 3.7977374849971124e-05
+INFO:cooler.balance:variance is 2.1145886447284688e-05
+INFO:cooler.balance:variance is 1.1774058968860483e-05
+INFO:cooler.balance:variance is 6.555819650214128e-06

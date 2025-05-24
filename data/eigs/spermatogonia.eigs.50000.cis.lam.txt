@@ -1,0 +1,4 @@
+chrom	start	end	name	eigval1
+chrX	0	57984683	small_arm	154.28870819388
+chrX	57984683	69396537	centromere	
+chrX	69396537	162287573	large_arm	327.930258312852

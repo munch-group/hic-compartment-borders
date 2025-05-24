@@ -1,0 +1,8 @@
+Module	Section	Sample Name	Source
+pairtools	all_sections	SRR7345464	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/spermatogonia/SRR7345464.dedup.stats
+pairtools	all_sections	SRR6502357	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/spermatogonia/SRR6502357.dedup.stats
+pairtools	all_sections	SRR7345462	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/spermatogonia/SRR7345462.dedup.stats
+pairtools	all_sections	SRR7345463	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/spermatogonia/SRR7345463.dedup.stats
+pairtools	all_sections	SRR7345467	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/spermatogonia/SRR7345467.dedup.stats
+pairtools	all_sections	SRR6502356	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/spermatogonia/SRR6502356.dedup.stats
+pairtools	all_sections	SRR7345465	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/spermatogonia/SRR7345465.dedup.stats

@@ -1,0 +1,8 @@
+Module	Section	Sample Name	Source
+pairtools	all_sections	SRR6502339	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/fibroblast/SRR6502339.dedup.stats
+pairtools	all_sections	SRR6502336	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/fibroblast/SRR6502336.dedup.stats
+pairtools	all_sections	SRR7349190	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/fibroblast/SRR7349190.dedup.stats
+pairtools	all_sections	SRR6502337	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/fibroblast/SRR6502337.dedup.stats
+pairtools	all_sections	SRR6502338	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/fibroblast/SRR6502338.dedup.stats
+pairtools	all_sections	SRR7349189	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/fibroblast/SRR7349189.dedup.stats
+pairtools	all_sections	SRR6502335	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/fibroblast/SRR6502335.dedup.stats

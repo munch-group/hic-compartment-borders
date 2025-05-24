@@ -1,0 +1,7 @@
+Module	Section	Sample Name	Source
+pairtools	all_sections	SRR6502342	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/pachytene_spermatocyte/SRR6502342.dedup.stats
+pairtools	all_sections	SRR7349191	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/pachytene_spermatocyte/SRR7349191.dedup.stats
+pairtools	all_sections	SRR6502344	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/pachytene_spermatocyte/SRR6502344.dedup.stats
+pairtools	all_sections	SRR7345458	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/pachytene_spermatocyte/SRR7345458.dedup.stats
+pairtools	all_sections	SRR7345459	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/pachytene_spermatocyte/SRR7345459.dedup.stats
+pairtools	all_sections	SRR6502345	/faststorage/project/hic-spermatogenesis/people/sojern/hic-compartment-borders/steps/pairs/pachytene_spermatocyte/SRR6502345.dedup.stats
