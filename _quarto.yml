@@ -1,10 +1,10 @@
 project:
   type: book
-  # post-render: 
-  #   # - quarto render --profile slides
-  #   - quarto render slides/
-  #   - quarto render thesis/
-  #   - quarto render manuscript/
+  post-render: 
+    # - quarto render --profile slides
+    - quarto render slides/
+    - quarto render thesis/
+    - quarto render manuscript/
     
 execute:
   freeze: auto
@@ -31,7 +31,7 @@ book:
   repo-url: "https://github.com/munch-group/hic-compartment-borders"
   repo-actions: [edit, issue, source]  
   title: "hic-compartment-borders"
-  author: "Joanna Doh"  
+  author: "Søren Jørgensen"  
   sidebar:
     collapse-level: 1
     search: true  
