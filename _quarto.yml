@@ -1,10 +1,9 @@
 project:
   type: book
   post-render: 
-    # - quarto render --profile slides
-    - quarto render slides/
+    # - quarto render slides/
     - quarto render thesis/
-    - quarto render manuscript/
+    # - quarto render manuscript/
     
 execute:
   freeze: auto
@@ -37,18 +36,15 @@ book:
     search: true  
   chapters:
     - index.qmd
-    - part: "Manuscript"
-      chapters:
-      # (the same files must be listed _quarto-slides.yml to render as slides)
-      - manuscript/index.qmd 
+    # - part: "Manuscript"
+    #   chapters:
+    #   - manuscript/index.qmd 
     - part: "Thesis"
       chapters:
-      # (the same files must be listed _quarto-slides.yml to render as slides)
       - thesis/index.qmd 
-    - part: "Slides"
-      chapters:
-      # (the same files must be listed _quarto-slides.yml to render as slides)
-      - slides/index.qmd 
+    # - part: "Slides"
+    #   chapters:
+    #   - slides/index.qmd 
     - part: "Notebooks"
       chapters: 
       - notebooks/01_preliminary_bayes.ipynb
