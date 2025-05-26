@@ -153,7 +153,7 @@ pairtools parse \
     --drop-sam --drop-seq \
     --output-stats {bam_merged}_parsed.stats \
     --add-columns mapq \
-    --assembly rheMac10 \
+    --assembly 'T2T-MMU8v1' \
     --walks-policy 5unique \
     {bam_merged} | \
 pairtools sort -o {sorted_pairs} 
