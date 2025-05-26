@@ -136,3 +136,5 @@ _book/
 /.luarc.json
 
 *.sentinel
+
+/.gwf/
