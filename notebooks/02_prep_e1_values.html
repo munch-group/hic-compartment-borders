@@ -220,7 +220,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/01_preliminary_bayes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Probabilistic Modeling of A/B Compartments from E1</span></a>
+  <a href="../notebooks/01_preliminary_bayes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Simple Probabilistic A/B call</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -282,6 +282,7 @@ window.Quarto = {
   <li><a href="#calculate-the-gc-content" id="toc-calculate-the-gc-content" class="nav-link" data-scroll-target="#calculate-the-gc-content">Calculate the GC content</a></li>
   <li><a href="#infer-the-centromeres" id="toc-infer-the-centromeres" class="nav-link" data-scroll-target="#infer-the-centromeres">Infer the centromeres</a></li>
   <li><a href="#plot-the-satellites-along-the-genome" id="toc-plot-the-satellites-along-the-genome" class="nav-link" data-scroll-target="#plot-the-satellites-along-the-genome">Plot the satellites along the genome</a></li>
+  <li><a href="#make-a-viewframe-for-cooltools" id="toc-make-a-viewframe-for-cooltools" class="nav-link" data-scroll-target="#make-a-viewframe-for-cooltools">Make a viewframe for cooltools</a></li>
   <li><a href="#do-the-eigendecomposition" id="toc-do-the-eigendecomposition" class="nav-link" data-scroll-target="#do-the-eigendecomposition">Do the eigendecomposition</a></li>
   <li><a href="#check-the-results-by-eye" id="toc-check-the-results-by-eye" class="nav-link" data-scroll-target="#check-the-results-by-eye">Check the results by eye</a>
   <ul>
@@ -518,17 +519,16 @@ spermatogonia</code></pre>
 <p>of the binned versions of the assembly (according to resolutions in mcool).</p>
 <p>I will try to use the CLI to make quick work of it.</p>
 <p>It is used as the phasing track for the eigendecomposition.</p>
-<div id="cell-8" class="cell" data-execution_count="82">
+<div id="cell-8" class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>REF<span class="op">=</span>..<span class="op">/</span>steps<span class="op">/</span>ref<span class="op">/</span>T2T<span class="op">-</span>MMU8v1<span class="fl">.0</span><span class="op">/</span>T2T<span class="op">-</span>MMU8v1<span class="fl">.0</span>.renamed.fa</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#for res in 1000 5000 10000 50000 100000; do</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> res <span class="kw">in</span> <span class="dv">50000</span><span class="op">;</span> do</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    BINS<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>bins<span class="op">/</span>t2tbins.${res}.tsv</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    GC_OUT<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>bins<span class="op">/</span>gc.${res}.tsv</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    cooltools genome gc $BINS $REF <span class="op">&gt;</span> $GC_OUT</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> res <span class="kw">in</span> <span class="dv">1000</span> <span class="dv">5000</span> <span class="dv">10000</span> <span class="dv">50000</span> <span class="dv">100000</span><span class="op">;</span> do</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    BINS<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>bins<span class="op">/</span>t2tbins.${res}.tsv</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    GC_OUT<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>bins<span class="op">/</span>gc.${res}.tsv</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    cooltools genome gc $BINS $REF <span class="op">&gt;</span> $GC_OUT</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="infer-the-centromeres" class="level3">
@@ -608,7 +608,11 @@ Name: 8, dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="79">
+</section>
+<section id="make-a-viewframe-for-cooltools" class="level3">
+<h3 class="anchored" data-anchor-id="make-a-viewframe-for-cooltools">Make a viewframe for cooltools</h3>
+<p>Here, we partition the chromosome into three parts. 1) small arm, 2) large arm, 3) centromere. The centromere is defined as the region of the chromosome that contains the longest stretch of satellite repeats.</p>
+<div id="cell-16" class="cell" data-execution_count="79">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bioframe <span class="im">import</span> make_viewframe</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>X_length <span class="op">=</span> rep.query(<span class="st">'`Sequence-Name` == "chrX"'</span>)[<span class="st">'Sequence-Length'</span>].values[<span class="dv">0</span>]</span>
@@ -623,7 +627,8 @@ Name: 8, dtype: object</code></pre>
 </section>
 <section id="do-the-eigendecomposition" class="level3">
 <h3 class="anchored" data-anchor-id="do-the-eigendecomposition">Do the eigendecomposition</h3>
-<div id="cell-17" class="cell">
+<p>Using that viewframe.</p>
+<div id="cell-18" class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find multires coolers</span></span>
@@ -668,7 +673,7 @@ All done</code></pre>
 <h3 class="anchored" data-anchor-id="check-the-results-by-eye">Check the results by eye</h3>
 <section id="define-the-eigenvectors" class="level4">
 <h4 class="anchored" data-anchor-id="define-the-eigenvectors">Define the eigenvectors</h4>
-<div id="cell-20" class="cell" data-execution_count="1">
+<div id="cell-21" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -684,7 +689,7 @@ All done</code></pre>
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-21" class="cell" data-execution_count="2">
+<div id="cell-22" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sperm_1000 <span class="op">=</span> pd.read_csv(df_eig.query(<span class="st">'tissue == "sperm" and resolution == "1000"'</span>)[<span class="st">'path'</span>].values[<span class="dv">0</span>], sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, header<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>display(sperm_1000.head())</span>
@@ -780,42 +785,47 @@ All done</code></pre>
 4  chrX   4000  5000     NaN NaN NaN NaN</code></pre>
 </div>
 </div>
-<div id="cell-22" class="cell" data-execution_count="10">
+<div id="cell-23" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the E1 tracks saved in the sperm_dict</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_eigenvectors(eigenvectors, title<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">2</span>))</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> eigenvectors[<span class="st">'start'</span>]</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> eigenvectors[<span class="st">'E1'</span>]</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(x, y, where <span class="op">=</span> y<span class="op">&lt;</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>, lw<span class="op">=</span><span class="dv">1</span>, ec<span class="op">=</span><span class="st">'None'</span>)</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(x, y, where <span class="op">=</span> y<span class="op">&gt;</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:red'</span>, lw<span class="op">=</span><span class="dv">1</span>, ec<span class="op">=</span><span class="st">'None'</span>) </span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title)</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'E1'</span>)</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(x.<span class="bu">min</span>(), x.<span class="bu">max</span>())</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">'Genomic Position (Mbp)'</span>)</span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    ticks <span class="op">=</span> np.linspace(<span class="dv">0</span>, x.<span class="bu">max</span>(), num<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks(ticks)</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    ax.set_xticklabels([<span class="ss">f'</span><span class="sc">{</span><span class="bu">int</span>(t<span class="op">/</span><span class="fl">1e6</span>)<span class="sc">}</span><span class="ss"> Mbp'</span> <span class="cf">for</span> t <span class="kw">in</span> ticks])</span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    ax.spines[:].set_visible(<span class="va">False</span>)</span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">'bottom'</span>].set_visible(<span class="va">True</span>)</span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    fig.tight_layout()</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="co">#res = '100000'</span></span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="co">#plot_eigenvectors(sperm_dict[res], title=f'Sperm E1 at {int(int(res)/1000)}kb resolution')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the E1 tracks saved in the sperm_dict</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_eigenvectors(eigenvectors, title<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">2</span>))</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> eigenvectors[<span class="st">'start'</span>]</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> eigenvectors[<span class="st">'E1'</span>]</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(x, y, where <span class="op">=</span> y<span class="op">&lt;</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>, lw<span class="op">=</span><span class="dv">1</span>, ec<span class="op">=</span><span class="st">'None'</span>)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(x, y, where <span class="op">=</span> y<span class="op">&gt;</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:red'</span>, lw<span class="op">=</span><span class="dv">1</span>, ec<span class="op">=</span><span class="st">'None'</span>) </span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'E1'</span>)</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(x.<span class="bu">min</span>(), x.<span class="bu">max</span>())</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">'Genomic Position (Mbp)'</span>)</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    ticks <span class="op">=</span> np.linspace(<span class="dv">0</span>, x.<span class="bu">max</span>(), num<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks(ticks)</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    ax.set_xticklabels([<span class="ss">f'</span><span class="sc">{</span><span class="bu">int</span>(t<span class="op">/</span><span class="fl">1e6</span>)<span class="sc">}</span><span class="ss"> Mbp'</span> <span class="cf">for</span> t <span class="kw">in</span> ticks])</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    ax.spines[:].set_visible(<span class="va">False</span>)</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">'bottom'</span>].set_visible(<span class="va">True</span>)</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>    fig.tight_layout()</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a><span class="co">#res = '100000'</span></span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a><span class="co">#plot_eigenvectors(sperm_dict[res], title=f'Sperm E1 at {int(int(res)/1000)}kb resolution')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>UsageError: Line magic function `%` not found.</code></pre>
 </div>
-<div id="cell-23" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> res <span class="kw">in</span> [<span class="st">'1000'</span>, <span class="st">'5000'</span>, <span class="st">'10000'</span>, <span class="st">'50000'</span>, <span class="st">'100000'</span>]:</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    plot_eigenvectors(sperm_dict[res], title<span class="op">=</span><span class="ss">f'Sperm E1 at </span><span class="sc">{</span><span class="bu">int</span>(<span class="bu">int</span>(res)<span class="op">/</span><span class="dv">1000</span>)<span class="sc">}</span><span class="ss">kb resolution'</span>)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-24" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> res <span class="kw">in</span> [<span class="st">'1000'</span>, <span class="st">'5000'</span>, <span class="st">'10000'</span>, <span class="st">'50000'</span>, <span class="st">'100000'</span>]:</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    plot_eigenvectors(sperm_dict[res], title<span class="op">=</span><span class="ss">f'Sperm E1 at </span><span class="sc">{</span><span class="bu">int</span>(<span class="bu">int</span>(res)<span class="op">/</span><span class="dv">1000</span>)<span class="sc">}</span><span class="ss">kb resolution'</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -852,9 +862,9 @@ All done</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-24" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> res <span class="kw">in</span> [<span class="st">'1000'</span>, <span class="st">'5000'</span>, <span class="st">'10000'</span>, <span class="st">'50000'</span>, <span class="st">'100000'</span>]:</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    plot_eigenvectors(fib_dict[res], title<span class="op">=</span><span class="ss">f'Fibroblast E1 at </span><span class="sc">{</span><span class="bu">int</span>(<span class="bu">int</span>(res)<span class="op">/</span><span class="dv">1000</span>)<span class="sc">}</span><span class="ss">kb resolution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-25" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> res <span class="kw">in</span> [<span class="st">'1000'</span>, <span class="st">'5000'</span>, <span class="st">'10000'</span>, <span class="st">'50000'</span>, <span class="st">'100000'</span>]:</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    plot_eigenvectors(fib_dict[res], title<span class="op">=</span><span class="ss">f'Fibroblast E1 at </span><span class="sc">{</span><span class="bu">int</span>(<span class="bu">int</span>(res)<span class="op">/</span><span class="dv">1000</span>)<span class="sc">}</span><span class="ss">kb resolution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -900,10 +910,10 @@ All done</code></pre>
 <li>the viewframe is too large</li>
 </ol>
 <p>There are <em>a lot</em> of missing values in the 1kb resolution weight and E1, possibly because cooler found that too few contacts were observed to include the bins. That results in a practically unusable E1 track.</p>
-<div id="cell-26" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"../data/eigs/fibroblast.eigs.1000.cis.vecs.tsv"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, header<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-27" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"../data/eigs/fibroblast.eigs.1000.cis.vecs.tsv"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, header<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>chrom         0
 start         0
@@ -915,23 +925,23 @@ E3        25735
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="cell-27" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check how many contacts we have on chrX</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>mclrs <span class="op">=</span> glob.glob(<span class="st">"../steps/cool/*/*.merged.mcool"</span>)</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>clrs <span class="op">=</span> [<span class="ss">f"</span><span class="sc">{</span>mcl<span class="sc">}</span><span class="ss">::/resolutions/100000"</span> <span class="cf">for</span> mcl <span class="kw">in</span> mclrs]</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> clr <span class="kw">in</span> clrs:</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    tmp_clr <span class="op">=</span> cooler.Cooler(clr)</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"""</span><span class="op">\</span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>os<span class="sc">.</span>path<span class="sc">.</span>basename(clr.split(<span class="st">'::'</span>)[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">:</span></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="ss">n_chrX contacts: </span><span class="sc">{</span>tmp_clr<span class="sc">.</span>pixels()<span class="sc">.</span>fetch(<span class="st">"chrX"</span>)[<span class="st">'count'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="op">\</span></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-28" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check how many contacts we have on chrX</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>mclrs <span class="op">=</span> glob.glob(<span class="st">"../steps/cool/*/*.merged.mcool"</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>clrs <span class="op">=</span> [<span class="ss">f"</span><span class="sc">{</span>mcl<span class="sc">}</span><span class="ss">::/resolutions/100000"</span> <span class="cf">for</span> mcl <span class="kw">in</span> mclrs]</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> clr <span class="kw">in</span> clrs:</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    tmp_clr <span class="op">=</span> cooler.Cooler(clr)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"""</span><span class="op">\</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>os<span class="sc">.</span>path<span class="sc">.</span>basename(clr.split(<span class="st">'::'</span>)[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">:</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="ss">n_chrX contacts: </span><span class="sc">{</span>tmp_clr<span class="sc">.</span>pixels()<span class="sc">.</span>fetch(<span class="st">"chrX"</span>)[<span class="st">'count'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="op">\</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>spermatogonia.merged.mcool:
 n_chrX contacts: 14,285,893
@@ -1358,8 +1368,8 @@ n_chrX contacts: 19,244,584</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../notebooks/01_preliminary_bayes.html" class="pagination-link" aria-label="Probabilistic Modeling of A/B Compartments from E1">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Probabilistic Modeling of A/B Compartments from E1</span></span>
+      <a href="../notebooks/01_preliminary_bayes.html" class="pagination-link" aria-label="Simple Probabilistic A/B call">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Simple Probabilistic A/B call</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
