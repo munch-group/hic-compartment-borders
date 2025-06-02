@@ -291,7 +291,13 @@ window.Quarto = {
   <li><a href="#model-specification" id="toc-model-specification" class="nav-link" data-scroll-target="#model-specification">Model Specification</a>
   <ul class="collapse">
   <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
-  <li><a href="#model-in-pymc" id="toc-model-in-pymc" class="nav-link" data-scroll-target="#model-in-pymc">Model in PyMC</a></li>
+  </ul></li>
+  <li><a href="#model-in-pymc" id="toc-model-in-pymc" class="nav-link" data-scroll-target="#model-in-pymc">Model in PyMC</a>
+  <ul class="collapse">
+  <li><a href="#visual-model" id="toc-visual-model" class="nav-link" data-scroll-target="#visual-model">Visual model</a></li>
+  <li><a href="#test-the-priors" id="toc-test-the-priors" class="nav-link" data-scroll-target="#test-the-priors">Test the priors</a></li>
+  <li><a href="#posterior-sampling" id="toc-posterior-sampling" class="nav-link" data-scroll-target="#posterior-sampling">Posterior sampling</a></li>
+  <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation">Evaluation</a></li>
   </ul></li>
   <li><a href="#convert-the-posterior-into-a-confidence-around-the-compartment-borders" id="toc-convert-the-posterior-into-a-confidence-around-the-compartment-borders" class="nav-link" data-scroll-target="#convert-the-posterior-into-a-confidence-around-the-compartment-borders">Convert the posterior into a confidence around the compartment borders</a></li>
   </ul></li>
@@ -602,8 +608,9 @@ Sampling: [p]</code></pre>
 <p>Above logic is flawed. This is not what the prior is reflecting. A Beta(0.5, 0.5) prior assumes that a data set is most likely consisting of only A or B compartments. Therefore, we need Beta(2,2) to reflect that compartments are expected to of both A and B.</p>
 </section>
 </section>
-<section id="model-in-pymc" class="level4">
-<h4 class="anchored" data-anchor-id="model-in-pymc">Model in PyMC</h4>
+</section>
+<section id="model-in-pymc" class="level3">
+<h3 class="anchored" data-anchor-id="model-in-pymc">Model in PyMC</h3>
 <div id="cell-12" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pm.Model() <span class="im">as</span> model:</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Two means for A and B compartments</span></span>
@@ -631,8 +638,8 @@ Sampling: [p]</code></pre>
   warnings.warn(impute_message, ImputationWarning)</code></pre>
 </div>
 </div>
-<section id="visual-model" class="level5">
-<h5 class="anchored" data-anchor-id="visual-model">Visual model</h5>
+<section id="visual-model" class="level4">
+<h4 class="anchored" data-anchor-id="visual-model">Visual model</h4>
 <div id="cell-14" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
@@ -647,13 +654,62 @@ Sampling: [p]</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="8">
+</section>
+<section id="test-the-priors" class="level4">
+<h4 class="anchored" data-anchor-id="test-the-priors">Test the priors</h4>
+<div id="cell-16" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sample from the posterior</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    trace <span class="op">=</span> pm.sample(<span class="dv">2000</span>, tune<span class="op">=</span><span class="dv">2000</span>, cores<span class="op">=</span><span class="dv">8</span>, chains<span class="op">=</span><span class="dv">8</span>, target_accept<span class="op">=</span><span class="fl">0.90</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    pm.sample_posterior_predictive(trace, extend_inferencedata<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sample from the prior</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    prior_samples <span class="op">=</span> pm.sample_prior_predictive(samples<span class="op">=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Sampling: [mu_a, mu_b, nu, p, sigma, y_lik_observed, y_lik_unobserved, z]</code></pre>
+</div>
+</div>
+<div id="cell-17" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>e1_obs <span class="op">=</span> df[<span class="st">'e1'</span>].dropna().values</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>az.plot_dist(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    e1_obs,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    kind<span class="op">=</span><span class="st">"hist"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"C1"</span>, </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    hist_kwargs<span class="op">=</span>{<span class="st">"alpha"</span>: <span class="fl">0.6</span>, <span class="st">"bins"</span>: <span class="dv">20</span>},</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"observed"</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>prior_pred_obs <span class="op">=</span> prior_samples.prior_predictive[<span class="st">"y_lik_observed"</span>].stack(sample<span class="op">=</span>(<span class="st">"chain"</span>, <span class="st">"draw"</span>)).dropna(<span class="st">"y_lik_observed_dim_0"</span>).values</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>prior_pred_obs <span class="op">=</span> prior_pred_obs[prior_pred_obs <span class="op">&gt;</span> e1_obs.<span class="bu">min</span>()]  <span class="co"># Remove NaN and Inf values</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>prior_pred_obs <span class="op">=</span> prior_pred_obs[prior_pred_obs <span class="op">&lt;</span> e1_obs.<span class="bu">max</span>()]  <span class="co"># Remove NaN and Inf values</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>az.plot_dist(</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    prior_pred_obs,</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    kind<span class="op">=</span><span class="st">"hist"</span>,</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    hist_kwargs<span class="op">=</span>{<span class="st">"alpha"</span>: <span class="fl">0.6</span>, <span class="st">"bins"</span>:<span class="dv">20</span>},</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"simulated"</span>,</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">90</span>)<span class="op">;</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-10-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="02_PyMC_independent_bins_files/figure-html/cell-10-output-1.svg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This was quite involved to get to plot, as the prior predictions take values between -Inf and Inf. It could mean that the priors are not super robust to the random variables defining the StudentT draws from <code>y_lik</code>: If the <code>nu</code> or <code>sigma</code> draws are too small, the T-dist could become numerically unstable and produce Inf values.</p>
+</section>
+<section id="posterior-sampling" class="level4">
+<h4 class="anchored" data-anchor-id="posterior-sampling">Posterior sampling</h4>
+<p>Here, we both create a trace (by sampling) and then sample from the predictive posterior.</p>
+<div id="cell-20" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sample from the posterior</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    trace <span class="op">=</span> pm.sample(<span class="dv">2000</span>, tune<span class="op">=</span><span class="dv">2000</span>, cores<span class="op">=</span><span class="dv">8</span>, chains<span class="op">=</span><span class="dv">8</span>, target_accept<span class="op">=</span><span class="fl">0.90</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    pm.sample_posterior_predictive(trace, extend_inferencedata<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Multiprocess sampling (8 chains in 8 jobs)
 CompoundStep
@@ -662,28 +718,30 @@ CompoundStep
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"705d62ac111448d299b3f60c72110847","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"fba0712ad05f4d808d86f5d900ead4f9","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Sampling 8 chains for 2_000 tune and 2_000 draw iterations (16_000 + 16_000 draws total) took 285 seconds.
-The rhat statistic is larger than 1.01 for some parameters. This indicates problems during sampling. See https://arxiv.org/abs/1903.08008 for details
+<pre><code>Sampling 8 chains for 2_000 tune and 2_000 draw iterations (16_000 + 16_000 draws total) took 502 seconds.
 Sampling: [y_lik_observed]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"ca45017ac12d47d1a2cda5e58256625b","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"ce0d0c85b8a94c71bee5b69cb5d59681","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 </div>
-<div id="cell-16" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>trace.posterior_predictive</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="evaluation" class="level4">
+<h4 class="anchored" data-anchor-id="evaluation">Evaluation</h4>
+<div id="cell-22" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>trace.posterior_predictive</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -1162,12 +1220,12 @@ Attributes:
       dtype='int64', name='y_lik_dim_0', length=1623))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-c7244f12-caa9-4348-b29b-d28cbbf8b771" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-c7244f12-caa9-4348-b29b-d28cbbf8b771" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>created_at :</span></dt><dd>2025-06-02T10:40:34.468653+00:00</dd><dt><span>arviz_version :</span></dt><dd>0.21.0</dd><dt><span>inference_library :</span></dt><dd>pymc</dd><dt><span>inference_library_version :</span></dt><dd>5.22.0</dd></dl></div></li></ul></div></div>
 </div>
 </div>
-<div id="cell-17" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>az.plot_ppc(trace, num_pp_samples<span class="op">=</span><span class="dv">1000</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-23" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>az.plot_ppc(trace, num_pp_samples<span class="op">=</span><span class="dv">1000</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-11-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="02_PyMC_independent_bins_files/figure-html/cell-11-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-13-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="02_PyMC_independent_bins_files/figure-html/cell-13-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1175,8 +1233,8 @@ Attributes:
 <blockquote class="blockquote">
 <p>Slight deviation near 1 in the posterior predictive distribution suggests possible additional states, but the model otherwise captures the main features of the E1 distribution.</p>
 </blockquote>
-<div id="cell-19" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>az.summary(trace, var_names<span class="op">=</span>[<span class="st">'z'</span>], hdi_prob<span class="op">=</span><span class="fl">0.95</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-25" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>az.summary(trace, var_names<span class="op">=</span>[<span class="st">'z'</span>], hdi_prob<span class="op">=</span><span class="fl">0.95</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
@@ -1336,141 +1394,140 @@ Attributes:
 </div>
 </div>
 </div>
-<div id="cell-20" class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>p_B <span class="op">=</span> trace.posterior[<span class="st">"z"</span>].mean(dim<span class="op">=</span>[<span class="st">"chain"</span>, <span class="st">"draw"</span>]).values</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>y_ppc <span class="op">=</span> trace.posterior_predictive[<span class="st">"y_lik"</span>]</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>y_ppc_flat <span class="op">=</span> y_ppc.stack(sample<span class="op">=</span>(<span class="st">"chain"</span>, <span class="st">"draw"</span>))</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>ppc_mean <span class="op">=</span> y_ppc_flat.mean(dim<span class="op">=</span><span class="st">"sample"</span>).values       <span class="co"># mean of predictions per bin</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>ppc_std <span class="op">=</span> y_ppc_flat.std(dim<span class="op">=</span><span class="st">"sample"</span>).values         <span class="co"># predictive std (uncertainty)</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>ppc_hdi <span class="op">=</span> az.hdi(y_ppc, hdi_prob<span class="op">=</span><span class="fl">0.95</span>)                <span class="co"># 95% HDI using ArviZ</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">## ppc_hdi.y_lik.sel(hdi='lower').values</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># f,ax = plt.subplots(figsize=(10, 3))</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ax.plot(x,y_lik, color="tab:orange", alpha=0.6, lw=0.3, label="prediction confidence")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-26" class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>p_B <span class="op">=</span> trace.posterior[<span class="st">"z"</span>].mean(dim<span class="op">=</span>[<span class="st">"chain"</span>, <span class="st">"draw"</span>]).values</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>y_ppc <span class="op">=</span> trace.posterior_predictive[<span class="st">"y_lik"</span>]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>y_ppc_flat <span class="op">=</span> y_ppc.stack(sample<span class="op">=</span>(<span class="st">"chain"</span>, <span class="st">"draw"</span>))</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>ppc_mean <span class="op">=</span> y_ppc_flat.mean(dim<span class="op">=</span><span class="st">"sample"</span>).values       <span class="co"># mean of predictions per bin</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>ppc_std <span class="op">=</span> y_ppc_flat.std(dim<span class="op">=</span><span class="st">"sample"</span>).values         <span class="co"># predictive std (uncertainty)</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>ppc_hdi <span class="op">=</span> az.hdi(y_ppc, hdi_prob<span class="op">=</span><span class="fl">0.95</span>)                <span class="co"># 95% HDI using ArviZ</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">## ppc_hdi.y_lik.sel(hdi='lower').values</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># f,ax = plt.subplots(figsize=(10, 3))</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ax.plot(x,y_lik, color="tab:orange", alpha=0.6, lw=0.3, label="prediction confidence")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-21" class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>consistency <span class="op">=</span> (np.sign(y_ppc_flat[<span class="dv">100</span>].values) <span class="op">==</span> np.sign(p_B[<span class="dv">100</span>]) ).<span class="bu">sum</span>()<span class="op">/</span> y_ppc_flat.shape[<span class="dv">1</span>]</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(consistency,p_B[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-27" class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>consistency <span class="op">=</span> (np.sign(y_ppc_flat[<span class="dv">100</span>].values) <span class="op">==</span> np.sign(p_B[<span class="dv">100</span>]) ).<span class="bu">sum</span>()<span class="op">/</span> y_ppc_flat.shape[<span class="dv">1</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(consistency,p_B[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.82725 0.356</code></pre>
 </div>
 </div>
-<div id="cell-22" class="cell" data-execution_count="139">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># y_ppc_flat: shape (samples, bins)</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># p_B: shape (bins,) — assumed to be in [0, 1] as posterior mean of z</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute signs (1 for A, -1 for B)</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>sign_y <span class="op">=</span> np.sign(y_ppc_flat.T.values)          <span class="co"># shape (samples, bins)</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>sign_z <span class="op">=</span> np.sign(p_B <span class="op">-</span> <span class="fl">0.5</span>)                  <span class="co"># maps to -1 (B) or +1 (A), shape (bins,)</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Match shape for broadcasting</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>sign_z_broadcast <span class="op">=</span> sign_z[<span class="va">None</span>, :]           <span class="co"># shape (1, bins)</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare predictions: boolean matrix (samples, bins)</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>match <span class="op">=</span> sign_y <span class="op">==</span> sign_z_broadcast</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Fraction of matches per bin</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>consistency_per_bin <span class="op">=</span> match.mean(axis<span class="op">=</span><span class="dv">0</span>)     <span class="co"># shape (bins,)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-28" class="cell" data-execution_count="139">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># y_ppc_flat: shape (samples, bins)</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># p_B: shape (bins,) — assumed to be in [0, 1] as posterior mean of z</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute signs (1 for A, -1 for B)</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>sign_y <span class="op">=</span> np.sign(y_ppc_flat.T.values)          <span class="co"># shape (samples, bins)</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>sign_z <span class="op">=</span> np.sign(p_B <span class="op">-</span> <span class="fl">0.5</span>)                  <span class="co"># maps to -1 (B) or +1 (A), shape (bins,)</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Match shape for broadcasting</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>sign_z_broadcast <span class="op">=</span> sign_z[<span class="va">None</span>, :]           <span class="co"># shape (1, bins)</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare predictions: boolean matrix (samples, bins)</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>match <span class="op">=</span> sign_y <span class="op">==</span> sign_z_broadcast</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Fraction of matches per bin</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>consistency_per_bin <span class="op">=</span> match.mean(axis<span class="op">=</span><span class="dv">0</span>)     <span class="co"># shape (bins,)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-23" class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data as a track (stairs for niceity)</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">3</span>))</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Stairs</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>x_stair <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span>y.shape[<span class="dv">0</span>])</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>y_stair <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span>y.shape[<span class="dv">0</span>])</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>x_stair[<span class="dv">0</span>::<span class="dv">2</span>] <span class="op">=</span> x</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>x_stair[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> x <span class="op">+</span> resolution</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>y_stair[<span class="dv">0</span>::<span class="dv">2</span>] <span class="op">=</span> y</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>y_stair[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> y</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x_stair, y_stair, where<span class="op">=</span>(y_stair<span class="op">&lt;</span><span class="dv">0</span>), color<span class="op">=</span><span class="st">"tab:blue"</span>, ec<span class="op">=</span><span class="st">'None'</span>)</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x_stair, y_stair, where<span class="op">=</span>(y_stair<span class="op">&gt;</span><span class="dv">0</span>), color<span class="op">=</span><span class="st">"tab:red"</span>, ec<span class="op">=</span><span class="st">'None'</span>)</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the posterior mean</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>post_mean_scaled <span class="op">=</span> trace.posterior[<span class="st">"z"</span>].mean(dim<span class="op">=</span>[<span class="st">"chain"</span>, <span class="st">"draw"</span>]).values<span class="op">-</span><span class="fl">0.5</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>pms_stair <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span>y.shape[<span class="dv">0</span>])</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>pms_stair[<span class="dv">0</span>::<span class="dv">2</span>] <span class="op">=</span> post_mean_scaled</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>pms_stair[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> post_mean_scaled</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>ax.plot(x_stair,pms_stair, color<span class="op">=</span><span class="st">"k"</span>, label<span class="op">=</span><span class="st">"posterior mean, centered"</span>, lw<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the confidence in the compartment call as a curve</span></span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>conf_stair <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span>y.shape[<span class="dv">0</span>])</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>conf_stair[<span class="dv">0</span>::<span class="dv">2</span>] <span class="op">=</span> consistency_per_bin</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>conf_stair[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> consistency_per_bin</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>ax.plot(x_stair,conf_stair, color<span class="op">=</span><span class="st">"tab:orange"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, lw<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="st">"consistency [y_lik~p_B]"</span>)</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>ax.hlines(<span class="fl">0.5</span>, xmin<span class="op">=</span><span class="dv">0</span>, xmax<span class="op">=</span>x_stair.<span class="bu">max</span>(), color<span class="op">=</span><span class="st">"k"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"0.5 threshold"</span>)</span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">57_984_683</span>)</span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>ticks <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">57_984_683</span>, step<span class="op">=</span><span class="dv">5_000_000</span>)</span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(ticks)</span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(np.<span class="bu">round</span>(ticks <span class="op">/</span> <span class="fl">1e6</span>, <span class="dv">2</span>), rotation<span class="op">=</span><span class="dv">45</span>)</span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Genomic Position (Mbp)"</span>)</span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"E1"</span>)</span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"E1"</span>)</span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">"best"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-29" class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data as a track (stairs for niceity)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">3</span>))</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Stairs</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>x_stair <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span>y.shape[<span class="dv">0</span>])</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>y_stair <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span>y.shape[<span class="dv">0</span>])</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>x_stair[<span class="dv">0</span>::<span class="dv">2</span>] <span class="op">=</span> x</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>x_stair[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> x <span class="op">+</span> resolution</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>y_stair[<span class="dv">0</span>::<span class="dv">2</span>] <span class="op">=</span> y</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>y_stair[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> y</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x_stair, y_stair, where<span class="op">=</span>(y_stair<span class="op">&lt;</span><span class="dv">0</span>), color<span class="op">=</span><span class="st">"tab:blue"</span>, ec<span class="op">=</span><span class="st">'None'</span>)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x_stair, y_stair, where<span class="op">=</span>(y_stair<span class="op">&gt;</span><span class="dv">0</span>), color<span class="op">=</span><span class="st">"tab:red"</span>, ec<span class="op">=</span><span class="st">'None'</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the posterior mean</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>post_mean_scaled <span class="op">=</span> trace.posterior[<span class="st">"z"</span>].mean(dim<span class="op">=</span>[<span class="st">"chain"</span>, <span class="st">"draw"</span>]).values<span class="op">-</span><span class="fl">0.5</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>pms_stair <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span>y.shape[<span class="dv">0</span>])</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>pms_stair[<span class="dv">0</span>::<span class="dv">2</span>] <span class="op">=</span> post_mean_scaled</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>pms_stair[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> post_mean_scaled</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>ax.plot(x_stair,pms_stair, color<span class="op">=</span><span class="st">"k"</span>, label<span class="op">=</span><span class="st">"posterior mean, centered"</span>, lw<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the confidence in the compartment call as a curve</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>conf_stair <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span>y.shape[<span class="dv">0</span>])</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>conf_stair[<span class="dv">0</span>::<span class="dv">2</span>] <span class="op">=</span> consistency_per_bin</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>conf_stair[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> consistency_per_bin</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>ax.plot(x_stair,conf_stair, color<span class="op">=</span><span class="st">"tab:orange"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, lw<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="st">"consistency [y_lik~p_B]"</span>)</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>ax.hlines(<span class="fl">0.5</span>, xmin<span class="op">=</span><span class="dv">0</span>, xmax<span class="op">=</span>x_stair.<span class="bu">max</span>(), color<span class="op">=</span><span class="st">"k"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"0.5 threshold"</span>)</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">57_984_683</span>)</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>ticks <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">57_984_683</span>, step<span class="op">=</span><span class="dv">5_000_000</span>)</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(ticks)</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(np.<span class="bu">round</span>(ticks <span class="op">/</span> <span class="fl">1e6</span>, <span class="dv">2</span>), rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Genomic Position (Mbp)"</span>)</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"E1"</span>)</span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"E1"</span>)</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">"best"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-16-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="02_PyMC_independent_bins_files/figure-html/cell-16-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-18-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="02_PyMC_independent_bins_files/figure-html/cell-18-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-24" class="cell" data-execution_count="85">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> np.arange(<span class="bu">len</span>(y))</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>))</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Observed data</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>plt.plot(bins, y, label<span class="op">=</span><span class="st">"Observed E1"</span>, color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Posterior predictive mean</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>plt.plot(bins, ppc_mean, label<span class="op">=</span><span class="st">"Posterior Mean"</span>, color<span class="op">=</span><span class="st">"tab:red"</span>)</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Credible interval shading</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    bins,</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    ppc_hdi.y_lik.sel(hdi<span class="op">=</span><span class="st">'lower'</span>).values,</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    ppc_hdi.y_lik.sel(hdi<span class="op">=</span><span class="st">'higher'</span>).values,</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"tab:red"</span>,</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.3</span>,</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"95% Credible Interval"</span></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Genomic bin"</span>)</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"E1 value"</span>)</span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Posterior Predictive Mean with 95% CI"</span>)</span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-30" class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> np.arange(<span class="bu">len</span>(y))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>))</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Observed data</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>plt.plot(bins, y, label<span class="op">=</span><span class="st">"Observed E1"</span>, color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Posterior predictive mean</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>plt.plot(bins, ppc_mean, label<span class="op">=</span><span class="st">"Posterior Mean"</span>, color<span class="op">=</span><span class="st">"tab:red"</span>)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Credible interval shading</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    bins,</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    ppc_hdi.y_lik.sel(hdi<span class="op">=</span><span class="st">'lower'</span>).values,</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    ppc_hdi.y_lik.sel(hdi<span class="op">=</span><span class="st">'higher'</span>).values,</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"tab:red"</span>,</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.3</span>,</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"95% Credible Interval"</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Genomic bin"</span>)</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"E1 value"</span>)</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Posterior Predictive Mean with 95% CI"</span>)</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-17-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="02_PyMC_independent_bins_files/figure-html/cell-17-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-19-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="02_PyMC_independent_bins_files/figure-html/cell-19-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
 </section>
 </section>
 <section id="convert-the-posterior-into-a-confidence-around-the-compartment-borders" class="level3">
 <h3 class="anchored" data-anchor-id="convert-the-posterior-into-a-confidence-around-the-compartment-borders">Convert the posterior into a confidence around the compartment borders</h3>
-<div id="cell-26" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Posterior mean of the latent state z</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>p_B <span class="op">=</span> trace.posterior[<span class="st">"z"</span>].mean(dim<span class="op">=</span>[<span class="st">"chain"</span>, <span class="st">"draw"</span>]).values</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find boundaries</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>transitions <span class="op">=</span> np.diff(p_B <span class="op">&gt;</span> <span class="fl">0.5</span>).nonzero()[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">1</span>  <span class="co"># +1 because np.diff reduces the length by 1</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>transitions <span class="op">*=</span> resolution</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>transitions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-32" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Posterior mean of the latent state z</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>p_B <span class="op">=</span> trace.posterior[<span class="st">"z"</span>].mean(dim<span class="op">=</span>[<span class="st">"chain"</span>, <span class="st">"draw"</span>]).values</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find boundaries</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>transitions <span class="op">=</span> np.diff(p_B <span class="op">&gt;</span> <span class="fl">0.5</span>).nonzero()[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">1</span>  <span class="co"># +1 because np.diff reduces the length by 1</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>transitions <span class="op">*=</span> resolution</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>transitions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>array([  2400000,   3400000,   8700000,  13400000,  15400000,  17500000,
         18100000,  18200000,  18300000,  18900000,  19000000,  20000000,
@@ -1495,14 +1552,14 @@ Attributes:
 </div>
 <p><strong>Estimate uncertainty for each boundary:</strong></p>
 <p>For each boundary at bin <code>i</code>, define a local window (±w bins), and compute where the transition probability is maximally uncertain (e.g., p ≈ 0.5):</p>
-<div id="cell-28" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>z_samples <span class="op">=</span> trace.posterior[<span class="st">'z'</span>].stack(sample<span class="op">=</span>(<span class="st">'chain'</span>, <span class="st">'draw'</span>)).values</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="op">=</span> np.quantile(z_samples, <span class="fl">0.025</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="op">=</span> np.quantile(z_samples, <span class="fl">0.975</span>, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-34" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>z_samples <span class="op">=</span> trace.posterior[<span class="st">'z'</span>].stack(sample<span class="op">=</span>(<span class="st">'chain'</span>, <span class="st">'draw'</span>)).values</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="op">=</span> np.quantile(z_samples, <span class="fl">0.025</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="op">=</span> np.quantile(z_samples, <span class="fl">0.975</span>, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-29" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ci_lower</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-35" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ci_lower</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>array([0., 0., 0., ..., 0., 0., 0.], shape=(1623,))</code></pre>
 </div>
