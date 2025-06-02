@@ -29,7 +29,7 @@ lightbox: true
 book:
   repo-url: "https://github.com/munch-group/hic-compartment-borders"
   repo-actions: [edit, issue, source]  
-  title: "hic-compartment-borders"
+  title: "Probabilistic Models for Hi-C Compartment Borders"
   author: "Søren Jørgensen"  
   sidebar:
     collapse-level: 1
@@ -47,8 +47,9 @@ book:
     #   - slides/index.qmd 
     - part: "Notebooks"
       chapters: 
-      - notebooks/01_preliminary_bayes.ipynb
-      - notebooks/02_prep_e1_values.ipynb
+      - notebooks/01_prep_e1_values.ipynb
+      - notebooks/02_PyMC_independent_bins.ipynb
+      - notebooks/03_PyMC_GRW_logit.ipynb
     - part: "Workflows"
       chapters: 
       - master_workflow.py
