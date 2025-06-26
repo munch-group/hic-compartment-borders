@@ -50,6 +50,7 @@ book:
       - notebooks/01_prep_e1_values.ipynb
       - notebooks/02_PyMC_independent_bins.ipynb
       - notebooks/03_PyMC_GRW_logit.ipynb
+      - notebooks/04_PyMC_GRW_compare.ipynb
     - part: "Workflows"
       chapters: 
       - master_workflow.py
