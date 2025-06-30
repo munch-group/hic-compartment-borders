@@ -1,0 +1,614 @@
+[
+    {
+        "name": "N_N_HN",
+        "comp_dist": "Normal",
+        "comp_kwargs": {},
+        "eps_dist": "Normal",
+        "eps_kwargs": {
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfNormal",
+        "grw_sigma_kwargs": {
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "N_N_HT_10",
+        "comp_dist": "Normal",
+        "comp_kwargs": {},
+        "eps_dist": "Normal",
+        "eps_kwargs": {
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 10,
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "N_N_HT_5",
+        "comp_dist": "Normal",
+        "comp_kwargs": {},
+        "eps_dist": "Normal",
+        "eps_kwargs": {
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 5,
+            "sigma": 0.01
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "N_T_HN_10",
+        "comp_dist": "Normal",
+        "comp_kwargs": {},
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 10,
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfNormal",
+        "grw_sigma_kwargs": {
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "N_T_HT_10_10",
+        "comp_dist": "Normal",
+        "comp_kwargs": {},
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 10,
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 10,
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "N_T_HT_10_5",
+        "comp_dist": "Normal",
+        "comp_kwargs": {},
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 10,
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 5,
+            "sigma": 0.01
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "N_T_HN_5",
+        "comp_dist": "Normal",
+        "comp_kwargs": {},
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 5,
+            "mu": 0.0,
+            "sigma": 0.5
+        },
+        "grw_sigma_dist": "HalfNormal",
+        "grw_sigma_kwargs": {
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "N_T_HT_5_10",
+        "comp_dist": "Normal",
+        "comp_kwargs": {},
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 5,
+            "mu": 0.0,
+            "sigma": 0.5
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 10,
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "N_T_HT_5_5",
+        "comp_dist": "Normal",
+        "comp_kwargs": {},
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 5,
+            "mu": 0.0,
+            "sigma": 0.5
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 5,
+            "sigma": 0.01
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_N_HN_10",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 10
+        },
+        "eps_dist": "Normal",
+        "eps_kwargs": {
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfNormal",
+        "grw_sigma_kwargs": {
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_N_HT_10_10",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 10
+        },
+        "eps_dist": "Normal",
+        "eps_kwargs": {
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 10,
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_N_HT_10_5",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 10
+        },
+        "eps_dist": "Normal",
+        "eps_kwargs": {
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 5,
+            "sigma": 0.01
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_T_HN_10_10",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 10
+        },
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 10,
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfNormal",
+        "grw_sigma_kwargs": {
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_T_HT_10_10_10",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 10
+        },
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 10,
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 10,
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_T_HT_10_10_5",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 10
+        },
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 10,
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 5,
+            "sigma": 0.01
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_T_HN_10_5",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 10
+        },
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 5,
+            "mu": 0.0,
+            "sigma": 0.5
+        },
+        "grw_sigma_dist": "HalfNormal",
+        "grw_sigma_kwargs": {
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_T_HT_10_5_10",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 10
+        },
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 5,
+            "mu": 0.0,
+            "sigma": 0.5
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 10,
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_T_HT_10_5_5",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 10
+        },
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 5,
+            "mu": 0.0,
+            "sigma": 0.5
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 5,
+            "sigma": 0.01
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_N_HN_5",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 5
+        },
+        "eps_dist": "Normal",
+        "eps_kwargs": {
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfNormal",
+        "grw_sigma_kwargs": {
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_N_HT_5_10",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 5
+        },
+        "eps_dist": "Normal",
+        "eps_kwargs": {
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 10,
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_N_HT_5_5",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 5
+        },
+        "eps_dist": "Normal",
+        "eps_kwargs": {
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 5,
+            "sigma": 0.01
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_T_HN_5_10",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 5
+        },
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 10,
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfNormal",
+        "grw_sigma_kwargs": {
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_T_HT_5_10_10",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 5
+        },
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 10,
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 10,
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_T_HT_5_10_5",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 5
+        },
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 10,
+            "mu": 0.0,
+            "sigma": 1.0
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 5,
+            "sigma": 0.01
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_T_HN_5_5",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 5
+        },
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 5,
+            "mu": 0.0,
+            "sigma": 0.5
+        },
+        "grw_sigma_dist": "HalfNormal",
+        "grw_sigma_kwargs": {
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_T_HT_5_5_10",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 5
+        },
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 5,
+            "mu": 0.0,
+            "sigma": 0.5
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 10,
+            "sigma": 0.05
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    },
+    {
+        "name": "T_T_HT_5_5_5",
+        "comp_dist": "StudentT",
+        "comp_kwargs": {
+            "nu": 5
+        },
+        "eps_dist": "StudentT",
+        "eps_kwargs": {
+            "nu": 5,
+            "mu": 0.0,
+            "sigma": 0.5
+        },
+        "grw_sigma_dist": "HalfStudentT",
+        "grw_sigma_kwargs": {
+            "nu": 5,
+            "sigma": 0.01
+        },
+        "mu_mu": [
+            -0.5,
+            0.5
+        ],
+        "mu_sigma": 0.3,
+        "sigma": 0.3
+    }
+]
