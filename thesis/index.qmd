@@ -42,7 +42,7 @@ This model infers A/B chromatin compartment structure from the first eigenvector
 - E1 values are generated from Gaussian distributions specific to each compartment.
 - Prior belief: A has positive E1 values (μ ≈ 0.5), B has negative (μ ≈ -0.5).
 - Bins are initially treated as independent
-- Spatial depency can be added later (HMM)
+- Spatial depency are added later (Gaussian Random Walk)
 
 # Introduction
 
@@ -55,7 +55,14 @@ Here are methods
 
 ## Method 1
 
-The first method
+The first method with a code block
+
+```python
+# Python code 
+e = mc**2
+
+print(e)
+```
 
 # Results
 
