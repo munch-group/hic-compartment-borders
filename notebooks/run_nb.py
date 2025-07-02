@@ -37,7 +37,8 @@ def run_notebook(path, memory='8g', walltime='00:10:00', cores=1):
 
     inputs = [path]
     outputs = {'sentinel': sentinel}
-    options = {'memory': memory, 'walltime': walltime, 'cores': cores} 
+    options = {'memory': memory, 'walltime': walltime, 'cores': cores, 
+               'mail_type': 'END,FAIL', 'mail_user': '201906763@post.au.dk'} 
 
     # commands to run in task (bash script)
     spec = f"""
