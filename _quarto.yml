@@ -52,6 +52,7 @@ book:
       - notebooks/03_PyMC_GRW_logit.ipynb
       - notebooks/04_PyMC_GRW_compare.ipynb
       - notebooks/05_PyMC_bernoulli_z.ipynb
+      - notebooks/06_bootstrap_trace.ipynb
     - part: "Workflows"
       chapters: 
       - master_workflow.py
