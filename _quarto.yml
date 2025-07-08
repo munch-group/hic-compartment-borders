@@ -53,6 +53,7 @@ book:
       - notebooks/04_PyMC_GRW_compare.ipynb
       - notebooks/05_PyMC_bernoulli_z.ipynb
       - notebooks/06_bootstrap_trace.ipynb
+      - notebooks/07_hi_res_subset_analysis.ipynb
     - part: "Workflows"
       chapters: 
       - master_workflow.py
