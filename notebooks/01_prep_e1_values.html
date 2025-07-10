@@ -248,6 +248,11 @@ window.Quarto = {
   <a href="../notebooks/06_bootstrap_trace.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Bootstrapping traces</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/07_hi_res_subset_analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">GRW modeling on (subset) Hi-Res data</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -317,6 +322,11 @@ window.Quarto = {
   <li><a href="#check-the-results-by-eye" id="toc-check-the-results-by-eye" class="nav-link" data-scroll-target="#check-the-results-by-eye">Check the results by eye</a>
   <ul>
   <li><a href="#define-the-eigenvectors" id="toc-define-the-eigenvectors" class="nav-link" data-scroll-target="#define-the-eigenvectors">Define the eigenvectors</a></li>
+  </ul></li>
+  <li><a href="#eeigendecomposition-of-human-sperm-sexchromosome-separated-samples" id="toc-eeigendecomposition-of-human-sperm-sexchromosome-separated-samples" class="nav-link" data-scroll-target="#eeigendecomposition-of-human-sperm-sexchromosome-separated-samples">EEigendecomposition of human sperm sexchromosome separated samples</a>
+  <ul>
+  <li><a href="#calculate-the-gc-contetn-coverage" id="toc-calculate-the-gc-contetn-coverage" class="nav-link" data-scroll-target="#calculate-the-gc-contetn-coverage">Calculate the GC contetn coverage</a></li>
+  <li><a href="#do-eigendecomposition" id="toc-do-eigendecomposition" class="nav-link" data-scroll-target="#do-eigendecomposition">Do eigendecomposition</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.dev/munch-group/hic-compartment-borders/blob/main/notebooks/01_prep_e1_values.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/munch-group/hic-compartment-borders/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/munch-group/hic-compartment-borders/blob/main/notebooks/01_prep_e1_values.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -991,6 +1001,232 @@ n_chrX contacts: 19,244,584</code></pre>
 <blockquote class="blockquote">
 <p>Above is the count of total contacts on X on each tissue. It is at most 26,000,000 spread over 160,000 bins at 1kb resolution. That way too sparse to do eigendecomposition.</p>
 </blockquote>
+</section>
+</section>
+<section id="eeigendecomposition-of-human-sperm-sexchromosome-separated-samples" class="level1">
+<h1>EEigendecomposition of human sperm sexchromosome separated samples</h1>
+<p>Here, we prep the E1 values of the data from the human sperm sexchromosome separated samples.</p>
+<div id="cell-31" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> bioframe</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>sperm_X <span class="op">=</span> <span class="st">"../../data/human_sperm_haplo_seperated/sperm_X.merged.mcool"</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>sperm_Y <span class="op">=</span> <span class="st">"../../data/human_sperm_haplo_seperated/sperm_Y.merged.mcool"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-32" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make viewframes</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>assembly <span class="op">=</span> <span class="st">"GRCh38"</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>centromeres <span class="op">=</span> bioframe.fetch_centromeres(assembly)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>chromsizes <span class="op">=</span> bioframe.fetch_chromsizes(assembly)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>chromarms <span class="op">=</span> bioframe.make_chromarms(chromsizes, centromeres)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>view_x <span class="op">=</span> bioframe.make_viewframe(chromarms).query(<span class="st">'chrom == "chrX"'</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>view_y <span class="op">=</span> bioframe.make_viewframe(chromarms).query(<span class="st">'chrom == "chrY"'</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>view_x.to_csv(<span class="ss">f"../data/view_</span><span class="sc">{</span>assembly<span class="sc">}</span><span class="ss">_X_chromarms.tsv"</span>,  index<span class="op">=</span><span class="va">False</span>, header<span class="op">=</span><span class="va">False</span>, sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>view_y.to_csv(<span class="ss">f"../data/view_</span><span class="sc">{</span>assembly<span class="sc">}</span><span class="ss">_Y_chromarms.tsv"</span>,  index<span class="op">=</span><span class="va">False</span>, header<span class="op">=</span><span class="va">False</span>, sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Just for views</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>pd.concat([view_x, view_y])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">chrom</th>
+<th data-quarto-table-cell-role="th">start</th>
+<th data-quarto-table-cell-role="th">end</th>
+<th data-quarto-table-cell-role="th">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">44</td>
+<td>chrX</td>
+<td>0</td>
+<td>61000000</td>
+<td>chrX_p</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">45</td>
+<td>chrX</td>
+<td>61000000</td>
+<td>156040895</td>
+<td>chrX_q</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">46</td>
+<td>chrY</td>
+<td>0</td>
+<td>10400000</td>
+<td>chrY_p</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">47</td>
+<td>chrY</td>
+<td>10400000</td>
+<td>57227415</td>
+<td>chrY_q</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="calculate-the-gc-contetn-coverage" class="level2">
+<h2 class="anchored" data-anchor-id="calculate-the-gc-contetn-coverage">Calculate the GC contetn coverage</h2>
+<div id="cell-34" class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>REF<span class="op">=</span>..<span class="op">/</span>..<span class="op">/</span>data<span class="op">/</span>human_sperm_haplo_seperated<span class="op">/</span>references<span class="op">/</span>GRCh38.fa</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> res <span class="kw">in</span> <span class="dv">1000</span> <span class="dv">5000</span> <span class="dv">10000</span> <span class="dv">50000</span> <span class="dv">100000</span><span class="op">;</span> do</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    BINS<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>bins<span class="op">/</span>hg38.bins.${res}.tsv</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    GC_OUT<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>bins<span class="op">/</span>hg38.gc.${res}.tsv</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    cooltools genome gc $BINS $REF <span class="op">&gt;</span> $GC_OUT</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="do-eigendecomposition" class="level2">
+<h2 class="anchored" data-anchor-id="do-eigendecomposition">Do eigendecomposition</h2>
+<div id="cell-36" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find multires coolers</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>SPERM_X<span class="op">=</span><span class="st">"../../data/human_sperm_haplo_seperated/sperm_X.merged.mcool"</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>SPERM_Y<span class="op">=</span><span class="st">"../../data/human_sperm_haplo_seperated/sperm_Y.merged.mcool"</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the viewframe</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>VIEW_X<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>view_GRCh38_X_chromarms.tsv</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>VIEW_Y<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>view_GRCh38_Y_chromarms.tsv</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Names</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>SAMPLE_X<span class="op">=</span>$(basename $SPERM_X .merged.mcool)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>SAMPLE_Y<span class="op">=</span>$(basename $SPERM_Y .merged.mcool)</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>echo $SAMPLE_X</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> res <span class="kw">in</span> <span class="dv">1000</span> <span class="dv">5000</span> <span class="dv">10000</span> <span class="dv">50000</span> <span class="dv">100000</span> <span class="dv">500000</span><span class="op">;</span> do</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    echo $res</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    COOLER<span class="op">=</span>$SPERM_X::resolutions<span class="op">/</span>$res</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>    GC_BINS<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>bins<span class="op">/</span>hg38.gc.${res}.tsv</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>    EIGS_OUT<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>eigs<span class="op">/</span>$SAMPLE_X.eigs.$res</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>    echo <span class="op">-</span>ne <span class="st">' -'</span> $res OK</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>    cooltools eigs<span class="op">-</span>cis <span class="op">-</span>o $EIGS_OUT <span class="op">--</span>view $VIEW_X <span class="op">--</span>phasing<span class="op">-</span>track $GC_BINS <span class="op">--</span>n<span class="op">-</span>eigs <span class="dv">3</span> $COOLER</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>done</span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>echo <span class="st">""</span></span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>echo $SAMPLE_Y</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> res <span class="kw">in</span> <span class="dv">1000</span> <span class="dv">5000</span> <span class="dv">10000</span> <span class="dv">50000</span> <span class="dv">100000</span> <span class="dv">500000</span><span class="op">;</span> do</span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>    echo $res</span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>    COOLER<span class="op">=</span>$SPERM_Y::resolutions<span class="op">/</span>$res</span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a>    GC_BINS<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>bins<span class="op">/</span>hg38.gc.${res}.tsv</span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>    EIGS_OUT<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>eigs<span class="op">/</span>$SAMPLE_Y.eigs.$res</span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a>    echo <span class="op">-</span>ne <span class="st">' -'</span> $res OK</span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>    cooltools eigs<span class="op">-</span>cis <span class="op">-</span>o $EIGS_OUT <span class="op">--</span>view $VIEW_Y <span class="op">--</span>phasing<span class="op">-</span>track $GC_BINS <span class="op">--</span>n<span class="op">-</span>eigs <span class="dv">3</span> $COOLER</span>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a>done</span>
+<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a>echo <span class="st">""</span></span>
+<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a>echo All done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sperm_X
+1000</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/sojern/miniconda3/envs/hic/lib/python3.12/site-packages/cooltools/cli/eigs_cis.py:143: FutureWarning: The 'verbose' keyword in pd.read_table is deprecated and will be removed in a future version.
+  track_df = pd.read_table(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> - 1000 OK5000</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/sojern/miniconda3/envs/hic/lib/python3.12/site-packages/cooltools/cli/eigs_cis.py:143: FutureWarning: The 'verbose' keyword in pd.read_table is deprecated and will be removed in a future version.
+  track_df = pd.read_table(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> - 5000 OK10000</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/sojern/miniconda3/envs/hic/lib/python3.12/site-packages/cooltools/cli/eigs_cis.py:143: FutureWarning: The 'verbose' keyword in pd.read_table is deprecated and will be removed in a future version.
+  track_df = pd.read_table(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> - 10000 OK50000</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/sojern/miniconda3/envs/hic/lib/python3.12/site-packages/cooltools/cli/eigs_cis.py:143: FutureWarning: The 'verbose' keyword in pd.read_table is deprecated and will be removed in a future version.
+  track_df = pd.read_table(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> - 50000 OK100000</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/sojern/miniconda3/envs/hic/lib/python3.12/site-packages/cooltools/cli/eigs_cis.py:143: FutureWarning: The 'verbose' keyword in pd.read_table is deprecated and will be removed in a future version.
+  track_df = pd.read_table(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> - 100000 OK500000</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/sojern/miniconda3/envs/hic/lib/python3.12/site-packages/cooltools/cli/eigs_cis.py:143: FutureWarning: The 'verbose' keyword in pd.read_table is deprecated and will be removed in a future version.
+  track_df = pd.read_table(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> - 500000 OK
+sperm_Y
+1000</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/sojern/miniconda3/envs/hic/lib/python3.12/site-packages/cooltools/cli/eigs_cis.py:143: FutureWarning: The 'verbose' keyword in pd.read_table is deprecated and will be removed in a future version.
+  track_df = pd.read_table(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> - 1000 OK5000</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/sojern/miniconda3/envs/hic/lib/python3.12/site-packages/cooltools/cli/eigs_cis.py:143: FutureWarning: The 'verbose' keyword in pd.read_table is deprecated and will be removed in a future version.
+  track_df = pd.read_table(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> - 5000 OK10000</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/sojern/miniconda3/envs/hic/lib/python3.12/site-packages/cooltools/cli/eigs_cis.py:143: FutureWarning: The 'verbose' keyword in pd.read_table is deprecated and will be removed in a future version.
+  track_df = pd.read_table(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> - 10000 OK50000</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/sojern/miniconda3/envs/hic/lib/python3.12/site-packages/cooltools/cli/eigs_cis.py:143: FutureWarning: The 'verbose' keyword in pd.read_table is deprecated and will be removed in a future version.
+  track_df = pd.read_table(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> - 50000 OK100000</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/sojern/miniconda3/envs/hic/lib/python3.12/site-packages/cooltools/cli/eigs_cis.py:143: FutureWarning: The 'verbose' keyword in pd.read_table is deprecated and will be removed in a future version.
+  track_df = pd.read_table(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> - 100000 OK500000</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/sojern/miniconda3/envs/hic/lib/python3.12/site-packages/cooltools/cli/eigs_cis.py:143: FutureWarning: The 'verbose' keyword in pd.read_table is deprecated and will be removed in a future version.
+  track_df = pd.read_table(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> - 500000 OK
+All done</code></pre>
+</div>
+</div>
 
 
 </section>
