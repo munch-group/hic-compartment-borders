@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4cd3611649566686612fbc979346f844.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-30f18db784d9b8e9ac09c705289dfca9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -117,7 +117,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -352,7 +351,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 10, 2025 <br> 08:11:04 (UTC +00:00)</p>
+      <p class="date">July 12, 2025 <br> 15:17:34 (UTC +00:00)</p>
     </div>
   </div>
   
@@ -375,7 +374,7 @@ window.Quarto = {
 <section id="load-a-subset-of-one-of-the-datasets" class="level2">
 <h2 class="anchored" data-anchor-id="load-a-subset-of-one-of-the-datasets">Load a subset of one of the datasets</h2>
 <p>Here, we show the full 10kb track, the zoom region, and the zoomed-in region of the 10kb track. The zoomed-in region is then used as <code>df_zoom</code> for the following analysis.</p>
-<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-08T20:40:42.391396Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-08T20:40:42.391256Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-08T20:40:43.460418Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-08T20:40:43.460052Z&quot;}}" data-execution_count="2">
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:37:50.350958Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:37:50.350824Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:37:51.944082Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:37:51.943696Z&quot;}}" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -423,9 +422,52 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-08T20:40:43.507483Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-08T20:40:43.507329Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-08T20:40:43.511435Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-08T20:40:43.511097Z&quot;}}" data-execution_count="3">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:37:51.972336Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:37:51.972089Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:37:51.976629Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:37:51.976339Z&quot;}}" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the zoomed region for further analysis</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df_zoom <span class="op">=</span> df.query(<span class="ss">f"start &gt;= </span><span class="sc">{</span>zoom[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> and start &lt;= </span><span class="sc">{</span>zoom[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of distribution of E1 values (A and B)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df[<span class="st">"start"</span>].values</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"e1"</span>].values</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>f, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># A compartments</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>ax.hist(y[y<span class="op">&gt;</span><span class="dv">0</span>], bins<span class="op">=</span><span class="dv">30</span>, color<span class="op">=</span><span class="st">"tab:red"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"A"</span>, density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># B compartments</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>ax.hist(y[y<span class="op">&lt;</span><span class="dv">0</span>], bins<span class="op">=</span><span class="dv">30</span>, color<span class="op">=</span><span class="st">"tab:blue"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"B"</span>, density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean values (vline)</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ax.axvline(y[y<span class="op">&gt;</span><span class="dv">0</span>].mean(), color<span class="op">=</span><span class="st">"tab:red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Mean A"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ax.axvline(y[y<span class="op">&lt;</span><span class="dv">0</span>].mean(), color<span class="op">=</span><span class="st">"tab:blue"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Mean B"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the normal distributions</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>x_values <span class="op">=</span> np.linspace(y.<span class="bu">min</span>(), y.<span class="bu">max</span>(), <span class="dv">1000</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>mean_a <span class="op">=</span> np.median(y[y<span class="op">&gt;</span><span class="dv">0</span>])</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>mean_b <span class="op">=</span> np.median(y[y<span class="op">&lt;</span><span class="dv">0</span>])</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>std_a <span class="op">=</span> y[y<span class="op">&gt;</span><span class="dv">0</span>].std()</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>std_b <span class="op">=</span> y[y<span class="op">&lt;</span><span class="dv">0</span>].std()</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>ax.plot(x_values, norm.pdf(x_values, loc<span class="op">=</span>mean_a, scale<span class="op">=</span>std_a), color<span class="op">=</span><span class="st">"tab:red"</span>, label<span class="op">=</span><span class="st">"Normal A"</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ax.plot(x_values, norm.pdf(x_values, loc<span class="op">=</span>mean_b, scale<span class="op">=</span>std_b), color<span class="op">=</span><span class="st">"tab:blue"</span>, label<span class="op">=</span><span class="st">"Normal B"</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>stacked <span class="op">=</span> norm.pdf(x_values, loc<span class="op">=</span>mean_a, scale<span class="op">=</span>std_a) <span class="op">+</span> norm.pdf(x_values, loc<span class="op">=</span>mean_b, scale<span class="op">=</span>std_b)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax.plot(x_values, stacked, color<span class="op">=</span><span class="st">"tab:purple"</span>, label<span class="op">=</span><span class="st">"Stacked Normals"</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Final touches</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"E1"</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Density"</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'best'</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-4-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="07_hi_res_subset_analysis_files/figure-html/cell-4-output-1.png" width="629" height="470" class="figure-img"></a></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="model-of-choice" class="level2">
@@ -450,66 +492,66 @@ window.Quarto = {
 <section id="model-factory-function" class="level3">
 <h3 class="anchored" data-anchor-id="model-factory-function">Model factory function</h3>
 <p>Define the model builder, and import the configuration from file.</p>
-<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-08T20:40:43.512949Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-08T20:40:43.512708Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-08T20:40:45.575024Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-08T20:40:45.574667Z&quot;}}" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc <span class="im">as</span> pm </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytensor.tensor <span class="im">as</span> pt</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_z_model_from_config(df, cfg):</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Build a PyMC model based on the provided configuration dictionary.</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    e1 <span class="op">=</span> df.e1.values </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pm.Model(coords<span class="op">=</span>{<span class="st">"pos"</span>: df.index.values}) <span class="im">as</span> model:</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># e1 = pm.Data("e1", df.e1.values, dims="pos")</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        mu <span class="op">=</span> pm.Normal(<span class="st">"mu"</span>, mu<span class="op">=</span>cfg[<span class="st">'mu_mu'</span>], sigma<span class="op">=</span>cfg[<span class="st">'mu_sigma'</span>],</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                       transform<span class="op">=</span>pm.distributions.transforms.ordered, shape<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        sigma <span class="op">=</span> pm.HalfNormal(<span class="st">"sigma"</span>, sigma<span class="op">=</span>cfg[<span class="st">'sigma'</span>], shape<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># components: Normal or StudentT</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cfg[<span class="st">'comp_dist'</span>] <span class="op">==</span> <span class="st">"Normal"</span>:</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>            components <span class="op">=</span> pm.Normal.dist(mu<span class="op">=</span>mu, sigma<span class="op">=</span>sigma, shape<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            components <span class="op">=</span> pm.StudentT.dist(mu<span class="op">=</span>mu, sigma<span class="op">=</span>sigma, <span class="op">**</span>cfg[<span class="st">'comp_kwargs'</span>], shape<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># grw_sigma: HalfNormal or HalfStudentT</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cfg[<span class="st">'grw_sigma_dist'</span>] <span class="op">==</span> <span class="st">"HalfNormal"</span>:</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>            grw_sigma <span class="op">=</span> pm.HalfNormal(<span class="st">"grw_sigma"</span>, <span class="op">**</span>cfg[<span class="st">'grw_sigma_kwargs'</span>])</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>            grw_sigma <span class="op">=</span> pm.HalfStudentT(<span class="st">"grw_sigma"</span>, <span class="op">**</span>cfg[<span class="st">'grw_sigma_kwargs'</span>])</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># eps: Normal or StudentT</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cfg[<span class="st">'eps_dist'</span>] <span class="op">==</span> <span class="st">"Normal"</span>:</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>            eps <span class="op">=</span> pm.Normal(<span class="st">"eps"</span>, dims<span class="op">=</span><span class="st">"pos"</span>, mu<span class="op">=</span><span class="fl">0.0</span>, sigma<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>            eps <span class="op">=</span> pm.StudentT(<span class="st">"eps"</span>, dims<span class="op">=</span><span class="st">"pos"</span>, mu<span class="op">=</span><span class="fl">0.0</span>, sigma<span class="op">=</span><span class="fl">1.0</span>, nu<span class="op">=</span>cfg[<span class="st">'eps_kwargs'</span>][<span class="st">'nu'</span>])</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        logit_w <span class="op">=</span> pm.Deterministic(<span class="st">"logit_w"</span>, pt.cumsum(eps<span class="op">*</span>grw_sigma), dims<span class="op">=</span><span class="st">"pos"</span>)</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        w <span class="op">=</span> pm.Deterministic(<span class="st">"w"</span>, pm.math.sigmoid(logit_w), dims<span class="op">=</span><span class="st">"pos"</span>)</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Make a latent variable for the mixture model</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> pm.Bernoulli(<span class="st">"z"</span>, p<span class="op">=</span>w, dims<span class="op">=</span><span class="st">"pos"</span>)</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        y_hat <span class="op">=</span> pm.Mixture(<span class="st">"y_hat"</span>, w<span class="op">=</span>pt.stack([<span class="dv">1</span><span class="op">-</span>z, z], axis<span class="op">=</span><span class="dv">1</span>), comp_dists<span class="op">=</span>components,</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>                           observed<span class="op">=</span>e1, dims<span class="op">=</span><span class="st">'pos'</span>)</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:37:51.978027Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:37:51.977781Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:37:53.939806Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:37:53.939386Z&quot;}}" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc <span class="im">as</span> pm </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytensor.tensor <span class="im">as</span> pt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_z_model_from_config(df, cfg):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Build a PyMC model based on the provided configuration dictionary.</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    e1 <span class="op">=</span> df.e1.values </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pm.Model(coords<span class="op">=</span>{<span class="st">"pos"</span>: df.index.values}) <span class="im">as</span> model:</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># e1 = pm.Data("e1", df.e1.values, dims="pos")</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        mu <span class="op">=</span> pm.Normal(<span class="st">"mu"</span>, mu<span class="op">=</span>cfg[<span class="st">'mu_mu'</span>], sigma<span class="op">=</span>cfg[<span class="st">'mu_sigma'</span>],</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                       transform<span class="op">=</span>pm.distributions.transforms.ordered, shape<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        sigma <span class="op">=</span> pm.HalfNormal(<span class="st">"sigma"</span>, sigma<span class="op">=</span>cfg[<span class="st">'sigma'</span>], shape<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># components: Normal or StudentT</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cfg[<span class="st">'comp_dist'</span>] <span class="op">==</span> <span class="st">"Normal"</span>:</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>            components <span class="op">=</span> pm.Normal.dist(mu<span class="op">=</span>mu, sigma<span class="op">=</span>sigma, shape<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>            components <span class="op">=</span> pm.StudentT.dist(mu<span class="op">=</span>mu, sigma<span class="op">=</span>sigma, <span class="op">**</span>cfg[<span class="st">'comp_kwargs'</span>], shape<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># grw_sigma: HalfNormal or HalfStudentT</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cfg[<span class="st">'grw_sigma_dist'</span>] <span class="op">==</span> <span class="st">"HalfNormal"</span>:</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>            grw_sigma <span class="op">=</span> pm.HalfNormal(<span class="st">"grw_sigma"</span>, <span class="op">**</span>cfg[<span class="st">'grw_sigma_kwargs'</span>])</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>            grw_sigma <span class="op">=</span> pm.HalfStudentT(<span class="st">"grw_sigma"</span>, <span class="op">**</span>cfg[<span class="st">'grw_sigma_kwargs'</span>])</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># eps: Normal or StudentT</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cfg[<span class="st">'eps_dist'</span>] <span class="op">==</span> <span class="st">"Normal"</span>:</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>            eps <span class="op">=</span> pm.Normal(<span class="st">"eps"</span>, dims<span class="op">=</span><span class="st">"pos"</span>, mu<span class="op">=</span><span class="fl">0.0</span>, sigma<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>            eps <span class="op">=</span> pm.StudentT(<span class="st">"eps"</span>, dims<span class="op">=</span><span class="st">"pos"</span>, mu<span class="op">=</span><span class="fl">0.0</span>, sigma<span class="op">=</span><span class="fl">1.0</span>, nu<span class="op">=</span>cfg[<span class="st">'eps_kwargs'</span>][<span class="st">'nu'</span>])</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        logit_w <span class="op">=</span> pm.Deterministic(<span class="st">"logit_w"</span>, pt.cumsum(eps<span class="op">*</span>grw_sigma), dims<span class="op">=</span><span class="st">"pos"</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        w <span class="op">=</span> pm.Deterministic(<span class="st">"w"</span>, pm.math.sigmoid(logit_w), dims<span class="op">=</span><span class="st">"pos"</span>)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Make a latent variable for the mixture model</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> pm.Bernoulli(<span class="st">"z"</span>, p<span class="op">=</span>w, dims<span class="op">=</span><span class="st">"pos"</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        y_hat <span class="op">=</span> pm.Mixture(<span class="st">"y_hat"</span>, w<span class="op">=</span>pt.stack([z,<span class="dv">1</span><span class="op">-</span>z], axis<span class="op">=</span><span class="dv">1</span>), comp_dists<span class="op">=</span>components,</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>                           observed<span class="op">=</span>e1, dims<span class="op">=</span><span class="st">'pos'</span>)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-08T20:40:45.577104Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-08T20:40:45.576741Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-08T20:40:45.581178Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-08T20:40:45.580909Z&quot;}}" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"../results/model_grid.json"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    config_list <span class="op">=</span> json.load(f)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>configs <span class="op">=</span> {cfg[<span class="st">'name'</span>]: cfg <span class="cf">for</span> cfg <span class="kw">in</span> config_list}</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"T_N_HN_10"</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> configs[name]</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:37:53.941548Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:37:53.941251Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:37:53.946526Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:37:53.946235Z&quot;}}" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"../results/model_grid.json"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    config_list <span class="op">=</span> json.load(f)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>configs <span class="op">=</span> {cfg[<span class="st">'name'</span>]: cfg <span class="cf">for</span> cfg <span class="kw">in</span> config_list}</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"T_N_HN_10"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> configs[name]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>{'name': 'T_N_HN_10',
  'comp_dist': 'StudentT',
  'comp_kwargs': {'nu': 10},
@@ -522,12 +564,12 @@ window.Quarto = {
  'sigma': 0.3}</code></pre>
 </div>
 </div>
-<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-08T20:40:45.582691Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-08T20:40:45.582449Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-08T20:40:45.746199Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-08T20:40:45.745657Z&quot;}}" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the model</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> build_z_model_from_config(df_zoom, config)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:37:53.947812Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:37:53.947609Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:37:54.078148Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:37:54.077823Z&quot;}}" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the model</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> build_z_model_from_config(df_zoom, config)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
 <p><span class="math display">\[
             \begin{array}{rcl}
             \text{mu} &amp;\sim &amp; \operatorname{Normal}(\text{&lt;constant&gt;},~0.3)\\\text{sigma} &amp;\sim &amp; \operatorname{HalfNormal}(0,~0.3)\\\text{grw\_sigma} &amp;\sim &amp; \operatorname{HalfNormal}(0,~0.05)\\\text{eps} &amp;\sim &amp; \operatorname{Normal}(0,~1)\\\text{z} &amp;\sim &amp; \operatorname{Bernoulli}(\text{w})\\\text{logit\_w} &amp;\sim &amp; \operatorname{Deterministic}(f(\text{eps},~\text{grw\_sigma}))\\\text{w} &amp;\sim &amp; \operatorname{Deterministic}(f(\text{eps},~\text{grw\_sigma}))\\\text{y\_hat} &amp;\sim &amp; \operatorname{MarginalMixture}(f(\text{z}),~\operatorname{StudentT}(10,~\text{mu},~\text{sigma}))
@@ -535,98 +577,90 @@ window.Quarto = {
             \]</span></p>
 </div>
 </div>
-<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-08T20:40:45.747565Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-08T20:40:45.747426Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-08T20:40:48.727320Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-08T20:40:48.726832Z&quot;}}" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model.to_graphviz()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:37:54.079407Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:37:54.079264Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:38:04.737676Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:38:04.737340Z&quot;}}" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model.to_graphviz()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-7-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="07_hi_res_subset_analysis_files/figure-html/cell-7-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-8-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="07_hi_res_subset_analysis_files/figure-html/cell-8-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-08T20:40:48.728771Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-08T20:40:48.728628Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-08T20:55:54.935968Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-08T20:55:54.935494Z&quot;}}">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    idata <span class="op">=</span> pm.sample(draws<span class="op">=</span><span class="dv">1000</span>, tune<span class="op">=</span><span class="dv">1000</span>, chains<span class="op">=</span><span class="dv">7</span>, cores<span class="op">=</span><span class="dv">7</span>, progressbar<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:38:04.738975Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:38:04.738763Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:51:34.535119Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:51:34.534647Z&quot;}}" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    idata <span class="op">=</span> pm.sample(draws<span class="op">=</span><span class="dv">1000</span>, tune<span class="op">=</span><span class="dv">1000</span>, chains<span class="op">=</span><span class="dv">7</span>, cores<span class="op">=</span><span class="dv">7</span>, progressbar<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Multiprocess sampling (7 chains in 7 jobs)
 CompoundStep
 &gt;NUTS: [mu, sigma, grw_sigma, eps]
-&gt;BinaryGibbsMetropolis: [z]</code></pre>
+&gt;BinaryGibbsMetropolis: [z]
+Sampling 7 chains for 1_000 tune and 1_000 draw iterations (7_000 + 7_000 draws total) took 795 seconds.
+There were 215 divergences after tuning. Increase `target_accept` or reparameterize.
+The rhat statistic is larger than 1.01 for some parameters. This indicates problems during sampling. See https://arxiv.org/abs/1903.08008 for details
+The effective sample size per chain is smaller than 100 for some parameters.  A higher number is needed for reliable rhat and ess computation. See https://arxiv.org/abs/1903.08008 for details</code></pre>
 </div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"4bbf19c4e9a14ed8902b2a6f813eb007","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
 </div>
-</div>
-<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-08T20:55:54.938358Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-08T20:55:54.938151Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-08T20:55:56.492216Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-08T20:55:56.491816Z&quot;}}">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    pm.compute_log_likelihood(idata, progressbar<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-08T20:55:56.494119Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-08T20:55:56.493979Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-08T20:56:03.239297Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-08T20:56:03.238781Z&quot;}}">
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:51:34.536770Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:51:34.536566Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:51:36.107120Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:51:36.106625Z&quot;}}" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    prior_predictive <span class="op">=</span> pm.sample_prior_predictive(<span class="dv">1000</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>idata.extend(prior_predictive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    pm.compute_log_likelihood(idata, progressbar<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:51:36.108948Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:51:36.108786Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:51:42.860421Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:51:42.860001Z&quot;}}" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    prior_predictive <span class="op">=</span> pm.sample_prior_predictive(<span class="dv">1000</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>idata.extend(prior_predictive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Sampling: [eps, grw_sigma, mu, sigma, y_hat_observed, y_hat_unobserved, z]</code></pre>
+<pre><code>Sampling: [eps, grw_sigma, mu, sigma, y_hat, z]</code></pre>
 </div>
 </div>
-<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-08T20:56:03.241481Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-08T20:56:03.241323Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-08T20:56:46.957447Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-08T20:56:46.956918Z&quot;}}">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    posterior_predictive <span class="op">=</span> pm.sample_posterior_predictive(idata, progressbar<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>idata.extend(posterior_predictive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:51:42.862104Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:51:42.861961Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:52:26.524925Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:52:26.524387Z&quot;}}" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    posterior_predictive <span class="op">=</span> pm.sample_posterior_predictive(idata, progressbar<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>idata.extend(posterior_predictive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Sampling: [y_hat_observed]</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"f90decf9a8d5493e92fe90d02d106bd7","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+<pre><code>Sampling: [y_hat]</code></pre>
 </div>
 </div>
-<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-08T20:56:46.959784Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-08T20:56:46.959631Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-08T20:57:24.688473Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-08T20:57:24.688092Z&quot;}}">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>f, axs <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>az.plot_trace(idata, var_names<span class="op">=</span>[<span class="st">"mu"</span>, <span class="st">"sigma"</span>, <span class="st">"grw_sigma"</span>], compact<span class="op">=</span><span class="va">True</span>, axes <span class="op">=</span> axs)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="ss">f"Trace plot for model: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>f,axs <span class="op">=</span> plt.subplots(<span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">9</span>))</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> axs.flatten()</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>az.plot_ppc(idata, var_names<span class="op">=</span>[<span class="st">"y_hat"</span>], group<span class="op">=</span><span class="st">"prior"</span>, ax<span class="op">=</span>axs[<span class="dv">0</span>])</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>az.plot_ppc(idata, var_names<span class="op">=</span>[<span class="st">"y_hat"</span>], ax<span class="op">=</span>axs[<span class="dv">1</span>])</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>az.plot_energy(idata, ax <span class="op">=</span> axs[<span class="dv">2</span>])</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="ss">f"PPC and stats for model: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:52:26.526688Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:52:26.526532Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:53:08.037819Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:53:08.037439Z&quot;}}" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>f, axs <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>az.plot_trace(idata, var_names<span class="op">=</span>[<span class="st">"mu"</span>, <span class="st">"sigma"</span>, <span class="st">"grw_sigma"</span>], compact<span class="op">=</span><span class="va">True</span>, axes <span class="op">=</span> axs)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="ss">f"Trace plot for model: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>f,axs <span class="op">=</span> plt.subplots(<span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">9</span>))</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> axs.flatten()</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>az.plot_ppc(idata, var_names<span class="op">=</span>[<span class="st">"y_hat"</span>], group<span class="op">=</span><span class="st">"prior"</span>, ax<span class="op">=</span>axs[<span class="dv">0</span>])</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>az.plot_ppc(idata, var_names<span class="op">=</span>[<span class="st">"y_hat"</span>], ax<span class="op">=</span>axs[<span class="dv">1</span>])</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>az.plot_energy(idata, ax <span class="op">=</span> axs[<span class="dv">2</span>])</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="ss">f"PPC and stats for model: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-12-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="07_hi_res_subset_analysis_files/figure-html/cell-12-output-1.png" width="986" height="495" class="figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-13-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="07_hi_res_subset_analysis_files/figure-html/cell-13-output-1.png" width="989" height="495" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-12-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="07_hi_res_subset_analysis_files/figure-html/cell-12-output-2.png" width="989" height="886" class="figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-13-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="07_hi_res_subset_analysis_files/figure-html/cell-13-output-2.png" width="989" height="886" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
+<p>So, it looks like the data may not come from two distrinct distributions for E1 values in this sample. I am confused. I guess we go back to the drawing board.</p>
 </section>
 </section>
 <section id="bootstrapping-to-get-a-confidence-interval" class="level2">
@@ -634,58 +668,62 @@ CompoundStep
 <section id="bootstrapping-helpers" class="level3">
 <h3 class="anchored" data-anchor-id="bootstrapping-helpers">Bootstrapping helpers</h3>
 <p>Here, we define a wrapper function to bootstrap the mean for each position. <code>scipy.stats.bootstrap</code> is vectorized and is therefore very efficient for resampling each position. However, it will allocate an array of size <code>n_resamples * n_samples * pos</code> (1.2 TB for 10,000 resamples), unless we use the <code>batch</code>, where it allocates <code>batch * n_samples * pos</code> arrays in memory at at time. Here, we define a function to compute the batch value to maximally allocate a 16Gb array in memory at a time.</p>
-<div id="cell-19" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> bootstrap</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_batch(arr, max_Gbytes<span class="op">=</span><span class="dv">16</span>):</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute max batch size so that each batch of resamples fits in max_bytes.</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    max_bytes <span class="op">=</span> max_Gbytes <span class="op">*</span> <span class="dv">1024</span><span class="op">**</span><span class="dv">3</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Elements in a single resample</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    n_elements <span class="op">=</span> arr.shape[<span class="dv">0</span>] <span class="op">*</span> arr.shape[<span class="dv">1</span>]</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bytes per element</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    bytes_per_elem <span class="op">=</span> np.dtype(arr.dtype).itemsize</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bytes per resample</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    bytes_per_resample <span class="op">=</span> n_elements <span class="op">*</span> bytes_per_elem</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Max batches</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    batch <span class="op">=</span> <span class="bu">max</span>(<span class="dv">1</span>, <span class="bu">int</span>(max_bytes <span class="op">//</span> bytes_per_resample))</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> batch</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bootstrap_mean(stacked_var, <span class="op">**</span>kwargs):</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute the confidence interval for the mean."""</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    batch <span class="op">=</span> compute_batch(stacked_var)</span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Computing bootstrap mean with shapes: </span><span class="sc">{</span>stacked_var<span class="sc">.</span>shape<span class="sc">}</span><span class="ss"> in batches of </span><span class="sc">{</span>batch<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    res <span class="op">=</span> bootstrap(</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>        (stacked_var,),</span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>        statistic <span class="op">=</span> np.mean,</span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>        vectorized <span class="op">=</span> <span class="va">True</span>,</span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>        axis<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>        method <span class="op">=</span> <span class="st">"basic"</span>,</span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>        batch <span class="op">=</span> batch,</span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>        <span class="op">**</span>kwargs</span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> res</span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:53:08.039947Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:53:08.039807Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:53:08.043998Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:53:08.043663Z&quot;}}" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> bootstrap</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_batch(arr, max_Gbytes<span class="op">=</span><span class="dv">16</span>):</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute max batch size so that each batch of resamples fits in max_bytes.</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    max_bytes <span class="op">=</span> max_Gbytes <span class="op">*</span> <span class="dv">1024</span><span class="op">**</span><span class="dv">3</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Elements in a single resample</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    n_elements <span class="op">=</span> arr.shape[<span class="dv">0</span>] <span class="op">*</span> arr.shape[<span class="dv">1</span>]</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bytes per element</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    bytes_per_elem <span class="op">=</span> np.dtype(arr.dtype).itemsize</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bytes per resample</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    bytes_per_resample <span class="op">=</span> n_elements <span class="op">*</span> bytes_per_elem</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Max batches</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    batch <span class="op">=</span> <span class="bu">max</span>(<span class="dv">1</span>, <span class="bu">int</span>(max_bytes <span class="op">//</span> bytes_per_resample))</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> batch <span class="op">&gt;</span> arr.shape[<span class="dv">1</span>]:</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        batch <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> batch</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bootstrap_mean(stacked_var, <span class="op">**</span>kwargs):</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute the confidence interval for the mean."""</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    batch <span class="op">=</span> compute_batch(stacked_var)</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Computing bootstrap mean with shapes: </span><span class="sc">{</span>stacked_var<span class="sc">.</span>shape<span class="sc">}</span><span class="ss"> in batches of </span><span class="sc">{</span>batch<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    res <span class="op">=</span> bootstrap(</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>        (stacked_var,),</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>        statistic <span class="op">=</span> np.mean,</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>        vectorized <span class="op">=</span> <span class="va">True</span>,</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>        axis<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>        method <span class="op">=</span> <span class="st">"basic"</span>,</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>        batch <span class="op">=</span> batch,</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>        <span class="op">**</span>kwargs</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> res</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The trace (<code>idata</code>) is then stacked across chains and draws and converted to 8-bit integers for efficiency.</p>
-<div id="cell-21" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>stacked_z <span class="op">=</span> (</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    idata</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    .posterior</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    .z</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    .stack(sample<span class="op">=</span>[<span class="st">"chain"</span>, <span class="st">"draw"</span>])</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>stacked_z.data <span class="op">=</span> stacked_z.data.astype(np.uint8)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>stacked_z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:53:08.045317Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:53:08.045070Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:53:08.071973Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:53:08.071603Z&quot;}}" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>stacked_z <span class="op">=</span> (</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    idata</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    .posterior</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    .z</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    .stack(sample<span class="op">=</span>[<span class="st">"chain"</span>, <span class="st">"draw"</span>])</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>stacked_z.data <span class="op">=</span> stacked_z.data.astype(np.uint8)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>stacked_z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
 <symbol id="icon-database" viewbox="0 0 32 32">
@@ -1056,29 +1094,29 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class="xr-text-repr-fallback">&lt;xarray.DataArray 'z' (pos: 1469, sample: 7000)&gt; Size: 10MB
-array([[1, 1, 1, ..., 1, 1, 1],
-       [1, 1, 1, ..., 1, 1, 1],
-       [1, 1, 1, ..., 1, 1, 1],
+</style><pre class="xr-text-repr-fallback">&lt;xarray.DataArray 'z' (pos: 1449, sample: 7000)&gt; Size: 10MB
+array([[0, 0, 0, ..., 0, 0, 0],
+       [0, 1, 0, ..., 1, 0, 1],
+       [1, 0, 0, ..., 0, 1, 0],
        ...,
+       [0, 0, 0, ..., 1, 1, 1],
        [1, 1, 1, ..., 1, 1, 1],
-       [1, 1, 1, ..., 1, 1, 1],
-       [1, 1, 1, ..., 1, 1, 1]], shape=(1469, 7000), dtype=uint8)
+       [0, 0, 0, ..., 1, 0, 1]], shape=(1449, 7000), dtype=uint8)
 Coordinates:
   * pos      (pos) int64 12kB 11000 11001 11002 11003 ... 12498 12499 12500
   * sample   (sample) object 56kB MultiIndex
   * chain    (sample) int64 56kB 0 0 0 0 0 0 0 0 0 0 0 ... 6 6 6 6 6 6 6 6 6 6 6
-  * draw     (sample) int64 56kB 0 1 2 3 4 5 6 7 ... 993 994 995 996 997 998 999</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'z'</div><ul class="xr-dim-list"><li><span class="xr-has-index">pos</span>: 1469</li><li><span class="xr-has-index">sample</span>: 7000</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-4473c552-4d36-40f7-b48a-7e9f9bb65943" class="xr-array-in" type="checkbox" checked=""><label for="section-4473c552-4d36-40f7-b48a-7e9f9bb65943" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 ... 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span></div><div class="xr-array-data"><pre>array([[1, 1, 1, ..., 1, 1, 1],
-       [1, 1, 1, ..., 1, 1, 1],
-       [1, 1, 1, ..., 1, 1, 1],
+  * draw     (sample) int64 56kB 0 1 2 3 4 5 6 7 ... 993 994 995 996 997 998 999</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'z'</div><ul class="xr-dim-list"><li><span class="xr-has-index">pos</span>: 1449</li><li><span class="xr-has-index">sample</span>: 7000</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-493fd727-38b4-475c-9398-4baf219a7632" class="xr-array-in" type="checkbox" checked=""><label for="section-493fd727-38b4-475c-9398-4baf219a7632" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ... 1 0 0 0 1 0 1 1 0 0 0 1 1 1 0 1</span></div><div class="xr-array-data"><pre>array([[0, 0, 0, ..., 0, 0, 0],
+       [0, 1, 0, ..., 1, 0, 1],
+       [1, 0, 0, ..., 0, 1, 0],
        ...,
+       [0, 0, 0, ..., 1, 1, 1],
        [1, 1, 1, ..., 1, 1, 1],
-       [1, 1, 1, ..., 1, 1, 1],
-       [1, 1, 1, ..., 1, 1, 1]], shape=(1469, 7000), dtype=uint8)</pre></div></div></li><li class="xr-section-item"><input id="section-2af25206-332e-42bf-bff0-e00178ca09cc" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-2af25206-332e-42bf-bff0-e00178ca09cc" class="xr-section-summary">Coordinates: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">pos</span></div><div class="xr-var-dims">(pos)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">11000 11001 11002 ... 12499 12500</div><input id="attrs-13a18562-a3b4-4492-8cf9-cb0a8fe6a1df" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-13a18562-a3b4-4492-8cf9-cb0a8fe6a1df" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-cd824365-b196-4946-ba56-dfa17a7f3f68" class="xr-var-data-in" type="checkbox"><label for="data-cd824365-b196-4946-ba56-dfa17a7f3f68" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([11000, 11001, 11002, ..., 12498, 12499, 12500], shape=(1469,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">sample</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">object</div><div class="xr-var-preview xr-preview">MultiIndex</div><input id="attrs-f88e3e13-0b3b-4a84-b948-6059cba1d19d" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-f88e3e13-0b3b-4a84-b948-6059cba1d19d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-57908fcd-d700-4b11-9d3c-2dfc3dc37fef" class="xr-var-data-in" type="checkbox"><label for="data-57908fcd-d700-4b11-9d3c-2dfc3dc37fef" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([(0, 0), (0, 1), (0, 2), ..., (6, 997), (6, 998), (6, 999)],
-      shape=(202,), dtype=object)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">chain</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 0 0 0 0 0 0 0 ... 6 6 6 6 6 6 6 6</div><input id="attrs-488f50b5-f767-4f86-86ce-fb609b0b9792" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-488f50b5-f767-4f86-86ce-fb609b0b9792" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-6479e7ce-5f15-46ec-929b-c013ba28a44b" class="xr-var-data-in" type="checkbox"><label for="data-6479e7ce-5f15-46ec-929b-c013ba28a44b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([0, 0, 0, ..., 6, 6, 6], shape=(202,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">draw</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 1 2 3 4 5 ... 995 996 997 998 999</div><input id="attrs-5897f067-88c5-491a-a3ed-9538a8910b17" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-5897f067-88c5-491a-a3ed-9538a8910b17" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-6755c34c-24f5-4db3-86d9-2fa12f0907ce" class="xr-var-data-in" type="checkbox"><label for="data-6755c34c-24f5-4db3-86d9-2fa12f0907ce" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([  0,   1,   2, ..., 997, 998, 999], shape=(202,))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-b57c706a-c570-4df1-911a-615b471de7a7" class="xr-section-summary-in" type="checkbox"><label for="section-b57c706a-c570-4df1-911a-615b471de7a7" class="xr-section-summary">Indexes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>pos</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-56d16595-c1fb-41b2-8262-5e86554261cd" class="xr-index-data-in" type="checkbox"><label for="index-56d16595-c1fb-41b2-8262-5e86554261cd" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([11000, 11001, 11002, 11003, 11004, 11005, 11006, 11007, 11008, 11009,
+       [0, 0, 0, ..., 1, 0, 1]], shape=(1449, 7000), dtype=uint8)</pre></div></div></li><li class="xr-section-item"><input id="section-7607c78b-2f3e-4ff6-94d0-bc513e58fbd4" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-7607c78b-2f3e-4ff6-94d0-bc513e58fbd4" class="xr-section-summary">Coordinates: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">pos</span></div><div class="xr-var-dims">(pos)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">11000 11001 11002 ... 12499 12500</div><input id="attrs-190ce68f-85a7-45bc-bc47-0a8629fcf09e" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-190ce68f-85a7-45bc-bc47-0a8629fcf09e" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-08b81570-be4f-4dfc-8d1f-ba5957c2ff0e" class="xr-var-data-in" type="checkbox"><label for="data-08b81570-be4f-4dfc-8d1f-ba5957c2ff0e" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([11000, 11001, 11002, ..., 12498, 12499, 12500], shape=(1449,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">sample</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">object</div><div class="xr-var-preview xr-preview">MultiIndex</div><input id="attrs-4710dee1-7925-4bde-aeb8-93314cf0158c" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-4710dee1-7925-4bde-aeb8-93314cf0158c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c95aa145-437b-4536-9b12-0769a8ca8c92" class="xr-var-data-in" type="checkbox"><label for="data-c95aa145-437b-4536-9b12-0769a8ca8c92" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([(0, 0), (0, 1), (0, 2), ..., (6, 997), (6, 998), (6, 999)],
+      shape=(202,), dtype=object)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">chain</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 0 0 0 0 0 0 0 ... 6 6 6 6 6 6 6 6</div><input id="attrs-0ea4c670-9722-4817-bca7-1f7d1340d34f" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-0ea4c670-9722-4817-bca7-1f7d1340d34f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3213cdaf-26b6-44a9-9474-90faa95c2926" class="xr-var-data-in" type="checkbox"><label for="data-3213cdaf-26b6-44a9-9474-90faa95c2926" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([0, 0, 0, ..., 6, 6, 6], shape=(202,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">draw</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 1 2 3 4 5 ... 995 996 997 998 999</div><input id="attrs-0a064fb7-239b-4d7b-bb59-520d2c8888e3" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-0a064fb7-239b-4d7b-bb59-520d2c8888e3" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-7f6ec203-a488-4a40-b32a-e834015bbccd" class="xr-var-data-in" type="checkbox"><label for="data-7f6ec203-a488-4a40-b32a-e834015bbccd" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([  0,   1,   2, ..., 997, 998, 999], shape=(202,))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-96cedf9c-d8ce-4182-9a26-d55ae45773de" class="xr-section-summary-in" type="checkbox"><label for="section-96cedf9c-d8ce-4182-9a26-d55ae45773de" class="xr-section-summary">Indexes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>pos</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-53818e55-3658-49ac-b812-42cdcf2f79d1" class="xr-index-data-in" type="checkbox"><label for="index-53818e55-3658-49ac-b812-42cdcf2f79d1" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([11000, 11001, 11002, 11003, 11004, 11005, 11006, 11007, 11008, 11009,
        ...
        12491, 12492, 12493, 12494, 12495, 12496, 12497, 12498, 12499, 12500],
-      dtype='int64', name='pos', length=1469))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>sample<br>chain<br>draw</div></div><div class="xr-index-preview">PandasMultiIndex</div><input type="checkbox" disabled=""><label></label><input id="index-a80b8bfc-4584-4c3c-8ffd-1152c339c494" class="xr-index-data-in" type="checkbox"><label for="index-a80b8bfc-4584-4c3c-8ffd-1152c339c494" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(MultiIndex([(0,   0),
+      dtype='int64', name='pos', length=1449))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>sample<br>chain<br>draw</div></div><div class="xr-index-preview">PandasMultiIndex</div><input type="checkbox" disabled=""><label></label><input id="index-6621a54a-715e-4a6b-9ae7-eb2c03d630ba" class="xr-index-data-in" type="checkbox"><label for="index-6621a54a-715e-4a6b-9ae7-eb2c03d630ba" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(MultiIndex([(0,   0),
             (0,   1),
             (0,   2),
             (0,   3),
@@ -1099,145 +1137,145 @@ Coordinates:
             (6, 997),
             (6, 998),
             (6, 999)],
-           name='sample', length=7000))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-bd528261-3aa4-4812-a75d-9e301d3ae7c8" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-bd528261-3aa4-4812-a75d-9e301d3ae7c8" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
+           name='sample', length=7000))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-b0a12da6-75b4-4ceb-b9c8-7fb0cce1d4d2" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-b0a12da6-75b4-4ceb-b9c8-7fb0cce1d4d2" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
 </div>
 </div>
-<div id="cell-22" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>bootstrap_results <span class="op">=</span> bootstrap_mean(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    stacked_z, <span class="op">**</span>{</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"confidence_level"</span>: <span class="fl">0.99</span>,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"n_resamples"</span>: <span class="dv">10000</span>,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>bootstrap_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:53:08.073354Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:53:08.073178Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:54:12.331645Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:54:12.331012Z&quot;}}" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>bootstrap_results <span class="op">=</span> bootstrap_mean(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    stacked_z, <span class="op">**</span>{</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"confidence_level"</span>: <span class="fl">0.99</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"n_resamples"</span>: <span class="dv">10000</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>bootstrap_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Computing bootstrap mean with shapes: (1469, 7000) in batches of 1670</code></pre>
+<pre><code>Computing bootstrap mean with shapes: (1449, 7000) in batches of 1693</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="22">
-<pre><code>BootstrapResult(confidence_interval=ConfidenceInterval(low=array([0.99885714, 0.99914286, 0.99942857, ..., 1.        , 1.        ,
-       1.        ], shape=(1469,)), high=array([1.00028571, 1.00028571, 1.00028571, ..., 1.        , 1.        ,
-       1.        ], shape=(1469,))), bootstrap_distribution=array([[0.99957143, 0.99985714, 0.99957143, ..., 0.99914286, 0.99942857,
-        0.99957143],
-       [0.99971429, 0.99985714, 0.99942857, ..., 0.99928571, 0.99928571,
-        0.99971429],
-       [0.99985714, 0.99985714, 0.99942857, ..., 0.99971429, 0.99957143,
-        0.99957143],
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>BootstrapResult(confidence_interval=ConfidenceInterval(low=array([0.13614214, 0.61371429, 0.58128571, ..., 0.70185714, 0.86628571,
+       0.28      ], shape=(1449,)), high=array([0.15757214, 0.64314286, 0.61114286, ..., 0.72971429, 0.88614286,
+       0.30742857], shape=(1449,))), bootstrap_distribution=array([[0.14628571, 0.13914286, 0.14428571, ..., 0.149     , 0.14685714,
+        0.14757143],
+       [0.63628571, 0.63042857, 0.62628571, ..., 0.63328571, 0.63014286,
+        0.62057143],
+       [0.595     , 0.60142857, 0.59642857, ..., 0.60314286, 0.59885714,
+        0.58942857],
        ...,
-       [1.        , 1.        , 1.        , ..., 1.        , 1.        ,
-        1.        ],
-       [1.        , 1.        , 1.        , ..., 1.        , 1.        ,
-        1.        ],
-       [1.        , 1.        , 1.        , ..., 1.        , 1.        ,
-        1.        ]], shape=(1469, 10000)), standard_error=array([0.00028257, 0.00024705, 0.00020027, ..., 0.        , 0.        ,
-       0.        ], shape=(1469,)))</code></pre>
+       [0.71071429, 0.70885714, 0.70942857, ..., 0.71342857, 0.71328571,
+        0.70785714],
+       [0.882     , 0.87614286, 0.875     , ..., 0.87228571, 0.87214286,
+        0.87185714],
+       [0.293     , 0.27985714, 0.29114286, ..., 0.29514286, 0.28614286,
+        0.28614286]], shape=(1449, 10000)), standard_error=array([0.0042392 , 0.00573467, 0.00577615, ..., 0.00533306, 0.00391535,
+       0.0053845 ], shape=(1449,)))</code></pre>
 </div>
 </div>
-<div id="cell-23" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib_inline </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>matplotlib_inline.backend_inline.set_matplotlib_formats(<span class="st">'svg'</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> stacked_z.pos.values</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>lower <span class="op">=</span> bootstrap_results.confidence_interval.low</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>upper <span class="op">=</span> bootstrap_results.confidence_interval.high</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>))</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>ax.fill_between(</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    x,</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    lower,</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    upper,</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"95% CI"</span>,</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ec = "black",</span></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">12150</span>,<span class="dv">12225</span>)</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:54:12.333211Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:54:12.333052Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:54:12.461739Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:54:12.461386Z&quot;}}" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib_inline </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>matplotlib_inline.backend_inline.set_matplotlib_formats(<span class="st">'svg'</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> stacked_z.pos.values</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>lower <span class="op">=</span> bootstrap_results.confidence_interval.low</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>upper <span class="op">=</span> bootstrap_results.confidence_interval.high</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>))</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>ax.fill_between(</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    x,</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    lower,</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    upper,</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"95% CI"</span>,</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ec = "black",</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">12150</span>,<span class="dv">12225</span>)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-17-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="07_hi_res_subset_analysis_files/figure-html/cell-17-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-17-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="07_hi_res_subset_analysis_files/figure-html/cell-17-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-24" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.hist(bootstrap_results.bootstrap_distribution[<span class="dv">11</span>], density<span class="op">=</span><span class="va">True</span>, bins<span class="op">=</span><span class="dv">30</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:54:12.463317Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:54:12.463049Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:54:12.581172Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:54:12.580763Z&quot;}}" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.hist(bootstrap_results.bootstrap_distribution[<span class="dv">11</span>], density<span class="op">=</span><span class="va">True</span>, bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-18-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="07_hi_res_subset_analysis_files/figure-html/cell-18-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-18-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="07_hi_res_subset_analysis_files/figure-html/cell-18-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-25" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>bootstrap_99 <span class="op">=</span> bootstrap_mean(</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    stacked_z, <span class="op">**</span>{</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_resamples"</span>: <span class="dv">0</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#"batch": compute_batch(stacked.values),</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"confidence_level"</span>: <span class="fl">0.99</span>,</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"bootstrap_result"</span>: bootstrap_results</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:54:12.582546Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:54:12.582405Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:54:13.129138Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:54:13.128727Z&quot;}}" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>bootstrap_99 <span class="op">=</span> bootstrap_mean(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    stacked_z, <span class="op">**</span>{</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_resamples"</span>: <span class="dv">0</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#"batch": compute_batch(stacked.values),</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"confidence_level"</span>: <span class="fl">0.99</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"bootstrap_result"</span>: bootstrap_results</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Computing bootstrap mean with shapes: (1469, 7000) in batches of 1670</code></pre>
+<pre><code>Computing bootstrap mean with shapes: (1449, 7000) in batches of 1693</code></pre>
 </div>
 </div>
-<div id="cell-26" class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>lower_99 <span class="op">=</span> bootstrap_99.confidence_interval.low</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>upper_99 <span class="op">=</span> bootstrap_99.confidence_interval.high</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>ax.fill_between(</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    x,</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    lower_99,</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    upper_99, </span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>zooms <span class="op">=</span> [(<span class="dv">11750</span>,<span class="dv">11800</span>), (<span class="dv">12150</span>,<span class="dv">12225</span>), (<span class="dv">12220</span>,<span class="dv">12250</span>)]</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> plt.get_cmap(<span class="st">"tab10"</span>)</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, zoom <span class="kw">in</span> <span class="bu">enumerate</span>(zooms):</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> cmap(i)</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    ax.vlines(zoom, <span class="dv">0</span>, <span class="dv">1</span>, color<span class="op">=</span>color, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>f,axs <span class="op">=</span> plt.subplots(<span class="bu">len</span>(zooms), figsize <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">6</span><span class="op">*</span><span class="bu">len</span>(zooms)))</span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> np.asarray(axs).flatten()</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,zoom <span class="kw">in</span> <span class="bu">enumerate</span>(zooms):</span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>    zax <span class="op">=</span> axs[i]</span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>    zax.fill_between(</span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>        x,</span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>        lower_99,</span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>        upper_99</span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>    zax.set_xlim(zoom)</span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="co"># ax[1].fill_between(</span></span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a><span class="co">#     x,</span></span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="co">#     lower_99,</span></span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="co">#     upper_99, </span></span>
-<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a><span class="co"># ax[1].set_xlim(zoom)</span></span>
-<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:54:13.131104Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:54:13.130778Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:54:13.364177Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:54:13.363863Z&quot;}}" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>lower_99 <span class="op">=</span> bootstrap_99.confidence_interval.low</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>upper_99 <span class="op">=</span> bootstrap_99.confidence_interval.high</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>ax.fill_between(</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    x,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    lower_99,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    upper_99, </span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>zooms <span class="op">=</span> [(<span class="dv">11750</span>,<span class="dv">11800</span>), (<span class="dv">12150</span>,<span class="dv">12225</span>), (<span class="dv">12220</span>,<span class="dv">12250</span>)]</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> plt.get_cmap(<span class="st">"tab10"</span>)</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, zoom <span class="kw">in</span> <span class="bu">enumerate</span>(zooms):</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> cmap(i)</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    ax.vlines(zoom, <span class="dv">0</span>, <span class="dv">1</span>, color<span class="op">=</span>color, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>f,axs <span class="op">=</span> plt.subplots(<span class="bu">len</span>(zooms), figsize <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">6</span><span class="op">*</span><span class="bu">len</span>(zooms)))</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> np.asarray(axs).flatten()</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,zoom <span class="kw">in</span> <span class="bu">enumerate</span>(zooms):</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>    zax <span class="op">=</span> axs[i]</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>    zax.fill_between(</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>        x,</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>        lower_99,</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>        upper_99</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>    zax.set_xlim(zoom)</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a><span class="co"># ax[1].fill_between(</span></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a><span class="co">#     x,</span></span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a><span class="co">#     lower_99,</span></span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a><span class="co">#     upper_99, </span></span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a><span class="co"># ax[1].set_xlim(zoom)</span></span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-20-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="07_hi_res_subset_analysis_files/figure-html/cell-20-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-20-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="07_hi_res_subset_analysis_files/figure-html/cell-20-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-20-output-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="07_hi_res_subset_analysis_files/figure-html/cell-20-output-2.svg" class="img-fluid figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-20-output-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="07_hi_res_subset_analysis_files/figure-html/cell-20-output-2.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
