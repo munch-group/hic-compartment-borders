@@ -83,7 +83,7 @@ for notebook in notebooks:
     wf = Workflow(defaults={'account': 'hic-spermatogenesis'})
     wf.target_from_template(
         name=f'run_{nb}',
-        template=run_notebook(notebook, memory='16g', walltime='04:00:00', cores=8)
+        template=run_notebook(notebook, memory='32g', walltime='04:00:00', cores=8)
     )
 
     globals()[workflow_name] = wf
