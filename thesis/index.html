@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-07-12">
+<meta name="dcterms.date" content="2025-07-17">
+<meta name="keywords" content="Gaussian Random Walk, Bayesian MCMC framework, Chromatin Structure in spermatogenesis">
 
-<title>Title of my thesis</title>
+<title>Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -92,12 +93,13 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-748340008184753533c6bf31d29774a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
-<meta name="citation_title" content="Title of my thesis">
-<meta name="citation_author" content="Your Name">
-<meta name="citation_publication_date" content="2025-07-12">
-<meta name="citation_cover_date" content="2025-07-12">
+<meta name="citation_title" content="Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework">
+<meta name="citation_keywords" content="Gaussian Random Walk,Bayesian MCMC framework,Chromatin Structure in spermatogenesis">
+<meta name="citation_author" content="Søren Jørgensen">
+<meta name="citation_publication_date" content="2025-07-17">
+<meta name="citation_cover_date" content="2025-07-17">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-07-12">
+<meta name="citation_online_date" content="2025-07-17">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Key role for CTCF in establishing chromatin structure in human embryos;,citation_author=Xuepeng Chen;,citation_author=Yuwen Ke;,citation_author=Keliang Wu;,citation_author=Han Zhao;,citation_author=Yaoyu Sun;,citation_author=Lei Gao;,citation_author=Zhenbo Liu;,citation_author=Jingye Zhang;,citation_author=Wenrong Tao;,citation_author=Zhenzhen Hou;,citation_author=Hui Liu;,citation_author=Jiang Liu;,citation_author=Zi-Jiang Chen;,citation_publication_date=2019-12;,citation_cover_date=2019-12;,citation_year=2019;,citation_issue=7786;,citation_doi=10.1038/s41586-019-1812-0;,citation_issn=0028-0836, 1476-4687;,citation_volume=576;,citation_language=en-US;,citation_journal_title=Nature;">
 <meta name="citation_reference" content="citation_title=Considerations and caveats for analyzing chromatin compartments;,citation_abstract=Genomes are organized into nuclear compartments, separating active from inactive chromatin. Chromatin compartments are readily visible in a large number of species by experiments that map chromatin conformation genome-wide. When analyzing these maps, a common step is the identification of genomic intervals that interact within A (active) and B (inactive) compartments. It has also become increasingly common to identify and analyze subcompartments. We review different strategies to identify A/B and subcompartment intervals, including a discussion of various machine-learning approaches to predict these features. We then discuss the strengths and limitations of current strategies and examine how these aspects of analysis may have impacted our understanding of chromatin compartments.;,citation_author=Achyuth Kalluchi;,citation_author=Hannah L. Harris;,citation_author=Timothy E. Reznicek;,citation_author=M. Jordan Rowley;,citation_publication_date=2023-04;,citation_cover_date=2023-04;,citation_year=2023;,citation_doi=10.3389/fmolb.2023.1168562;,citation_issn=2296-889X;,citation_volume=10;,citation_journal_title=Frontiers in Molecular Biosciences;">
@@ -121,8 +123,8 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Title of my thesis</h1>
-            <p class="subtitle lead">Some subtitle for my thesis</p>
+      <h1 class="title">Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework</h1>
+            <p class="subtitle lead">Modeling eigenvectors from Hi-C analysis with spatial depency in a Gaussian Random Walk and infering a latent compartment assignment to A or B as an excuse to master PyMC</p>
           </div>
 
     
@@ -133,7 +135,7 @@ div.csl-indent {
           <div class="quarto-title-meta-heading">Affiliation</div>
           
                 <div class="quarto-title-meta-contents">
-            <p class="author">Your Name </p>
+            <p class="author">Søren Jørgensen </p>
           </div>
                 <div class="quarto-title-meta-contents">
                     <p class="affiliation">
@@ -148,7 +150,7 @@ div.csl-indent {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">July 12, 2025</p>
+              <p class="date">July 17, 2025</p>
             </div>
           </div>
           
@@ -162,13 +164,19 @@ div.csl-indent {
     <div>
       <div class="abstract">
         <div class="block-title">Abstract</div>
-        <p><em>Here is the abstract:</em> We aim to do probabilistic modeling of eigenvectors obatained from the ICE method in Hi-C analysis. The idea is to capture some of the variance lost when hard-labeleling the bins based on only the <em>sign</em> of the eigenvector.</p>
+        <p>Here, I aim to do probabilistic modeling of eigenvectors obatained from the ICE method in Hi-C analysis. The idea is to capture some of the variance lost when hard-labeleling the bins based on only the <em>sign</em> of the eigenvector.</p>
         <p>This model infers A/B chromatin compartment structure from the first eigenvector (E1) of the Hi-C contact matrix using a Bayesian framework.</p>
         <p><strong>Goals</strong> - Replace hard sign-thresholding of E1 with a probabilistic compartment assignment. - Quantify uncertainty in compartment calls for each genomic bin. - Allow for modeling of missing E1 values due to low signal.</p>
         <p><strong>Assumptions</strong> - Each bin belongs to one of two latent states: A or B compartment. - E1 values are generated from Gaussian distributions specific to each compartment. - Prior belief: A has positive E1 values (μ ≈ 0.5), B has negative (μ ≈ -0.5). - Bins are initially treated as independent - Spatial depency are added later (Gaussian Random Walk)</p>
       </div>
     </div>
 
+    <div>
+      <div class="keywords">
+        <div class="block-title">Keywords</div>
+        <p>Gaussian Random Walk, Bayesian MCMC framework, Chromatin Structure in spermatogenesis</p>
+      </div>
+    </div>
 
     <div class="quarto-other-links-text-target">
     </div>  </div>
@@ -202,11 +210,12 @@ div.csl-indent {
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>Chromatin architecture is of high interest in molecular biology, and increasingly so in molecular evolution. A high-throughput method for mapping the 3D organization of the genome was proposed by <span class="citation" data-cites="lieberman-aiden2009comprehensivemappinglongrange">Lieberman-Aiden et al. (<a href="#ref-lieberman-aiden2009comprehensivemappinglongrange" role="doc-biblioref">2009</a>)</span>. Here, chromatin interactions from Hi-C sequencing is used to generate an interaction matrix of valid Hi-C contacts, and PCA is performed on the covariance matrix of the observed and expected matrix. The following rationale is proposed and experimentally supported; if clustering into 2 types (A/B compartments), genomic positions that interact will have a positive value in the covariance matrix, and vice versa for positions that do not interact. Then, when PCA is performed, the first principal component captures the variance that arise from being in different compart by its sign. The direction of the eigenvector (the sign) is then phased with a biologically relevant measure (such as GC content) to establish that the A compartment is largely the <em>active</em> chromatin and B is largely <em>inactive</em>.</p>
+<p>Chromatin architecture is of high interest in molecular biology, and increasingly so in molecular evolution. A high-throughput method for mapping the 3D organization of the genome was proposed by <span class="citation" data-cites="lieberman-aiden2009comprehensivemappinglongrange">Lieberman-Aiden et al. (<a href="#ref-lieberman-aiden2009comprehensivemappinglongrange" role="doc-biblioref">2009</a>)</span>. Here, chromatin interactions from Hi-C sequencing is used to generate an interaction matrix of valid Hi-C contacts, and PCA is performed on the covariance matrix of the observed and expected matrix. The following rationale is proposed and experimentally supported; if clustering into 2 types (A/B compartments), genomic positions that interact will yield a positive value in the covariance matrix, and vice versa for positions that do not interact. Then, when PCA is performed, the first principal component captures the variance that arise from being in different compart by its sign. The direction of the eigenvector (the sign) is then phased with a biologically relevant measure (such as GC content) to establish that the A compartment is largely the <em>active</em> chromatin and B is largely <em>inactive</em>.</p>
+<p>However, this approach may place too much confidence in how expected interaction frequencies are estimated. By using the eigenvectors within a probabilistic model, where compartment identity is treated as a latent variable, we aim to recover information discarded in hard-labeling based on eigenvector signs. We propose a Bayesian MCMC framework as a spatially aware clustering method that soft-assigns compartments.</p>
 </section>
 <section id="methods" class="level1">
 <h1>Methods</h1>
-<p>Here are methods</p>
+<p>I use PyMC [ref] for all modeling, relying as much as possible on functions and built-in functionality for all anaysis. I start out small in the simplest model possible, then progressing to larger and more complex models.</p>
 <section id="method-1" class="level2">
 <h2 class="anchored" data-anchor-id="method-1">Method 1</h2>
 <p>The first method with a code block</p>

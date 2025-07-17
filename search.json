@@ -122,23 +122,23 @@
   {
     "objectID": "thesis/index.html",
     "href": "thesis/index.html",
-    "title": "Title of my thesis",
+    "title": "Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework",
     "section": "",
-    "text": "Abstract\nHere is the abstract: We aim to do probabilistic modeling of eigenvectors obatained from the ICE method in Hi-C analysis. The idea is to capture some of the variance lost when hard-labeleling the bins based on only the sign of the eigenvector.\nThis model infers A/B chromatin compartment structure from the first eigenvector (E1) of the Hi-C contact matrix using a Bayesian framework.\nGoals - Replace hard sign-thresholding of E1 with a probabilistic compartment assignment. - Quantify uncertainty in compartment calls for each genomic bin. - Allow for modeling of missing E1 values due to low signal.\nAssumptions - Each bin belongs to one of two latent states: A or B compartment. - E1 values are generated from Gaussian distributions specific to each compartment. - Prior belief: A has positive E1 values (μ ≈ 0.5), B has negative (μ ≈ -0.5). - Bins are initially treated as independent - Spatial depency are added later (Gaussian Random Walk)",
+    "text": "Abstract\nHere, I aim to do probabilistic modeling of eigenvectors obatained from the ICE method in Hi-C analysis. The idea is to capture some of the variance lost when hard-labeleling the bins based on only the sign of the eigenvector.\nThis model infers A/B chromatin compartment structure from the first eigenvector (E1) of the Hi-C contact matrix using a Bayesian framework.\nGoals - Replace hard sign-thresholding of E1 with a probabilistic compartment assignment. - Quantify uncertainty in compartment calls for each genomic bin. - Allow for modeling of missing E1 values due to low signal.\nAssumptions - Each bin belongs to one of two latent states: A or B compartment. - E1 values are generated from Gaussian distributions specific to each compartment. - Prior belief: A has positive E1 values (μ ≈ 0.5), B has negative (μ ≈ -0.5). - Bins are initially treated as independent - Spatial depency are added later (Gaussian Random Walk)",
     "crumbs": [
       "Thesis",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Title of my thesis</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework</span>"
     ]
   },
   {
     "objectID": "thesis/index.html#method-1",
     "href": "thesis/index.html#method-1",
-    "title": "Title of my thesis",
+    "title": "Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework",
     "section": "Method 1",
     "text": "Method 1\nThe first method with a code block\n# Python code \ne = mc**2\n\nprint(e)",
     "crumbs": [
       "Thesis",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Title of my thesis</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework</span>"
     ]
   },
   {
