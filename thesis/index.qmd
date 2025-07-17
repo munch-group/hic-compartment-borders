@@ -1,8 +1,8 @@
 ---
-title: Title of my thesis
-subtitle: Some subtitle for my thesis
+title: Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework
+subtitle: Modeling eigenvectors from Hi-C analysis with spatial depency in a Gaussian Random Walk and infering a latent compartment assignment to A or B as an excuse to master PyMC
 authors:
-  - name: Your Name
+  - name: Søren Jørgensen
     affiliation: Aarhus University
     roles: analysis, writing
     corresponding: true
@@ -10,16 +10,17 @@ authors:
   #   affiliation: Aarhus University
   #   roles: Supervision
   #   corresponding: false
-# keywords:
-#   - Vestibulum
-#   - Nunc ac dignissim 
-#   - Proin feugiat 
+keywords:
+  - Gaussian Random Walk
+  - Bayesian MCMC framework
+  - Chromatin Structure in spermatogenesis
 plain-language-summary: |
-  In plain language, the thesis describes an analysis of something. Somethings was not previously know. I found something and was able to conclude something. The perspectives of this result is something.
+  Using a Python Library (PyMC) for statistical modeling to extend the analysis of A/B chromatin compartment assignment, by using the results of the common analysis as input to a probilistic model. The underlying assumptions might not hold for all data, and therefore might not capture the variance that we want. We did extensive testing in parameter sweeps, etc. There might be a better way.
 key-points:
-  - Proin tempor lorem arcu, at condimentum purus volutpat eu. 
-  - Mauris cursus laoreet ex, ignissim bibendum est posuere iaculis.
-  - Nam vel neque eu arcu blandit fringilla et in quam.
+  - Using eigenvectors to hard-label A/B compartments puts too much confidence in the expected interaction frequencies across a genome
+  - Probabilistic modeling can be used as a soft interpreter for eigenvectors
+  - We might salvage some of the variance lost when using hard-labeling
+  - We might be able to place credible intervals on the placement of compartment transitions
 date: last-modified
 date-format: long
 degree: Master of Science in Bioinformatics
@@ -28,7 +29,7 @@ degree: Master of Science in Bioinformatics
 
 # Abstract
 
-*Here is the abstract:* We aim to do probabilistic modeling of eigenvectors obatained from the ICE method in Hi-C analysis. The idea is to capture some of the variance lost when hard-labeleling the bins based on only the *sign* of the eigenvector. 
+Here, I aim to do probabilistic modeling of eigenvectors obatained from the ICE method in Hi-C analysis. The idea is to capture some of the variance lost when hard-labeleling the bins based on only the *sign* of the eigenvector. 
 
 This model infers A/B chromatin compartment structure from the first eigenvector (E1) of the Hi-C contact matrix using a Bayesian framework.
 
@@ -46,12 +47,13 @@ This model infers A/B chromatin compartment structure from the first eigenvector
 
 # Introduction
 
-Chromatin architecture is of high interest in molecular biology, and increasingly so in molecular evolution. A high-throughput method for mapping the 3D organization of the genome was proposed by @lieberman-aiden2009comprehensivemappinglongrange. Here, chromatin interactions from Hi-C sequencing is used to generate an interaction matrix of valid Hi-C contacts, and PCA is performed on the covariance matrix of the observed and expected matrix. The following rationale is proposed and experimentally supported; if clustering into 2 types (A/B compartments), genomic positions that interact will have a positive value in the covariance matrix, and vice versa for positions that do not interact. Then, when PCA is performed, the first principal component captures the variance that arise from being in different compart by its sign. The direction of the eigenvector (the sign) is then phased with a biologically relevant measure (such as GC content) to establish that the A compartment is largely the *active* chromatin and B is largely *inactive*. 
+Chromatin architecture is of high interest in molecular biology, and increasingly so in molecular evolution. A high-throughput method for mapping the 3D organization of the genome was proposed by @lieberman-aiden2009comprehensivemappinglongrange. Here, chromatin interactions from Hi-C sequencing is used to generate an interaction matrix of valid Hi-C contacts, and PCA is performed on the covariance matrix of the observed and expected matrix. The following rationale is proposed and experimentally supported; if clustering into 2 types (A/B compartments), genomic positions that interact will yield a positive value in the covariance matrix, and vice versa for positions that do not interact. Then, when PCA is performed, the first principal component captures the variance that arise from being in different compart by its sign. The direction of the eigenvector (the sign) is then phased with a biologically relevant measure (such as GC content) to establish that the A compartment is largely the *active* chromatin and B is largely *inactive*. 
 
+However, this approach may place too much confidence in how expected interaction frequencies are estimated. By using the eigenvectors within a probabilistic model, where compartment identity is treated as a latent variable, we aim to recover information discarded in hard-labeling based on eigenvector signs. We propose a Bayesian MCMC framework as a spatially aware clustering method that soft-assigns compartments.
 
 # Methods
 
-Here are methods
+I use PyMC [ref] for all modeling, relying as much as possible on functions and built-in functionality for all anaysis. I start out small in the simplest model possible, then progressing to larger and more complex models. 
 
 ## Method 1
 
