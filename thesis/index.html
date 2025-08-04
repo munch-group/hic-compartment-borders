@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-07-22">
-<meta name="keywords" content="Gaussian Random Walk, Bayesian MCMC framework, Chromatin Structure in spermatogenesis">
+<meta name="dcterms.date" content="2025-08-04">
+<meta name="keywords" content="Gaussian Random Walk, Bayesian MCMC, Chromatin Structure in spermatogenesis">
 
 <title>Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework</title>
 <style>
@@ -92,15 +92,45 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-748340008184753533c6bf31d29774a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta name="citation_title" content="Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework">
-<meta name="citation_keywords" content="Gaussian Random Walk,Bayesian MCMC framework,Chromatin Structure in spermatogenesis">
+<meta name="citation_keywords" content="Gaussian Random Walk,Bayesian MCMC,Chromatin Structure in spermatogenesis">
 <meta name="citation_author" content="Søren Jørgensen">
-<meta name="citation_publication_date" content="2025-07-22">
-<meta name="citation_cover_date" content="2025-07-22">
+<meta name="citation_publication_date" content="2025-08-04">
+<meta name="citation_cover_date" content="2025-08-04">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-07-22">
+<meta name="citation_online_date" content="2025-08-04">
 <meta name="citation_language" content="en">
+<meta name="citation_reference" content="citation_title=PyMC: A modern, and comprehensive probabilistic programming framework in Python;,citation_abstract=PyMC is a probabilistic programming library for Python that provides tools for constructing and fitting Bayesian models. It offers an intuitive, readable syntax that is close to the natural syntax statisticians use to describe models. PyMC leverages the symbolic computation library PyTensor, allowing it to be compiled into a variety of computational backends, such as C, JAX, and Numba, which in turn offer access to different computational architectures including CPU, GPU, and TPU. Being a general modeling framework, PyMC supports a variety of models including generalized hierarchical linear regression and classification, time series, ordinary differential equations (ODEs), and non-parametric models such as Gaussian processes (GPs). We demonstrate PyMC’s versatility and ease of use with examples spanning a range of common statistical models. Additionally, we discuss the positive role of PyMC in the development of the open-source ecosystem for probabilistic programming.;,citation_author=Oriol Abril-Pla;,citation_author=Virgile Andreani;,citation_author=Colin Carroll;,citation_author=Larry Dong;,citation_author=Christopher J. Fonnesbeck;,citation_author=Maxim Kochurov;,citation_author=Ravin Kumar;,citation_author=Junpeng Lao;,citation_author=Christian C. Luhmann;,citation_author=Osvaldo A. Martin;,citation_author=Michael Osthege;,citation_author=Ricardo Vieira;,citation_author=Thomas Wiecki;,citation_author=Robert Zinkov;,citation_publication_date=2023-09;,citation_cover_date=2023-09;,citation_year=2023;,citation_doi=10.7717/peerj-cs.1516;,citation_issn=2376-5992;,citation_volume=9;,citation_language=en-US;,citation_journal_title=PeerJ Computer Science;">
 <meta name="citation_reference" content="citation_title=Key role for CTCF in establishing chromatin structure in human embryos;,citation_author=Xuepeng Chen;,citation_author=Yuwen Ke;,citation_author=Keliang Wu;,citation_author=Han Zhao;,citation_author=Yaoyu Sun;,citation_author=Lei Gao;,citation_author=Zhenbo Liu;,citation_author=Jingye Zhang;,citation_author=Wenrong Tao;,citation_author=Zhenzhen Hou;,citation_author=Hui Liu;,citation_author=Jiang Liu;,citation_author=Zi-Jiang Chen;,citation_publication_date=2019-12;,citation_cover_date=2019-12;,citation_year=2019;,citation_issue=7786;,citation_doi=10.1038/s41586-019-1812-0;,citation_issn=0028-0836, 1476-4687;,citation_volume=576;,citation_language=en-US;,citation_journal_title=Nature;">
 <meta name="citation_reference" content="citation_title=Considerations and caveats for analyzing chromatin compartments;,citation_abstract=Genomes are organized into nuclear compartments, separating active from inactive chromatin. Chromatin compartments are readily visible in a large number of species by experiments that map chromatin conformation genome-wide. When analyzing these maps, a common step is the identification of genomic intervals that interact within A (active) and B (inactive) compartments. It has also become increasingly common to identify and analyze subcompartments. We review different strategies to identify A/B and subcompartment intervals, including a discussion of various machine-learning approaches to predict these features. We then discuss the strengths and limitations of current strategies and examine how these aspects of analysis may have impacted our understanding of chromatin compartments.;,citation_author=Achyuth Kalluchi;,citation_author=Hannah L. Harris;,citation_author=Timothy E. Reznicek;,citation_author=M. Jordan Rowley;,citation_publication_date=2023-04;,citation_cover_date=2023-04;,citation_year=2023;,citation_doi=10.3389/fmolb.2023.1168562;,citation_issn=2296-889X;,citation_volume=10;,citation_journal_title=Frontiers in Molecular Biosciences;">
 <meta name="citation_reference" content="citation_title=The Hitchhiker’s Guide to Hi-C Analysis: Practical guidelines;,citation_abstract=Over the last decade, development and application of a set of molecular genomic approaches based on the chromosome conformation capture method (3C), combined with increasingly powerful imaging approaches, have enabled high resolution and genome-wide analysis of the spatial organization of chromosomes. The aim of this paper is to provide guidelines for analyzing and interpreting data obtained with genome-wide 3C methods such as Hi-C and 3C-seq that rely on deep sequencing to detect and quantify pairwise chromatin interactions genome-wide.;,citation_author=Bryan R. Lajoie;,citation_author=Job Dekker;,citation_author=Noam Kaplan;,citation_publication_date=2015-01;,citation_cover_date=2015-01;,citation_year=2015;,citation_doi=10.1016/j.ymeth.2014.10.031;,citation_issn=1046-2023;,citation_pmid=25448293;,citation_volume=72;,citation_journal_title=Methods (San Diego, Calif.);">
@@ -150,7 +180,7 @@ div.csl-indent {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">July 22, 2025</p>
+              <p class="date">August 4, 2025</p>
             </div>
           </div>
           
@@ -174,7 +204,7 @@ div.csl-indent {
     <div>
       <div class="keywords">
         <div class="block-title">Keywords</div>
-        <p>Gaussian Random Walk, Bayesian MCMC framework, Chromatin Structure in spermatogenesis</p>
+        <p>Gaussian Random Walk, Bayesian MCMC, Chromatin Structure in spermatogenesis</p>
       </div>
     </div>
 
@@ -186,12 +216,23 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#continuing-from-where-we-left" id="toc-continuing-from-where-we-left" class="nav-link" data-scroll-target="#continuing-from-where-we-left">Continuing from where we left</a></li>
+  </ul></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
+  <li><a href="#data-generation" id="toc-data-generation" class="nav-link" data-scroll-target="#data-generation">Data generation</a>
+  <ul class="collapse">
+  <li><a href="#the-ice-method" id="toc-the-ice-method" class="nav-link" data-scroll-target="#the-ice-method">The ICE-method</a></li>
+  </ul></li>
+  <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">Modeling</a></li>
   <li><a href="#method-1" id="toc-method-1" class="nav-link" data-scroll-target="#method-1">Method 1</a></li>
   </ul></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#the-eigendecomposition" id="toc-the-eigendecomposition" class="nav-link" data-scroll-target="#the-eigendecomposition">The Eigendecomposition</a></li>
+  </ul></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#bon-mot" id="toc-bon-mot" class="nav-link" data-scroll-target="#bon-mot">Bon mot</a></li>
@@ -210,12 +251,33 @@ div.csl-indent {
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>Chromatin architecture is of high interest in molecular biology, and increasingly so in molecular evolution. A high-throughput method for mapping the 3D organization of the genome was proposed by <span class="citation" data-cites="lieberman-aiden2009comprehensivemappinglongrange">Lieberman-Aiden et al. (<a href="#ref-lieberman-aiden2009comprehensivemappinglongrange" role="doc-biblioref">2009</a>)</span>. Here, chromatin interactions from Hi-C sequencing is used to generate an interaction matrix of valid Hi-C contacts, and PCA is performed on the covariance matrix of the observed and expected matrix. The following rationale is proposed and experimentally supported; if clustering into 2 types (A/B compartments), genomic positions that interact will yield a positive value in the covariance matrix, and vice versa for positions that do not interact. Then, when PCA is performed, the first principal component captures the variance that arise from being in different compart by its sign. The direction of the eigenvector (the sign) is then phased with a biologically relevant measure (such as GC content) to establish that the A compartment is largely the <em>active</em> chromatin and B is largely <em>inactive</em>.</p>
-<p>However, this approach may place too much confidence in how expected interaction frequencies are estimated. By using the eigenvectors within a probabilistic model, where compartment identity is treated as a latent variable, we aim to recover information discarded in hard-labeling based on eigenvector signs. We propose a Bayesian MCMC framework as a spatially aware clustering method that soft-assigns compartments.</p>
+<p>Chromatin architecture is of high interest in molecular biology, and increasingly so in molecular evolution. A high-throughput method for mapping the 3D organization of the genome was proposed by <span class="citation" data-cites="lieberman-aiden2009comprehensivemappinglongrange">Lieberman-Aiden et al. (<a href="#ref-lieberman-aiden2009comprehensivemappinglongrange" role="doc-biblioref">2009</a>)</span>, and has since been the standard method of infering chromatin compartments <span class="citation" data-cites="lajoie2015hitchhikersguidehic">(<a href="#ref-lajoie2015hitchhikersguidehic" role="doc-biblioref">Lajoie, Dekker, and Kaplan 2015</a>)</span>. Briefly, chromatin interactions from Hi-C sequencing is used to generate an interaction matrix of valid Hi-C contacts, and PCA is performed on the covariance matrix of the observed/expected matrix. The following rationale is proposed and experimentally supported; if clustering into 2 types (A/B compartments), genomic positions that interact will yield a positive value in the covariance matrix, and vice versa for positions that do not interact. Then, when PCA is performed, the first principal component captures the variance that arise from being in different compart by its sign. The direction of the eigenvector (the sign) is then phased with a biologically relevant measure (such as GC content) to establish that the A compartment is largely the <em>active</em> chromatin and B is largely <em>inactive</em>.</p>
+<p>However, this approach may place too much confidence in how expected interaction frequencies are estimated. By using the eigenvectors within a probabilistic model, where compartment identity is treated as a latent variable, we aim to recover information discarded in hard-labeling based on eigenvector signs. We propose a Bayesian MCMC framework as a spatially aware clustering method that soft-assigns compartments based on the eigendecomposition.</p>
+<section id="continuing-from-where-we-left" class="level2">
+<h2 class="anchored" data-anchor-id="continuing-from-where-we-left">Continuing from where we left</h2>
+<p>This study is a continuation of <em>Chromatin Compartments and Selection on X</em> (MSc thesis) [ref] and some methods were developed there. Especially, one product of the previous study was a pipeline to generate eigenvectors for binned genomes from raw Hi-C reads, utilizing <em>pairtools</em> [ref] <em>cooler</em> [ref] and <em>cooltools</em> [ref] from the <em>Open Chromosome Collective</em> ecosystem [ref].</p>
+<blockquote class="blockquote">
+<p>NB: limitations of using the magnitude of the eigenvector in opposite to only the sign</p>
+</blockquote>
+</section>
 </section>
 <section id="methods" class="level1">
 <h1>Methods</h1>
-<p>I use PyMC [ref] for all modeling, relying as much as possible on functions and built-in functionality for all anaysis. I start out small in the simplest model possible, then progressing to larger and more complex models.</p>
+<p>The pipeline from [ref] was reused in a modified form to accomodate a new data set of single-cell Hi-C sequencing of human cells. Here, an additional pooling step was introduced to generate merged Hi-C matrices after grouping the samples into two groups established in the sequencing study; the sex chromosome was determined either <em>X</em> or <em>Y</em>. Additionally, it was modified to accomodate the new telomere-2-telomere assembly of <em>rhesus macaca</em>, as it was only available from NCBI, and not UCSC servers.</p>
+<section id="data-generation" class="level2">
+<h2 class="anchored" data-anchor-id="data-generation">Data generation</h2>
+<section id="the-ice-method" class="level3">
+<h3 class="anchored" data-anchor-id="the-ice-method">The ICE-method</h3>
+<p>The pipeline previously developed implements the Iterative Correction and Eigendecomposition (ICE) method of Hi-C analysis <span class="citation" data-cites="lieberman-aiden2009comprehensivemappinglongrange">(<a href="#ref-lieberman-aiden2009comprehensivemappinglongrange" role="doc-biblioref">Lieberman-Aiden et al. 2009</a>)</span> after mapping raw Hi-C reads to the reference genome, validating Hi-C pairs, and constructing the interaction map (Hi-C matrix). It is implemented fully using the <em>Open2C</em> tools and recommendations. Briefly, the raw read pairs are mapped (as paired-end reads) to the respective reference genome (either GRCh37 or T2T-MMU8v1.0) with <em>bwa-mem2</em> [ref] with the <code>-P</code> option. Then the pairs are sorted and validated with <em>pairtools</em> using a filter on mapping quality, <span class="math inline">\(mapq \geq 30\)</span>, for both mates.</p>
+<p>First, the pipeline was applied to generate high-resolution eigenvector tracks on the most recent, telomere-to-telomere <em>rhesus macaca</em> assembly, T2T-MMUv8.1 [ref], to improve the accuracy of the mapping from the previous study.</p>
+<p>Additionally, the pipeline was applied to generate a eigenvectors of human sperm cells harboring the <em>X</em> chromosome. Even though the authors [ref] of this Hi-C data find high similarity between sperm cells harboring the <em>X</em> or the <em>Y</em> sex chromosomes, they barely describe their comparison. Thus, I decide to seperate them into two groups to be able to compare autosomal chromatin compartments later on if we wish to. A major downside of this is that the coverage is approximately halved, resulting in lower viable resolutions for subsequent analyses.</p>
+<p>The results of the eigendecomposition are hereafter described as E1 (eigenvector track of the first principal component).</p>
+</section>
+</section>
+<section id="modeling" class="level2">
+<h2 class="anchored" data-anchor-id="modeling">Modeling</h2>
+<p>I use PyMC <span class="citation" data-cites="abril-pla2023pymcmoderncomprehensive">(<a href="#ref-abril-pla2023pymcmoderncomprehensive" role="doc-biblioref">Abril-Pla et al. 2023</a>)</span> for all modeling, relying as much as possible on functions and built-in functionality for all anaysis. I start out small in the simplest model possible, then progressing to larger and more complex models. The basis of the probabilistic modeling is the assumption that the</p>
+</section>
 <section id="method-1" class="level2">
 <h2 class="anchored" data-anchor-id="method-1">Method 1</h2>
 <p>The first method with a code block</p>
@@ -227,7 +289,9 @@ div.csl-indent {
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
-<p>Results are written here</p>
+<section id="the-eigendecomposition" class="level3">
+<h3 class="anchored" data-anchor-id="the-eigendecomposition">The Eigendecomposition</h3>
+</section>
 </section>
 <section id="discussion" class="level1">
 <h1>Discussion</h1>
@@ -247,6 +311,12 @@ div.csl-indent {
 <section id="references" class="level1">
 <h1>References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-abril-pla2023pymcmoderncomprehensive" class="csl-entry" role="listitem">
+Abril-Pla, Oriol, Virgile Andreani, Colin Carroll, Larry Dong, Christopher J. Fonnesbeck, Maxim Kochurov, Ravin Kumar, et al. 2023. <span>“<span>PyMC</span>: A Modern, and Comprehensive Probabilistic Programming Framework in <span>Python</span>.”</span> <em>PeerJ Computer Science</em> 9 (September): e1516. <a href="https://doi.org/10.7717/peerj-cs.1516">https://doi.org/10.7717/peerj-cs.1516</a>.
+</div>
+<div id="ref-lajoie2015hitchhikersguidehic" class="csl-entry" role="listitem">
+Lajoie, Bryan R., Job Dekker, and Noam Kaplan. 2015. <span>“The <span>Hitchhiker</span>’s <span>Guide</span> to <span>Hi-C Analysis</span>: <span>Practical</span> Guidelines.”</span> <em>Methods (San Diego, Calif.)</em> 72 (January): 65–75. <a href="https://doi.org/10.1016/j.ymeth.2014.10.031">https://doi.org/10.1016/j.ymeth.2014.10.031</a>.
+</div>
 <div id="ref-lieberman-aiden2009comprehensivemappinglongrange" class="csl-entry" role="listitem">
 Lieberman-Aiden, Erez, Nynke L. Van Berkum, Louise Williams, Maxim Imakaev, Tobias Ragoczy, Agnes Telling, Ido Amit, et al. 2009. <span>“Comprehensive <span>Mapping</span> of <span>Long-Range Interactions Reveals Folding Principles</span> of the <span>Human Genome</span>.”</span> <em>Science</em> 326 (5950): 289–93. <a href="https://doi.org/10.1126/science.1181369">https://doi.org/10.1126/science.1181369</a>.
 </div>
