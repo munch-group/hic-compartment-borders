@@ -12,7 +12,7 @@ authors:
   #   corresponding: false
 keywords:
   - Gaussian Random Walk
-  - Bayesian MCMC framework
+  - Bayesian MCMC
   - Chromatin Structure in spermatogenesis
 plain-language-summary: |
   Using a Python Library (PyMC) for statistical modeling to extend the analysis of A/B chromatin compartment assignment, by using the results of the common analysis as input to a probilistic model. The underlying assumptions might not hold for all data, and therefore might not capture the variance that we want. We did extensive testing in parameter sweeps, etc. There might be a better way.
@@ -47,13 +47,36 @@ This model infers A/B chromatin compartment structure from the first eigenvector
 
 # Introduction
 
-Chromatin architecture is of high interest in molecular biology, and increasingly so in molecular evolution. A high-throughput method for mapping the 3D organization of the genome was proposed by @lieberman-aiden2009comprehensivemappinglongrange. Here, chromatin interactions from Hi-C sequencing is used to generate an interaction matrix of valid Hi-C contacts, and PCA is performed on the covariance matrix of the observed and expected matrix. The following rationale is proposed and experimentally supported; if clustering into 2 types (A/B compartments), genomic positions that interact will yield a positive value in the covariance matrix, and vice versa for positions that do not interact. Then, when PCA is performed, the first principal component captures the variance that arise from being in different compart by its sign. The direction of the eigenvector (the sign) is then phased with a biologically relevant measure (such as GC content) to establish that the A compartment is largely the *active* chromatin and B is largely *inactive*. 
+Chromatin architecture is of high interest in molecular biology, and increasingly so in molecular evolution. A high-throughput method for mapping the 3D organization of the genome was proposed by @lieberman-aiden2009comprehensivemappinglongrange, and has since been the standard method of infering chromatin compartments [@lajoie2015hitchhikersguidehic]. Briefly, chromatin interactions from Hi-C sequencing is used to generate an interaction matrix of valid Hi-C contacts, and PCA is performed on the covariance matrix of the observed/expected matrix. The following rationale is proposed and experimentally supported; if clustering into 2 types (A/B compartments), genomic positions that interact will yield a positive value in the covariance matrix, and vice versa for positions that do not interact. Then, when PCA is performed, the first principal component captures the variance that arise from being in different compart by its sign. The direction of the eigenvector (the sign) is then phased with a biologically relevant measure (such as GC content) to establish that the A compartment is largely the *active* chromatin and B is largely *inactive*. 
 
-However, this approach may place too much confidence in how expected interaction frequencies are estimated. By using the eigenvectors within a probabilistic model, where compartment identity is treated as a latent variable, we aim to recover information discarded in hard-labeling based on eigenvector signs. We propose a Bayesian MCMC framework as a spatially aware clustering method that soft-assigns compartments.
+However, this approach may place too much confidence in how expected interaction frequencies are estimated. By using the eigenvectors within a probabilistic model, where compartment identity is treated as a latent variable, we aim to recover information discarded in hard-labeling based on eigenvector signs. We propose a Bayesian MCMC framework as a spatially aware clustering method that soft-assigns compartments based on the eigendecomposition.
+
+## Continuing from where we left
+
+This study is a continuation of *Chromatin Compartments and Selection on X* (MSc thesis) [ref] and some methods were developed there. Especially, one product of the previous study was a pipeline to generate eigenvectors for binned genomes from raw Hi-C reads, utilizing *pairtools* [ref] *cooler* [ref] and *cooltools* [ref] from the *Open Chromosome Collective* ecosystem [ref]. 
+
+> NB: limitations of using the magnitude of the eigenvector in opposite to only the sign
 
 # Methods
 
-I use PyMC [ref] for all modeling, relying as much as possible on functions and built-in functionality for all anaysis. I start out small in the simplest model possible, then progressing to larger and more complex models. 
+The pipeline from [ref] was reused in a modified form to accomodate a new data set of single-cell Hi-C sequencing of human cells. Here, an additional pooling step was introduced to generate merged Hi-C matrices after grouping the samples into two groups established in the sequencing study; the sex chromosome was determined either *X* or *Y*. Additionally, it was modified to accomodate the new telomere-2-telomere assembly of *rhesus macaca*, as it was only available from NCBI, and not UCSC servers. 
+
+## Data generation 
+
+### The ICE-method
+
+The pipeline previously developed implements the Iterative Correction and Eigendecomposition (ICE) method of Hi-C analysis [@lieberman-aiden2009comprehensivemappinglongrange] after mapping raw Hi-C reads to the reference genome, validating Hi-C pairs, and constructing the interaction map (Hi-C matrix). It is implemented fully using the *Open2C* tools and recommendations. Briefly, the raw read pairs are mapped (as paired-end reads) to the respective reference genome (either GRCh37 or T2T-MMU8v1.0) with *bwa-mem2* [ref] with the `-P` option. Then the pairs are sorted and validated with *pairtools* using a filter on mapping quality, $mapq \geq 30$, for both mates.
+
+First, the pipeline was applied to generate high-resolution eigenvector tracks on the most recent, telomere-to-telomere *rhesus macaca* assembly, T2T-MMUv8.1 [ref], to improve the accuracy of the mapping from the previous study.
+
+Additionally, the pipeline was applied to generate a eigenvectors of human sperm cells harboring the *X* chromosome. Even though the authors [ref] of this Hi-C data find high similarity between sperm cells harboring the *X* or the *Y* sex chromosomes, they barely describe their comparison. Thus, I decide to seperate them into two groups to be able to compare autosomal chromatin compartments later on if we wish to. A major downside of this is that the coverage is approximately halved, resulting in lower viable resolutions for subsequent analyses. 
+
+The results of the eigendecomposition are hereafter described as E1 (eigenvector track of the first principal component). 
+
+
+## Modeling
+
+I use PyMC [@abril-pla2023pymcmoderncomprehensive] for all modeling, relying as much as possible on functions and built-in functionality for all anaysis. I start out small in the simplest model possible, then progressing to larger and more complex models. The basis of the probabilistic modeling is the assumption that the 
 
 ## Method 1
 
@@ -68,7 +91,11 @@ print(e)
 
 # Results
 
-Results are written here
+### The Eigendecomposition
+
+
+
+
 
 # Discussion
 
