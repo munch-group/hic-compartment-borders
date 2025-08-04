@@ -351,7 +351,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 4, 2025 <br> 13:33:41 (UTC +00:00)</p>
+      <p class="date">August 4, 2025 <br> 20:22:20 (UTC +00:00)</p>
     </div>
   </div>
   
@@ -374,7 +374,7 @@ window.Quarto = {
 <section id="load-a-subset-of-one-of-the-datasets" class="level2">
 <h2 class="anchored" data-anchor-id="load-a-subset-of-one-of-the-datasets">Load a subset of one of the datasets</h2>
 <p>Here, we show the full 10kb track, the zoom region, and the zoomed-in region of the 10kb track. The zoomed-in region is then used as <code>df_zoom</code> for the following analysis.</p>
-<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:37:50.350958Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:37:50.350824Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:37:51.944082Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:37:51.943696Z&quot;}}" data-execution_count="19">
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T08:40:06.549413Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T08:40:06.549157Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T08:40:08.738482Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T08:40:08.737821Z&quot;}}" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -395,7 +395,7 @@ window.Quarto = {
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>))</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].fill_between(df.start, df.e1, where<span class="op">=</span>df.e1 <span class="op">&gt;</span> <span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:red'</span> , ec<span class="op">=</span><span class="st">'None'</span>, step<span class="op">=</span><span class="st">'pre'</span>)</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].fill_between(df.start, df.e1, where<span class="op">=</span>df.e1 <span class="op">&lt;</span> <span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>, ec<span class="op">=</span><span class="st">'None'</span>, step<span class="op">=</span><span class="st">'pre'</span>) </span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#ax[0].set_ylim(-2,2)</span></span>
@@ -405,34 +405,50 @@ window.Quarto = {
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>zoom <span class="op">=</span> (begin_zoom, begin_zoom <span class="op">+</span> <span class="dv">1500</span><span class="op">*</span>resolution)</span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].vlines(zoom, <span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, color<span class="op">=</span><span class="st">'k'</span>, lw<span class="op">=</span><span class="fl">0.5</span>, ls<span class="op">=</span><span class="st">'--'</span>)</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].text(np.mean(zoom), <span class="fl">1.5</span>, <span class="st">"ZOOM"</span>, color<span class="op">=</span><span class="st">'k'</span>, ha<span class="op">=</span><span class="st">'center'</span>)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">"Full chromosome X (bp)"</span>)</span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].fill_between(df.start, df.e1, where<span class="op">=</span>df.e1 <span class="op">&gt;</span> <span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:red'</span> , ec<span class="op">=</span><span class="st">'None'</span>, step<span class="op">=</span><span class="st">'pre'</span>)</span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].fill_between(df.start, df.e1, where<span class="op">=</span>df.e1 <span class="op">&lt;</span> <span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>, ec<span class="op">=</span><span class="st">'None'</span>, step<span class="op">=</span><span class="st">'pre'</span>) </span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlim(zoom)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">#ax[1].set_ylim(-2,2)</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">"Zoomed in region (bp)"</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">#ax[1].set_ylim(-2,2)</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the small chromosome arm</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>centromere <span class="op">=</span> (<span class="dv">57984683</span>, <span class="dv">69396537</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>small_arm <span class="op">=</span> (<span class="dv">0</span>, centromere[<span class="dv">0</span>])</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].vlines(small_arm, <span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, color<span class="op">=</span><span class="st">'k'</span>, lw<span class="op">=</span><span class="fl">0.5</span>, ls<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].text(np.mean(small_arm), <span class="fl">1.5</span>, <span class="st">"SMALL ARM"</span>, color<span class="op">=</span><span class="st">'k'</span>, ha<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].fill_between(df.start, df.e1, where<span class="op">=</span>df.e1 <span class="op">&gt;</span> <span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:red'</span> , ec<span class="op">=</span><span class="st">'None'</span>, step<span class="op">=</span><span class="st">'pre'</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].fill_between(df.start, df.e1, where<span class="op">=</span>df.e1 <span class="op">&lt;</span> <span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>, ec<span class="op">=</span><span class="st">'None'</span>, step<span class="op">=</span><span class="st">'pre'</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_xlim(small_arm)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_title(<span class="st">"Small chromosome arm (bp)"</span>)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-2-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="07_hi_res_subset_analysis_files/figure-html/cell-2-output-1.png" width="1003" height="590" class="figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-2-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="07_hi_res_subset_analysis_files/figure-html/cell-2-output-1.png" width="989" height="591" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:37:51.972336Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:37:51.972089Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:37:51.976629Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:37:51.976339Z&quot;}}" data-execution_count="20">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T08:40:08.789698Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T08:40:08.789532Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T08:40:08.796797Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T08:40:08.796422Z&quot;}}" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the zoomed region for further analysis</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df_zoom <span class="op">=</span> df.query(<span class="ss">f"start &gt;= </span><span class="sc">{</span>zoom[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> and start &lt;= </span><span class="sc">{</span>zoom[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df_zoom <span class="op">=</span> df.query(<span class="ss">f"start &gt;= </span><span class="sc">{</span>zoom[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> and start &lt;= </span><span class="sc">{</span>zoom[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Full small arm</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df_zoom <span class="op">=</span> df.query(<span class="ss">f"start &gt;= </span><span class="sc">{</span>small_arm[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> and start &gt;= </span><span class="sc">{</span>small_arm[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="21">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T08:40:08.798261Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T08:40:08.798129Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T08:40:09.689205Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T08:40:09.688629Z&quot;}}" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of distribution of E1 values (A and B)</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df[<span class="st">"start"</span>].values</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"e1"</span>].values</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df_zoom[<span class="st">"start"</span>].values</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df_zoom[<span class="st">"e1"</span>].values</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>f, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
@@ -472,7 +488,7 @@ window.Quarto = {
 </section>
 <section id="model-of-choice" class="level2">
 <h2 class="anchored" data-anchor-id="model-of-choice">Model of choice</h2>
-<p>We use the model architecture decided upon in notebook <code>05_PyMC_bernoulli_z.ipynb</code>, called “T_N_HN_10”.</p>
+<p>We use the model architecture decided upon in notebook <code>05_PyMC_bernoulli_z.ipynb</code>, called “N_N_HN”.</p>
 <section id="model-architecture" class="level3">
 <h3 class="anchored" data-anchor-id="model-architecture">Model architecture</h3>
 <p>We assume that we can draw the eigenvectors from two distributions, resulting in a mixture of two distributions. The <code>components</code> of this distribution are</p>
@@ -492,7 +508,7 @@ window.Quarto = {
 <section id="model-factory-function" class="level3">
 <h3 class="anchored" data-anchor-id="model-factory-function">Model factory function</h3>
 <p>Define the model builder, and import the configuration from file.</p>
-<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:37:51.978027Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:37:51.977781Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:37:53.939806Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:37:53.939386Z&quot;}}" data-execution_count="3">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T08:40:09.692969Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T08:40:09.692520Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T08:40:11.839674Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T08:40:11.838866Z&quot;}}" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc <span class="im">as</span> pm </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytensor.tensor <span class="im">as</span> pt</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -539,7 +555,7 @@ window.Quarto = {
 <span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:37:53.941548Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:37:53.941251Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:37:53.946526Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:37:53.946235Z&quot;}}" data-execution_count="4">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T08:40:11.842868Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T08:40:11.842242Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T08:40:11.848495Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T08:40:11.847964Z&quot;}}" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"../results/model_grid.json"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
@@ -547,14 +563,14 @@ window.Quarto = {
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>configs <span class="op">=</span> {cfg[<span class="st">'name'</span>]: cfg <span class="cf">for</span> cfg <span class="kw">in</span> config_list}</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"T_N_HN_10"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"N_N_HN"</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> configs[name]</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>{'name': 'T_N_HN_10',
- 'comp_dist': 'StudentT',
- 'comp_kwargs': {'nu': 10},
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>{'name': 'N_N_HN',
+ 'comp_dist': 'Normal',
+ 'comp_kwargs': {},
  'eps_dist': 'Normal',
  'eps_kwargs': {'mu': 0.0, 'sigma': 1.0},
  'grw_sigma_dist': 'HalfNormal',
@@ -564,22 +580,22 @@ window.Quarto = {
  'sigma': 0.3}</code></pre>
 </div>
 </div>
-<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:37:53.947812Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:37:53.947609Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:37:54.078148Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:37:54.077823Z&quot;}}" data-execution_count="5">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T08:40:11.850179Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T08:40:11.850027Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T08:40:12.148099Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T08:40:12.147583Z&quot;}}" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the model</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> build_z_model_from_config(df_zoom, config)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
 <p><span class="math display">\[
             \begin{array}{rcl}
-            \text{mu} &amp;\sim &amp; \operatorname{Normal}(\text{&lt;constant&gt;},~0.3)\\\text{sigma} &amp;\sim &amp; \operatorname{HalfNormal}(0,~0.3)\\\text{grw\_sigma} &amp;\sim &amp; \operatorname{HalfNormal}(0,~0.05)\\\text{eps} &amp;\sim &amp; \operatorname{Normal}(0,~1)\\\text{z} &amp;\sim &amp; \operatorname{Bernoulli}(\text{w})\\\text{logit\_w} &amp;\sim &amp; \operatorname{Deterministic}(f(\text{eps},~\text{grw\_sigma}))\\\text{w} &amp;\sim &amp; \operatorname{Deterministic}(f(\text{eps},~\text{grw\_sigma}))\\\text{y\_hat} &amp;\sim &amp; \operatorname{MarginalMixture}(f(\text{z}),~\operatorname{StudentT}(10,~\text{mu},~\text{sigma}))
+            \text{mu} &amp;\sim &amp; \operatorname{Normal}(\text{&lt;constant&gt;},~0.3)\\\text{sigma} &amp;\sim &amp; \operatorname{HalfNormal}(0,~0.3)\\\text{grw\_sigma} &amp;\sim &amp; \operatorname{HalfNormal}(0,~0.05)\\\text{eps} &amp;\sim &amp; \operatorname{Normal}(0,~1)\\\text{z} &amp;\sim &amp; \operatorname{Bernoulli}(\text{w})\\\text{logit\_w} &amp;\sim &amp; \operatorname{Deterministic}(f(\text{eps},~\text{grw\_sigma}))\\\text{w} &amp;\sim &amp; \operatorname{Deterministic}(f(\text{eps},~\text{grw\_sigma}))\\\text{y\_hat} &amp;\sim &amp; \operatorname{MarginalMixture}(f(\text{z}),~\operatorname{Normal}(\text{mu},~\text{sigma}))
             \end{array}
             \]</span></p>
 </div>
 </div>
-<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:37:54.079407Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:37:54.079264Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:38:04.737676Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:38:04.737340Z&quot;}}" data-execution_count="6">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T08:40:12.149826Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T08:40:12.149664Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T08:40:22.537365Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T08:40:22.536823Z&quot;}}" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model.to_graphviz()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 <figure class="figure">
 <p><a href="07_hi_res_subset_analysis_files/figure-html/cell-8-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="07_hi_res_subset_analysis_files/figure-html/cell-8-output-1.svg" class="img-fluid figure-img"></a></p>
@@ -587,7 +603,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:38:04.738975Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:38:04.738763Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:51:34.535119Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:51:34.534647Z&quot;}}" data-execution_count="7">
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T08:40:22.539218Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T08:40:22.538962Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T14:12:44.108849Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T14:12:44.108231Z&quot;}}" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    idata <span class="op">=</span> pm.sample(draws<span class="op">=</span><span class="dv">1000</span>, tune<span class="op">=</span><span class="dv">1000</span>, chains<span class="op">=</span><span class="dv">7</span>, cores<span class="op">=</span><span class="dv">7</span>, progressbar<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -596,18 +612,20 @@ window.Quarto = {
 CompoundStep
 &gt;NUTS: [mu, sigma, grw_sigma, eps]
 &gt;BinaryGibbsMetropolis: [z]
-Sampling 7 chains for 1_000 tune and 1_000 draw iterations (7_000 + 7_000 draws total) took 795 seconds.
-There were 215 divergences after tuning. Increase `target_accept` or reparameterize.
+Sampling 7 chains for 1_000 tune and 1_000 draw iterations (7_000 + 7_000 draws total) took 19891 seconds.
+/home/sojern/miniconda3/envs/pymc/lib/python3.13/site-packages/arviz/stats/diagnostics.py:596: RuntimeWarning: invalid value encountered in scalar divide
+  (between_chain_variance / within_chain_variance + num_samples - 1) / (num_samples)
+There were 7 divergences after tuning. Increase `target_accept` or reparameterize.
 The rhat statistic is larger than 1.01 for some parameters. This indicates problems during sampling. See https://arxiv.org/abs/1903.08008 for details
 The effective sample size per chain is smaller than 100 for some parameters.  A higher number is needed for reliable rhat and ess computation. See https://arxiv.org/abs/1903.08008 for details</code></pre>
 </div>
 </div>
-<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:51:34.536770Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:51:34.536566Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:51:36.107120Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:51:36.106625Z&quot;}}" data-execution_count="8">
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T14:12:44.111815Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T14:12:44.111585Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T14:12:49.225552Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T14:12:49.224741Z&quot;}}" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    pm.compute_log_likelihood(idata, progressbar<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:51:36.108948Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:51:36.108786Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:51:42.860421Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:51:42.860001Z&quot;}}" data-execution_count="9">
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T14:12:49.229004Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T14:12:49.228764Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T14:13:25.365187Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T14:13:25.364504Z&quot;}}" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    prior_predictive <span class="op">=</span> pm.sample_prior_predictive(<span class="dv">1000</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -616,7 +634,7 @@ The effective sample size per chain is smaller than 100 for some parameters.  A 
 <pre><code>Sampling: [eps, grw_sigma, mu, sigma, y_hat, z]</code></pre>
 </div>
 </div>
-<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:51:42.862104Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:51:42.861961Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:52:26.524925Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:52:26.524387Z&quot;}}" data-execution_count="10">
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T14:13:25.369882Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T14:13:25.369552Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T14:17:27.520908Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T14:17:27.519972Z&quot;}}" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    posterior_predictive <span class="op">=</span> pm.sample_posterior_predictive(idata, progressbar<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -625,7 +643,7 @@ The effective sample size per chain is smaller than 100 for some parameters.  A 
 <pre><code>Sampling: [y_hat]</code></pre>
 </div>
 </div>
-<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:52:26.526688Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:52:26.526532Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:53:08.037819Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:53:08.037439Z&quot;}}" data-execution_count="11">
+<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T14:17:27.524158Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T14:17:27.523863Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T14:18:13.645064Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T14:18:13.644555Z&quot;}}" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -655,7 +673,7 @@ The effective sample size per chain is smaller than 100 for some parameters.  A 
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-13-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="07_hi_res_subset_analysis_files/figure-html/cell-13-output-2.png" width="989" height="886" class="figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-13-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="07_hi_res_subset_analysis_files/figure-html/cell-13-output-2.png" width="990" height="886" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -668,7 +686,7 @@ The effective sample size per chain is smaller than 100 for some parameters.  A 
 <section id="bootstrapping-helpers" class="level3">
 <h3 class="anchored" data-anchor-id="bootstrapping-helpers">Bootstrapping helpers</h3>
 <p>Here, we define a wrapper function to bootstrap the mean for each position. <code>scipy.stats.bootstrap</code> is vectorized and is therefore very efficient for resampling each position. However, it will allocate an array of size <code>n_resamples * n_samples * pos</code> (1.2 TB for 10,000 resamples), unless we use the <code>batch</code>, where it allocates <code>batch * n_samples * pos</code> arrays in memory at at time. Here, we define a function to compute the batch value to maximally allocate a 16Gb array in memory at a time.</p>
-<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:53:08.039947Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:53:08.039807Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:53:08.043998Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:53:08.043663Z&quot;}}" data-execution_count="12">
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T14:18:13.648718Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T14:18:13.647887Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T14:18:13.653678Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T14:18:13.653126Z&quot;}}" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> bootstrap</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -712,7 +730,7 @@ The effective sample size per chain is smaller than 100 for some parameters.  A 
 <span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The trace (<code>idata</code>) is then stacked across chains and draws and converted to 8-bit integers for efficiency.</p>
-<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:53:08.045317Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:53:08.045070Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:53:08.071973Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:53:08.071603Z&quot;}}" data-execution_count="13">
+<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T14:18:13.655749Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T14:18:13.655330Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T14:18:13.825669Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T14:18:13.825215Z&quot;}}" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>stacked_z <span class="op">=</span> (</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    idata</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    .posterior</span>
@@ -723,7 +741,7 @@ The effective sample size per chain is smaller than 100 for some parameters.  A 
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>stacked_z.data <span class="op">=</span> stacked_z.data.astype(np.uint8)</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>stacked_z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
 <symbol id="icon-database" viewbox="0 0 32 32">
@@ -1094,29 +1112,29 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class="xr-text-repr-fallback">&lt;xarray.DataArray 'z' (pos: 1449, sample: 7000)&gt; Size: 10MB
+</style><pre class="xr-text-repr-fallback">&lt;xarray.DataArray 'z' (pos: 8714, sample: 7000)&gt; Size: 61MB
 array([[0, 0, 0, ..., 0, 0, 0],
-       [0, 1, 0, ..., 1, 0, 1],
-       [1, 0, 0, ..., 0, 1, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
        ...,
-       [0, 0, 0, ..., 1, 1, 1],
-       [1, 1, 1, ..., 1, 1, 1],
-       [0, 0, 0, ..., 1, 0, 1]], shape=(1449, 7000), dtype=uint8)
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0]], shape=(8714, 7000), dtype=uint8)
 Coordinates:
-  * pos      (pos) int64 12kB 11000 11001 11002 11003 ... 12498 12499 12500
+  * pos      (pos) int64 70kB 5799 5800 5801 5802 ... 15566 15567 15568 15569
   * sample   (sample) object 56kB MultiIndex
   * chain    (sample) int64 56kB 0 0 0 0 0 0 0 0 0 0 0 ... 6 6 6 6 6 6 6 6 6 6 6
-  * draw     (sample) int64 56kB 0 1 2 3 4 5 6 7 ... 993 994 995 996 997 998 999</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'z'</div><ul class="xr-dim-list"><li><span class="xr-has-index">pos</span>: 1449</li><li><span class="xr-has-index">sample</span>: 7000</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-493fd727-38b4-475c-9398-4baf219a7632" class="xr-array-in" type="checkbox" checked=""><label for="section-493fd727-38b4-475c-9398-4baf219a7632" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ... 1 0 0 0 1 0 1 1 0 0 0 1 1 1 0 1</span></div><div class="xr-array-data"><pre>array([[0, 0, 0, ..., 0, 0, 0],
-       [0, 1, 0, ..., 1, 0, 1],
-       [1, 0, 0, ..., 0, 1, 0],
+  * draw     (sample) int64 56kB 0 1 2 3 4 5 6 7 ... 993 994 995 996 997 998 999</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'z'</div><ul class="xr-dim-list"><li><span class="xr-has-index">pos</span>: 8714</li><li><span class="xr-has-index">sample</span>: 7000</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-90588046-8df6-4232-a9d8-1d122327c8f9" class="xr-array-in" type="checkbox" checked=""><label for="section-90588046-8df6-4232-a9d8-1d122327c8f9" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 ... 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span></div><div class="xr-array-data"><pre>array([[0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
        ...,
-       [0, 0, 0, ..., 1, 1, 1],
-       [1, 1, 1, ..., 1, 1, 1],
-       [0, 0, 0, ..., 1, 0, 1]], shape=(1449, 7000), dtype=uint8)</pre></div></div></li><li class="xr-section-item"><input id="section-7607c78b-2f3e-4ff6-94d0-bc513e58fbd4" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-7607c78b-2f3e-4ff6-94d0-bc513e58fbd4" class="xr-section-summary">Coordinates: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">pos</span></div><div class="xr-var-dims">(pos)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">11000 11001 11002 ... 12499 12500</div><input id="attrs-190ce68f-85a7-45bc-bc47-0a8629fcf09e" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-190ce68f-85a7-45bc-bc47-0a8629fcf09e" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-08b81570-be4f-4dfc-8d1f-ba5957c2ff0e" class="xr-var-data-in" type="checkbox"><label for="data-08b81570-be4f-4dfc-8d1f-ba5957c2ff0e" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([11000, 11001, 11002, ..., 12498, 12499, 12500], shape=(1449,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">sample</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">object</div><div class="xr-var-preview xr-preview">MultiIndex</div><input id="attrs-4710dee1-7925-4bde-aeb8-93314cf0158c" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-4710dee1-7925-4bde-aeb8-93314cf0158c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c95aa145-437b-4536-9b12-0769a8ca8c92" class="xr-var-data-in" type="checkbox"><label for="data-c95aa145-437b-4536-9b12-0769a8ca8c92" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([(0, 0), (0, 1), (0, 2), ..., (6, 997), (6, 998), (6, 999)],
-      shape=(202,), dtype=object)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">chain</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 0 0 0 0 0 0 0 ... 6 6 6 6 6 6 6 6</div><input id="attrs-0ea4c670-9722-4817-bca7-1f7d1340d34f" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-0ea4c670-9722-4817-bca7-1f7d1340d34f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3213cdaf-26b6-44a9-9474-90faa95c2926" class="xr-var-data-in" type="checkbox"><label for="data-3213cdaf-26b6-44a9-9474-90faa95c2926" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([0, 0, 0, ..., 6, 6, 6], shape=(202,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">draw</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 1 2 3 4 5 ... 995 996 997 998 999</div><input id="attrs-0a064fb7-239b-4d7b-bb59-520d2c8888e3" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-0a064fb7-239b-4d7b-bb59-520d2c8888e3" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-7f6ec203-a488-4a40-b32a-e834015bbccd" class="xr-var-data-in" type="checkbox"><label for="data-7f6ec203-a488-4a40-b32a-e834015bbccd" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([  0,   1,   2, ..., 997, 998, 999], shape=(202,))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-96cedf9c-d8ce-4182-9a26-d55ae45773de" class="xr-section-summary-in" type="checkbox"><label for="section-96cedf9c-d8ce-4182-9a26-d55ae45773de" class="xr-section-summary">Indexes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>pos</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-53818e55-3658-49ac-b812-42cdcf2f79d1" class="xr-index-data-in" type="checkbox"><label for="index-53818e55-3658-49ac-b812-42cdcf2f79d1" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([11000, 11001, 11002, 11003, 11004, 11005, 11006, 11007, 11008, 11009,
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0]], shape=(8714, 7000), dtype=uint8)</pre></div></div></li><li class="xr-section-item"><input id="section-7888f5db-641c-4506-948e-5df554959f4e" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-7888f5db-641c-4506-948e-5df554959f4e" class="xr-section-summary">Coordinates: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">pos</span></div><div class="xr-var-dims">(pos)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">5799 5800 5801 ... 15568 15569</div><input id="attrs-a607613f-b271-4996-a618-2f25004664d0" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-a607613f-b271-4996-a618-2f25004664d0" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b4b890f6-1875-469f-8dba-f7684f532fe0" class="xr-var-data-in" type="checkbox"><label for="data-b4b890f6-1875-469f-8dba-f7684f532fe0" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([ 5799,  5800,  5801, ..., 15567, 15568, 15569], shape=(8714,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">sample</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">object</div><div class="xr-var-preview xr-preview">MultiIndex</div><input id="attrs-93cd56ba-67ee-4308-801f-248573e0f758" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-93cd56ba-67ee-4308-801f-248573e0f758" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-52f0a9dc-65ed-46d6-bb47-12599829f180" class="xr-var-data-in" type="checkbox"><label for="data-52f0a9dc-65ed-46d6-bb47-12599829f180" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([(0, 0), (0, 1), (0, 2), ..., (6, 997), (6, 998), (6, 999)],
+      shape=(202,), dtype=object)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">chain</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 0 0 0 0 0 0 0 ... 6 6 6 6 6 6 6 6</div><input id="attrs-bbd3bdff-ec5b-42d8-9abc-edb87a5e401f" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-bbd3bdff-ec5b-42d8-9abc-edb87a5e401f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-cbac8356-4c37-4b15-bca2-30d9300a4393" class="xr-var-data-in" type="checkbox"><label for="data-cbac8356-4c37-4b15-bca2-30d9300a4393" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([0, 0, 0, ..., 6, 6, 6], shape=(202,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">draw</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 1 2 3 4 5 ... 995 996 997 998 999</div><input id="attrs-71ee9b21-efa5-412b-bbfa-caa8b94569c6" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-71ee9b21-efa5-412b-bbfa-caa8b94569c6" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-e5d0377e-a356-4d64-8df5-96a087497d1f" class="xr-var-data-in" type="checkbox"><label for="data-e5d0377e-a356-4d64-8df5-96a087497d1f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([  0,   1,   2, ..., 997, 998, 999], shape=(202,))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-c15864d9-f118-466c-b8c3-c937e0feb02f" class="xr-section-summary-in" type="checkbox"><label for="section-c15864d9-f118-466c-b8c3-c937e0feb02f" class="xr-section-summary">Indexes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>pos</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-2fb62aeb-f584-436d-91b8-9658ea950fd7" class="xr-index-data-in" type="checkbox"><label for="index-2fb62aeb-f584-436d-91b8-9658ea950fd7" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([ 5799,  5800,  5801,  5802,  5803,  5804,  5805,  5806,  5810,  5811,
        ...
-       12491, 12492, 12493, 12494, 12495, 12496, 12497, 12498, 12499, 12500],
-      dtype='int64', name='pos', length=1449))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>sample<br>chain<br>draw</div></div><div class="xr-index-preview">PandasMultiIndex</div><input type="checkbox" disabled=""><label></label><input id="index-6621a54a-715e-4a6b-9ae7-eb2c03d630ba" class="xr-index-data-in" type="checkbox"><label for="index-6621a54a-715e-4a6b-9ae7-eb2c03d630ba" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(MultiIndex([(0,   0),
+       15560, 15561, 15562, 15563, 15564, 15565, 15566, 15567, 15568, 15569],
+      dtype='int64', name='pos', length=8714))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>sample<br>chain<br>draw</div></div><div class="xr-index-preview">PandasMultiIndex</div><input type="checkbox" disabled=""><label></label><input id="index-b2b2b3b3-3a5d-427b-99f0-af32c7318a8e" class="xr-index-data-in" type="checkbox"><label for="index-b2b2b3b3-3a5d-427b-99f0-af32c7318a8e" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(MultiIndex([(0,   0),
             (0,   1),
             (0,   2),
             (0,   3),
@@ -1137,10 +1155,10 @@ Coordinates:
             (6, 997),
             (6, 998),
             (6, 999)],
-           name='sample', length=7000))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-b0a12da6-75b4-4ceb-b9c8-7fb0cce1d4d2" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-b0a12da6-75b4-4ceb-b9c8-7fb0cce1d4d2" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
+           name='sample', length=7000))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-122c1f48-804c-4ec3-b7b1-3ca05013ede4" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-122c1f48-804c-4ec3-b7b1-3ca05013ede4" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
 </div>
 </div>
-<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:53:08.073354Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:53:08.073178Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:54:12.331645Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:54:12.331012Z&quot;}}" data-execution_count="14">
+<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T14:18:13.828044Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T14:18:13.827843Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T14:24:03.576543Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T14:24:03.575940Z&quot;}}" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>bootstrap_results <span class="op">=</span> bootstrap_mean(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    stacked_z, <span class="op">**</span>{</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"confidence_level"</span>: <span class="fl">0.99</span>,</span>
@@ -1150,28 +1168,28 @@ Coordinates:
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>bootstrap_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Computing bootstrap mean with shapes: (1449, 7000) in batches of 1693</code></pre>
+<pre><code>Computing bootstrap mean with shapes: (8714, 7000) in batches of 281</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>BootstrapResult(confidence_interval=ConfidenceInterval(low=array([0.13614214, 0.61371429, 0.58128571, ..., 0.70185714, 0.86628571,
-       0.28      ], shape=(1449,)), high=array([0.15757214, 0.64314286, 0.61114286, ..., 0.72971429, 0.88614286,
-       0.30742857], shape=(1449,))), bootstrap_distribution=array([[0.14628571, 0.13914286, 0.14428571, ..., 0.149     , 0.14685714,
-        0.14757143],
-       [0.63628571, 0.63042857, 0.62628571, ..., 0.63328571, 0.63014286,
-        0.62057143],
-       [0.595     , 0.60142857, 0.59642857, ..., 0.60314286, 0.59885714,
-        0.58942857],
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>BootstrapResult(confidence_interval=ConfidenceInterval(low=array([ 0.100285  ,  0.08314286,  0.03085714, ...,  0.01042857,
+       -0.00028571,  0.00085714], shape=(8714,)), high=array([0.119     , 0.101     , 0.04228571, ..., 0.01757214, 0.00142857,
+       0.00385714], shape=(8714,))), bootstrap_distribution=array([[0.11085714, 0.10842857, 0.10971429, ..., 0.11128571, 0.10814286,
+        0.11271429],
+       [0.085     , 0.09342857, 0.089     , ..., 0.09542857, 0.09171429,
+        0.09057143],
+       [0.03657143, 0.034     , 0.03585714, ..., 0.03728571, 0.03414286,
+        0.03542857],
        ...,
-       [0.71071429, 0.70885714, 0.70942857, ..., 0.71342857, 0.71328571,
-        0.70785714],
-       [0.882     , 0.87614286, 0.875     , ..., 0.87228571, 0.87214286,
-        0.87185714],
-       [0.293     , 0.27985714, 0.29114286, ..., 0.29514286, 0.28614286,
-        0.28614286]], shape=(1449, 10000)), standard_error=array([0.0042392 , 0.00573467, 0.00577615, ..., 0.00533306, 0.00391535,
-       0.0053845 ], shape=(1449,)))</code></pre>
+       [0.01871429, 0.015     , 0.011     , ..., 0.01357143, 0.01571429,
+        0.01457143],
+       [0.00071429, 0.00071429, 0.00057143, ..., 0.00085714, 0.00085714,
+        0.00057143],
+       [0.00257143, 0.00257143, 0.00142857, ..., 0.00228571, 0.00228571,
+        0.00157143]], shape=(8714, 10000)), standard_error=array([0.00372068, 0.00343749, 0.00222042, ..., 0.00141767, 0.00032213,
+       0.00058935], shape=(8714,)))</code></pre>
 </div>
 </div>
-<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:54:12.333211Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:54:12.333052Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:54:12.461739Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:54:12.461386Z&quot;}}" data-execution_count="15">
+<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T14:24:03.580220Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T14:24:03.580024Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T14:24:03.740248Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T14:24:03.739734Z&quot;}}" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib_inline </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1200,7 +1218,7 @@ Coordinates:
 </div>
 </div>
 </div>
-<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:54:12.463317Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:54:12.463049Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:54:12.581172Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:54:12.580763Z&quot;}}" data-execution_count="16">
+<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T14:24:03.746188Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T14:24:03.745945Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T14:24:03.863073Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T14:24:03.862611Z&quot;}}" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.hist(bootstrap_results.bootstrap_distribution[<span class="dv">11</span>], density<span class="op">=</span><span class="va">True</span>, bins<span class="op">=</span><span class="dv">30</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -1211,7 +1229,7 @@ Coordinates:
 </div>
 </div>
 </div>
-<div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:54:12.582546Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:54:12.582405Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:54:13.129138Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:54:13.128727Z&quot;}}" data-execution_count="17">
+<div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T14:24:03.865369Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T14:24:03.865156Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T14:24:06.945355Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T14:24:06.944024Z&quot;}}" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>bootstrap_99 <span class="op">=</span> bootstrap_mean(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    stacked_z, <span class="op">**</span>{</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_resamples"</span>: <span class="dv">0</span>,</span>
@@ -1221,10 +1239,10 @@ Coordinates:
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Computing bootstrap mean with shapes: (1449, 7000) in batches of 1693</code></pre>
+<pre><code>Computing bootstrap mean with shapes: (8714, 7000) in batches of 281</code></pre>
 </div>
 </div>
-<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-11T21:54:13.131104Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-11T21:54:13.130778Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-11T21:54:13.364177Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-11T21:54:13.363863Z&quot;}}" data-execution_count="18">
+<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-04T14:24:06.949151Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-04T14:24:06.948926Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-04T14:24:07.261148Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-04T14:24:07.260587Z&quot;}}" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>lower_99 <span class="op">=</span> bootstrap_99.confidence_interval.low</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>upper_99 <span class="op">=</span> bootstrap_99.confidence_interval.high</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>

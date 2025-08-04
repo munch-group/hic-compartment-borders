@@ -14,45 +14,45 @@
 <text text-anchor="middle" x="267.5" y="-141.7" font-family="Times,serif" font-size="14.00">2</text>
 </g>
 <g id="clust2" class="cluster">
-<title>clusterpos (1449)</title>
+<title>clusterpos (8714)</title>
 <path fill="none" stroke="black" d="M300,-8C300,-8 486,-8 486,-8 492,-8 498,-14 498,-20 498,-20 498,-559.5 498,-559.5 498,-565.5 492,-571.5 486,-571.5 486,-571.5 300,-571.5 300,-571.5 294,-571.5 288,-565.5 288,-559.5 288,-559.5 288,-20 288,-20 288,-14 294,-8 300,-8"/>
-<text text-anchor="middle" x="452.12" y="-15.95" font-family="Times,serif" font-size="14.00">pos (1449)</text>
+<text text-anchor="middle" x="452.12" y="-15.95" font-family="Times,serif" font-size="14.00">pos (8714)</text>
 </g>
-<!-- mu -->
+<!-- sigma -->
 <g id="node1" class="node">
-<title>mu</title>
-<ellipse fill="none" stroke="black" cx="65" cy="-209.25" rx="48.97" ry="42.25"/>
-<text text-anchor="middle" x="65" y="-221.82" font-family="Times,serif" font-size="14.00">mu</text>
-<text text-anchor="middle" x="65" y="-204.57" font-family="Times,serif" font-size="14.00">~</text>
-<text text-anchor="middle" x="65" y="-187.32" font-family="Times,serif" font-size="14.00">Normal</text>
+<title>sigma</title>
+<ellipse fill="none" stroke="black" cx="86" cy="-209.25" rx="70.18" ry="42.25"/>
+<text text-anchor="middle" x="86" y="-221.82" font-family="Times,serif" font-size="14.00">sigma</text>
+<text text-anchor="middle" x="86" y="-204.57" font-family="Times,serif" font-size="14.00">~</text>
+<text text-anchor="middle" x="86" y="-187.32" font-family="Times,serif" font-size="14.00">HalfNormal</text>
 </g>
 <!-- y_hat -->
-<g id="node4" class="node">
+<g id="node5" class="node">
 <title>y_hat</title>
 <ellipse fill="lightgrey" stroke="black" cx="393" cy="-83.5" rx="97.23" ry="42.25"/>
 <text text-anchor="middle" x="393" y="-96.07" font-family="Times,serif" font-size="14.00">y_hat</text>
 <text text-anchor="middle" x="393" y="-78.82" font-family="Times,serif" font-size="14.00">~</text>
 <text text-anchor="middle" x="393" y="-61.57" font-family="Times,serif" font-size="14.00">MarginalMixture</text>
 </g>
-<!-- mu&#45;&gt;y_hat -->
-<g id="edge5" class="edge">
-<title>mu&#45;&gt;y_hat</title>
-<path fill="none" stroke="black" d="M86.1,-170.77C95.64,-157.08 108.14,-142.75 123,-133.75 150.49,-117.09 223.98,-104.31 287.36,-95.95"/>
-<polygon fill="black" stroke="black" points="287.68,-99.44 297.15,-94.69 286.79,-92.5 287.68,-99.44"/>
-</g>
-<!-- sigma -->
-<g id="node2" class="node">
-<title>sigma</title>
-<ellipse fill="none" stroke="black" cx="202" cy="-209.25" rx="70.18" ry="42.25"/>
-<text text-anchor="middle" x="202" y="-221.82" font-family="Times,serif" font-size="14.00">sigma</text>
-<text text-anchor="middle" x="202" y="-204.57" font-family="Times,serif" font-size="14.00">~</text>
-<text text-anchor="middle" x="202" y="-187.32" font-family="Times,serif" font-size="14.00">HalfNormal</text>
-</g>
 <!-- sigma&#45;&gt;y_hat -->
-<g id="edge6" class="edge">
+<g id="edge5" class="edge">
 <title>sigma&#45;&gt;y_hat</title>
-<path fill="none" stroke="black" d="M236.71,-172.26C250.61,-159.08 267.28,-144.73 284,-133.75 292.7,-128.04 302.16,-122.68 311.77,-117.75"/>
-<polygon fill="black" stroke="black" points="313.04,-121.02 320.44,-113.44 309.93,-114.75 313.04,-121.02"/>
+<path fill="none" stroke="black" d="M117.37,-171.07C130.73,-157.43 147.32,-143.06 165,-133.75 202.34,-114.1 247.06,-102.28 286.96,-95.18"/>
+<polygon fill="black" stroke="black" points="287.31,-98.68 296.59,-93.56 286.15,-91.77 287.31,-98.68"/>
+</g>
+<!-- mu -->
+<g id="node2" class="node">
+<title>mu</title>
+<ellipse fill="none" stroke="black" cx="223" cy="-209.25" rx="48.97" ry="42.25"/>
+<text text-anchor="middle" x="223" y="-221.82" font-family="Times,serif" font-size="14.00">mu</text>
+<text text-anchor="middle" x="223" y="-204.57" font-family="Times,serif" font-size="14.00">~</text>
+<text text-anchor="middle" x="223" y="-187.32" font-family="Times,serif" font-size="14.00">Normal</text>
+</g>
+<!-- mu&#45;&gt;y_hat -->
+<g id="edge7" class="edge">
+<title>mu&#45;&gt;y_hat</title>
+<path fill="none" stroke="black" d="M247.1,-172.22C257.31,-158.89 270.08,-144.43 284,-133.75 291.98,-127.62 300.85,-122.05 309.98,-117.04"/>
+<polygon fill="black" stroke="black" points="311.38,-120.26 318.63,-112.53 308.14,-114.06 311.38,-120.26"/>
 </g>
 <!-- grw_sigma -->
 <g id="node3" class="node">
@@ -63,7 +63,7 @@
 <text text-anchor="middle" x="576" y="-499.32" font-family="Times,serif" font-size="14.00">HalfNormal</text>
 </g>
 <!-- logit_w -->
-<g id="node8" class="node">
+<g id="node4" class="node">
 <title>logit_w</title>
 <polygon fill="none" stroke="black" points="484.75,-443 371.25,-443 371.25,-383.25 484.75,-383.25 484.75,-443"/>
 <text text-anchor="middle" x="428" y="-425.7" font-family="Times,serif" font-size="14.00">logit_w</text>
@@ -76,36 +76,22 @@
 <path fill="none" stroke="black" d="M531.6,-488.41C514.63,-476.24 495.18,-462.29 477.74,-449.79"/>
 <polygon fill="black" stroke="black" points="480.23,-447.27 470.07,-444.29 476.15,-452.96 480.23,-447.27"/>
 </g>
-<!-- z -->
-<g id="node5" class="node">
-<title>z</title>
-<ellipse fill="none" stroke="black" cx="398" cy="-209.25" rx="57.45" ry="42.25"/>
-<text text-anchor="middle" x="398" y="-221.82" font-family="Times,serif" font-size="14.00">z</text>
-<text text-anchor="middle" x="398" y="-204.57" font-family="Times,serif" font-size="14.00">~</text>
-<text text-anchor="middle" x="398" y="-187.32" font-family="Times,serif" font-size="14.00">Bernoulli</text>
-</g>
-<!-- z&#45;&gt;y_hat -->
-<g id="edge7" class="edge">
-<title>z&#45;&gt;y_hat</title>
-<path fill="none" stroke="black" d="M396.32,-166.7C395.94,-157.31 395.53,-147.22 395.14,-137.44"/>
-<polygon fill="black" stroke="black" points="398.64,-137.51 394.74,-127.66 391.65,-137.8 398.64,-137.51"/>
-</g>
 <!-- w -->
-<g id="node6" class="node">
+<g id="node7" class="node">
 <title>w</title>
 <polygon fill="none" stroke="black" points="474.75,-347.25 361.25,-347.25 361.25,-287.5 474.75,-287.5 474.75,-347.25"/>
 <text text-anchor="middle" x="418" y="-329.95" font-family="Times,serif" font-size="14.00">w</text>
 <text text-anchor="middle" x="418" y="-312.7" font-family="Times,serif" font-size="14.00">~</text>
 <text text-anchor="middle" x="418" y="-295.45" font-family="Times,serif" font-size="14.00">Deterministic</text>
 </g>
-<!-- w&#45;&gt;z -->
-<g id="edge4" class="edge">
-<title>w&#45;&gt;z</title>
-<path fill="none" stroke="black" d="M412.48,-287.09C411.03,-279.41 409.43,-270.9 407.83,-262.41"/>
-<polygon fill="black" stroke="black" points="411.32,-262.01 406.03,-252.84 404.44,-263.31 411.32,-262.01"/>
+<!-- logit_w&#45;&gt;w -->
+<g id="edge3" class="edge">
+<title>logit_w&#45;&gt;w</title>
+<path fill="none" stroke="black" d="M424.89,-382.97C424.07,-375.3 423.17,-366.89 422.31,-358.74"/>
+<polygon fill="black" stroke="black" points="425.81,-358.58 421.27,-349.01 418.85,-359.32 425.81,-358.58"/>
 </g>
 <!-- eps -->
-<g id="node7" class="node">
+<g id="node6" class="node">
 <title>eps</title>
 <ellipse fill="none" stroke="black" cx="428" cy="-521.25" rx="48.97" ry="42.25"/>
 <text text-anchor="middle" x="428" y="-533.82" font-family="Times,serif" font-size="14.00">eps</text>
@@ -118,11 +104,25 @@
 <path fill="none" stroke="black" d="M428,-478.61C428,-470.74 428,-462.52 428,-454.69"/>
 <polygon fill="black" stroke="black" points="431.5,-454.71 428,-444.71 424.5,-454.71 431.5,-454.71"/>
 </g>
-<!-- logit_w&#45;&gt;w -->
-<g id="edge3" class="edge">
-<title>logit_w&#45;&gt;w</title>
-<path fill="none" stroke="black" d="M424.89,-382.97C424.07,-375.3 423.17,-366.89 422.31,-358.74"/>
-<polygon fill="black" stroke="black" points="425.81,-358.58 421.27,-349.01 418.85,-359.32 425.81,-358.58"/>
+<!-- z -->
+<g id="node8" class="node">
+<title>z</title>
+<ellipse fill="none" stroke="black" cx="398" cy="-209.25" rx="57.45" ry="42.25"/>
+<text text-anchor="middle" x="398" y="-221.82" font-family="Times,serif" font-size="14.00">z</text>
+<text text-anchor="middle" x="398" y="-204.57" font-family="Times,serif" font-size="14.00">~</text>
+<text text-anchor="middle" x="398" y="-187.32" font-family="Times,serif" font-size="14.00">Bernoulli</text>
+</g>
+<!-- w&#45;&gt;z -->
+<g id="edge4" class="edge">
+<title>w&#45;&gt;z</title>
+<path fill="none" stroke="black" d="M412.48,-287.09C411.03,-279.41 409.43,-270.9 407.83,-262.41"/>
+<polygon fill="black" stroke="black" points="411.32,-262.01 406.03,-252.84 404.44,-263.31 411.32,-262.01"/>
+</g>
+<!-- z&#45;&gt;y_hat -->
+<g id="edge6" class="edge">
+<title>z&#45;&gt;y_hat</title>
+<path fill="none" stroke="black" d="M396.32,-166.7C395.94,-157.31 395.53,-147.22 395.14,-137.44"/>
+<polygon fill="black" stroke="black" points="398.64,-137.51 394.74,-127.66 391.65,-137.8 398.64,-137.51"/>
 </g>
 </g>
 </svg>
