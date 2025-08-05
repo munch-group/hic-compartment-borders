@@ -8,7 +8,7 @@
   a4paper,
 ]{scrbook}
 \usepackage{xcolor}
-\usepackage[left=2.54cm,right=2.54cm]{geometry}
+\usepackage[left=1in,right=1in]{geometry}
 \usepackage{amsmath,amssymb}
 \setcounter{secnumdepth}{2}
 \usepackage{iftex}
@@ -193,55 +193,55 @@
 
 \usepackage{upquote}
 
-% front page
-\usepackage[colorlinks]{hyperref} % for text color on title
-\usepackage{titling} % makes \thetitle etc available...
-\usepackage{lipsum}
-\usepackage{tikz}
-\tikzstyle{bag} = [align=center] % allows new lines in text below
-\AtBeginDocument{\thispagestyle{empty}
-\definecolor{titlecolor}{HTML}{1C2404}
-\begin{tikzpicture}[remember picture,overlay]
-\draw (current page.center) node[inner sep=0] {\resizebox{!}{350mm}{\includegraphics{highres_banner.pdf}}};
-\draw (current page.center) node[inner sep=0, opacity=0.5] {\resizebox{!}{100mm}{\includegraphics{ausegl_sort.pdf}}};
-% \draw (current page.center) node[bag] {  
-        \draw (17, 1.7) node[bag, align=right, anchor=north east] {  
-    % \mytitlefont 
-    \color{titlecolor} \Large \textbf{Thesis} \\ 
-    \\ 
-    % \mytitlefont 
-    \color{titlecolor} \Huge \textbf{\thetitle} \\ 
-    \\ 
-    % \mytitlefont
-    \color{titlecolor} \huge \theauthor \\
-    \\
-    % \mytitlefont 
-    \color{titlecolor} \Large \thedate 
-    };
-\end{tikzpicture}
-\clearpage}
+% % front page
+% \usepackage[colorlinks]{hyperref} % for text color on title
+% \usepackage{titling} % makes \thetitle etc available...
+% \usepackage{lipsum}
+% \usepackage{tikz}
+% \tikzstyle{bag} = [align=center] % allows new lines in text below
+% \AtBeginDocument{\thispagestyle{empty}
+% \definecolor{titlecolor}{HTML}{1C2404}
+% \begin{tikzpicture}[remember picture,overlay]
+% \draw (current page.center) node[inner sep=0] {\resizebox{!}{350mm}{\includegraphics{highres_banner.pdf}}};
+% \draw (current page.center) node[inner sep=0, opacity=0.5] {\resizebox{!}{100mm}{\includegraphics{ausegl_sort.pdf}}};
+% % \draw (current page.center) node[bag] {  
+%         \draw (17, 1.7) node[bag, align=right, anchor=north east] {  
+%     % \mytitlefont 
+%     \color{titlecolor} \Large \textbf{Thesis} \\ 
+%     \\ 
+%     % \mytitlefont 
+%     \color{titlecolor} \Huge \textbf{\thetitle} \\ 
+%     \\ 
+%     % \mytitlefont
+%     \color{titlecolor} \huge \theauthor \\
+%     \\
+%     % \mytitlefont 
+%     \color{titlecolor} \Large \thedate 
+%     };
+% \end{tikzpicture}
+% \clearpage}
 
-% back side
-\AtEndDocument{\clearpage\thispagestyle{empty}
-\begin{tikzpicture}[remember picture,overlay]
-\draw (current page.center) node[inner sep=0] {\resizebox{!}{350mm}{\includegraphics{highres_banner.pdf}}};
-% \draw (current page.center) node[bag] {  
-    \draw (17, 1.7) node[bag, align=right, anchor=north east] {  
-        % \mytitlefont 
-        \color{titlecolor} \large Bioinformatics Research Centre \\ 
-        % \mytitlefont 
-        \color{titlecolor} \large Department of Molecular Biology and Genetics \\ 
-        % \mytitlefont 
-        \color{titlecolor} \large Aarhus University \\
-        % \mytitlefont 
-        \color{titlecolor} \large Universitetsbyen 81 \\
-        % \mytitlefont 
-        \color{titlecolor} \large 8000 Aarhus C \\
-        % \mytitlefont 
-        \color{titlecolor} \large Denmark
-        };
+% % back side
+% \AtEndDocument{\clearpage\thispagestyle{empty}
+% \begin{tikzpicture}[remember picture,overlay]
+% \draw (current page.center) node[inner sep=0] {\resizebox{!}{350mm}{\includegraphics{highres_banner.pdf}}};
+% % \draw (current page.center) node[bag] {  
+%     \draw (17, 1.7) node[bag, align=right, anchor=north east] {  
+%         % \mytitlefont 
+%         \color{titlecolor} \large Bioinformatics Research Centre \\ 
+%         % \mytitlefont 
+%         \color{titlecolor} \large Department of Molecular Biology and Genetics \\ 
+%         % \mytitlefont 
+%         \color{titlecolor} \large Aarhus University \\
+%         % \mytitlefont 
+%         \color{titlecolor} \large Universitetsbyen 81 \\
+%         % \mytitlefont 
+%         \color{titlecolor} \large 8000 Aarhus C \\
+%         % \mytitlefont 
+%         \color{titlecolor} \large Denmark
+%         };
 
-\end{tikzpicture}}
+% \end{tikzpicture}}
 
 
 % % picture (AU logo in title page)
@@ -615,7 +615,7 @@ eigenvectors from Hi-C data analysis in a Bayesian framework}
 in a Gaussian Random Walk and infering a latent compartment assignment
 to A or B as an excuse to master PyMC}
 \author{Søren Jørgensen}
-\date{August 4, 2025}
+\date{August 5, 2025}
 \begin{document}
 \frontmatter
 \cleardoublepage
@@ -640,18 +640,18 @@ assignment to A or B as an excuse to master PyMC \par}
 %
 \vskip 0cm plus 2fill
 
-{\resizebox{!}{50mm}{\includegraphics[width=\textwidth]{ausegl_sort.pdf}} \par}
+{\resizebox{!}{50mm}{\includegraphics[width=\textwidth]{pdftheme/ausegl_sort.pdf}} \par}
 \vskip 0cm plus 2fill
 
-{\bfseries\Large\textit{Master of Science in Bioinformatics} \par}
+{\bfseries\Large\textit{} \par}
 \vspace{3ex}
 
-{\bfseries\large August 4, 2025 \par}
+{\bfseries\large August 5, 2025 \par}
 \vspace{3ex}
 
 \vspace{12ex}
 {\small Submitted in fulfillment of the requirements
-of the degree of Master of Science in Bioinformatics \par}
+of the degree of  \par}
 \pagebreak
 
 \begin{quote}
@@ -673,10 +673,8 @@ etc. There might be a better way. \par
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\listoffigures
-\listoftables
 
-\setstretch{1}
+\setstretch{1.2}
 \mainmatter
 \chapter{Introduction}\label{introduction}
 
@@ -706,6 +704,8 @@ on eigenvector signs. We propose a Bayesian MCMC framework as a
 spatially aware clustering method that soft-assigns compartments based
 on the eigendecomposition.
 
+\section{Bayesian MCMC}\label{bayesian-mcmc}
+
 \section{Continuing from where we
 left}\label{continuing-from-where-we-left}
 
@@ -730,7 +730,7 @@ additional pooling step was introduced to generate merged Hi-C matrices
 after grouping the samples into two groups established in the sequencing
 study; the sex chromosome was determined either \emph{X} or \emph{Y}.
 Additionally, it was modified to accomodate the new telomere-2-telomere
-assembly of \emph{rhesus macaca}, as it was only available from NCBI,
+assembly of \emph{Macaca mulata}, as it was only available from NCBI,
 and not UCSC servers.
 
 \section{Data generation}\label{data-generation}
@@ -745,12 +745,50 @@ matrix). It is implemented fully using the \emph{Open2C} tools and
 recommendations. Briefly, the raw read pairs are mapped (as paired-end
 reads) to the respective reference genome (either GRCh37 or
 T2T-MMU8v1.0) with \emph{bwa-mem2} {[}ref{]} with the \texttt{-P}
-option. Then the pairs are sorted and validated with \emph{pairtools}
-using a filter on mapping quality, \(mapq \geq 30\), for both mates.
+option. Then the pairs are parsed and sorted with \emph{pairtools}, and
+a deduplication and quality filter (\(mapq \geq 30\)) is run to remove
+PCR duplicates and technical noise from low-quality reads. Lastly, the
+binned interaction matrices (\texttt{.cool} files, hence also
+\emph{coolers}) are created from the remaining pairs into the
+base-resolution of 1kb bins that is then recursively coarsened until 1
+Mb bins. The resulting raw interaction matrices do not have a uniform
+coverage profile along the genome as a result of differential binding or
+accesibility of the restriction enzyme and other technical factors. High
+or low coverage is visible in the interaction matrices, where genomic
+regions will appear as highly or weakly interacting regions even though
+they are artefacts of the coverage. Thus, it is needed to balance the
+interaction counts to avoid \emph{visibility-induced biases} {[}ref{]};
+it is time for ICE.
+
+The interaction counts of each bin is corrected iteratively until
+convergence of the coverage, and the correction weight is saved to the
+cooler. The expected interaction matrix is derived from the decay in
+contact probability over genomic distance (also; distance decay), and is
+used to scale the observed interactions before performing
+eigendecomposition on the correlation matrix of observed/expected. Bins
+interacting with bins of the same type should keep a positive
+eigenvector, and vice versa otherwise. Thus, the first principal
+component \emph{should} capture the variance explained by the
+compartment assignment. The eigenvectors are then oriented to correlate
+with GC content, to ensure that positive values represent A-compartments
+and active chromatin, and negative values represent B-compartments and
+inactive chromatin.
+
+As also described in {[}ref{]}, sometimes there is a larger amount of
+variance in interaction frequency between chromosome arms than within
+arms. In these cases, the eigendecomposition will not capture the
+compartments, but only change its sign at the centromere. Thus, it is a
+safe practice to do the eigendecomposition on the chromosome arms
+separately, and is readily implemented into \emph{cooltools} by
+providing a viewframe to the function that does the calculations. It is
+not clear how further experimentation with narrowing the
+eigendecomposition viewframe affects the biological explanation of the
+results, but it is suggested as a method of obtaining more local
+compartmentalization (Wang et al. 2019) (termed local PCA).
 
 First, the pipeline was applied to generate high-resolution eigenvector
-tracks on the most recent, telomere-to-telomere \emph{rhesus macaca}
-assembly, T2T-MMUv8.1 {[}ref{]}, to improve the accuracy of the mapping
+tracks on the most recent, telomere-to-telomere \emph{Macaca mulata}
+assembly, T2T-MMU8v1.0 {[}ref{]}, to improve the accuracy of the mapping
 from the previous study.
 
 Additionally, the pipeline was applied to generate a eigenvectors of
@@ -772,11 +810,40 @@ I use PyMC (Abril-Pla et al. 2023) for all modeling, relying as much as
 possible on functions and built-in functionality for all anaysis. I
 start out small in the simplest model possible, then progressing to
 larger and more complex models. The basis of the probabilistic modeling
-is the assumption that the
+is the assumption that the eigenvectors of A- and B-compartments can be
+drawn from distinct distributions. I assume that the distributions
+underlying the compartments are Gaussian with different means, either
+\(\mu_a = 0.5\) or \(\mu_b = -0.5\). Additionally, I assume that a
+probability of being in A can be inferred from the eigenvector, and that
+a binary latent state can be derived from that to place compartment
+labels on each bin.
 
-\section{Method 1}\label{method-1}
+\subsection{Model 1: Spatial
+independency}\label{model-1-spatial-independency}
 
-The first method with a code block
+The simplest modeling approach is by regarading each of the bins
+independent of each other, and to simply draw from one of the
+distributions based on the encountered E1 value. The probability, \(p\)
+of being in A is determined using a flat prior, which is assigned to a
+type, \(z\), with a Bernoulli trial on \(p\). Additionally, the two
+distributions have a shared standard deviation out of a HalfNormal
+distribution, \(\sigma \sim \mathcal{HN}(1)\). That is,
+
+\begin{equation}\phantomsection\label{eq-simple_iid_model}{
+\begin{aligned}
+\mu_A &\sim \mathcal{N}(0.5, 0.5) \\
+\mu_B &\sim \mathcal{N}(-0.5, 0.5) \\
+\sigma &\sim \mathcal{HN}(1) \\
+p &\sim \text{Beta}(a, b)\\
+z_i &\sim \text{Bernoulli}(p) \\
+\mu_i &= z_i \cdot \mu_A + (1 - z_i) \cdot \mu_B \\
+y_i &\sim \mathcal{N}(\mu_i, \sigma) \\
+\end{aligned}
+}\end{equation}
+
+where \(y_i\) is the observed E1 value at bin \(i\),
+\(z_i \in \{0, 1\}\) is the latent compartment assignment (0 = B, 1 =
+A).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -830,6 +897,12 @@ Imakaev, Tobias Ragoczy, Agnes Telling, Ido Amit, et al. 2009.
 {``Comprehensive {Mapping} of {Long-Range Interactions Reveals Folding
 Principles} of the {Human Genome}.''} \emph{Science} 326 (5950):
 289--93. \url{https://doi.org/10.1126/science.1181369}.
+
+\bibitem[\citeproctext]{ref-wang2019reprogrammingmeioticchromatin}
+Wang, Yao, Hanben Wang, Yu Zhang, Zhenhai Du, Wei Si, Suixing Fan,
+Dongdong Qin, et al. 2019. {``Reprogramming of {Meiotic Chromatin
+Architecture} During {Spermatogenesis}.''} \emph{Molecular Cell} 73 (3):
+547--561.e6. \url{https://doi.org/10.1016/j.molcel.2018.11.019}.
 
 \end{CSLReferences}
 
