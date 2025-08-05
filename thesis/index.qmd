@@ -51,6 +51,10 @@ Chromatin architecture is of high interest in molecular biology, and increasingl
 
 However, this approach may place too much confidence in how expected interaction frequencies are estimated. By using the eigenvectors within a probabilistic model, where compartment identity is treated as a latent variable, we aim to recover information discarded in hard-labeling based on eigenvector signs. We propose a Bayesian MCMC framework as a spatially aware clustering method that soft-assigns compartments based on the eigendecomposition.
 
+## Bayesian MCMC 
+
+
+
 ## Continuing from where we left
 
 This study is a continuation of *Chromatin Compartments and Selection on X* (MSc thesis) [ref] and some methods were developed there. Especially, one product of the previous study was a pipeline to generate eigenvectors for binned genomes from raw Hi-C reads, utilizing *pairtools* [ref] *cooler* [ref] and *cooltools* [ref] from the *Open Chromosome Collective* ecosystem [ref]. 
@@ -59,15 +63,18 @@ This study is a continuation of *Chromatin Compartments and Selection on X* (MSc
 
 # Methods
 
-The pipeline from [ref] was reused in a modified form to accomodate a new data set of single-cell Hi-C sequencing of human cells. Here, an additional pooling step was introduced to generate merged Hi-C matrices after grouping the samples into two groups established in the sequencing study; the sex chromosome was determined either *X* or *Y*. Additionally, it was modified to accomodate the new telomere-2-telomere assembly of *rhesus macaca*, as it was only available from NCBI, and not UCSC servers. 
+The pipeline from [ref] was reused in a modified form to accomodate a new data set of single-cell Hi-C sequencing of human cells. Here, an additional pooling step was introduced to generate merged Hi-C matrices after grouping the samples into two groups established in the sequencing study; the sex chromosome was determined either *X* or *Y*. Additionally, it was modified to accomodate the new telomere-2-telomere assembly of *macaca mulata*, as it was only available from NCBI, and not UCSC servers. 
 
 ## Data generation 
 
 ### The ICE-method
 
-The pipeline previously developed implements the Iterative Correction and Eigendecomposition (ICE) method of Hi-C analysis [@lieberman-aiden2009comprehensivemappinglongrange] after mapping raw Hi-C reads to the reference genome, validating Hi-C pairs, and constructing the interaction map (Hi-C matrix). It is implemented fully using the *Open2C* tools and recommendations. Briefly, the raw read pairs are mapped (as paired-end reads) to the respective reference genome (either GRCh37 or T2T-MMU8v1.0) with *bwa-mem2* [ref] with the `-P` option. Then the pairs are sorted and validated with *pairtools* using a filter on mapping quality, $mapq \geq 30$, for both mates.
+The pipeline previously developed implements the Iterative Correction and Eigendecomposition (ICE) method of Hi-C analysis [@lieberman-aiden2009comprehensivemappinglongrange] after mapping raw Hi-C reads to the reference genome, validating Hi-C pairs, and constructing the interaction map (Hi-C matrix). It is implemented fully using the *Open2C* tools and recommendations. Briefly, the raw read pairs are mapped (as paired-end reads) to the respective reference genome (either GRCh37 or T2T-MMU8v1.0) with *bwa-mem2* [ref] with the `-P` option. Then the pairs are parsed and sorted with *pairtools*, and a deduplication and quality filter ($mapq \geq 30$) is run to remove PCR duplicates and technical noise from low-quality reads. Lastly, the binned interaction matrices (`.cool` files, hence also *coolers*) are created from the remaining pairs into the base-resolution of 1kb bins that is then recursively coarsened until 1 Mb bins. The resulting raw interaction matrices do not have a uniform coverage profile along the genome as a result of differential binding or accesibility of the restriction enzyme and other technical factors. High or low coverage is visible in the interaction matrices, where genomic regions will appear as highly or weakly interacting regions even though they are artefacts of the coverage. Thus, it is needed to balance the interaction counts to avoid *visibility-induced biases* [ref]; it is time for ICE. 
 
-First, the pipeline was applied to generate high-resolution eigenvector tracks on the most recent, telomere-to-telomere *rhesus macaca* assembly, T2T-MMUv8.1 [ref], to improve the accuracy of the mapping from the previous study.
+
+
+
+First, the pipeline was applied to generate high-resolution eigenvector tracks on the most recent, telomere-to-telomere *rhesus macaca* assembly, T2T-MMU8v1.0 [ref], to improve the accuracy of the mapping from the previous study.
 
 Additionally, the pipeline was applied to generate a eigenvectors of human sperm cells harboring the *X* chromosome. Even though the authors [ref] of this Hi-C data find high similarity between sperm cells harboring the *X* or the *Y* sex chromosomes, they barely describe their comparison. Thus, I decide to seperate them into two groups to be able to compare autosomal chromatin compartments later on if we wish to. A major downside of this is that the coverage is approximately halved, resulting in lower viable resolutions for subsequent analyses. 
 

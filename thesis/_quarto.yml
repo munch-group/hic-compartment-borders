@@ -18,8 +18,11 @@ manuscript:
 format:
   html: default
   # docx: default
-#  jats: default
+  #  jats: default
 
+  # An arxiv style extension, but we need Latin Modern fonts downloaded
+  # arxiv-pdf:
+  #   keep-tex: true
   pdf:
     # filters:
     # # - at: pre-ast
@@ -32,32 +35,18 @@ format:
     toc: true
     toc-depth: 2
     toc-title: "Table of contents"
-    lof: true
-    lot: true
+    lof: false
+    lot: false
     fig-align: center
     geometry:
-      - left=2.54cm
-      - right=2.54cm           
-      # - inner=3cm
-      # - outer=4cm
-      # - top=3cm
-      # - bottom=4cm
-      # - headsep=22pt
-      # - headheight=11pt
-      # - footskip=33pt
-      # - ignorehead
-      # - ignorefoot
-      # - heightrounded
-
-      # - textheight=9in,
-      # - textwidth=6.5in,
-      # - top=1in,
-      # - headheight=14pt,
-      # - headsep=25pt,
-      # - footskip=30pt      
+      - textheight=9in,
+      - textwidth=6.5in,
+      - top=1in,
+      - headheight=14pt,
+      - headsep=25pt,
+      - footskip=30pt      
     fontsize: 10pt
-    linestretch: 1.0
-    # linestretch: 1.25    
+    linestretch: 1.2   
     number-sections: true
     number-depth: 2    
     highlight-style: kate 
@@ -65,9 +54,9 @@ format:
     code:
       code-block-bg: "#dedede"    
     include-in-header:
-      - file: header_extra.tex
+      - file: pdftheme/header_extra.tex
     template-partials:
-      - before-body.tex      
+      - pdftheme/before-body.tex      
 
 notebook-links: false
 
