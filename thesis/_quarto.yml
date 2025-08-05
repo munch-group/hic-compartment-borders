@@ -39,12 +39,15 @@ format:
     lot: false
     fig-align: center
     geometry:
-      - textheight=9in,
-      - textwidth=6.5in,
-      - top=1in,
-      - headheight=14pt,
-      - headsep=25pt,
-      - footskip=30pt      
+      - left=1in
+      - right=1in
+      
+      # - textheight=9in,
+      # - textwidth=6.5in,
+      # - top=1in,
+      # - headheight=14pt,
+      # - headsep=25pt,
+      # - footskip=30pt      
     fontsize: 10pt
     linestretch: 1.2   
     number-sections: true
