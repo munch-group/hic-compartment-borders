@@ -30,15 +30,26 @@ $endfor$%
 {\resizebox{!}{50mm}{\includegraphics[width=\textwidth]{pdftheme/ausegl_sort.pdf}} \par}
 \vskip 0cm plus 2fill
 
+$if(degree)$
 {\bfseries\Large\textit{$degree$} \par}
+$elseif(course)$
+{\bfseries\Large\textit{$course$} \par}
+$endif$
 \vspace{3ex}
 
+$if(submission-date)$
+{\bfseries\large $submission-date$ \par}
+$else$
+% If no submission date is provided, use the current date
 {\bfseries\large $date$ \par}
+$endif$
 \vspace{3ex}
 
+$if(degree)$
 \vspace{12ex}
 {\small Submitted in fulfillment of the requirements
 of the degree of $degree$ \par}
+$endif$
 \pagebreak
 
 \begin{quote}
@@ -49,5 +60,15 @@ $for(by-author)$
     {- $by-author.name.literal$ \par}
 $endfor$%    
 \end{quote}
+}
+$endif$
+
+$if(abstract)$
+\vspace{10ex}
+{\center\bfseries\Large Abstract \par}
+{
+\begin{addmargin}[5em]{5em}
+{$abstract$}
+\end{addmargin}
 }
 $endif$
