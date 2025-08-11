@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-05">
+<meta name="dcterms.date" content="2025-08-11">
 <meta name="keywords" content="Gaussian Random Walk, Bayesian MCMC, Chromatin Structure in spermatogenesis">
 
 <title>Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework</title>
@@ -87,10 +87,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-748340008184753533c6bf31d29774a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d24ab4a4f01adf7b6391c077e236a78f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -125,10 +125,10 @@ window.Quarto = {
 <meta name="citation_title" content="Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework">
 <meta name="citation_keywords" content="Gaussian Random Walk,Bayesian MCMC,Chromatin Structure in spermatogenesis">
 <meta name="citation_author" content="Søren Jørgensen">
-<meta name="citation_publication_date" content="2025-08-05">
-<meta name="citation_cover_date" content="2025-08-05">
+<meta name="citation_publication_date" content="2025-08-11">
+<meta name="citation_cover_date" content="2025-08-11">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-08-05">
+<meta name="citation_online_date" content="2025-08-11">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=PyMC: A modern, and comprehensive probabilistic programming framework in Python;,citation_abstract=PyMC is a probabilistic programming library for Python that provides tools for constructing and fitting Bayesian models. It offers an intuitive, readable syntax that is close to the natural syntax statisticians use to describe models. PyMC leverages the symbolic computation library PyTensor, allowing it to be compiled into a variety of computational backends, such as C, JAX, and Numba, which in turn offer access to different computational architectures including CPU, GPU, and TPU. Being a general modeling framework, PyMC supports a variety of models including generalized hierarchical linear regression and classification, time series, ordinary differential equations (ODEs), and non-parametric models such as Gaussian processes (GPs). We demonstrate PyMC’s versatility and ease of use with examples spanning a range of common statistical models. Additionally, we discuss the positive role of PyMC in the development of the open-source ecosystem for probabilistic programming.;,citation_author=Oriol Abril-Pla;,citation_author=Virgile Andreani;,citation_author=Colin Carroll;,citation_author=Larry Dong;,citation_author=Christopher J. Fonnesbeck;,citation_author=Maxim Kochurov;,citation_author=Ravin Kumar;,citation_author=Junpeng Lao;,citation_author=Christian C. Luhmann;,citation_author=Osvaldo A. Martin;,citation_author=Michael Osthege;,citation_author=Ricardo Vieira;,citation_author=Thomas Wiecki;,citation_author=Robert Zinkov;,citation_publication_date=2023-09;,citation_cover_date=2023-09;,citation_year=2023;,citation_doi=10.7717/peerj-cs.1516;,citation_issn=2376-5992;,citation_volume=9;,citation_language=en-US;,citation_journal_title=PeerJ Computer Science;">
 <meta name="citation_reference" content="citation_title=Key role for CTCF in establishing chromatin structure in human embryos;,citation_author=Xuepeng Chen;,citation_author=Yuwen Ke;,citation_author=Keliang Wu;,citation_author=Han Zhao;,citation_author=Yaoyu Sun;,citation_author=Lei Gao;,citation_author=Zhenbo Liu;,citation_author=Jingye Zhang;,citation_author=Wenrong Tao;,citation_author=Zhenzhen Hou;,citation_author=Hui Liu;,citation_author=Jiang Liu;,citation_author=Zi-Jiang Chen;,citation_publication_date=2019-12;,citation_cover_date=2019-12;,citation_year=2019;,citation_issue=7786;,citation_doi=10.1038/s41586-019-1812-0;,citation_issn=0028-0836, 1476-4687;,citation_volume=576;,citation_language=en-US;,citation_journal_title=Nature;">
@@ -181,7 +181,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">August 5, 2025</p>
+              <p class="date">August 11, 2025</p>
             </div>
           </div>
           
@@ -231,7 +231,7 @@ window.Quarto = {
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
-  <li><a href="#bayesian-mcmc" id="toc-bayesian-mcmc" class="nav-link" data-scroll-target="#bayesian-mcmc">Bayesian MCMC</a></li>
+  <li><a href="#bayesian-statistics-and-modeling" id="toc-bayesian-statistics-and-modeling" class="nav-link" data-scroll-target="#bayesian-statistics-and-modeling">Bayesian Statistics and modeling</a></li>
   <li><a href="#continuing-from-where-we-left" id="toc-continuing-from-where-we-left" class="nav-link" data-scroll-target="#continuing-from-where-we-left">Continuing from where we left</a></li>
   </ul></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
@@ -242,7 +242,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">Modeling</a>
   <ul class="collapse">
-  <li><a href="#model-1-spatial-independency" id="toc-model-1-spatial-independency" class="nav-link" data-scroll-target="#model-1-spatial-independency">Model 1: Spatial independency</a></li>
+  <li><a href="#model-1-spatially-independent-i.i.d." id="toc-model-1-spatially-independent-i.i.d." class="nav-link" data-scroll-target="#model-1-spatially-independent-i.i.d.">Model 1: Spatially independent (i.i.d.)</a></li>
+  <li><a href="#model-2-spatialally-dependent-random-walk" id="toc-model-2-spatialally-dependent-random-walk" class="nav-link" data-scroll-target="#model-2-spatialally-dependent-random-walk">Model 2: Spatialally dependent (Random Walk)</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
@@ -268,9 +269,23 @@ window.Quarto = {
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>Chromatin architecture is of high interest in molecular biology, and increasingly so in molecular evolution. A high-throughput method for mapping the 3D organization of the genome was proposed by <span class="citation" data-cites="lieberman-aiden2009comprehensivemappinglongrange">Lieberman-Aiden et al. (<a href="#ref-lieberman-aiden2009comprehensivemappinglongrange" role="doc-biblioref">2009</a>)</span>, and has since been the standard method of infering chromatin compartments <span class="citation" data-cites="lajoie2015hitchhikersguidehic">(<a href="#ref-lajoie2015hitchhikersguidehic" role="doc-biblioref">Lajoie, Dekker, and Kaplan 2015</a>)</span>. Briefly, chromatin interactions from Hi-C sequencing is used to generate an interaction matrix of valid Hi-C contacts, and PCA is performed on the covariance matrix of the observed/expected matrix. The following rationale is proposed and experimentally supported; if clustering into 2 types (A/B compartments), genomic positions that interact will yield a positive value in the covariance matrix, and vice versa for positions that do not interact. Then, when PCA is performed, the first principal component captures the variance that arise from being in different compart by its sign. The direction of the eigenvector (the sign) is then phased with a biologically relevant measure (such as GC content) to establish that the A compartment is largely the <em>active</em> chromatin and B is largely <em>inactive</em>.</p>
-<p>However, this approach may place too much confidence in how expected interaction frequencies are estimated. By using the eigenvectors within a probabilistic model, where compartment identity is treated as a latent variable, we aim to recover information discarded in hard-labeling based on eigenvector signs. We propose a Bayesian MCMC framework as a spatially aware clustering method that soft-assigns compartments based on the eigendecomposition.</p>
-<section id="bayesian-mcmc" class="level2">
-<h2 class="anchored" data-anchor-id="bayesian-mcmc">Bayesian MCMC</h2>
+<p>However, this approach may place too much confidence in how expected interaction frequencies are estimated. By using the eigenvectors within a probabilistic model, where compartment identity is treated as a latent variable, we aim to recover information discarded in hard-labeling based on eigenvector signs. We propose a Bayesian MCMC framework as a spatially aware clustering method that soft-assigns compartments based on the eigendecomposition by assuming that the magnitude of the eigenvector is significant.</p>
+<section id="bayesian-statistics-and-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="bayesian-statistics-and-modeling">Bayesian Statistics and modeling</h2>
+<p>I Bayesian statistics, a prior belief, <span class="math inline">\(P(\theta)\)</span> is combined with the likelihood of observed data, <span class="math inline">\(P(D|\theta)\)</span>, to achieve a posterior probability, <span class="math inline">\(P(\theta|D)\)</span>, as Bayes’ Theorem formulates in</p>
+<p><span id="eq-bayes-theorem"><span class="math display">\[
+P(\theta | D) = \frac{P(D \ | \ \theta) \ P(\theta)}{P(D)}.
+\tag{1}\]</span></span></p>
+<p>To make a proper probability distribution of the posterior, we use the marginal likelihood,</p>
+<p><span id="eq-marginal-likelihood"><span class="math display">\[
+P(D) =\int P(D \ | \ \theta) \ P(\theta) \ \mathrm{d}\theta,
+\tag{2}\]</span></span></p>
+<p>which integrates the likelihood over all possible parameter values, weighted by the prior. However, <span class="math inline">\(P(D)\)</span> is often high-dimensional and therefore intractable to evaluate analytically. Therefore, we can estimate <strong>posterior properties</strong> without explicitly computing <span class="math inline">\(P(D)\)</span> by <strong>sampling from the posterior</strong> using <em>Markov Chain Monte Carlo</em> (MCMC) methods.</p>
+<p>MCMC avoids the daunting integral by constructing a Markov chain [ref] with a stationary distribution <span class="math inline">\(P(\theta|D)\)</span>. Then, after a burn-in period, the samples, <span class="math inline">\(\theta^{(1)}, \dots, \theta^{(N)}\)</span>, can be used to approximate the expectation:</p>
+<p><span id="eq-mcmc-expectation"><span class="math display">\[
+\mathbb{E} \left[ f(\theta) \ | \ D \right] \approx \frac{1}{N}\sum_{i=1}^N f \left ( \theta^{(i)} \right ).
+\tag{3}\]</span></span></p>
+<p>This enables us to perform inference in models without analytical evaluation.</p>
 </section>
 <section id="continuing-from-where-we-left" class="level2">
 <h2 class="anchored" data-anchor-id="continuing-from-where-we-left">Continuing from where we left</h2>
@@ -282,6 +297,10 @@ window.Quarto = {
 </section>
 <section id="methods" class="level1">
 <h1>Methods</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python code </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> mc<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The pipeline from [ref] was reused in a modified form to accomodate a new data set of single-cell Hi-C sequencing of human cells. Here, an additional pooling step was introduced to generate merged Hi-C matrices after grouping the samples into two groups established in the sequencing study; the sex chromosome was determined either <em>X</em> or <em>Y</em>. Additionally, it was modified to accomodate the new telomere-2-telomere assembly of <em>Macaca mulata</em>, as it was only available from NCBI, and not UCSC servers.</p>
 <section id="data-generation" class="level2">
 <h2 class="anchored" data-anchor-id="data-generation">Data generation</h2>
@@ -298,9 +317,10 @@ window.Quarto = {
 <section id="modeling" class="level2">
 <h2 class="anchored" data-anchor-id="modeling">Modeling</h2>
 <p>I use PyMC <span class="citation" data-cites="abril-pla2023pymcmoderncomprehensive">(<a href="#ref-abril-pla2023pymcmoderncomprehensive" role="doc-biblioref">Abril-Pla et al. 2023</a>)</span> for all modeling, relying as much as possible on functions and built-in functionality for all anaysis. I start out small in the simplest model possible, then progressing to larger and more complex models. The basis of the probabilistic modeling is the assumption that the eigenvectors of A- and B-compartments can be drawn from distinct distributions. I assume that the distributions underlying the compartments are Gaussian with different means, either <span class="math inline">\(\mu_a = 0.5\)</span> or <span class="math inline">\(\mu_b = -0.5\)</span>. Additionally, I assume that a probability of being in A can be inferred from the eigenvector, and that a binary latent state can be derived from that to place compartment labels on each bin.</p>
-<section id="model-1-spatial-independency" class="level3">
-<h3 class="anchored" data-anchor-id="model-1-spatial-independency">Model 1: Spatial independency</h3>
-<p>The simplest modeling approach is by regarading each of the bins independent of each other, and to simply draw from one of the distributions based on the encountered E1 value. The probability, <span class="math inline">\(p\)</span> of being in A is determined using a flat prior, which is assigned to a type, <span class="math inline">\(z\)</span>, with a Bernoulli trial on <span class="math inline">\(p\)</span>. Additionally, the two distributions have a shared standard deviation out of a HalfNormal distribution, <span class="math inline">\(\sigma \sim \mathcal{HN}(1)\)</span>. That is,</p>
+<p>I experimented with the possibility of marginalizing over the binary latent state to make sampling faster, as the No-U-Turn-Sampler (NUTS) [ref] can only sample from continuous variables, and the <em>BinaryGibbsMetropolis</em> sampler is significantly slower. PyMC notes some builtin automatic marginalization of discrete variables [ref], but the example used does not directly translate into my case. Therefore, a continuous mixture model of the two underlying Gaussians were tried to test sampling efficiency or differences. Here, in stead of using compartment type as a switch (“choose A or B”), an assignment probability was used as a mixing weight for the two Gaussians. Though much faster (&gt;20x), I reflect that the underlying biological assumptions about compartment identity is also marginalized (read: lost) when dropping the hard type assignment.</p>
+<section id="model-1-spatially-independent-i.i.d." class="level3">
+<h3 class="anchored" data-anchor-id="model-1-spatially-independent-i.i.d.">Model 1: Spatially independent (i.i.d.)</h3>
+<p>The simplest modeling approach is by regarading each of the bins independent of each other, and to simply draw from one of the distributions based on the encountered E1 value. The probability, <span class="math inline">\(p\)</span> of being in A is determined using a flat prior, <span class="math inline">\(Beta(1,1)\)</span>, which is assigned to a type, <span class="math inline">\(z\)</span>, with a Bernoulli trial on <span class="math inline">\(p\)</span>. Additionally, the two distributions have a shared standard deviation out of a HalfNormal distribution, <span class="math inline">\(\sigma \sim \mathcal{HN}(1)\)</span>. That is,</p>
 <p><span id="eq-simple_iid_model"><span class="math display">\[
 \begin{aligned}
 \mu_A &amp;\sim \mathcal{N}(0.5, 0.5) \\
@@ -311,12 +331,21 @@ z_i &amp;\sim \text{Bernoulli}(p) \\
 \mu_i &amp;= z_i \cdot \mu_A + (1 - z_i) \cdot \mu_B \\
 y_i &amp;\sim \mathcal{N}(\mu_i, \sigma) \\
 \end{aligned}
-\tag{1}\]</span></span></p>
-<p>where <span class="math inline">\(y_i\)</span> is the observed E1 value at bin <span class="math inline">\(i\)</span>, <span class="math inline">\(z_i \in \{0, 1\}\)</span> is the latent compartment assignment (0 = B, 1 = A).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python code </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> mc<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+\tag{4}\]</span></span></p>
+<p>where <span class="math inline">\(y_i\)</span> is the observed E1 value at bin <span class="math inline">\(i\)</span>, <span class="math inline">\(z_i \in \{0, 1\}\)</span> is the latent compartment assignment (0 = B, 1 = A). 8 chains of 1000 samples (and <span class="math inline">\(8x1000\)</span> tuning samples) results in 8000 posterior samples after the model has run.</p>
+<p>The model might be able to fit well to the observed data, but it is unlikely that it can generalize.</p>
+</section>
+<section id="model-2-spatialally-dependent-random-walk" class="level3">
+<h3 class="anchored" data-anchor-id="model-2-spatialally-dependent-random-walk">Model 2: Spatialally dependent (Random Walk)</h3>
+<p>To take into account the autocorrelation along the positional axis, I implement a Gaussian Random Walk (GRW) in the logit space of the compartment assignment. That is, the steps between each assignment probability is restricted with a random walk from a bin <code>i</code> to the next bin <code>i+1</code>. In stead of drawing the compartment probability, <span class="math inline">\(p\)</span>, from a flat prior directly, some new variables are introduced. A GRW is effectively the cummulative sum of steps along the positional axis, and can be defined as centered or non-centered [ref]. The centered version is pre-implemented in PyMC as <code>pymc.GaussianRandomWalk</code> [ref], taking a <code>sigma</code> parameter for standard deviation. In the centered GRW the step size and standard deviations are exploring parameter space together and might ot explore it as efficiently or as quickly as a non-centered model that samples the two parameters independently. On the other hand, the non-centered model might interact more with hyperparameters and data. Better results achieved from a non-centered model might indicate that the data is not informative enough for the tighter restrictions on the posterior emposed by the centered model</p>
+<section id="centered-grw" class="level4">
+<h4 class="anchored" data-anchor-id="centered-grw">Centered GRW</h4>
+<p>The new variables <code>grw_sigma</code> was drawn from a Half-Normal distribution and given to the <code>logit_w</code> that models the GRW with <code>pymc.GaussianRandomWalk</code></p>
+</section>
+<section id="non-centered-grw" class="level4">
+<h4 class="anchored" data-anchor-id="non-centered-grw">Non-centered GRW</h4>
+<p>There are different opinions on when to reparameterize a centered model into a non-centered model [ref], but in my case, PyMC suggested a reparameterization.</p>
+</section>
 </section>
 </section>
 </section>

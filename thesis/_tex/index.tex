@@ -615,7 +615,7 @@ eigenvectors from Hi-C data analysis in a Bayesian framework}
 in a Gaussian Random Walk and infering a latent compartment assignment
 to A or B as an excuse to master PyMC}
 \author{Søren Jørgensen}
-\date{August 5, 2025}
+\date{August 11, 2025}
 \begin{document}
 \frontmatter
 \cleardoublepage
@@ -643,15 +643,12 @@ assignment to A or B as an excuse to master PyMC \par}
 {\resizebox{!}{50mm}{\includegraphics[width=\textwidth]{pdftheme/ausegl_sort.pdf}} \par}
 \vskip 0cm plus 2fill
 
-{\bfseries\Large\textit{} \par}
+{\bfseries\Large\textit{Projects in Bioinformatics} \par}
 \vspace{3ex}
 
-{\bfseries\large August 5, 2025 \par}
+{\bfseries\large September 15, 2025 \par}
 \vspace{3ex}
 
-\vspace{12ex}
-{\small Submitted in fulfillment of the requirements
-of the degree of  \par}
 \pagebreak
 
 \begin{quote}
@@ -666,6 +663,51 @@ etc. There might be a better way. \par
     {- Søren Jørgensen \par}
 %    
 \end{quote}
+}
+
+\vspace{10ex}
+{\center\bfseries\Large Abstract \par}
+{
+\begin{addmargin}[5em]{5em}
+{Here, I aim to do probabilistic modeling of eigenvectors obatained from
+the ICE method in Hi-C analysis. The idea is to capture some of the
+variance lost when hard-labeleling the bins based on only the
+\emph{sign} of the eigenvector.
+
+This model infers A/B chromatin compartment structure from the first
+eigenvector (E1) of the Hi-C contact matrix using a Bayesian framework.
+
+\textbf{Goals}
+
+\begin{itemize}
+\tightlist
+\item
+  Replace hard sign-thresholding of E1 with a probabilistic compartment
+  assignment.
+\item
+  Quantify uncertainty in compartment calls for each genomic bin.
+\item
+  Allow for modeling of missing E1 values due to low signal.
+\end{itemize}
+
+\textbf{Assumptions}
+
+\begin{itemize}
+\tightlist
+\item
+  Each bin belongs to one of two latent states: A or B compartment.
+\item
+  E1 values are generated from Gaussian distributions specific to each
+  compartment.
+\item
+  Prior belief: A has positive E1 values (\(\mu = 0.5\)), B has negative
+  (\(\mu = -0.5\)).
+\item
+  Bins are initially treated as independent
+\item
+  Spatial depency are added later (Gaussian Random Walk)
+\end{itemize}}
+\end{addmargin}
 }
 
 \renewcommand*\contentsname{Table of contents}
@@ -702,9 +744,45 @@ a probabilistic model, where compartment identity is treated as a latent
 variable, we aim to recover information discarded in hard-labeling based
 on eigenvector signs. We propose a Bayesian MCMC framework as a
 spatially aware clustering method that soft-assigns compartments based
-on the eigendecomposition.
+on the eigendecomposition by assuming that the magnitude of the
+eigenvector is significant.
 
-\section{Bayesian MCMC}\label{bayesian-mcmc}
+\section{Bayesian Statistics and
+modeling}\label{bayesian-statistics-and-modeling}
+
+I Bayesian statistics, a prior belief, \(P(\theta)\) is combined with
+the likelihood of observed data, \(P(D|\theta)\), to achieve a posterior
+probability, \(P(\theta|D)\), as Bayes' Theorem formulates in
+
+\begin{equation}\phantomsection\label{eq-bayes-theorem}{ 
+P(\theta | D) = \frac{P(D \ | \ \theta) \ P(\theta)}{P(D)}.
+}\end{equation}
+
+To make a proper probability distribution of the posterior, we use the
+marginal likelihood,
+
+\begin{equation}\phantomsection\label{eq-marginal-likelihood}{
+P(D) =\int P(D \ | \ \theta) \ P(\theta) \ \mathrm{d}\theta,
+}\end{equation}
+
+which integrates the likelihood over all possible parameter values,
+weighted by the prior. However, \(P(D)\) is often high-dimensional and
+therefore intractable to evaluate analytically. Therefore, we can
+estimate \textbf{posterior properties} without explicitly computing
+\(P(D)\) by \textbf{sampling from the posterior} using \emph{Markov
+Chain Monte Carlo} (MCMC) methods.
+
+MCMC avoids the daunting integral by constructing a Markov chain
+{[}ref{]} with a stationary distribution \(P(\theta|D)\). Then, after a
+burn-in period, the samples, \(\theta^{(1)}, \dots, \theta^{(N)}\), can
+be used to approximate the expectation:
+
+\begin{equation}\phantomsection\label{eq-mcmc-expectation}{
+\mathbb{E} \left[ f(\theta) \ | \ D \right] \approx \frac{1}{N}\sum_{i=1}^N f \left ( \theta^{(i)} \right ).
+}\end{equation}
+
+This enables us to perform inference in models without analytical
+evaluation.
 
 \section{Continuing from where we
 left}\label{continuing-from-where-we-left}
@@ -723,6 +801,15 @@ only the sign
 \end{quote}
 
 \chapter{Methods}\label{methods}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Python code }
+\NormalTok{e }\OperatorTok{=}\NormalTok{ mc}\OperatorTok{**}\DecValTok{2}
+
+\BuiltInTok{print}\NormalTok{(e)}
+\end{Highlighting}
+\end{Shaded}
 
 The pipeline from {[}ref{]} was reused in a modified form to accomodate
 a new data set of single-cell Hi-C sequencing of human cells. Here, an
@@ -818,16 +905,30 @@ probability of being in A can be inferred from the eigenvector, and that
 a binary latent state can be derived from that to place compartment
 labels on each bin.
 
-\subsection{Model 1: Spatial
-independency}\label{model-1-spatial-independency}
+I experimented with the possibility of marginalizing over the binary
+latent state to make sampling faster, as the No-U-Turn-Sampler (NUTS)
+{[}ref{]} can only sample from continuous variables, and the
+\emph{BinaryGibbsMetropolis} sampler is significantly slower. PyMC notes
+some builtin automatic marginalization of discrete variables {[}ref{]},
+but the example used does not directly translate into my case.
+Therefore, a continuous mixture model of the two underlying Gaussians
+were tried to test sampling efficiency or differences. Here, in stead of
+using compartment type as a switch (``choose A or B''), an assignment
+probability was used as a mixing weight for the two Gaussians. Though
+much faster (\textgreater20x), I reflect that the underlying biological
+assumptions about compartment identity is also marginalized (read: lost)
+when dropping the hard type assignment.
+
+\subsection{Model 1: Spatially independent
+(i.i.d.)}\label{model-1-spatially-independent-i.i.d.}
 
 The simplest modeling approach is by regarading each of the bins
 independent of each other, and to simply draw from one of the
 distributions based on the encountered E1 value. The probability, \(p\)
-of being in A is determined using a flat prior, which is assigned to a
-type, \(z\), with a Bernoulli trial on \(p\). Additionally, the two
-distributions have a shared standard deviation out of a HalfNormal
-distribution, \(\sigma \sim \mathcal{HN}(1)\). That is,
+of being in A is determined using a flat prior, \(Beta(1,1)\), which is
+assigned to a type, \(z\), with a Bernoulli trial on \(p\).
+Additionally, the two distributions have a shared standard deviation out
+of a HalfNormal distribution, \(\sigma \sim \mathcal{HN}(1)\). That is,
 
 \begin{equation}\phantomsection\label{eq-simple_iid_model}{
 \begin{aligned}
@@ -843,16 +944,45 @@ y_i &\sim \mathcal{N}(\mu_i, \sigma) \\
 
 where \(y_i\) is the observed E1 value at bin \(i\),
 \(z_i \in \{0, 1\}\) is the latent compartment assignment (0 = B, 1 =
-A).
+A). 8 chains of 1000 samples (and \(8x1000\) tuning samples) results in
+8000 posterior samples after the model has run.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Python code }
-\NormalTok{e }\OperatorTok{=}\NormalTok{ mc}\OperatorTok{**}\DecValTok{2}
+The model might be able to fit well to the observed data, but it is
+unlikely that it can generalize.
 
-\BuiltInTok{print}\NormalTok{(e)}
-\end{Highlighting}
-\end{Shaded}
+\subsection{Model 2: Spatialally dependent (Random
+Walk)}\label{model-2-spatialally-dependent-random-walk}
+
+To take into account the autocorrelation along the positional axis, I
+implement a Gaussian Random Walk (GRW) in the logit space of the
+compartment assignment. That is, the steps between each assignment
+probability is restricted with a random walk from a bin \texttt{i} to
+the next bin \texttt{i+1}. In stead of drawing the compartment
+probability, \(p\), from a flat prior directly, some new variables are
+introduced. A GRW is effectively the cummulative sum of steps along the
+positional axis, and can be defined as centered or non-centered
+{[}ref{]}. The centered version is pre-implemented in PyMC as
+\texttt{pymc.GaussianRandomWalk} {[}ref{]}, taking a \texttt{sigma}
+parameter for standard deviation. In the centered GRW the step size and
+standard deviations are exploring parameter space together and might ot
+explore it as efficiently or as quickly as a non-centered model that
+samples the two parameters independently. On the other hand, the
+non-centered model might interact more with hyperparameters and data.
+Better results achieved from a non-centered model might indicate that
+the data is not informative enough for the tighter restrictions on the
+posterior emposed by the centered model
+
+\subsubsection{Centered GRW}\label{centered-grw}
+
+The new variables \texttt{grw\_sigma} was drawn from a Half-Normal
+distribution and given to the \texttt{logit\_w} that models the GRW with
+\texttt{pymc.GaussianRandomWalk}
+
+\subsubsection{Non-centered GRW}\label{non-centered-grw}
+
+There are different opinions on when to reparameterize a centered model
+into a non-centered model {[}ref{]}, but in my case, PyMC suggested a
+reparameterization.
 
 \chapter{Results}\label{results}
 
