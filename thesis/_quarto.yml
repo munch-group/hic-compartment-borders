@@ -30,6 +30,7 @@ format:
     #   - movesubcaptions.lua  
     # # latex-clean: false
     documentclass: scrbook
+    classoption: openany # remove this option to return to book style chapters on right side
     pdf-engine: pdflatex
     papersize: A4
     toc: true

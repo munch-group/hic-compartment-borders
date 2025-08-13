@@ -130,11 +130,16 @@ dmypy.json
 
 steps
 
+# Quarto tmp files
 /.quarto/
 _book/
-
 /.luarc.json
 
+# GWF workflow tmp and log files
 *.sentinel
 
 /.gwf/
+notebooks/.gwf/
+
+results/models
+results/traces
