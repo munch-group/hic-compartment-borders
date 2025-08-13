@@ -88,7 +88,7 @@ This study is a continuation of *Chromatin Compartments and Selection on X* (MSc
 
 # Methods
 
-```python
+```{{python}}
 import pymc as pm
 import pytensor.tensor as pt
 
@@ -122,11 +122,11 @@ I experimented with the possibility of marginalizing over the binary latent stat
 
 When taking advantage of PyMC's vectorization capabilities, a single variable `mu` can be defined with an array of $\mu$'s for respective distributions. That is, we can define 
 
-```python
+```{{python}}
 mu = pm.Normal('mu', mu=[-0.5, 0.5], sigma=sigma, shape=2)
 ```
 
-where `label` comes from a dictionary of coordinates for the model to map the observations to. Here, `shape=2` is not necessary, but provides clarity. For even more clarity, we can define the coordinates underlying the model and then pass it to the variable, as with `coords = {'label': ['B', 'A']}` and passing `dims=label` in stead of `shape=2`. Additionally, to prevent the distributions leaking into each other, I apply an `ordered.transform` to the variable, ensuring that the first of the 2 draws will be lower than the next. 
+Here, `shape=2` is not necessary as it is implicit from the shape of the `mu`-parameter, but adds clarity. For even more clarity, we can define the coordinates underlying the model and then pass it to the variable, as with `coords = {'label': ['B', 'A']}` and passing `dims=label` in stead of `shape=2`. Additionally, to prevent the distributions leaking into each other, I apply an `ordered.transform` to the variable, ensuring that the first of the 2 draws will be lower than the next. 
 
 ### Model 1: Spatially independent (i.i.d.)
 
@@ -150,7 +150,11 @@ $${#eq-simple_iid_model}
 
 where $y_i$ is the observed E1 value at bin $i$, $z_i \in \{0, 1\}$ is the latent compartment assignment (0 = B, 1 = A). 8 chains of 1000 samples (and $8x1000$ tuning samples) results in 8000 posterior samples after the model has run. 
 
-The model might be able to fit well to the observed data, but it is unlikely that it can generalize. 
+The model might be able to fit well to the observed data, but it is unlikely that it can generalize. Here it is as a Mermaid-js diagram:
+
+{{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-simple_iid_model >}}
+
+Updated with display Image.
 
 ### Model 2: Spatialally dependent (Random Walk)
 
@@ -158,7 +162,7 @@ To take into account the autocorrelation along the positional axis, I implement 
 
 #### Centered GRW
 
-The new variables `grw_sigma` was sampled from a Half-Normal distribution and given to the `logit_w` that models the GRW with `pymc.GaussianRandomWalk`. As noted, both variables explore parameter space together. 
+The new variables `grw_sigma` was sampled from a Half-Normal distribution and given to the `logit_p` that models the GRW with `pymc.GaussianRandomWalk`. As noted, both variables explore parameter space together. Then, the logits are converted to probabilities, $p$, by squishing them through a sigmoid, and finally, the compartment is assigned as in the *i.i.d.* model by a Bernoulli trial.
 
 $$
 \begin{aligned}
@@ -166,7 +170,8 @@ $$
 \mu_B &\sim \mathcal{N}(-0.5, 0.5) \\
 \sigma &\sim \mathcal{HN}(1) \\
 \sigma_{\mathrm{GRW}} &\sim \mathcal{HN}(0.01)\\
-\mathrm{logit}_w &= \operatorname{sigmoid}(\sigma_{\mathrm{GRW}}) \\
+\mathrm{logit}_p &\sim \operatorname{GaussianRandomWalk}(\sigma_{\mathrm{GRW}}) \\
+p &= \operatorname{sigmoid}(logit_w) \\
 z_i &\sim \text{Bernoulli}(p) \\
 \mu_i &= 
 \begin{cases}
