@@ -804,10 +804,12 @@ only the sign
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{python\}}
 \ImportTok{import}\NormalTok{ pymc }\ImportTok{as}\NormalTok{ pm}
 \ImportTok{import}\NormalTok{ pytensor.tensor }\ImportTok{as}\NormalTok{ pt}
 
 \BuiltInTok{print}\NormalTok{(pm.\_\_version, pt.\_\_version\_\_)}
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -925,15 +927,16 @@ respective distributions. That is, we can define
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{python\}}
 \NormalTok{mu }\OperatorTok{=}\NormalTok{ pm.Normal(}\StringTok{\textquotesingle{}mu\textquotesingle{}}\NormalTok{, mu}\OperatorTok{=}\NormalTok{[}\OperatorTok{{-}}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{], sigma}\OperatorTok{=}\NormalTok{sigma, shape}\OperatorTok{=}\DecValTok{2}\NormalTok{)}
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}}
 \end{Highlighting}
 \end{Shaded}
 
-where \texttt{label} comes from a dictionary of coordinates for the
-model to map the observations to. Here, \texttt{shape=2} is not
-necessary, but provides clarity. For even more clarity, we can define
-the coordinates underlying the model and then pass it to the variable,
-as with
+Here, \texttt{shape=2} is not necessary as it is implicit from the shape
+of the \texttt{mu}-parameter, but adds clarity. For even more clarity,
+we can define the coordinates underlying the model and then pass it to
+the variable, as with
 \texttt{coords\ =\ \{\textquotesingle{}label\textquotesingle{}:\ {[}\textquotesingle{}B\textquotesingle{},\ \textquotesingle{}A\textquotesingle{}{]}\}}
 and passing \texttt{dims=label} in stead of \texttt{shape=2}.
 Additionally, to prevent the distributions leaking into each other, I
@@ -973,10 +976,29 @@ A). 8 chains of 1000 samples (and \(8x1000\) tuning samples) results in
 8000 posterior samples after the model has run.
 
 The model might be able to fit well to the observed data, but it is
-unlikely that it can generalize.
+unlikely that it can generalize. Here it is as a Mermaid-js diagram,
+embedded from the builtin Mermaid-representation of PyMC.
 
-\subsection{Model 2: Spatialally dependent (Random
-Walk)}\label{model-2-spatialally-dependent-random-walk}
+\begin{figure}[H]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-latex/..-notebooks-02_PyMC_independent_bins-fig-simple_iid_model-output-1.jpeg}}
+
+}
+
+\caption{\label{fig-simple_iid_model}Simple i.i.d. model for E1 values.
+\texttt{p} is the probability of a bin being in compartment A,
+\texttt{z} is the latent state variable indicating whether a bin is A or
+B, and \texttt{mu\_a} and \texttt{mu\_b} are the expected means for A
+and B compartments, respectively. The model assumes that the E1 values
+are normally distributed around these means with a shared standard
+deviation \texttt{sigma}.}
+
+\end{figure}%
+
+\subsection{Model 2: Spatially dependent (Random
+Walk)}\label{model-2-spatially-dependent-random-walk}
 
 To take into account the autocorrelation along the positional axis, I
 implement a Gaussian Random Walk (GRW) in the logit space of the
@@ -1000,9 +1022,12 @@ posterior emposed by the centered model
 \subsubsection{Centered GRW}\label{centered-grw}
 
 The new variables \texttt{grw\_sigma} was sampled from a Half-Normal
-distribution and given to the \texttt{logit\_w} that models the GRW with
+distribution and given to the \texttt{logit\_p} that models the GRW with
 \texttt{pymc.GaussianRandomWalk}. As noted, both variables explore
-parameter space together.
+parameter space together. Then, the logits are converted to
+probabilities, \(p\), by squishing them through a sigmoid, and finally,
+the compartment is assigned as in the \emph{i.i.d.} model by a Bernoulli
+trial.
 
 \begin{equation}\phantomsection\label{eq-centered-grw}{
 \begin{aligned}
@@ -1010,7 +1035,8 @@ parameter space together.
 \mu_B &\sim \mathcal{N}(-0.5, 0.5) \\
 \sigma &\sim \mathcal{HN}(1) \\
 \sigma_{\mathrm{GRW}} &\sim \mathcal{HN}(0.01)\\
-\mathrm{logit}_w &= \operatorname{sigmoid}(\sigma_{\mathrm{GRW}}) \\
+\mathrm{logit}_p &\sim \operatorname{GaussianRandomWalk}(\sigma_{\mathrm{GRW}}) \\
+p &= \operatorname{sigmoid}(logit_w) \\
 z_i &\sim \text{Bernoulli}(p) \\
 \mu_i &= 
 \begin{cases}
@@ -1053,6 +1079,33 @@ z_i &\sim \text{Bernoulli}(p) \\
 y_i &\sim \mathcal{N}(\mu_i, \sigma) \\
 \end{aligned}
 }\end{equation}
+
+\section{Evaluations}\label{evaluations}
+
+To be able to comparatively evaluate the models, we must establish
+exactly what we are modeling. The biological assumptions we make is that
+\textbf{1)} a given genomic region can be one type at a time, and
+\textbf{2)} the autocorrelation between intervals along the genome can
+be modeled by probabilistic smoothing of the E1 track, even at 10kb
+resolution. The goal is not to discover new compartments, but to model
+the transitions between compartments with the assumption that some peaks
+or dips in E1 that barely causes a sign change are potentially caused by
+noise and are thus not of biological relevance. Of course, the ability
+to model this behaviour relies heavily on the assumption that the value
+of the E1 track carries information about the distinction between
+compartments additional to that of the sign of the vector.
+
+In a classical setting, the way to compare Bayesian models is by
+\emph{some} measure of how much \emph{information} a model has learned
+from the data it was trained on. \emph{Arviz} provides the \emph{Akaike
+Information Criterion} (AIC) and the \emph{Widely Applicable Information
+Criterion} (WAIC), where it uses leave-one-out cross-validation to
+generate the out-of-sample predictive accuracy. Conveniently, the
+\texttt{arviz.compare} takes multiple models and generates a neat table
+with the results of its cross-validation analysis.
+
+But, if the purpose of the model is smoothing, we do not necessarily
+need it to fit too well to the data.
 
 \chapter{Results}\label{results}
 

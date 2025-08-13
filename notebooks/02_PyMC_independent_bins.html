@@ -682,7 +682,7 @@ Sampling: [nu_exp, nu_norm]</code></pre>
 </section>
 <section id="model-in-pymc" class="level3">
 <h3 class="anchored" data-anchor-id="model-in-pymc">Model in PyMC</h3>
-<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:03:55.094856Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:03:55.094573Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:03:55.206018Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:03:55.205613Z&quot;}}" data-execution_count="7">
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:03:55.094856Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:03:55.094573Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:03:55.206018Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:03:55.205613Z&quot;}}" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> {<span class="st">"bins"</span>: df.index.values,</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">"pos"</span>: df.start.values}</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -699,20 +699,34 @@ Sampling: [nu_exp, nu_norm]</code></pre>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> pm.HalfNormal(<span class="st">"sigma"</span>, <span class="fl">0.3</span>)</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Latent state for each bin: 1 = A, 0 = B</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> pm.Beta(<span class="st">"p"</span>, <span class="dv">2</span>, <span class="dv">2</span>, dims<span class="op">=</span><span class="st">"bins"</span>)  </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> pm.Beta(<span class="st">"p"</span>, <span class="dv">2</span>, <span class="dv">2</span>, dims<span class="op">=</span><span class="st">"pos"</span>)  </span>
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Latent state variable z, indicating whether a bin is A or B</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> pm.Bernoulli(<span class="st">"z"</span>, p<span class="op">=</span>p, dims<span class="op">=</span><span class="st">"bins"</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> pm.Bernoulli(<span class="st">"z"</span>, p<span class="op">=</span>p, dims<span class="op">=</span><span class="st">"pos"</span>)</span>
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># per-bin expected mean</span></span>
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> pm.math.switch(z, mu_a, mu_b) </span>
 <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Likelihood estimate </span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    y_lik <span class="op">=</span> pm.Normal(<span class="st">"y_lik"</span>, mu<span class="op">=</span>mu, sigma<span class="op">=</span>sigma, observed<span class="op">=</span>df.e1.values, dims<span class="op">=</span><span class="st">"bins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    y_hat <span class="op">=</span> pm.Normal(<span class="st">"y_hat"</span>, mu<span class="op">=</span>mu, sigma<span class="op">=</span>sigma, observed<span class="op">=</span>df.e1.values, dims<span class="op">=</span><span class="st">"pos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-fig-simple_iid_model" class="cell" data-execution_count="89">
+<div class="cell-output cell-output-display" data-execution_count="89">
+<div id="fig-simple_iid_model" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simple_iid_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="02_PyMC_independent_bins_files/figure-html/fig-simple_iid_model-output-1.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;3.1: Simple i.i.d. model for E1 values. p is the probability of a bin being in compartment A, z is the latent state variable indicating whether a bin is A or B, and mu_a and mu_b are the expected means for A and B compartments, respectively. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation sigma."><img src="02_PyMC_independent_bins_files/figure-html/fig-simple_iid_model-output-1.jpeg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simple_iid_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Simple i.i.d. model for E1 values. <code>p</code> is the probability of a bin being in compartment A, <code>z</code> is the latent state variable indicating whether a bin is A or B, and <code>mu_a</code> and <code>mu_b</code> are the expected means for A and B compartments, respectively. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation <code>sigma</code>.
+</figcaption>
+</figure>
+</div>
+</div>
 </div>
 <p>Let’s overwrite the model with an alternative that does not try to infer the actual state (Bernoulli part), but only draws the mean value from a Beta dist. Then, the model draw the E1 values from a mixture of <code>mu_a</code> and <code>mu_b</code> with the weights given by the probabiliy <code>w</code> (<code>w</code> and <code>1-w</code>). This could be more accurate, and also it will be much faster to sample from, as we do not need to sample the latent variable <code>z_i</code> for each bin which is using a really slow BinaryMetropolisHastings sampler.</p>
-<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:03:55.208007Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:03:55.207875Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:03:55.358185Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:03:55.357762Z&quot;}}" data-execution_count="8">
+<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:03:55.208007Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:03:55.207875Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:03:55.358185Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:03:55.357762Z&quot;}}" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pm.Model(coords<span class="op">=</span>{<span class="st">"pos"</span>: df.index.values}) <span class="im">as</span> model:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># mu_a = pm.Normal("mu_a", 0.5, 0.3)</span></span>
@@ -735,7 +749,7 @@ Sampling: [nu_exp, nu_norm]</code></pre>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    y_lik <span class="op">=</span> pm.Mixture(<span class="st">"y_lik"</span>, w<span class="op">=</span>[w,<span class="dv">1</span><span class="op">-</span>w], comp_dists<span class="op">=</span>components, observed<span class="op">=</span>df.e1.values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Right, let’s rewrite it again, so that the model uses a switch again, but this time based on the latent probability og being in A.</p>
-<div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:03:55.360325Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:03:55.360186Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:03:55.372910Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:03:55.372520Z&quot;}}" data-execution_count="9">
+<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:03:55.360325Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:03:55.360186Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:03:55.372910Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:03:55.372520Z&quot;}}" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> {<span class="st">"bins"</span>: df.index.values,</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">"pos"</span>: df.start.values}</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -762,7 +776,7 @@ Sampling: [nu_exp, nu_norm]</code></pre>
 </div>
 <section id="model-graphs" class="level4">
 <h4 class="anchored" data-anchor-id="model-graphs">Model graphs</h4>
-<div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:03:55.374512Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:03:55.374372Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:03:58.572975Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:03:58.572613Z&quot;}}" data-execution_count="10">
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:03:55.374512Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:03:55.374372Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:03:58.572975Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:03:58.572613Z&quot;}}" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>model_graph <span class="op">=</span> pm.model_to_graphviz(model)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#model_graph</span></span>
@@ -771,7 +785,7 @@ Sampling: [nu_exp, nu_norm]</code></pre>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-11-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="02_PyMC_independent_bins_files/figure-html/cell-11-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-12-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="02_PyMC_independent_bins_files/figure-html/cell-12-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -779,7 +793,7 @@ Sampling: [nu_exp, nu_norm]</code></pre>
 </section>
 <section id="test-the-priors" class="level4">
 <h4 class="anchored" data-anchor-id="test-the-priors">Test the priors</h4>
-<div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:03:58.574274Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:03:58.574143Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:04:04.204199Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:04:04.203788Z&quot;}}" data-execution_count="11">
+<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:03:58.574274Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:03:58.574143Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:04:04.204199Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:04:04.203788Z&quot;}}" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sample from the prior</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    trace <span class="op">=</span> pm.sample_prior_predictive(samples<span class="op">=</span><span class="dv">1000</span>)</span>
@@ -2398,7 +2412,7 @@ dl.xr-attrs {
 .xr-wrap{width:700px!important;} </style>
 </div>
 </div>
-<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:04:04.205971Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:04:04.205825Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:04:04.253591Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:04:04.253183Z&quot;}}" data-execution_count="12">
+<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:04:04.205971Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:04:04.205825Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:04:04.253591Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:04:04.253183Z&quot;}}" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>prior_predictive_e1 <span class="op">=</span> az.extract(trace, group<span class="op">=</span><span class="st">"prior_predictive"</span>, var_names<span class="op">=</span>[<span class="st">"y_lik"</span>])</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""</span></span>
@@ -2412,7 +2426,7 @@ y_lik (min, max, std): (np.float64(-6.262508919078938), np.float64(6.79930501746
 </code></pre>
 </div>
 </div>
-<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:04:04.254893Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:04:04.254759Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:04:04.522014Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:04:04.521660Z&quot;}}" data-execution_count="13">
+<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:04:04.254893Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:04:04.254759Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:04:04.522014Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:04:04.521660Z&quot;}}" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>e1_obs <span class="op">=</span> df[<span class="st">'e1'</span>].dropna().values</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>az.plot_dist(</span>
@@ -2440,7 +2454,7 @@ y_lik (min, max, std): (np.float64(-6.262508919078938), np.float64(6.79930501746
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-14-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="02_PyMC_independent_bins_files/figure-html/cell-14-output-1.png" width="547" height="455" class="figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-15-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="02_PyMC_independent_bins_files/figure-html/cell-15-output-1.png" width="547" height="455" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -2451,7 +2465,7 @@ y_lik (min, max, std): (np.float64(-6.262508919078938), np.float64(6.79930501746
 <section id="posterior-sampling" class="level4">
 <h4 class="anchored" data-anchor-id="posterior-sampling">Posterior sampling</h4>
 <p>Here, we both create a trace (by sampling) and then sample from the predictive posterior.</p>
-<div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:04:04.523318Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:04:04.523182Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:04:24.583038Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:04:24.582575Z&quot;}}" data-execution_count="14">
+<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:04:04.523318Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:04:04.523182Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:04:24.583038Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:04:24.582575Z&quot;}}" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sample from the posterior</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    trace <span class="op">=</span> pm.sample(<span class="dv">2000</span>, tune<span class="op">=</span><span class="dv">2000</span>, cores<span class="op">=</span><span class="dv">4</span>, chains<span class="op">=</span><span class="dv">4</span>, target_accept<span class="op">=</span><span class="fl">0.9</span>, </span>
@@ -2477,7 +2491,7 @@ NUTS: [mu, sigma, w]</code></pre>
 <pre><code>Sampling 4 chains for 2_000 tune and 2_000 draw iterations (8_000 + 8_000 draws total) took 12 seconds.</code></pre>
 </div>
 </div>
-<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:04:24.696516Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:04:24.696385Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:06.581006Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:06.580549Z&quot;}}" data-execution_count="15">
+<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:04:24.696516Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:04:24.696385Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:06.581006Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:06.580549Z&quot;}}" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    pm.sample_posterior_predictive(trace, extend_inferencedata<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2493,7 +2507,7 @@ NUTS: [mu, sigma, w]</code></pre>
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 </div>
-<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:06.951168Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:06.951047Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:12.174563Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:12.174069Z&quot;}}" data-execution_count="16">
+<div id="cell-29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:06.951168Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:06.951047Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:12.174563Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:12.174069Z&quot;}}" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    prior_pred <span class="op">=</span> pm.sample_prior_predictive(samples<span class="op">=</span><span class="dv">1000</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>trace.extend(prior_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2501,7 +2515,7 @@ NUTS: [mu, sigma, w]</code></pre>
 <pre><code>Sampling: [mu, sigma, w, y_lik]</code></pre>
 </div>
 </div>
-<div id="cell-29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:12.176531Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:12.176375Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:13.743526Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:13.743141Z&quot;}}" data-execution_count="17">
+<div id="cell-30" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:12.176531Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:12.176375Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:13.743526Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:13.743141Z&quot;}}" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model: </span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    pm.compute_log_likelihood(trace, extend_inferencedata<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -2518,7 +2532,7 @@ NUTS: [mu, sigma, w]</code></pre>
 <h4 class="anchored" data-anchor-id="evaluation">Evaluation</h4>
 <p>We now have some variables that are fitted and all have a posterior distribution.</p>
 <p>Which ones are interesting? Well, the <code>p</code> represents the probability <span class="math inline">\(p \in [0;1]\)</span> for a bin to be in compartment A (remember, A is 1, and B is 0). <code>z</code> is the actual compartment assignment <span class="math inline">\(z \in \{0, 1\}\)</span>, where <span class="math inline">\(z \sim \mathcal{Bernoulli}(p) = \mathcal{B}(1,p)\)</span>. <code>y</code> is the observed E1 value drawn from a Normal distribution with the fitted mu and sigma.</p>
-<div id="cell-31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:13.754415Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:13.754289Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:13.798464Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:13.798186Z&quot;}}" data-execution_count="18">
+<div id="cell-32" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:13.754415Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:13.754289Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:13.798464Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:13.798186Z&quot;}}" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>trace</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 
@@ -5978,7 +5992,7 @@ dl.xr-attrs {
 </div>
 </div>
 <p>Let’s do some stuff on the log-likelihood of the posterior. We can use arviz to generate Leave-One-Out (LOO) cross-validation</p>
-<div id="cell-33" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:13.800784Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:13.800657Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:15.354703Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:15.354340Z&quot;}}" data-execution_count="19">
+<div id="cell-34" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:13.800784Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:13.800657Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:15.354703Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:15.354340Z&quot;}}" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>model_loo <span class="op">=</span> az.loo(trace)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>model_loo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
@@ -5996,7 +6010,7 @@ Pareto k diagnostic values:
    (1, Inf)   (very bad)    0    0.0%</code></pre>
 </div>
 </div>
-<div id="cell-34" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:15.356194Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:15.355957Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:20.212960Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:20.212605Z&quot;}}" data-execution_count="20">
+<div id="cell-35" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:15.356194Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:15.355957Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:20.212960Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:20.212605Z&quot;}}" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>az.plot_ppc(trace, num_pp_samples<span class="op">=</span><span class="dv">500</span>, group<span class="op">=</span><span class="st">"prior"</span>, data_pairs<span class="op">=</span>{<span class="st">"y_lik"</span>: <span class="st">"y_lik"</span>})<span class="op">;</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"upper right"</span>)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">10</span>)<span class="op">;</span></span>
@@ -6006,14 +6020,14 @@ Pareto k diagnostic values:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-21-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="02_PyMC_independent_bins_files/figure-html/cell-21-output-1.png" width="515" height="444" class="figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-22-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="02_PyMC_independent_bins_files/figure-html/cell-22-output-1.png" width="515" height="444" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-21-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="02_PyMC_independent_bins_files/figure-html/cell-21-output-2.png" width="629" height="469" class="figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-22-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="02_PyMC_independent_bins_files/figure-html/cell-22-output-2.png" width="629" height="469" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -6021,20 +6035,20 @@ Pareto k diagnostic values:
 <blockquote class="blockquote">
 <p>Slight deviation near 1 in the posterior predictive distribution suggests possible additional states, but the model otherwise captures the main features of the E1 distribution.</p>
 </blockquote>
-<div id="cell-37" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:20.214737Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:20.214550Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:20.881565Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:20.881135Z&quot;}}" data-execution_count="21">
+<div id="cell-38" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:20.214737Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:20.214550Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:20.881565Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:20.881135Z&quot;}}" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>az.plot_trace(trace, var_names<span class="op">=</span>[<span class="st">"mu"</span>, <span class="st">'sigma'</span>], compact<span class="op">=</span><span class="va">True</span>, backend_kwargs<span class="op">=</span>{<span class="st">'layout'</span>: <span class="st">'tight'</span>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-23-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="02_PyMC_independent_bins_files/figure-html/cell-23-output-1.png" width="1190" height="390" class="figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-24-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="02_PyMC_independent_bins_files/figure-html/cell-24-output-1.png" width="1190" height="390" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-38" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:20.884067Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:20.883928Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:21.283827Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:21.283267Z&quot;}}" data-execution_count="22">
+<div id="cell-39" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:20.884067Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:20.883928Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:21.283827Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:21.283267Z&quot;}}" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>trace_ylik <span class="op">=</span> az.summary(trace, var_names<span class="op">=</span>[<span class="st">'y_lik'</span>], kind<span class="op">=</span><span class="st">'stats'</span>, group<span class="op">=</span><span class="st">'posterior_predictive'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-39" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:21.285697Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:21.285563Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:21.292452Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:21.292181Z&quot;}}" data-execution_count="23">
+<div id="cell-40" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:21.285697Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:21.285563Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:21.292452Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:21.292181Z&quot;}}" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>trace_ylik</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <div>
@@ -6135,7 +6149,7 @@ Pareto k diagnostic values:
 </div>
 </div>
 </div>
-<div id="cell-40" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:21.293806Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:21.293539Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:21.819729Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:21.819367Z&quot;}}" data-execution_count="24">
+<div id="cell-41" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:21.293806Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:21.293539Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:21.819729Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:21.819367Z&quot;}}" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.DataFrame({</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mean"</span>: [trace_ylik[<span class="st">'mean'</span>].mean(), trace_ylik[<span class="st">'mean'</span>].std()],</span>
@@ -6158,13 +6172,13 @@ sds    0.0050  0.0035</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-26-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="02_PyMC_independent_bins_files/figure-html/cell-26-output-2.png" width="989" height="491" class="figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-27-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="02_PyMC_independent_bins_files/figure-html/cell-27-output-2.png" width="989" height="491" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Why does it seem to contain a lot of means on zero? Let’s find out how many</p>
-<div id="cell-42" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:21.821208Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:21.821073Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:21.824118Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:21.823804Z&quot;}}" data-execution_count="25">
+<div id="cell-43" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:21.821208Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:21.821073Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:21.824118Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:21.823804Z&quot;}}" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(trace_ylik[<span class="st">'mean'</span>] <span class="op">==</span> <span class="dv">0</span> ).<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>np.int64(0)</code></pre>
@@ -6172,7 +6186,7 @@ sds    0.0050  0.0035</code></pre>
 </div>
 <p>Well, that was not very informative, but it looks like the peak is very close to the mean (-0.0149), and not zero (upon closer inspection).</p>
 <p>Let’s look at the actual values from the trace.</p>
-<div id="cell-44" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:21.825520Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:21.825252Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:22.035252Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:22.034892Z&quot;}}" data-execution_count="26">
+<div id="cell-45" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:21.825520Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:21.825252Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:22.035252Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:22.034892Z&quot;}}" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>f,ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">4</span>))</span>
@@ -6182,13 +6196,13 @@ sds    0.0050  0.0035</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-28-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="02_PyMC_independent_bins_files/figure-html/cell-28-output-1.png" width="1189" height="390" class="figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-29-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="02_PyMC_independent_bins_files/figure-html/cell-29-output-1.png" width="1189" height="390" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <p>That looks promising, but we have to look at the predictive samples. Let’s look at the posterior predictive samples to see how well the model fits the data.</p>
-<div id="cell-46" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:22.037006Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:22.036870Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:22.049446Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:22.049112Z&quot;}}" data-execution_count="27">
+<div id="cell-47" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:22.037006Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:22.036870Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:22.049446Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:22.049112Z&quot;}}" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>trace.posterior_predictive.stack(sample<span class="op">=</span>(<span class="st">"chain"</span>, <span class="st">"draw"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
@@ -6614,7 +6628,7 @@ Attributes:
            name='sample', length=8000))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-deb96d58-c710-4764-b69a-f215c957dfad" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-deb96d58-c710-4764-b69a-f215c957dfad" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>created_at :</span></dt><dd>2025-07-17T20:05:06.571911+00:00</dd><dt><span>arviz_version :</span></dt><dd>0.21.0</dd><dt><span>inference_library :</span></dt><dd>pymc</dd><dt><span>inference_library_version :</span></dt><dd>5.22.0</dd></dl></div></li></ul></div></div>
 </div>
 </div>
-<div id="cell-47" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:22.050646Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:22.050519Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:22.293684Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:22.293160Z&quot;}}" data-execution_count="28">
+<div id="cell-48" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:22.050646Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:22.050519Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:22.293684Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:22.293160Z&quot;}}" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p_B = trace.posterior["z"].mean(dim=["chain", "draw"]).values</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>y_ppc <span class="op">=</span> trace.posterior_predictive[<span class="st">"y_lik"</span>]</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -6628,7 +6642,7 @@ Attributes:
 <section id="posterior-predictive-checks" class="level5">
 <h5 class="anchored" data-anchor-id="posterior-predictive-checks">Posterior predictive checks</h5>
 <p>How does the posterior predictive look? We can visualize the distribution of predicted E1s based on the posterior samples. Here, the mean and sd of the posterior predictive for each bin are visualized in histograms.</p>
-<div id="cell-49" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:22.295588Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:22.295453Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:22.578956Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:22.578598Z&quot;}}" data-execution_count="29">
+<div id="cell-50" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:22.295588Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:22.295453Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:22.578956Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:22.578598Z&quot;}}" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>f,ax<span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>))</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">"Posterior Predictive Mean of y_lik"</span>)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">"Counts"</span>)</span>
@@ -6639,19 +6653,19 @@ Attributes:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-31-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="02_PyMC_independent_bins_files/figure-html/cell-31-output-1.png" width="989" height="290" class="figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-32-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="02_PyMC_independent_bins_files/figure-html/cell-32-output-1.png" width="989" height="290" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <p><strong><em><del>Full mixture</del></em></strong> <del>Hmpf. That was not very promising at all. We would like the posterior predictive to match the observed E1 values, but what we get is a unimodal. Why can that be? The data is modeled as a mixture without a latent binary variable, <span class="math inline">\(z \in {0,1}\)</span>.</del></p>
 <p><strong><em>Latent <code>z</code> hard assignment</em></strong> Here, we do get a distribution of <span class="math inline">\(\hat{y}\)</span> that somewhat resembles the means of the two suggested distributions for A and B compartments.</p>
-<div id="cell-51" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:22.580316Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:22.580181Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:23.946582Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:23.946225Z&quot;}}" data-execution_count="30">
+<div id="cell-52" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:22.580316Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:22.580181Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:23.946582Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:23.946225Z&quot;}}" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>az.plot_loo_pit(trace, y_hat<span class="op">=</span><span class="st">"y_lik"</span>, y <span class="op">=</span> <span class="st">"y_lik"</span>, ecdf<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-32-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="02_PyMC_independent_bins_files/figure-html/cell-32-output-1.png" width="585" height="438" class="figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-33-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="02_PyMC_independent_bins_files/figure-html/cell-33-output-1.png" width="585" height="438" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -6661,14 +6675,14 @@ Attributes:
 <section id="consistency" class="level5">
 <h5 class="anchored" data-anchor-id="consistency">Consistency</h5>
 <p>We can also try to calculate how consistent the predicted E1 is with the observed E1. Maybe this is useful.</p>
-<div id="cell-54" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:23.948419Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:23.948274Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:23.983067Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:23.982711Z&quot;}}" data-execution_count="31">
+<div id="cell-55" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:23.948419Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:23.948274Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:23.983067Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:23.982711Z&quot;}}" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>trace.posterior_predictive[<span class="st">"y_lik"</span>].mean(dim<span class="op">=</span>[<span class="st">"chain"</span>, <span class="st">"draw"</span>]).values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>array([-0.07486874, -0.06894212, -0.07457259, ..., -0.0674801 ,
        -0.06846435, -0.07049419], shape=(1438,))</code></pre>
 </div>
 </div>
-<div id="cell-55" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:23.984375Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:23.984244Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:24.385580Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:24.385229Z&quot;}}" data-execution_count="32">
+<div id="cell-56" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:23.984375Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:23.984244Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:24.385580Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:24.385229Z&quot;}}" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ppc_mean: shape (bins,)</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mean_ll: shape (bins,)</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -6727,12 +6741,12 @@ Attributes:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-34-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="02_PyMC_independent_bins_files/figure-html/cell-34-output-2.png" width="1613" height="446" class="figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-35-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="02_PyMC_independent_bins_files/figure-html/cell-35-output-2.png" width="1613" height="446" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-56" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:24.387007Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:24.386874Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:25.104213Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:25.103826Z&quot;}}" data-execution_count="33">
+<div id="cell-57" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-17T20:05:24.387007Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-17T20:05:24.386874Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-17T20:05:25.104213Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-17T20:05:25.103826Z&quot;}}" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> np.arange(<span class="bu">len</span>(y))</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>))</span>
@@ -6822,7 +6836,7 @@ Attributes:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="02_PyMC_independent_bins_files/figure-html/cell-35-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="02_PyMC_independent_bins_files/figure-html/cell-35-output-2.png" width="1225" height="351" class="figure-img"></a></p>
+<p><a href="02_PyMC_independent_bins_files/figure-html/cell-36-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="02_PyMC_independent_bins_files/figure-html/cell-36-output-2.png" width="1225" height="351" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
