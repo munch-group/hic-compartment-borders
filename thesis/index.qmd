@@ -150,13 +150,12 @@ $${#eq-simple_iid_model}
 
 where $y_i$ is the observed E1 value at bin $i$, $z_i \in \{0, 1\}$ is the latent compartment assignment (0 = B, 1 = A). 8 chains of 1000 samples (and $8x1000$ tuning samples) results in 8000 posterior samples after the model has run. 
 
-The model might be able to fit well to the observed data, but it is unlikely that it can generalize. Here it is as a Mermaid-js diagram:
+The model might be able to fit well to the observed data, but it is unlikely that it can generalize. Here it is as a Mermaid-js diagram, embedded from the builtin Mermaid-representation of PyMC.
 
 {{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-simple_iid_model >}}
 
-Updated with display Image.
 
-### Model 2: Spatialally dependent (Random Walk)
+### Model 2: Spatially dependent (Random Walk)
 
 To take into account the autocorrelation along the positional axis, I implement a Gaussian Random Walk (GRW) in the logit space of the compartment assignment. That is, the steps between each assignment probability is restricted with a random walk from a bin `i` to the next bin `i+1`. In stead of drawing the compartment probability, $p$, from a flat prior directly, some new variables are introduced. A GRW is effectively the cummulative sum of steps along the positional axis, and can be defined as centered or non-centered [ref]. The centered version is pre-implemented in PyMC as `pymc.GaussianRandomWalk` [ref], taking a `sigma` parameter for standard deviation. In the centered GRW the step size and standard deviations are exploring parameter space together and might ot explore it as efficiently or as quickly as a non-centered model that samples the two parameters independently. On the other hand, the non-centered model might interact more with hyperparameters and data. Better results achieved from a non-centered model might indicate that the data is not informative enough for the tighter restrictions on the posterior emposed by the centered model
 
@@ -203,6 +202,14 @@ z_i &\sim \text{Bernoulli}(p) \\
 y_i &\sim \mathcal{N}(\mu_i, \sigma) \\
 \end{aligned}
 $${#eq-non-centered-grw}
+
+## Evaluations
+
+To be able to comparatively evaluate the models, we must establish exactly what we are modeling. The biological assumptions we make is that **1)** a given genomic region can be one type at a time, and **2)** the autocorrelation between intervals along the genome can be modeled by probabilistic smoothing of the E1 track, even at 10kb resolution. The goal is not to discover new compartments, but to model the transitions between compartments with the assumption that some peaks or dips in E1 that barely causes a sign change are potentially caused by noise and are thus not of biological relevance. Of course, the ability to model this behaviour relies heavily on the assumption that the value of the E1 track carries information about the distinction between compartments additional to that of the sign of the vector.
+
+In a classical setting, the way to compare Bayesian models is by *some* measure of how much *information* a model has learned from the data it was trained on. *Arviz* provides the *Akaike Information Criterion* (AIC) and the *Widely Applicable Information Criterion* (WAIC), where it uses leave-one-out cross-validation to generate the out-of-sample predictive accuracy. Conveniently, the `arviz.compare` takes multiple models and generates a neat table with the results of its cross-validation analysis. 
+
+But, if the purpose of the model is smoothing, we do not necessarily need it to fit too well to the data. 
 
 
 # Results
