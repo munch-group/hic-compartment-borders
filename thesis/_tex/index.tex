@@ -6,7 +6,7 @@
 \documentclass[
   10pt,
   a4paper,
-]{scrbook}
+  openany]{scrbook}
 \usepackage{xcolor}
 \usepackage[left=1in,right=1in]{geometry}
 \usepackage{amsmath,amssymb}
@@ -615,7 +615,7 @@ eigenvectors from Hi-C data analysis in a Bayesian framework}
 in a Gaussian Random Walk and infering a latent compartment assignment
 to A or B as an excuse to master PyMC}
 \author{Søren Jørgensen}
-\date{August 11, 2025}
+\date{August 13, 2025}
 \begin{document}
 \frontmatter
 \cleardoublepage
@@ -804,10 +804,10 @@ only the sign
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Python code }
-\NormalTok{e }\OperatorTok{=}\NormalTok{ mc}\OperatorTok{**}\DecValTok{2}
+\ImportTok{import}\NormalTok{ pymc }\ImportTok{as}\NormalTok{ pm}
+\ImportTok{import}\NormalTok{ pytensor.tensor }\ImportTok{as}\NormalTok{ pt}
 
-\BuiltInTok{print}\NormalTok{(e)}
+\BuiltInTok{print}\NormalTok{(pm.\_\_version, pt.\_\_version\_\_)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -919,6 +919,27 @@ much faster (\textgreater20x), I reflect that the underlying biological
 assumptions about compartment identity is also marginalized (read: lost)
 when dropping the hard type assignment.
 
+When taking advantage of PyMC's vectorization capabilities, a single
+variable \texttt{mu} can be defined with an array of \(\mu\)'s for
+respective distributions. That is, we can define
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu }\OperatorTok{=}\NormalTok{ pm.Normal(}\StringTok{\textquotesingle{}mu\textquotesingle{}}\NormalTok{, mu}\OperatorTok{=}\NormalTok{[}\OperatorTok{{-}}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{], sigma}\OperatorTok{=}\NormalTok{sigma, shape}\OperatorTok{=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+where \texttt{label} comes from a dictionary of coordinates for the
+model to map the observations to. Here, \texttt{shape=2} is not
+necessary, but provides clarity. For even more clarity, we can define
+the coordinates underlying the model and then pass it to the variable,
+as with
+\texttt{coords\ =\ \{\textquotesingle{}label\textquotesingle{}:\ {[}\textquotesingle{}B\textquotesingle{},\ \textquotesingle{}A\textquotesingle{}{]}\}}
+and passing \texttt{dims=label} in stead of \texttt{shape=2}.
+Additionally, to prevent the distributions leaking into each other, I
+apply an \texttt{ordered.transform} to the variable, ensuring that the
+first of the 2 draws will be lower than the next.
+
 \subsection{Model 1: Spatially independent
 (i.i.d.)}\label{model-1-spatially-independent-i.i.d.}
 
@@ -937,7 +958,11 @@ of a HalfNormal distribution, \(\sigma \sim \mathcal{HN}(1)\). That is,
 \sigma &\sim \mathcal{HN}(1) \\
 p &\sim \text{Beta}(a, b)\\
 z_i &\sim \text{Bernoulli}(p) \\
-\mu_i &= z_i \cdot \mu_A + (1 - z_i) \cdot \mu_B \\
+\mu_i &= 
+\begin{cases}
+\mu_A & \text{if } z_i = 1 \\
+\mu_B & \text{if } z_i = 0
+\end{cases} \\
 y_i &\sim \mathcal{N}(\mu_i, \sigma) \\
 \end{aligned}
 }\end{equation}
@@ -974,15 +999,60 @@ posterior emposed by the centered model
 
 \subsubsection{Centered GRW}\label{centered-grw}
 
-The new variables \texttt{grw\_sigma} was drawn from a Half-Normal
+The new variables \texttt{grw\_sigma} was sampled from a Half-Normal
 distribution and given to the \texttt{logit\_w} that models the GRW with
-\texttt{pymc.GaussianRandomWalk}
+\texttt{pymc.GaussianRandomWalk}. As noted, both variables explore
+parameter space together.
+
+\begin{equation}\phantomsection\label{eq-centered-grw}{
+\begin{aligned}
+\mu_A &\sim \mathcal{N}(0.5, 0.5) \\
+\mu_B &\sim \mathcal{N}(-0.5, 0.5) \\
+\sigma &\sim \mathcal{HN}(1) \\
+\sigma_{\mathrm{GRW}} &\sim \mathcal{HN}(0.01)\\
+\mathrm{logit}_w &= \operatorname{sigmoid}(\sigma_{\mathrm{GRW}}) \\
+z_i &\sim \text{Bernoulli}(p) \\
+\mu_i &= 
+\begin{cases}
+\mu_A & \text{if } z_i = 1 \\
+\mu_B & \text{if } z_i = 0
+\end{cases} \\
+y_i &\sim \mathcal{N}(\mu_i, \sigma) \\
+\end{aligned}
+}\end{equation}
 
 \subsubsection{Non-centered GRW}\label{non-centered-grw}
 
 There are different opinions on when to reparameterize a centered model
 into a non-centered model {[}ref{]}, but in my case, PyMC suggested a
-reparameterization.
+reparameterization. The idea is to fit the parameters independently and
+thus achieve a less restricted exploration of parameter space. In this
+case, the random walk is modeled as follows: the step size is a separate
+variable, \texttt{eps}, drawing from a standard Gaussian distribution.
+Then, the step size is scaled by \texttt{grw\_scale} which is drawn from
+a HalfNormal when adding the each step to the random walk by cummulative
+summation. Again, the walk is constructed in logit space,
+\(\mathrm{logit}_w\), and forced through a sigmoid to obtain assignment
+probabilities, and finally, the assignment is performed with a Bernoulli
+trial on \(w\):
+
+\begin{equation}\phantomsection\label{eq-non-centered-grw}{
+\begin{aligned}
+\mu_A &\sim \mathcal{N}(0.5, 0.5) \\
+\mu_B &\sim \mathcal{N}(-0.5, 0.5) \\
+\sigma &\sim \mathcal{HN}(1) \\
+\sigma_{\mathrm{GRW}} &\sim \mathcal{HN}(0.01)\\
+\epsilon_{\mathrm{GRW}} &\sim \mathcal{N}(0, 1) \\
+\mathrm{logit}_{w_i} &= \sum_{k=1}^i \epsilon_{\mathrm{GRW}, k} \, \sigma_{\mathrm{GRW}} \\ 
+z_i &\sim \text{Bernoulli}(p) \\
+\mu_i &= 
+\begin{cases}
+\mu_A & \text{if } z_i = 1 \\
+\mu_B & \text{if } z_i = 0
+\end{cases} \\
+y_i &\sim \mathcal{N}(\mu_i, \sigma) \\
+\end{aligned}
+}\end{equation}
 
 \chapter{Results}\label{results}
 

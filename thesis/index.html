@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-11">
+<meta name="dcterms.date" content="2025-08-13">
 <meta name="keywords" content="Gaussian Random Walk, Bayesian MCMC, Chromatin Structure in spermatogenesis">
 
 <title>Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework</title>
@@ -125,10 +125,10 @@ window.Quarto = {
 <meta name="citation_title" content="Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework">
 <meta name="citation_keywords" content="Gaussian Random Walk,Bayesian MCMC,Chromatin Structure in spermatogenesis">
 <meta name="citation_author" content="Søren Jørgensen">
-<meta name="citation_publication_date" content="2025-08-11">
-<meta name="citation_cover_date" content="2025-08-11">
+<meta name="citation_publication_date" content="2025-08-13">
+<meta name="citation_cover_date" content="2025-08-13">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-08-11">
+<meta name="citation_online_date" content="2025-08-13">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=PyMC: A modern, and comprehensive probabilistic programming framework in Python;,citation_abstract=PyMC is a probabilistic programming library for Python that provides tools for constructing and fitting Bayesian models. It offers an intuitive, readable syntax that is close to the natural syntax statisticians use to describe models. PyMC leverages the symbolic computation library PyTensor, allowing it to be compiled into a variety of computational backends, such as C, JAX, and Numba, which in turn offer access to different computational architectures including CPU, GPU, and TPU. Being a general modeling framework, PyMC supports a variety of models including generalized hierarchical linear regression and classification, time series, ordinary differential equations (ODEs), and non-parametric models such as Gaussian processes (GPs). We demonstrate PyMC’s versatility and ease of use with examples spanning a range of common statistical models. Additionally, we discuss the positive role of PyMC in the development of the open-source ecosystem for probabilistic programming.;,citation_author=Oriol Abril-Pla;,citation_author=Virgile Andreani;,citation_author=Colin Carroll;,citation_author=Larry Dong;,citation_author=Christopher J. Fonnesbeck;,citation_author=Maxim Kochurov;,citation_author=Ravin Kumar;,citation_author=Junpeng Lao;,citation_author=Christian C. Luhmann;,citation_author=Osvaldo A. Martin;,citation_author=Michael Osthege;,citation_author=Ricardo Vieira;,citation_author=Thomas Wiecki;,citation_author=Robert Zinkov;,citation_publication_date=2023-09;,citation_cover_date=2023-09;,citation_year=2023;,citation_doi=10.7717/peerj-cs.1516;,citation_issn=2376-5992;,citation_volume=9;,citation_language=en-US;,citation_journal_title=PeerJ Computer Science;">
 <meta name="citation_reference" content="citation_title=Key role for CTCF in establishing chromatin structure in human embryos;,citation_author=Xuepeng Chen;,citation_author=Yuwen Ke;,citation_author=Keliang Wu;,citation_author=Han Zhao;,citation_author=Yaoyu Sun;,citation_author=Lei Gao;,citation_author=Zhenbo Liu;,citation_author=Jingye Zhang;,citation_author=Wenrong Tao;,citation_author=Zhenzhen Hou;,citation_author=Hui Liu;,citation_author=Jiang Liu;,citation_author=Zi-Jiang Chen;,citation_publication_date=2019-12;,citation_cover_date=2019-12;,citation_year=2019;,citation_issue=7786;,citation_doi=10.1038/s41586-019-1812-0;,citation_issn=0028-0836, 1476-4687;,citation_volume=576;,citation_language=en-US;,citation_journal_title=Nature;">
@@ -181,7 +181,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">August 11, 2025</p>
+              <p class="date">August 13, 2025</p>
             </div>
           </div>
           
@@ -297,10 +297,10 @@ P(D) =\int P(D \ | \ \theta) \ P(\theta) \ \mathrm{d}\theta,
 </section>
 <section id="methods" class="level1">
 <h1>Methods</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python code </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> mc<span class="op">**</span><span class="dv">2</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc <span class="im">as</span> pm</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytensor.tensor <span class="im">as</span> pt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pm.__version, pt.__version__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The pipeline from [ref] was reused in a modified form to accomodate a new data set of single-cell Hi-C sequencing of human cells. Here, an additional pooling step was introduced to generate merged Hi-C matrices after grouping the samples into two groups established in the sequencing study; the sex chromosome was determined either <em>X</em> or <em>Y</em>. Additionally, it was modified to accomodate the new telomere-2-telomere assembly of <em>Macaca mulata</em>, as it was only available from NCBI, and not UCSC servers.</p>
 <section id="data-generation" class="level2">
 <h2 class="anchored" data-anchor-id="data-generation">Data generation</h2>
@@ -318,6 +318,9 @@ P(D) =\int P(D \ | \ \theta) \ P(\theta) \ \mathrm{d}\theta,
 <h2 class="anchored" data-anchor-id="modeling">Modeling</h2>
 <p>I use PyMC <span class="citation" data-cites="abril-pla2023pymcmoderncomprehensive">(<a href="#ref-abril-pla2023pymcmoderncomprehensive" role="doc-biblioref">Abril-Pla et al. 2023</a>)</span> for all modeling, relying as much as possible on functions and built-in functionality for all anaysis. I start out small in the simplest model possible, then progressing to larger and more complex models. The basis of the probabilistic modeling is the assumption that the eigenvectors of A- and B-compartments can be drawn from distinct distributions. I assume that the distributions underlying the compartments are Gaussian with different means, either <span class="math inline">\(\mu_a = 0.5\)</span> or <span class="math inline">\(\mu_b = -0.5\)</span>. Additionally, I assume that a probability of being in A can be inferred from the eigenvector, and that a binary latent state can be derived from that to place compartment labels on each bin.</p>
 <p>I experimented with the possibility of marginalizing over the binary latent state to make sampling faster, as the No-U-Turn-Sampler (NUTS) [ref] can only sample from continuous variables, and the <em>BinaryGibbsMetropolis</em> sampler is significantly slower. PyMC notes some builtin automatic marginalization of discrete variables [ref], but the example used does not directly translate into my case. Therefore, a continuous mixture model of the two underlying Gaussians were tried to test sampling efficiency or differences. Here, in stead of using compartment type as a switch (“choose A or B”), an assignment probability was used as a mixing weight for the two Gaussians. Though much faster (&gt;20x), I reflect that the underlying biological assumptions about compartment identity is also marginalized (read: lost) when dropping the hard type assignment.</p>
+<p>When taking advantage of PyMC’s vectorization capabilities, a single variable <code>mu</code> can be defined with an array of <span class="math inline">\(\mu\)</span>’s for respective distributions. That is, we can define</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> pm.Normal(<span class="st">'mu'</span>, mu<span class="op">=</span>[<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>], sigma<span class="op">=</span>sigma, shape<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where <code>label</code> comes from a dictionary of coordinates for the model to map the observations to. Here, <code>shape=2</code> is not necessary, but provides clarity. For even more clarity, we can define the coordinates underlying the model and then pass it to the variable, as with <code>coords = {'label': ['B', 'A']}</code> and passing <code>dims=label</code> in stead of <code>shape=2</code>. Additionally, to prevent the distributions leaking into each other, I apply an <code>ordered.transform</code> to the variable, ensuring that the first of the 2 draws will be lower than the next.</p>
 <section id="model-1-spatially-independent-i.i.d." class="level3">
 <h3 class="anchored" data-anchor-id="model-1-spatially-independent-i.i.d.">Model 1: Spatially independent (i.i.d.)</h3>
 <p>The simplest modeling approach is by regarading each of the bins independent of each other, and to simply draw from one of the distributions based on the encountered E1 value. The probability, <span class="math inline">\(p\)</span> of being in A is determined using a flat prior, <span class="math inline">\(Beta(1,1)\)</span>, which is assigned to a type, <span class="math inline">\(z\)</span>, with a Bernoulli trial on <span class="math inline">\(p\)</span>. Additionally, the two distributions have a shared standard deviation out of a HalfNormal distribution, <span class="math inline">\(\sigma \sim \mathcal{HN}(1)\)</span>. That is,</p>
@@ -328,7 +331,11 @@ P(D) =\int P(D \ | \ \theta) \ P(\theta) \ \mathrm{d}\theta,
 \sigma &amp;\sim \mathcal{HN}(1) \\
 p &amp;\sim \text{Beta}(a, b)\\
 z_i &amp;\sim \text{Bernoulli}(p) \\
-\mu_i &amp;= z_i \cdot \mu_A + (1 - z_i) \cdot \mu_B \\
+\mu_i &amp;=
+\begin{cases}
+\mu_A &amp; \text{if } z_i = 1 \\
+\mu_B &amp; \text{if } z_i = 0
+\end{cases} \\
 y_i &amp;\sim \mathcal{N}(\mu_i, \sigma) \\
 \end{aligned}
 \tag{4}\]</span></span></p>
@@ -340,11 +347,44 @@ y_i &amp;\sim \mathcal{N}(\mu_i, \sigma) \\
 <p>To take into account the autocorrelation along the positional axis, I implement a Gaussian Random Walk (GRW) in the logit space of the compartment assignment. That is, the steps between each assignment probability is restricted with a random walk from a bin <code>i</code> to the next bin <code>i+1</code>. In stead of drawing the compartment probability, <span class="math inline">\(p\)</span>, from a flat prior directly, some new variables are introduced. A GRW is effectively the cummulative sum of steps along the positional axis, and can be defined as centered or non-centered [ref]. The centered version is pre-implemented in PyMC as <code>pymc.GaussianRandomWalk</code> [ref], taking a <code>sigma</code> parameter for standard deviation. In the centered GRW the step size and standard deviations are exploring parameter space together and might ot explore it as efficiently or as quickly as a non-centered model that samples the two parameters independently. On the other hand, the non-centered model might interact more with hyperparameters and data. Better results achieved from a non-centered model might indicate that the data is not informative enough for the tighter restrictions on the posterior emposed by the centered model</p>
 <section id="centered-grw" class="level4">
 <h4 class="anchored" data-anchor-id="centered-grw">Centered GRW</h4>
-<p>The new variables <code>grw_sigma</code> was drawn from a Half-Normal distribution and given to the <code>logit_w</code> that models the GRW with <code>pymc.GaussianRandomWalk</code></p>
+<p>The new variables <code>grw_sigma</code> was sampled from a Half-Normal distribution and given to the <code>logit_w</code> that models the GRW with <code>pymc.GaussianRandomWalk</code>. As noted, both variables explore parameter space together.</p>
+<p><span id="eq-centered-grw"><span class="math display">\[
+\begin{aligned}
+\mu_A &amp;\sim \mathcal{N}(0.5, 0.5) \\
+\mu_B &amp;\sim \mathcal{N}(-0.5, 0.5) \\
+\sigma &amp;\sim \mathcal{HN}(1) \\
+\sigma_{\mathrm{GRW}} &amp;\sim \mathcal{HN}(0.01)\\
+\mathrm{logit}_w &amp;= \operatorname{sigmoid}(\sigma_{\mathrm{GRW}}) \\
+z_i &amp;\sim \text{Bernoulli}(p) \\
+\mu_i &amp;=
+\begin{cases}
+\mu_A &amp; \text{if } z_i = 1 \\
+\mu_B &amp; \text{if } z_i = 0
+\end{cases} \\
+y_i &amp;\sim \mathcal{N}(\mu_i, \sigma) \\
+\end{aligned}
+\tag{5}\]</span></span></p>
 </section>
 <section id="non-centered-grw" class="level4">
 <h4 class="anchored" data-anchor-id="non-centered-grw">Non-centered GRW</h4>
-<p>There are different opinions on when to reparameterize a centered model into a non-centered model [ref], but in my case, PyMC suggested a reparameterization.</p>
+<p>There are different opinions on when to reparameterize a centered model into a non-centered model [ref], but in my case, PyMC suggested a reparameterization. The idea is to fit the parameters independently and thus achieve a less restricted exploration of parameter space. In this case, the random walk is modeled as follows: the step size is a separate variable, <code>eps</code>, drawing from a standard Gaussian distribution. Then, the step size is scaled by <code>grw_scale</code> which is drawn from a HalfNormal when adding the each step to the random walk by cummulative summation. Again, the walk is constructed in logit space, <span class="math inline">\(\mathrm{logit}_w\)</span>, and forced through a sigmoid to obtain assignment probabilities, and finally, the assignment is performed with a Bernoulli trial on <span class="math inline">\(w\)</span>:</p>
+<p><span id="eq-non-centered-grw"><span class="math display">\[
+\begin{aligned}
+\mu_A &amp;\sim \mathcal{N}(0.5, 0.5) \\
+\mu_B &amp;\sim \mathcal{N}(-0.5, 0.5) \\
+\sigma &amp;\sim \mathcal{HN}(1) \\
+\sigma_{\mathrm{GRW}} &amp;\sim \mathcal{HN}(0.01)\\
+\epsilon_{\mathrm{GRW}} &amp;\sim \mathcal{N}(0, 1) \\
+\mathrm{logit}_{w_i} &amp;= \sum_{k=1}^i \epsilon_{\mathrm{GRW}, k} \, \sigma_{\mathrm{GRW}} \\
+z_i &amp;\sim \text{Bernoulli}(p) \\
+\mu_i &amp;=
+\begin{cases}
+\mu_A &amp; \text{if } z_i = 1 \\
+\mu_B &amp; \text{if } z_i = 0
+\end{cases} \\
+y_i &amp;\sim \mathcal{N}(\mu_i, \sigma) \\
+\end{aligned}
+\tag{6}\]</span></span></p>
 </section>
 </section>
 </section>
