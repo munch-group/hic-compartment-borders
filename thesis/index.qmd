@@ -209,7 +209,9 @@ To be able to comparatively evaluate the models, we must establish exactly what 
 
 In a classical setting, the way to compare Bayesian models is by *some* measure of how much *information* a model has learned from the data it was trained on. *Arviz* provides the *Akaike Information Criterion* (AIC) and the *Widely Applicable Information Criterion* (WAIC), where it uses leave-one-out cross-validation to generate the out-of-sample predictive accuracy. Conveniently, the `arviz.compare` takes multiple models and generates a neat table with the results of its cross-validation analysis. 
 
-But, if the purpose of the model is smoothing, we do not necessarily need it to fit too well to the data. 
+However, when an expected result of the model is that some peaks or small compartments are reduced or smoothed, we must question the interpretability of these criteria. At least, the balance between generalization and fitting should be skewed towards generalization, expectedly at the cost of fitting. 
+
+
 
 
 # Results

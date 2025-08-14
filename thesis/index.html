@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-13">
+<meta name="dcterms.date" content="2025-08-14">
 <meta name="keywords" content="Gaussian Random Walk, Bayesian MCMC, Chromatin Structure in spermatogenesis">
 
 <title>Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework</title>
@@ -132,10 +132,10 @@ window.Quarto = {
 <meta name="citation_title" content="Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework">
 <meta name="citation_keywords" content="Gaussian Random Walk,Bayesian MCMC,Chromatin Structure in spermatogenesis">
 <meta name="citation_author" content="Søren Jørgensen">
-<meta name="citation_publication_date" content="2025-08-13">
-<meta name="citation_cover_date" content="2025-08-13">
+<meta name="citation_publication_date" content="2025-08-14">
+<meta name="citation_cover_date" content="2025-08-14">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-08-13">
+<meta name="citation_online_date" content="2025-08-14">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=PyMC: A modern, and comprehensive probabilistic programming framework in Python;,citation_abstract=PyMC is a probabilistic programming library for Python that provides tools for constructing and fitting Bayesian models. It offers an intuitive, readable syntax that is close to the natural syntax statisticians use to describe models. PyMC leverages the symbolic computation library PyTensor, allowing it to be compiled into a variety of computational backends, such as C, JAX, and Numba, which in turn offer access to different computational architectures including CPU, GPU, and TPU. Being a general modeling framework, PyMC supports a variety of models including generalized hierarchical linear regression and classification, time series, ordinary differential equations (ODEs), and non-parametric models such as Gaussian processes (GPs). We demonstrate PyMC’s versatility and ease of use with examples spanning a range of common statistical models. Additionally, we discuss the positive role of PyMC in the development of the open-source ecosystem for probabilistic programming.;,citation_author=Oriol Abril-Pla;,citation_author=Virgile Andreani;,citation_author=Colin Carroll;,citation_author=Larry Dong;,citation_author=Christopher J. Fonnesbeck;,citation_author=Maxim Kochurov;,citation_author=Ravin Kumar;,citation_author=Junpeng Lao;,citation_author=Christian C. Luhmann;,citation_author=Osvaldo A. Martin;,citation_author=Michael Osthege;,citation_author=Ricardo Vieira;,citation_author=Thomas Wiecki;,citation_author=Robert Zinkov;,citation_publication_date=2023-09;,citation_cover_date=2023-09;,citation_year=2023;,citation_doi=10.7717/peerj-cs.1516;,citation_issn=2376-5992;,citation_volume=9;,citation_language=en-US;,citation_journal_title=PeerJ Computer Science;">
 <meta name="citation_reference" content="citation_title=Key role for CTCF in establishing chromatin structure in human embryos;,citation_author=Xuepeng Chen;,citation_author=Yuwen Ke;,citation_author=Keliang Wu;,citation_author=Han Zhao;,citation_author=Yaoyu Sun;,citation_author=Lei Gao;,citation_author=Zhenbo Liu;,citation_author=Jingye Zhang;,citation_author=Wenrong Tao;,citation_author=Zhenzhen Hou;,citation_author=Hui Liu;,citation_author=Jiang Liu;,citation_author=Zi-Jiang Chen;,citation_publication_date=2019-12;,citation_cover_date=2019-12;,citation_year=2019;,citation_issue=7786;,citation_doi=10.1038/s41586-019-1812-0;,citation_issn=0028-0836, 1476-4687;,citation_volume=576;,citation_language=en-US;,citation_journal_title=Nature;">
@@ -188,7 +188,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">August 13, 2025</p>
+              <p class="date">August 14, 2025</p>
             </div>
           </div>
           
@@ -421,7 +421,7 @@ y_i &amp;\sim \mathcal{N}(\mu_i, \sigma) \\
 <h2 class="anchored" data-anchor-id="evaluations">Evaluations</h2>
 <p>To be able to comparatively evaluate the models, we must establish exactly what we are modeling. The biological assumptions we make is that <strong>1)</strong> a given genomic region can be one type at a time, and <strong>2)</strong> the autocorrelation between intervals along the genome can be modeled by probabilistic smoothing of the E1 track, even at 10kb resolution. The goal is not to discover new compartments, but to model the transitions between compartments with the assumption that some peaks or dips in E1 that barely causes a sign change are potentially caused by noise and are thus not of biological relevance. Of course, the ability to model this behaviour relies heavily on the assumption that the value of the E1 track carries information about the distinction between compartments additional to that of the sign of the vector.</p>
 <p>In a classical setting, the way to compare Bayesian models is by <em>some</em> measure of how much <em>information</em> a model has learned from the data it was trained on. <em>Arviz</em> provides the <em>Akaike Information Criterion</em> (AIC) and the <em>Widely Applicable Information Criterion</em> (WAIC), where it uses leave-one-out cross-validation to generate the out-of-sample predictive accuracy. Conveniently, the <code>arviz.compare</code> takes multiple models and generates a neat table with the results of its cross-validation analysis.</p>
-<p>But, if the purpose of the model is smoothing, we do not necessarily need it to fit too well to the data.</p>
+<p>However, when an expected result of the model is that some peaks or small compartments are reduced or smoothed, we must question the interpretability of these criteria. At least, the balance between generalization and fitting should be skewed towards generalization, expectedly at the cost of fitting.</p>
 </section>
 </section>
 <section id="results" class="level1">
