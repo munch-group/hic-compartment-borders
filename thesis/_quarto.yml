@@ -6,9 +6,10 @@ filters:
   - at: pre-quarto
     path: ../filters/abstract-section.lua
     # moves abstract section to meta data so it does not need
-    # to to in metadata. Just put it in an "# Abstract" section    # same as any other section
-  - at: post-quarto
-    path: ../filters/captions.lua
+    # to to in metadata. Just put it in an "# Abstract" section    
+    # same as any other section
+  # - at: post-quarto
+  #   path: ../filters/captions.lua
     # moves subcaptions into the main caption
 
 manuscript:
@@ -19,6 +20,7 @@ format:
   html: default
   # docx: default
   #  jats: default
+  
 
   # An arxiv style extension, but we need Latin Modern fonts downloaded
   # arxiv-pdf:
