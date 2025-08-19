@@ -615,7 +615,7 @@ eigenvectors from Hi-C data analysis in a Bayesian framework}
 in a Gaussian Random Walk and infering a latent compartment assignment
 to A or B as an excuse to master PyMC}
 \author{Søren Jørgensen}
-\date{August 18, 2025}
+\date{August 19, 2025}
 \begin{document}
 \frontmatter
 \cleardoublepage
@@ -873,7 +873,25 @@ providing a viewframe to the function that does the calculations. It is
 not clear how further experimentation with narrowing the
 eigendecomposition viewframe affects the biological explanation of the
 results, but it is suggested as a method of obtaining more local
-compartmentalization (Wang et al. 2019) (termed local PCA).
+compartmentalization (Wang et al. 2019) (termed local PCA). As no
+centromere was available from the T2T-MMU8v1.0, it was inferred from the
+largest cluster of sattelite repeats, approximately between 57 Mp and 69
+Mp (Figure~\ref{fig-t2t-satellites}).
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=6.23958in,height=1.01042in]{index_files/figure-latex/..-notebooks-01_prep_e1_values-fig-t2t-satellites-output-1.png}
+
+}
+
+\caption{\label{fig-t2t-satellites}Satellite repeats on chrX, inferred
+from \texttt{repeatMasker} file from the T2T-MMU8v1.0 assembly. The
+centromere is locdated at the largest cluster of satellite repeats,
+merging intervals within 20kb.}
+
+\end{figure}%
 
 First, the pipeline was applied to generate high-resolution eigenvector
 tracks on the most recent, telomere-to-telomere \emph{Macaca mulata}
@@ -1099,8 +1117,8 @@ In a classical setting, the way to compare Bayesian models is by
 \emph{some} measure of how much \emph{information} a model has learned
 from the data it was trained on. \emph{Arviz} provides the \emph{Akaike
 Information Criterion} (AIC) and the \emph{Widely Applicable Information
-Criterion} (WAIC), where it uses leave-one-out cross-validation to
-generate the out-of-sample predictive accuracy. Conveniently, the
+Criterion} (WAIC), where it uses leave-one-out cross-validation (LOO-CV)
+to generate the out-of-sample predictive accuracy. Conveniently, the
 \texttt{arviz.compare} takes multiple models and generates a neat table
 with the results of its cross-validation analysis.
 
@@ -1108,15 +1126,222 @@ However, when an expected result of the model is that some peaks or
 small compartments are reduced or smoothed, we must question the
 interpretability of these criteria. At least, the balance between
 generalization and fitting should be skewed towards generalization,
-expectedly at the cost of fitting.
+expectedly at the cost of fitting. Additionally, there is some dispute
+around using CV for timeseries (or random walk models), as the left-out
+samples will affect the autocorrelated nature of the predictions
+\href{https://statmodeling.stat.columbia.edu/2015/01/16/loo-waic-time-series/}{ref}.
+However, it seems that when using CV for model comparison, the same bias
+is introduced in all the compared models, and can thus largely be
+ignored.
+
+\section{Resolutions and subsets}\label{resolutions-and-subsets}
+
+After initial evaluations of the foundational architecture was done by
+fitting 100kb resolution data, the same architecture was applied to
+higher resolution (10kb) data. To achieve a comparable runtime, a subset
+of the data was selected from a 1500-bin interval that was qualitatively
+determined to have high variance. However, not only the resolution was
+exchanged, but also the data set. For the hi-res analysis, I used the
+GRCh37 data set from human X-bearing sperm.
 
 \chapter{Results}\label{results}
 
-\subsection{The Eigendecomposition}\label{the-eigendecomposition}
+\section{The ICE}\label{the-ice}
+
+After remapping the macaque data to the T2T assembly, the eigentracks
+were calculated as described. They were visually evaluated at the
+different resolutions (fig-e1-sperm), showing the expected shifts in E1
+values on the megabase scale for all resolutions except 1kb. This means
+that the sequencing was not sufficiently deep for binning Hi-C contacts
+into 1000 bp regions, and many bins has 0 or only a few contacts. To be
+sure to have informative enough data, the 10kb resolution was chosen for
+further analysis in probabilistic modeling. Factoring in the experience
+of Lajoie, Dekker, and Kaplan (2015) that \(100,000,000\) valid reads is
+sufficient for 40kb resolution without too much noise, this is still a
+rather optimistic choice, as we have only \(\sim 12,500,000\) valid
+interactions from the sperm cells. However, this underlines the need for
+modeling the noise when fitting the models later.
+
+\begin{figure}
+
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.22917in,height=1.11458in]{index_files/figure-latex/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-1.png}
+
+}
+
+\subcaption{\label{fig-e1-sperm-1}Sperm E1 at 1kb resolution}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.22917in,height=1.11458in]{index_files/figure-latex/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-2.png}
+
+}
+
+\subcaption{\label{fig-e1-sperm-2}Sperm E1 at 5kb resolution}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.22917in,height=1.11458in]{index_files/figure-latex/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-3.png}
+
+}
+
+\subcaption{\label{fig-e1-sperm-3}Sperm E1 at 10kb resolution}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.22917in,height=1.11458in]{index_files/figure-latex/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-4.png}
+
+}
+
+\subcaption{\label{fig-e1-sperm-4}Sperm E1 at 50kb resolution}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.22917in,height=1.11458in]{index_files/figure-latex/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-5.png}
+
+}
+
+\subcaption{\label{fig-e1-sperm-5}Sperm E1 at 100kb resolution}
+
+\end{minipage}%
+
+\caption{\label{fig-e1-sperm}E1 eigenvector for T2T-MMU8v1 sperm at
+different resolutions. The E1 eigenvector is the first eigenvector of
+the covariance matrix of the Hi-C contact matrix, and it captures the
+dominant mode of variation in the data. The classical definitions, A: E1
+\textgreater{} 0 and B: E1 \textless{} 0, are shown in red and blue,
+respectively. E1 values are overlayed as scatter.}
+
+\end{figure}%
+
+We were less confident in the human sperm data, as approximately half of
+the cells were filtered out compared to the original study (they had the
+Y chromosome), resulting in only \(\sim 3,500,000\) valid interactions.
+This is evidently not sufficient for high-resolution analysis directly,
+visualized by the extreme noise level in fig-e1-sperm B) and C).
+
+\begin{figure}
+
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.22917in,height=1.11458in]{index_files/figure-latex/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-1.png}
+
+}
+
+\subcaption{\label{fig-e1-sperm-x-1}1kb resolution}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.22917in,height=1.11458in]{index_files/figure-latex/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-2.png}
+
+}
+
+\subcaption{\label{fig-e1-sperm-x-2}5kb resolution}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.22917in,height=1.11458in]{index_files/figure-latex/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-3.png}
+
+}
+
+\subcaption{\label{fig-e1-sperm-x-3}10kb resolution}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.22917in,height=1.11458in]{index_files/figure-latex/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-4.png}
+
+}
+
+\subcaption{\label{fig-e1-sperm-x-4}50kb resolution}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.22917in,height=1.11458in]{index_files/figure-latex/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-5.png}
+
+}
+
+\subcaption{\label{fig-e1-sperm-x-5}100kb resolution}
+
+\end{minipage}%
+
+\caption{\label{fig-e1-sperm-x}E1 eigenvector for human GRCh37 sperm at
+different resolutions. The E1 eigenvector is the first eigenvector of
+the covariance matrix of the Hi-C contact matrix, and it captures the
+dominant mode of variation in the data. The classical definitions, A: E1
+\textgreater{} 0 and B: E1 \textless{} 0, are shown in red and blue,
+respectively. E1 values are overlayed as scatter.}
+
+\end{figure}%
+
+\section{The models}\label{the-models}
+
+The best performing model on the 100kb data was re-fitted with the 10kb
+human data set. However, to get similar bin sizes, a subset of 1500 bins
+was taken from the E1 track. Additionally, the small chromatin was used
+as a subset, and lastly, the full chromosome X was fitted to the same
+model (same architecture).
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=6.21875in,height=3.10417in]{index_files/figure-latex/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png}
+
+}
+
+\caption{\label{fig-posterior-cross-dens-ci-w}Posterior Probability with
+Raw Mixing Weight CI and Crossing Density. The CI rule used is 1/3
+\textless{} w\_mean \textless{} 2/3, as shown. The grey band indicates
+the regions where the CI rule is not satisfied. The crossing density
+bars show the number of crossings of the posterior mean at 0.5, with red
+indicating crossings upwards and blue indicating crossings downwards.}
+
+\end{figure}%
 
 \chapter{Discussion}\label{discussion}
 
 The discussion
+
+Embed a figure with dynamic caption:
+
+Does this register?
 
 \chapter{Conclusion}\label{conclusion}
 

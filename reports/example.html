@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="My Name">
-<meta name="dcterms.date" content="2025-08-18">
+<meta name="dcterms.date" content="2025-08-19">
 
 <title>Markdown in Quarto – Probabilistic Models for Hi-C Compartment Borders</title>
 <style>
@@ -278,6 +278,21 @@ window.Quarto = {
   <a href="../notebooks/07_hi_res_subset_analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">GRW modeling on (subset) Hi-Res data</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/08_hi_res_subset_confidence.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Confidence from mixing weights</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/09_hi_res_full_analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">GRW modeling on Hi-Res Hi-C data from X</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/10_hi_res_full_confidence.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Confidence from mixing weights</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -375,7 +390,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 18, 2025</p>
+      <p class="date">August 19, 2025</p>
     </div>
   </div>
   
@@ -394,29 +409,29 @@ window.Quarto = {
 </section>
 <section id="illustrations" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="illustrations">Illustrations</h2>
-<p>You can see an elephant in <a href="#fig-elephant" class="quarto-xref">Figure&nbsp;<span>13.1</span></a>.</p>
+<p>You can see an elephant in <a href="#fig-elephant" class="quarto-xref">Figure&nbsp;<span>16.1</span></a>.</p>
 <div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="illustrations/elephant.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;13.1: Some caption for an illustration showing an elephant"><img src="illustrations/elephant.png" class="img-fluid figure-img" style="width:50.0%"></a>
+<a href="illustrations/elephant.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;16.1: Some caption for an illustration showing an elephant"><img src="illustrations/elephant.png" class="img-fluid figure-img" style="width:50.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.1: Some caption for an illustration showing an elephant
+Figure&nbsp;16.1: Some caption for an illustration showing an elephant
 </figcaption>
 </figure>
 </div>
-<p>Elephants are big (<a href="#fig-bigelephant" class="quarto-xref">Figure&nbsp;<span>13.2</span></a>):</p>
+<p>Elephants are big (<a href="#fig-bigelephant" class="quarto-xref">Figure&nbsp;<span>16.2</span></a>):</p>
 <div id="fig-bigelephant" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-bigelephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
-<a href="illustrations/elephant.png" class="lightbox page-columns page-full" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;13.2: "><img src="illustrations/elephant.png" class="img-fluid figure-img column-screen-inset-right"></a>
+<a href="illustrations/elephant.png" class="lightbox page-columns page-full" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;16.2: "><img src="illustrations/elephant.png" class="img-fluid figure-img column-screen-inset-right"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-bigelephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.2
+Figure&nbsp;16.2
 </figcaption>
 </figure>
 </div>
-<p>There are two elephants in <a href="#fig-twoelephants" class="quarto-xref">Figure&nbsp;<span>13.3</span></a>. The elephants in <a href="#fig-surus" class="quarto-xref">Figure&nbsp;<span>13.3 (a)</span></a> and <a href="#fig-hanno" class="quarto-xref">Figure&nbsp;<span>13.3 (b)</span></a> look similar.</p>
+<p>There are two elephants in <a href="#fig-twoelephants" class="quarto-xref">Figure&nbsp;<span>16.3</span></a>. The elephants in <a href="#fig-surus" class="quarto-xref">Figure&nbsp;<span>16.3 (a)</span></a> and <a href="#fig-hanno" class="quarto-xref">Figure&nbsp;<span>16.3 (b)</span></a> look similar.</p>
 <div id="fig-twoelephants" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-twoelephants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -425,7 +440,7 @@ Figure&nbsp;13.2
 <div id="fig-surus" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-surus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="illustrations/elephant.png" class="lightbox" data-gallery="fig-twoelephants" title="Figure&nbsp;13.3&nbsp;(a): "><img src="illustrations/elephant.png" id="fig-surus" class="img-fluid figure-img" data-ref-parent="fig-twoelephants"></a>
+<a href="illustrations/elephant.png" class="lightbox" data-gallery="fig-twoelephants" title="Figure&nbsp;16.3&nbsp;(a): "><img src="illustrations/elephant.png" id="fig-surus" class="img-fluid figure-img" data-ref-parent="fig-twoelephants"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-surus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a)
@@ -437,7 +452,7 @@ Figure&nbsp;13.2
 <div id="fig-hanno" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-hanno-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="illustrations/elephant.png" class="lightbox" data-gallery="fig-twoelephants" title="Figure&nbsp;13.3&nbsp;(b): "><img src="illustrations/elephant.png" id="fig-hanno" class="img-fluid figure-img" data-ref-parent="fig-twoelephants"></a>
+<a href="illustrations/elephant.png" class="lightbox" data-gallery="fig-twoelephants" title="Figure&nbsp;16.3&nbsp;(b): "><img src="illustrations/elephant.png" id="fig-hanno" class="img-fluid figure-img" data-ref-parent="fig-twoelephants"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hanno-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b)
@@ -448,7 +463,7 @@ Figure&nbsp;13.2
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-twoelephants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.3: Some caption you wrote for an illustration of two elephants.
+Figure&nbsp;16.3: Some caption you wrote for an illustration of two elephants.
 </figcaption>
 </figure>
 </div>
@@ -460,24 +475,24 @@ Figure&nbsp;13.3: Some caption you wrote for an illustration of two elephants.
 </section>
 <section id="plot-included-from-notebook" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="plot-included-from-notebook">Plot included from notebook</h2>
-<p>See plot <a href="#fig-danishinteraction" class="quarto-xref">Figure&nbsp;<span>13.4</span></a> below.</p>
+<p>See plot <a href="#fig-danishinteraction" class="quarto-xref">Figure&nbsp;<span>16.4</span></a> below.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/example.ipynb" data-notebook-title="Workplace interaction" data-notebook-cellid="cell-fig-danishinteraction">
 <div id="cell-fig-danishinteraction" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-18T10:07:51.986113Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-18T10:07:51.985692Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-18T10:07:52.201192Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-18T10:07:52.200909Z&quot;}}" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <div id="fig-danishinteraction" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-danishinteraction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="example_files/figure-html/..-notebooks-example-fig-danishinteraction-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;13.4: Figure legends are defined alongside the figure in the notebook. The figure size in the notebook is determines its size when embedded in a document 4x3 inches."><img src="example_files/figure-html/..-notebooks-example-fig-danishinteraction-output-1.png" width="369" height="287" class="figure-img"></a>
+<a href="example_files/figure-html/..-notebooks-example-fig-danishinteraction-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;16.4: Figure legends are defined alongside the figure in the notebook. The figure size in the notebook is determines its size when embedded in a document 4x3 inches."><img src="example_files/figure-html/..-notebooks-example-fig-danishinteraction-output-1.png" width="369" height="287" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-danishinteraction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.4: Figure legends are defined alongside the figure in the notebook. The figure size in the notebook is determines its size when embedded in a document 4x3 inches.
+Figure&nbsp;16.4: Figure legends are defined alongside the figure in the notebook. The figure size in the notebook is determines its size when embedded in a document 4x3 inches.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>Or this really wide plot below (<a href="#fig-danishinteractionfacets" class="quarto-xref">Figure&nbsp;<span>13.5</span></a>).</p>
+<p>Or this really wide plot below (<a href="#fig-danishinteractionfacets" class="quarto-xref">Figure&nbsp;<span>16.5</span></a>).</p>
 <div class="page-columns page-full">
 <div class="quarto-embed-nb-cell page-columns page-full" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/example.ipynb" data-notebook-title="Workplace interaction" data-notebook-cellid="cell-fig-danishinteractionfacets">
 <div id="cell-fig-danishinteractionfacets" class="cell page-columns page-full" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-18T10:07:52.202976Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-18T10:07:52.202861Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-18T10:07:52.831757Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-18T10:07:52.831461Z&quot;}}" data-execution_count="11">
@@ -485,10 +500,10 @@ Figure&nbsp;13.4: Figure legends are defined alongside the figure in the noteboo
 <div id="fig-danishinteractionfacets" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-danishinteractionfacets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
-<a href="example_files/figure-html/..-notebooks-example-fig-danishinteractionfacets-output-1.png" class="lightbox page-columns page-full" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;13.5: Figure legends are defined alongside the figure in the notebook. The figure size in the notebook is determines its size when embedded in a document 4x3 inches."><img src="example_files/figure-html/..-notebooks-example-fig-danishinteractionfacets-output-1.png" width="1616" height="296" class="figure-img column-screen column-page"></a>
+<a href="example_files/figure-html/..-notebooks-example-fig-danishinteractionfacets-output-1.png" class="lightbox page-columns page-full" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;16.5: Figure legends are defined alongside the figure in the notebook. The figure size in the notebook is determines its size when embedded in a document 4x3 inches."><img src="example_files/figure-html/..-notebooks-example-fig-danishinteractionfacets-output-1.png" width="1616" height="296" class="figure-img column-screen column-page"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-danishinteractionfacets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.5: Figure legends are defined alongside the figure in the notebook. The figure size in the notebook is determines its size when embedded in a document 4x3 inches.
+Figure&nbsp;16.5: Figure legends are defined alongside the figure in the notebook. The figure size in the notebook is determines its size when embedded in a document 4x3 inches.
 </figcaption>
 </figure>
 </div>
@@ -509,14 +524,14 @@ Figure&nbsp;13.5: Figure legends are defined alongside the figure in the noteboo
 </section>
 <section id="table-included-from-notebook" class="level2">
 <h2 class="anchored" data-anchor-id="table-included-from-notebook">Table included from notebook</h2>
-<p>These were selected to represent as many nationalities as possible (<a href="#tbl-subjects" class="quarto-xref">Table&nbsp;<span>13.1</span></a>).</p>
+<p>These were selected to represent as many nationalities as possible (<a href="#tbl-subjects" class="quarto-xref">Table&nbsp;<span>16.1</span></a>).</p>
 <p>you can also allow the table to be wider</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/example.ipynb" data-notebook-title="Workplace interaction" data-notebook-cellid="cell-tbl-subjects">
 <div class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-18T10:07:51.853902Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-18T10:07:51.853589Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-18T10:07:51.942187Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-18T10:07:51.941914Z&quot;}}" data-execution_count="7">
-<div id="tbl-subjects" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="7" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-18T10:07:51.853902Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-18T10:07:51.853589Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-18T10:07:51.942187Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-18T10:07:51.941914Z&quot;}}">
+<div id="tbl-subjects" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-18T10:07:51.853902Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-18T10:07:51.853589Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-18T10:07:51.942187Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-18T10:07:51.941914Z&quot;}}" data-execution_count="7">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-subjects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;13.1: People included in the analysis.
+Table&nbsp;16.1: People included in the analysis.
 </figcaption>
 <div aria-describedby="tbl-subjects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -713,7 +728,7 @@ Table&nbsp;13.1: People included in the analysis.
 </section>
 <section id="margin-content" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="margin-content">Margin content</h2>
-<p>You can anything in the margin like <a href="#fig-meaninformality" class="quarto-xref">Figure&nbsp;<span>13.6</span></a>.</p>
+<p>You can anything in the margin like <a href="#fig-meaninformality" class="quarto-xref">Figure&nbsp;<span>16.6</span></a>.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/example.ipynb" data-notebook-title="Workplace interaction" data-notebook-cellid="cell-fig-meaninformality">
@@ -722,10 +737,10 @@ Table&nbsp;13.1: People included in the analysis.
 <div id="fig-meaninformality" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-meaninformality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="example_files/figure-html/..-notebooks-example-fig-meaninformality-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;13.6: Figure legends are defined alongside the figure in the notebook. The figure size in the notebook is determines its size when embedded in a document 4x3 inches."><img src="example_files/figure-html/..-notebooks-example-fig-meaninformality-output-1.png" width="447" height="287" class="figure-img img-fluid"></a>
+<a href="example_files/figure-html/..-notebooks-example-fig-meaninformality-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;16.6: Figure legends are defined alongside the figure in the notebook. The figure size in the notebook is determines its size when embedded in a document 4x3 inches."><img src="example_files/figure-html/..-notebooks-example-fig-meaninformality-output-1.png" width="447" height="287" class="figure-img img-fluid"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-meaninformality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.6: Figure legends are defined alongside the figure in the notebook. The figure size in the notebook is determines its size when embedded in a document 4x3 inches.
+Figure&nbsp;16.6: Figure legends are defined alongside the figure in the notebook. The figure size in the notebook is determines its size when embedded in a document 4x3 inches.
 </figcaption>
 </figure>
 </div>
@@ -735,7 +750,7 @@ Figure&nbsp;13.6: Figure legends are defined alongside the figure in the noteboo
 </div></div></section>
 <section id="diagrams" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="diagrams">Diagrams</h2>
-<p>Diagram in <a href="#fig-diag" class="quarto-xref">Figure&nbsp;<span>13.7</span></a>.</p>
+<p>Diagram in <a href="#fig-diag" class="quarto-xref">Figure&nbsp;<span>16.7</span></a>.</p>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode dot code-with-copy"><code class="sourceCode dot"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">graph</span> <span class="va">G</span> <span class="ot">{</span></span>
@@ -906,7 +921,7 @@ Figure&nbsp;13.6: Figure legends are defined alongside the figure in the noteboo
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-diag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.7
+Figure&nbsp;16.7
 </figcaption>
 </figure>
 </div>
@@ -977,10 +992,10 @@ Figure&nbsp;13.7
 </section>
 <section id="math" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="math">Math</h2>
-<p>This is calculated as <span class="math inline">\(\pi_k = \prod_{i=1}^K x_i\)</span>. You can crossref formulas (<a href="#eq-definition" class="quarto-xref">Equation&nbsp;<span>13.1</span></a>).</p>
+<p>This is calculated as <span class="math inline">\(\pi_k = \prod_{i=1}^K x_i\)</span>. You can crossref formulas (<a href="#eq-definition" class="quarto-xref">Equation&nbsp;<span>16.1</span></a>).</p>
 <p><span id="eq-definition"><span class="math display">\[
 \lambda = \sum_{k=1}^N \pi_k
-\tag{13.1}\]</span></span></p>
+\tag{16.1}\]</span></span></p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>We know from <em>the first fundamental theorem of calculus</em> that for <span class="math inline">\(x\)</span> in <span class="math inline">\([a, b]\)</span>:</p>

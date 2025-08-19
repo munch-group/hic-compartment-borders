@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-    <meta name="dcterms.date" content="2025-08-18">
+    <meta name="dcterms.date" content="2025-08-19">
     <meta name="keywords" content="Gaussian Random Walk, Bayesian MCMC, Chromatin Structure in spermatogenesis">
 
     <title>Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework</title>
@@ -185,15 +185,14 @@
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script> 
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script> 
       <meta name="citation_title" content="Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework">
 <meta name="citation_keywords" content="Gaussian Random Walk,Bayesian MCMC,Chromatin Structure in spermatogenesis">
 <meta name="citation_author" content="Søren Jørgensen">
-<meta name="citation_publication_date" content="2025-08-18">
-<meta name="citation_cover_date" content="2025-08-18">
+<meta name="citation_publication_date" content="2025-08-19">
+<meta name="citation_cover_date" content="2025-08-19">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-08-18">
+<meta name="citation_online_date" content="2025-08-19">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=PyMC: A modern, and comprehensive probabilistic programming framework in Python;,citation_abstract=PyMC is a probabilistic programming library for Python that provides tools for constructing and fitting Bayesian models. It offers an intuitive, readable syntax that is close to the natural syntax statisticians use to describe models. PyMC leverages the symbolic computation library PyTensor, allowing it to be compiled into a variety of computational backends, such as C, JAX, and Numba, which in turn offer access to different computational architectures including CPU, GPU, and TPU. Being a general modeling framework, PyMC supports a variety of models including generalized hierarchical linear regression and classification, time series, ordinary differential equations (ODEs), and non-parametric models such as Gaussian processes (GPs). We demonstrate PyMC’s versatility and ease of use with examples spanning a range of common statistical models. Additionally, we discuss the positive role of PyMC in the development of the open-source ecosystem for probabilistic programming.;,citation_author=Oriol Abril-Pla;,citation_author=Virgile Andreani;,citation_author=Colin Carroll;,citation_author=Larry Dong;,citation_author=Christopher J. Fonnesbeck;,citation_author=Maxim Kochurov;,citation_author=Ravin Kumar;,citation_author=Junpeng Lao;,citation_author=Christian C. Luhmann;,citation_author=Osvaldo A. Martin;,citation_author=Michael Osthege;,citation_author=Ricardo Vieira;,citation_author=Thomas Wiecki;,citation_author=Robert Zinkov;,citation_publication_date=2023-09;,citation_cover_date=2023-09;,citation_year=2023;,citation_doi=10.7717/peerj-cs.1516;,citation_issn=2376-5992;,citation_volume=9;,citation_language=en-US;,citation_journal_title=PeerJ Computer Science;">
 <meta name="citation_reference" content="citation_title=Key role for CTCF in establishing chromatin structure in human embryos;,citation_author=Xuepeng Chen;,citation_author=Yuwen Ke;,citation_author=Keliang Wu;,citation_author=Han Zhao;,citation_author=Yaoyu Sun;,citation_author=Lei Gao;,citation_author=Zhenbo Liu;,citation_author=Jingye Zhang;,citation_author=Wenrong Tao;,citation_author=Zhenzhen Hou;,citation_author=Hui Liu;,citation_author=Jiang Liu;,citation_author=Zi-Jiang Chen;,citation_publication_date=2019-12;,citation_cover_date=2019-12;,citation_year=2019;,citation_issue=7786;,citation_doi=10.1038/s41586-019-1812-0;,citation_issn=0028-0836, 1476-4687;,citation_volume=576;,citation_language=en-US;,citation_journal_title=Nature;">
@@ -253,7 +252,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">August 18, 2025</p>
+              <p class="date">August 19, 2025</p>
             </div>
           </div>
           
@@ -318,10 +317,12 @@
   <li><a href="#model-2-spatially-dependent-random-walk" id="toc-model-2-spatially-dependent-random-walk" class="nav-link" data-scroll-target="#model-2-spatially-dependent-random-walk">Model 2: Spatially dependent (Random Walk)</a></li>
   </ul></li>
   <li><a href="#evaluations" id="toc-evaluations" class="nav-link" data-scroll-target="#evaluations">Evaluations</a></li>
+  <li><a href="#resolutions-and-subsets" id="toc-resolutions-and-subsets" class="nav-link" data-scroll-target="#resolutions-and-subsets">Resolutions and subsets</a></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
   <ul class="collapse">
-  <li><a href="#the-eigendecomposition" id="toc-the-eigendecomposition" class="nav-link" data-scroll-target="#the-eigendecomposition">The Eigendecomposition</a></li>
+  <li><a href="#the-ice" id="toc-the-ice" class="nav-link" data-scroll-target="#the-ice">The ICE</a></li>
+  <li><a href="#the-models" id="toc-the-models" class="nav-link" data-scroll-target="#the-models">The models</a></li>
   </ul></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
@@ -378,7 +379,24 @@ P(D) =\int P(D \ | \ \theta) \ P(\theta) \ \mathrm{d}\theta,
 <h3 class="anchored" data-anchor-id="the-ice-method">The ICE-method</h3>
 <p>The pipeline previously developed implements the Iterative Correction and Eigendecomposition (ICE) method of Hi-C analysis <span class="citation" data-cites="lieberman-aiden2009comprehensivemappinglongrange">(<a href="#ref-lieberman-aiden2009comprehensivemappinglongrange" role="doc-biblioref">Lieberman-Aiden et al. 2009</a>)</span> after mapping raw Hi-C reads to the reference genome, validating Hi-C pairs, and constructing the interaction map (Hi-C matrix). It is implemented fully using the <em>Open2C</em> tools and recommendations. Briefly, the raw read pairs are mapped (as paired-end reads) to the respective reference genome (either GRCh37 or T2T-MMU8v1.0) with <em>bwa-mem2</em> [ref] with the <code>-P</code> option. Then the pairs are parsed and sorted with <em>pairtools</em>, and a deduplication and quality filter (<span class="math inline">\(mapq \geq 30\)</span>) is run to remove PCR duplicates and technical noise from low-quality reads. Lastly, the binned interaction matrices (<code>.cool</code> files, hence also <em>coolers</em>) are created from the remaining pairs into the base-resolution of 1kb bins that is then recursively coarsened until 1 Mb bins. The resulting raw interaction matrices do not have a uniform coverage profile along the genome as a result of differential binding or accesibility of the restriction enzyme and other technical factors. High or low coverage is visible in the interaction matrices, where genomic regions will appear as highly or weakly interacting regions even though they are artefacts of the coverage. Thus, it is needed to balance the interaction counts to avoid <em>visibility-induced biases</em> [ref]; it is time for ICE.</p>
 <p>The interaction counts of each bin is corrected iteratively until convergence of the coverage, and the correction weight is saved to the cooler. The expected interaction matrix is derived from the decay in contact probability over genomic distance (also; distance decay), and is used to scale the observed interactions before performing eigendecomposition on the correlation matrix of observed/expected. Bins interacting with bins of the same type should keep a positive eigenvector, and vice versa otherwise. Thus, the first principal component <em>should</em> capture the variance explained by the compartment assignment. The eigenvectors are then oriented to correlate with GC content, to ensure that positive values represent A-compartments and active chromatin, and negative values represent B-compartments and inactive chromatin.</p>
-<p>As also described in [ref], sometimes there is a larger amount of variance in interaction frequency between chromosome arms than within arms. In these cases, the eigendecomposition will not capture the compartments, but only change its sign at the centromere. Thus, it is a safe practice to do the eigendecomposition on the chromosome arms separately, and is readily implemented into <em>cooltools</em> by providing a viewframe to the function that does the calculations. It is not clear how further experimentation with narrowing the eigendecomposition viewframe affects the biological explanation of the results, but it is suggested as a method of obtaining more local compartmentalization <span class="citation" data-cites="wang2019reprogrammingmeioticchromatin">(<a href="#ref-wang2019reprogrammingmeioticchromatin" role="doc-biblioref">Wang et al. 2019</a>)</span> (termed local PCA).</p>
+<p>As also described in [ref], sometimes there is a larger amount of variance in interaction frequency between chromosome arms than within arms. In these cases, the eigendecomposition will not capture the compartments, but only change its sign at the centromere. Thus, it is a safe practice to do the eigendecomposition on the chromosome arms separately, and is readily implemented into <em>cooltools</em> by providing a viewframe to the function that does the calculations. It is not clear how further experimentation with narrowing the eigendecomposition viewframe affects the biological explanation of the results, but it is suggested as a method of obtaining more local compartmentalization <span class="citation" data-cites="wang2019reprogrammingmeioticchromatin">(<a href="#ref-wang2019reprogrammingmeioticchromatin" role="doc-biblioref">Wang et al. 2019</a>)</span> (termed local PCA). As no centromere was available from the T2T-MMU8v1.0, it was inferred from the largest cluster of sattelite repeats, approximately between 57 Mp and 69 Mp (<a href="#fig-t2t-satellites" class="quarto-xref">Figure&nbsp;1</a>).</p>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/01_prep_e1_values.ipynb" data-notebook-title="High-res E1 on T2T-MMU8v1" data-notebook-cellid="cell-fig-t2t-satellites">
+<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="cell-fig-t2t-satellites" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plot_intervals(satellites, lw<span class="op">=</span><span class="fl">0.3</span>, alpha<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-t2t-satellites" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-t2t-satellites-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-t2t-satellites-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Satellite repeats on chrX, inferred from repeatMasker file from the T2T-MMU8v1.0 assembly. The centromere is locdated at the largest cluster of satellite repeats, merging intervals within 20kb."><img src="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-t2t-satellites-output-1.png" width="599" height="97" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t2t-satellites-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Satellite repeats on chrX, inferred from <code>repeatMasker</code> file from the T2T-MMU8v1.0 assembly. The centromere is locdated at the largest cluster of satellite repeats, merging intervals within 20kb.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
 <p>First, the pipeline was applied to generate high-resolution eigenvector tracks on the most recent, telomere-to-telomere <em>Macaca mulata</em> assembly, T2T-MMU8v1.0 [ref], to improve the accuracy of the mapping from the previous study.</p>
 <p>Additionally, the pipeline was applied to generate a eigenvectors of human sperm cells harboring the <em>X</em> chromosome. Even though the authors [ref] of this Hi-C data find high similarity between sperm cells harboring the <em>X</em> or the <em>Y</em> sex chromosomes, they barely describe their comparison. Thus, I decide to seperate them into two groups to be able to compare autosomal chromatin compartments later on if we wish to. A major downside of this is that the coverage is approximately halved, resulting in lower viable resolutions for subsequent analyses.</p>
 <p>The results of the eigendecomposition are hereafter described as E1 (eigenvector track of the first principal component).</p>
@@ -389,9 +407,9 @@ P(D) =\int P(D \ | \ \theta) \ P(\theta) \ \mathrm{d}\theta,
 <p>I use PyMC <span class="citation" data-cites="abril-pla2023pymcmoderncomprehensive">(<a href="#ref-abril-pla2023pymcmoderncomprehensive" role="doc-biblioref">Abril-Pla et al. 2023</a>)</span> for all modeling, relying as much as possible on functions and built-in functionality for all anaysis. I start out small in the simplest model possible, then progressing to larger and more complex models. The basis of the probabilistic modeling is the assumption that the eigenvectors of A- and B-compartments can be drawn from distinct distributions. I assume that the distributions underlying the compartments are Gaussian with different means, either <span class="math inline">\(\mu_a = 0.5\)</span> or <span class="math inline">\(\mu_b = -0.5\)</span>. Additionally, I assume that a probability of being in A can be inferred from the eigenvector, and that a binary latent state can be derived from that to place compartment labels on each bin.</p>
 <p>I experimented with the possibility of marginalizing over the binary latent state to make sampling faster, as the No-U-Turn-Sampler (NUTS) [ref] can only sample from continuous variables, and the <em>BinaryGibbsMetropolis</em> sampler is significantly slower. PyMC notes some builtin automatic marginalization of discrete variables [ref], but the example used does not directly translate into my case. Therefore, a continuous mixture model of the two underlying Gaussians were tried to test sampling efficiency or differences. Here, in stead of using compartment type as a switch (“choose A or B”), an assignment probability was used as a mixing weight for the two Gaussians. Though much faster (&gt;20x), I reflect that the underlying biological assumptions about compartment identity is also marginalized (read: lost) when dropping the hard type assignment.</p>
 <p>When taking advantage of PyMC’s vectorization capabilities, a single variable <code>mu</code> can be defined with an array of <span class="math inline">\(\mu\)</span>’s for respective distributions. That is, we can define</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> pm.Normal(<span class="st">'mu'</span>, mu<span class="op">=</span>[<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>], sigma<span class="op">=</span>sigma, shape<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> pm.Normal(<span class="st">'mu'</span>, mu<span class="op">=</span>[<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>], sigma<span class="op">=</span>sigma, shape<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Here, <code>shape=2</code> is not necessary as it is implicit from the shape of the <code>mu</code>-parameter, but adds clarity. For even more clarity, we can define the coordinates underlying the model and then pass it to the variable, as with <code>coords = {'label': ['B', 'A']}</code> and passing <code>dims=label</code> in stead of <code>shape=2</code>. Additionally, to prevent the distributions leaking into each other, I apply an <code>ordered.transform</code> to the variable, ensuring that the first of the 2 draws will be lower than the next.</p>
 <section id="model-1-spatially-independent-i.i.d." class="level3">
 <h3 class="anchored" data-anchor-id="model-1-spatially-independent-i.i.d.">Model 1: Spatially independent (i.i.d.)</h3>
@@ -415,31 +433,31 @@ y_i &amp;\sim \mathcal{N}(\mu_i, \sigma) \\
 <p>The model might be able to fit well to the observed data, but it is unlikely that it can generalize. Here it is as a Mermaid-js diagram, embedded from the builtin Mermaid-representation of PyMC.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/02_PyMC_independent_bins.ipynb" data-notebook-title="Independent Probabilistic A/B calls" data-notebook-cellid="cell-fig-simple_iid_model">
 <div class="cell-container"><div class="cell-decorator"><pre>In [89]:</pre></div><div id="cell-fig-simple_iid_model" class="cell" data-execution_count="89">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mermaid.graph <span class="im">import</span> Graph</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mermaid <span class="im">import</span> Mermaid</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>mermaid_graph <span class="op">=</span> Graph(<span class="st">"Simple i.i.d"</span>, </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                      pm.model_to_mermaid(model, include_dim_lengths<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>render <span class="op">=</span> Mermaid(mermaid_graph, position<span class="op">=</span><span class="st">"center"</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># png_path = "../thesis/illustrations/simple_iid_model.png"</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># render.to_png(png_path)</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Image(png_path)</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>Image(render.img_response.content)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mermaid.graph <span class="im">import</span> Graph</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mermaid <span class="im">import</span> Mermaid</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>mermaid_graph <span class="op">=</span> Graph(<span class="st">"Simple i.i.d"</span>, </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                      pm.model_to_mermaid(model, include_dim_lengths<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>render <span class="op">=</span> Mermaid(mermaid_graph, position<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># png_path = "../thesis/illustrations/simple_iid_model.png"</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># render.to_png(png_path)</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Image(png_path)</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>Image(render.img_response.content)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="89">
 <div id="fig-simple_iid_model" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-simple_iid_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="index_files/figure-html/..-notebooks-02_PyMC_independent_bins-fig-simple_iid_model-output-1.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Simple i.i.d. model for E1 values. p is the probability of a bin being in compartment A, z is the latent state variable indicating whether a bin is A or B, and mu_a and mu_b are the expected means for A and B compartments, respectively. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation sigma."><img src="index_files/figure-html/..-notebooks-02_PyMC_independent_bins-fig-simple_iid_model-output-1.jpeg" class="img-fluid figure-img"></a>
+<a href="index_files/figure-html/..-notebooks-02_PyMC_independent_bins-fig-simple_iid_model-output-1.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Simple i.i.d. model for E1 values. p is the probability of a bin being in compartment A, z is the latent state variable indicating whether a bin is A or B, and mu_a and mu_b are the expected means for A and B compartments, respectively. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation sigma."><img src="index_files/figure-html/..-notebooks-02_PyMC_independent_bins-fig-simple_iid_model-output-1.jpeg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simple_iid_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Simple i.i.d. model for E1 values. <code>p</code> is the probability of a bin being in compartment A, <code>z</code> is the latent state variable indicating whether a bin is A or B, and <code>mu_a</code> and <code>mu_b</code> are the expected means for A and B compartments, respectively. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation <code>sigma</code>.
+Figure&nbsp;2: Simple i.i.d. model for E1 values. <code>p</code> is the probability of a bin being in compartment A, <code>z</code> is the latent state variable indicating whether a bin is A or B, and <code>mu_a</code> and <code>mu_b</code> are the expected means for A and B compartments, respectively. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation <code>sigma</code>.
 </figcaption>
 </figure>
 </div>
@@ -497,19 +515,280 @@ y_i &amp;\sim \mathcal{N}(\mu_i, \sigma) \\
 <section id="evaluations" class="level2">
 <h2 class="anchored" data-anchor-id="evaluations">Evaluations</h2>
 <p>To be able to comparatively evaluate the models, we must establish exactly what we are modeling. The biological assumptions we make is that <strong>1)</strong> a given genomic region can be one type at a time, and <strong>2)</strong> the autocorrelation between intervals along the genome can be modeled by probabilistic smoothing of the E1 track, even at 10kb resolution. The goal is not to discover new compartments, but to model the transitions between compartments with the assumption that some peaks or dips in E1 that barely causes a sign change are potentially caused by noise and are thus not of biological relevance. Of course, the ability to model this behaviour relies heavily on the assumption that the value of the E1 track carries information about the distinction between compartments additional to that of the sign of the vector.</p>
-<p>In a classical setting, the way to compare Bayesian models is by <em>some</em> measure of how much <em>information</em> a model has learned from the data it was trained on. <em>Arviz</em> provides the <em>Akaike Information Criterion</em> (AIC) and the <em>Widely Applicable Information Criterion</em> (WAIC), where it uses leave-one-out cross-validation to generate the out-of-sample predictive accuracy. Conveniently, the <code>arviz.compare</code> takes multiple models and generates a neat table with the results of its cross-validation analysis.</p>
-<p>However, when an expected result of the model is that some peaks or small compartments are reduced or smoothed, we must question the interpretability of these criteria. At least, the balance between generalization and fitting should be skewed towards generalization, expectedly at the cost of fitting.</p>
+<p>In a classical setting, the way to compare Bayesian models is by <em>some</em> measure of how much <em>information</em> a model has learned from the data it was trained on. <em>Arviz</em> provides the <em>Akaike Information Criterion</em> (AIC) and the <em>Widely Applicable Information Criterion</em> (WAIC), where it uses leave-one-out cross-validation (LOO-CV) to generate the out-of-sample predictive accuracy. Conveniently, the <code>arviz.compare</code> takes multiple models and generates a neat table with the results of its cross-validation analysis.</p>
+<p>However, when an expected result of the model is that some peaks or small compartments are reduced or smoothed, we must question the interpretability of these criteria. At least, the balance between generalization and fitting should be skewed towards generalization, expectedly at the cost of fitting. Additionally, there is some dispute around using CV for timeseries (or random walk models), as the left-out samples will affect the autocorrelated nature of the predictions <a href="https://statmodeling.stat.columbia.edu/2015/01/16/loo-waic-time-series/">ref</a>. However, it seems that when using CV for model comparison, the same bias is introduced in all the compared models, and can thus largely be ignored.</p>
+</section>
+<section id="resolutions-and-subsets" class="level2">
+<h2 class="anchored" data-anchor-id="resolutions-and-subsets">Resolutions and subsets</h2>
+<p>After initial evaluations of the foundational architecture was done by fitting 100kb resolution data, the same architecture was applied to higher resolution (10kb) data. To achieve a comparable runtime, a subset of the data was selected from a 1500-bin interval that was qualitatively determined to have high variance. However, not only the resolution was exchanged, but also the data set. For the hi-res analysis, I used the GRCh37 data set from human X-bearing sperm.</p>
 </section>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
-<section id="the-eigendecomposition" class="level3">
-<h3 class="anchored" data-anchor-id="the-eigendecomposition">The Eigendecomposition</h3>
+<section id="the-ice" class="level2">
+<h2 class="anchored" data-anchor-id="the-ice">The ICE</h2>
+<p>After remapping the macaque data to the T2T assembly, the eigentracks were calculated as described. They were visually evaluated at the different resolutions (fig-e1-sperm), showing the expected shifts in E1 values on the megabase scale for all resolutions except 1kb. This means that the sequencing was not sufficiently deep for binning Hi-C contacts into 1000 bp regions, and many bins has 0 or only a few contacts. To be sure to have informative enough data, the 10kb resolution was chosen for further analysis in probabilistic modeling. Factoring in the experience of <span class="citation" data-cites="lajoie2015hitchhikersguidehic">Lajoie, Dekker, and Kaplan (<a href="#ref-lajoie2015hitchhikersguidehic" role="doc-biblioref">2015</a>)</span> that <span class="math inline">\(100,000,000\)</span> valid reads is sufficient for 40kb resolution without too much noise, this is still a rather optimistic choice, as we have only <span class="math inline">\(\sim 12,500,000\)</span> valid interactions from the sperm cells. However, this underlines the need for modeling the noise when fitting the models later.</p>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/01_prep_e1_values.ipynb" data-notebook-title="High-res E1 on T2T-MMU8v1" data-notebook-cellid="cell-fig-e1-sperm">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>alpha_list <span class="op">=</span> [<span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>] <span class="co"># Adjusted alpha for scatter points</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> alpha,res <span class="kw">in</span> <span class="bu">zip</span>(alpha_list,[<span class="st">'1000'</span>, <span class="st">'5000'</span>, <span class="st">'10000'</span>, <span class="st">'50000'</span>, <span class="st">'100000'</span>]):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    plot_eigenvectors(sperm_dict[res], title<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                      scatter<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                      scatter_alpha<span class="op">=</span>alpha)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-e1-sperm" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-e1-sperm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-e1-sperm" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-e1-sperm-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-e1-sperm-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-1.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;3&nbsp;(a): Sperm E1 at 1kb resolution"><img src="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-1.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Sperm E1 at 1kb resolution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-e1-sperm" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-e1-sperm-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-e1-sperm-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-2.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;3&nbsp;(b): Sperm E1 at 5kb resolution"><img src="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-2.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Sperm E1 at 5kb resolution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-e1-sperm" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-e1-sperm-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-e1-sperm-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-3.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;3&nbsp;(c): Sperm E1 at 10kb resolution"><img src="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-3.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Sperm E1 at 10kb resolution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-e1-sperm" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-e1-sperm-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-e1-sperm-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-4.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;3&nbsp;(d): Sperm E1 at 50kb resolution"><img src="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-4.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) Sperm E1 at 50kb resolution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-e1-sperm" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-e1-sperm-5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-e1-sperm-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-5.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;3&nbsp;(e): Sperm E1 at 100kb resolution"><img src="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-output-5.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(e) Sperm E1 at 100kb resolution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-e1-sperm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: E1 eigenvector for T2T-MMU8v1 sperm at different resolutions. The E1 eigenvector is the first eigenvector of the covariance matrix of the Hi-C contact matrix, and it captures the dominant mode of variation in the data. The classical definitions, A: E1 &gt; 0 and B: E1 &lt; 0, are shown in red and blue, respectively. E1 values are overlayed as scatter.
+</figcaption>
+</figure>
+</div>
+</div>
+<p>We were less confident in the human sperm data, as approximately half of the cells were filtered out compared to the original study (they had the Y chromosome), resulting in only <span class="math inline">\(\sim 3,500,000\)</span> valid interactions. This is evidently not sufficient for high-resolution analysis directly, visualized by the extreme noise level in fig-e1-sperm B) and C).</p>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/01_prep_e1_values.ipynb" data-notebook-title="High-res E1 on T2T-MMU8v1" data-notebook-cellid="cell-fig-e1-sperm-x">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>alpha_list <span class="op">=</span> [<span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>] <span class="co"># Adjusted alpha for scatter points</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> alpha,res <span class="kw">in</span> <span class="bu">zip</span>(alpha_list,[<span class="st">'1000'</span>, <span class="st">'5000'</span>, <span class="st">'10000'</span>, <span class="st">'50000'</span>, <span class="st">'100000'</span>]):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    plot_eigenvectors(sperm_X_dict[res], </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                      title<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                      scatter<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                      scatter_alpha<span class="op">=</span>alpha)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-e1-sperm-x" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-e1-sperm-x-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-e1-sperm-x" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-e1-sperm-x-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-e1-sperm-x-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-1.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;4&nbsp;(a): 1kb resolution"><img src="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-1.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-x-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) 1kb resolution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-e1-sperm-x" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-e1-sperm-x-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-e1-sperm-x-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-2.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;4&nbsp;(b): 5kb resolution"><img src="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-2.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-x-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) 5kb resolution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-e1-sperm-x" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-e1-sperm-x-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-e1-sperm-x-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-3.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;4&nbsp;(c): 10kb resolution"><img src="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-3.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-x-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) 10kb resolution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-e1-sperm-x" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-e1-sperm-x-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-e1-sperm-x-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-4.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;4&nbsp;(d): 50kb resolution"><img src="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-4.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-x-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) 50kb resolution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-e1-sperm-x" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-e1-sperm-x-5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-e1-sperm-x-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-5.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;4&nbsp;(e): 100kb resolution"><img src="index_files/figure-html/..-notebooks-01_prep_e1_values-fig-e1-sperm-x-output-5.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-x-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(e) 100kb resolution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-e1-sperm-x-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: E1 eigenvector for human GRCh37 sperm at different resolutions. The E1 eigenvector is the first eigenvector of the covariance matrix of the Hi-C contact matrix, and it captures the dominant mode of variation in the data. The classical definitions, A: E1 &gt; 0 and B: E1 &lt; 0, are shown in red and blue, respectively. E1 values are overlayed as scatter.
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="the-models" class="level2">
+<h2 class="anchored" data-anchor-id="the-models">The models</h2>
+<p>The best performing model on the 100kb data was re-fitted with the 10kb human data set. However, to get similar bin sizes, a subset of 1500 bins was taken from the E1 track. Additionally, the small chromatin was used as a subset, and lastly, the full chromosome X was fitted to the same model (same architecture).</p>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/08_hi_res_subset_confidence.ipynb" data-notebook-title="Confidence from mixing weights" data-notebook-cellid="cell-fig-posterior-cross-dens-ci-w">
+<div class="cell-container"><div class="cell-decorator"><pre>In [17]:</pre></div><div id="cell-fig-posterior-cross-dens-ci-w" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set matplotlib to display SVG format</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib_inline.backend_inline</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>matplotlib_inline.backend_inline.set_matplotlib_formats(<span class="st">'retina'</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> w_stack_z[<span class="st">"pos"</span>]</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>f, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>ax.fill_between(</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    x,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    w_ci_lower_direct,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    w_ci_upper_direct,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.3</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"95% CI"</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"blue"</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    ec<span class="op">=</span><span class="st">'None'</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>x_grey <span class="op">=</span> x.copy()</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>x_grey <span class="op">=</span> x_grey.where(</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">~</span>((w_mean <span class="op">&lt;</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">|</span> (w_mean <span class="op">&gt;</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>)), np.nan</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">#~((w_ci_lower_direct &lt; 1/3) &amp; (w_ci_upper_direct &lt; 1/3) | (w_ci_lower_direct &gt; 2/3) &amp; (w_ci_upper_direct &gt; 2/3)), np.nan</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Grey band</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>ax.fill_between(</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    x, </span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>,</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>,</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    where<span class="op">=</span>x_grey.notnull(),</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the CI rule as text</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="st">"CI Rule: 1/3 &lt; w_mean &lt; 2/3"</span>, </span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>        transform<span class="op">=</span>ax.transAxes, fontsize<span class="op">=</span><span class="dv">7</span>, verticalalignment<span class="op">=</span><span class="st">'top'</span>, bbox<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>))</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the posterior mean</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>ax.plot(x, w_mean, label<span class="op">=</span><span class="st">"Posterior mean"</span>, color<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the 0.5 line</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>ax.hlines(<span class="fl">0.5</span>, <span class="bu">min</span>(x), <span class="bu">max</span>(x), color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">'dotted'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="co"># # Plot the CI rules</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>ax.hlines([<span class="fl">0.33</span>,<span class="fl">0.66</span>], <span class="bu">min</span>(x), <span class="bu">max</span>(x), color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span>(<span class="dv">0</span>, (<span class="dv">5</span>, <span class="dv">10</span>)), linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the crossing counts</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>ax.bar(x[:<span class="op">-</span><span class="dv">1</span>], crossing_density_up, label<span class="op">=</span><span class="st">"Crossing 0.5 Up"</span>, color<span class="op">=</span><span class="st">"tab:red"</span>, linewidth<span class="op">=</span><span class="fl">0.3</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>ax.bar(x[:<span class="op">-</span><span class="dv">1</span>], crossing_density_down, label<span class="op">=</span><span class="st">"Crossing 0.5 Down"</span>, color<span class="op">=</span><span class="st">"tab:blue"</span>, linewidth<span class="op">=</span><span class="fl">0.3</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"w ; Crossing Density"</span>)</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Position (10kb bins)"</span>)</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Posterior Probability with Raw Mixing Weight CI and Crossing Density"</span>)</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-posterior-cross-dens-ci-w" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-posterior-cross-dens-ci-w-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure&nbsp;5: Posterior Probability with Raw Mixing Weight CI and Crossing Density. The CI rule used is 1/3 < w_mean < 2/3, as shown. The grey band indicates the regions where the CI rule is not satisfied. The crossing density bars show the number of crossings of the posterior mean at 0.5, with red indicating crossings upwards and blue indicating crossings downwards."><img src="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png" width="597" height="298" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posterior-cross-dens-ci-w-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Posterior Probability with Raw Mixing Weight CI and Crossing Density. The CI rule used is 1/3 &lt; w_mean &lt; 2/3, as shown. The grey band indicates the regions where the CI rule is not satisfied. The crossing density bars show the number of crossings of the posterior mean at 0.5, with red indicating crossings upwards and blue indicating crossings downwards.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
 </section>
 </section>
 <section id="discussion" class="level1">
 <h1>Discussion</h1>
 <p>The discussion</p>
+<p>Embed a figure with dynamic caption:</p>
+<p>Does this register?</p>
 </section>
 <section id="conclusion" class="level1">
 <h1>Conclusion</h1>
@@ -540,9 +819,7 @@ Wang, Yao, Hanben Wang, Yu Zhang, Zhenhai Du, Wei Si, Suixing Fan, Dongdong Qin,
 </div>
 </section>
      </main>
-<!-- /main column -->  <script type="application/vnd.jupyter.widget-state+json">
-{"state":{"2156f173e426459fb7a4bf8cd1b8c960":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"32e98f1d441e4a3b82d86534bf55d901":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"44142dcd737543c9b6b190efd3bfa338":{"model_module":"@jupyter-widgets/output","model_module_version":"1.0.0","model_name":"OutputModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/output","_model_module_version":"1.0.0","_model_name":"OutputModel","_view_count":null,"_view_module":"@jupyter-widgets/output","_view_module_version":"1.0.0","_view_name":"OutputView","layout":"IPY_MODEL_4e20d0da3a914069a8d05cd38a108486","msg_id":"","outputs":[{"data":{"text/html":"<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\">Computing ... <span style=\"color: #008000; text-decoration-color: #008000\">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span style=\"color: #800080; text-decoration-color: #800080\">100%</span> 0:00:00\n</pre>\n","text/plain":"Computing ... \u001b[32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[35m100%\u001b[0m 0:00:00\n"},"metadata":{},"output_type":"display_data"}],"tabbable":null,"tooltip":null}},"4e20d0da3a914069a8d05cd38a108486":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"82d51ce8c94a41ec94906cf57d766b97":{"model_module":"@jupyter-widgets/output","model_module_version":"1.0.0","model_name":"OutputModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/output","_model_module_version":"1.0.0","_model_name":"OutputModel","_view_count":null,"_view_module":"@jupyter-widgets/output","_view_module_version":"1.0.0","_view_name":"OutputView","layout":"IPY_MODEL_2156f173e426459fb7a4bf8cd1b8c960","msg_id":"","outputs":[{"data":{"text/html":"<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\">Sampling ... <span style=\"color: #008000; text-decoration-color: #008000\">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span style=\"color: #800080; text-decoration-color: #800080\">100%</span> 0:00:00 / 0:00:41\n</pre>\n","text/plain":"Sampling ... \u001b[32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[35m100%\u001b[0m 0:00:00 / 0:00:41\n"},"metadata":{},"output_type":"display_data"}],"tabbable":null,"tooltip":null}},"9517bd9417ad4d3292b4e8756f82dc9a":{"model_module":"@jupyter-widgets/output","model_module_version":"1.0.0","model_name":"OutputModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/output","_model_module_version":"1.0.0","_model_name":"OutputModel","_view_count":null,"_view_module":"@jupyter-widgets/output","_view_module_version":"1.0.0","_view_name":"OutputView","layout":"IPY_MODEL_32e98f1d441e4a3b82d86534bf55d901","msg_id":"","outputs":[{"data":{"text/html":"<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\">                                                                                                                   \n <span style=\"font-weight: bold\"> Progress                  </span> <span style=\"font-weight: bold\"> Draws </span> <span style=\"font-weight: bold\"> Divergences </span> <span style=\"font-weight: bold\"> Step size </span> <span style=\"font-weight: bold\"> Grad evals </span> <span style=\"font-weight: bold\"> Sampling Speed </span> <span style=\"font-weight: bold\"> Elapsed </span> <span style=\"font-weight: bold\"> Remaining </span> \n ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── \n  <span style=\"color: #1f77b4; text-decoration-color: #1f77b4\">━━━━━━━━━━━━━━━━━━━━━━━━━</span>   4000    0             0.48        7            356.12 draws/s   0:00:11   0:00:00    \n  <span style=\"color: #1f77b4; text-decoration-color: #1f77b4\">━━━━━━━━━━━━━━━━━━━━━━━━━</span>   4000    0             0.50        3            352.61 draws/s   0:00:11   0:00:00    \n  <span style=\"color: #1f77b4; text-decoration-color: #1f77b4\">━━━━━━━━━━━━━━━━━━━━━━━━━</span>   4000    0             0.56        7            352.09 draws/s   0:00:11   0:00:00    \n  <span style=\"color: #1f77b4; text-decoration-color: #1f77b4\">━━━━━━━━━━━━━━━━━━━━━━━━━</span>   4000    0             0.54        7            344.65 draws/s   0:00:11   0:00:00    \n                                                                                                                   \n</pre>\n","text/plain":"                                                                                                                   \n \u001b[1m \u001b[0m\u001b[1mProgress                 \u001b[0m\u001b[1m \u001b[0m \u001b[1m \u001b[0m\u001b[1mDraws\u001b[0m\u001b[1m \u001b[0m \u001b[1m \u001b[0m\u001b[1mDivergences\u001b[0m\u001b[1m \u001b[0m \u001b[1m \u001b[0m\u001b[1mStep size\u001b[0m\u001b[1m \u001b[0m \u001b[1m \u001b[0m\u001b[1mGrad evals\u001b[0m\u001b[1m \u001b[0m \u001b[1m \u001b[0m\u001b[1mSampling Speed\u001b[0m\u001b[1m \u001b[0m \u001b[1m \u001b[0m\u001b[1mElapsed\u001b[0m\u001b[1m \u001b[0m \u001b[1m \u001b[0m\u001b[1mRemaining\u001b[0m\u001b[1m \u001b[0m \n ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── \n  \u001b[38;2;31;119;180m━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m   4000    0             0.48        7            356.12 draws/s   0:00:11   0:00:00    \n  \u001b[38;2;31;119;180m━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m   4000    0             0.50        3            352.61 draws/s   0:00:11   0:00:00    \n  \u001b[38;2;31;119;180m━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m   4000    0             0.56        7            352.09 draws/s   0:00:11   0:00:00    \n  \u001b[38;2;31;119;180m━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m   4000    0             0.54        7            344.65 draws/s   0:00:11   0:00:00    \n                                                                                                                   \n"},"metadata":{},"output_type":"display_data"}],"tabbable":null,"tooltip":null}}},"version_major":2,"version_minor":0}
-</script>  <script id="quarto-html-after-body" type="application/javascript">
+<!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();

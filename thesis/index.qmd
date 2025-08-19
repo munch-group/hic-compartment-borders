@@ -105,7 +105,9 @@ The pipeline previously developed implements the Iterative Correction and Eigend
 
 The interaction counts of each bin is corrected iteratively until convergence of the coverage, and the correction weight is saved to the cooler. The expected interaction matrix is derived from the decay in contact probability over genomic distance (also; distance decay), and is used to scale the observed interactions before performing eigendecomposition on the correlation matrix of observed/expected. Bins interacting with bins of the same type should keep a positive eigenvector, and vice versa otherwise. Thus, the first principal component *should* capture the variance explained by the compartment assignment. The eigenvectors are then oriented to correlate with GC content, to ensure that positive values represent A-compartments and active chromatin, and negative values represent B-compartments and inactive chromatin. 
 
-As also described in [ref], sometimes there is a larger amount of variance in interaction frequency between chromosome arms than within arms. In these cases, the eigendecomposition will not capture the compartments, but only change its sign at the centromere. Thus, it is a safe practice to do the eigendecomposition on the chromosome arms separately, and is readily implemented into *cooltools* by providing a viewframe to the function that does the calculations. It is not clear how further experimentation with narrowing the eigendecomposition viewframe affects the biological explanation of the results, but it is suggested as a method of obtaining more local compartmentalization [@wang2019reprogrammingmeioticchromatin] (termed local PCA).
+As also described in [ref], sometimes there is a larger amount of variance in interaction frequency between chromosome arms than within arms. In these cases, the eigendecomposition will not capture the compartments, but only change its sign at the centromere. Thus, it is a safe practice to do the eigendecomposition on the chromosome arms separately, and is readily implemented into *cooltools* by providing a viewframe to the function that does the calculations. It is not clear how further experimentation with narrowing the eigendecomposition viewframe affects the biological explanation of the results, but it is suggested as a method of obtaining more local compartmentalization [@wang2019reprogrammingmeioticchromatin] (termed local PCA). As no centromere was available from the T2T-MMU8v1.0, it was inferred from the largest cluster of sattelite repeats, approximately between 57 Mp and 69 Mp (@fig-t2t-satellites).
+
+{{< embed ../notebooks/01_prep_e1_values.ipynb#fig-t2t-satellites >}}
 
 First, the pipeline was applied to generate high-resolution eigenvector tracks on the most recent, telomere-to-telomere *Macaca mulata* assembly, T2T-MMU8v1.0 [ref], to improve the accuracy of the mapping from the previous study.
 
@@ -203,28 +205,47 @@ y_i &\sim \mathcal{N}(\mu_i, \sigma) \\
 \end{aligned}
 $${#eq-non-centered-grw}
 
+
 ## Evaluations
 
 To be able to comparatively evaluate the models, we must establish exactly what we are modeling. The biological assumptions we make is that **1)** a given genomic region can be one type at a time, and **2)** the autocorrelation between intervals along the genome can be modeled by probabilistic smoothing of the E1 track, even at 10kb resolution. The goal is not to discover new compartments, but to model the transitions between compartments with the assumption that some peaks or dips in E1 that barely causes a sign change are potentially caused by noise and are thus not of biological relevance. Of course, the ability to model this behaviour relies heavily on the assumption that the value of the E1 track carries information about the distinction between compartments additional to that of the sign of the vector.
 
-In a classical setting, the way to compare Bayesian models is by *some* measure of how much *information* a model has learned from the data it was trained on. *Arviz* provides the *Akaike Information Criterion* (AIC) and the *Widely Applicable Information Criterion* (WAIC), where it uses leave-one-out cross-validation to generate the out-of-sample predictive accuracy. Conveniently, the `arviz.compare` takes multiple models and generates a neat table with the results of its cross-validation analysis. 
+In a classical setting, the way to compare Bayesian models is by *some* measure of how much *information* a model has learned from the data it was trained on. *Arviz* provides the *Akaike Information Criterion* (AIC) and the *Widely Applicable Information Criterion* (WAIC), where it uses leave-one-out cross-validation (LOO-CV) to generate the out-of-sample predictive accuracy. Conveniently, the `arviz.compare` takes multiple models and generates a neat table with the results of its cross-validation analysis. 
 
-However, when an expected result of the model is that some peaks or small compartments are reduced or smoothed, we must question the interpretability of these criteria. At least, the balance between generalization and fitting should be skewed towards generalization, expectedly at the cost of fitting. 
+However, when an expected result of the model is that some peaks or small compartments are reduced or smoothed, we must question the interpretability of these criteria. At least, the balance between generalization and fitting should be skewed towards generalization, expectedly at the cost of fitting. Additionally, there is some dispute around using CV for timeseries (or random walk models), as the left-out samples will affect the autocorrelated nature of the predictions [ref](https://statmodeling.stat.columbia.edu/2015/01/16/loo-waic-time-series/). However, it seems that when using CV for model comparison, the same bias is introduced in all the compared models, and can thus largely be ignored. 
 
+## Resolutions and subsets
 
+After initial evaluations of the foundational architecture was done by fitting 100kb resolution data, the same architecture was applied to higher resolution (10kb) data. To achieve a comparable runtime, a subset of the data was selected from a 1500-bin interval that was qualitatively determined to have high variance. However, not only the resolution was exchanged, but also the data set. For the hi-res analysis, I used the GRCh37 data set from human X-bearing sperm. 
 
 
 # Results
 
-### The Eigendecomposition
+## The ICE
+
+After remapping the macaque data to the T2T assembly, the  eigentracks were calculated as described. They were visually evaluated at the different resolutions (fig-e1-sperm), showing the expected shifts in E1 values on the megabase scale for all resolutions except 1kb. This means that the sequencing was not sufficiently deep for binning Hi-C contacts into 1000 bp regions, and many bins has 0 or only a few contacts. To be sure to have informative enough data, the 10kb resolution was chosen for further analysis in probabilistic modeling. Factoring in the experience of @lajoie2015hitchhikersguidehic that $100,000,000$ valid reads is sufficient for 40kb resolution without too much noise, this is still a rather optimistic choice, as we have only $\sim 12,500,000$ valid interactions from the sperm cells. However, this underlines the need for modeling the noise when fitting the models later.  
+
+{{< embed ../notebooks/01_prep_e1_values.ipynb#fig-e1-sperm >}}
+
+We were less confident in the human sperm data, as approximately half of the cells were filtered out compared to the original study (they had the Y chromosome), resulting in only $\sim 3,500,000$ valid interactions. This is evidently not sufficient for high-resolution analysis directly, visualized by the extreme noise level in fig-e1-sperm B) and C). 
+
+{{< embed ../notebooks/01_prep_e1_values.ipynb#fig-e1-sperm-x >}}
+
+## The models
 
 
+The best performing model on the 100kb data was re-fitted with the 10kb human data set. However, to get similar bin sizes, a subset of 1500 bins was taken from the E1 track. Additionally, the small chromatin was used as a subset, and lastly, the full chromosome X was fitted to the same model (same architecture). 
 
-
+{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-posterior-cross-dens-ci-w >}} 
 
 # Discussion
 
 The discussion
+
+Embed a figure with dynamic caption:
+
+Does this register?
+
 
 # Conclusion
 
