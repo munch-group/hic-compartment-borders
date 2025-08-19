@@ -923,7 +923,7 @@ underlying the compartments are Gaussian with different means, either
 \(\mu_a = 0.5\) or \(\mu_b = -0.5\). Additionally, I assume that a
 probability of being in A can be inferred from the eigenvector, and that
 a binary latent state can be derived from that to place compartment
-labels on each bin.
+labels on each bin (I call that \texttt{z}).
 
 I experimented with the possibility of marginalizing over the binary
 latent state to make sampling faster, as the No-U-Turn-Sampler (NUTS)
@@ -933,11 +933,18 @@ some builtin automatic marginalization of discrete variables {[}ref{]},
 but the example used does not directly translate into my case.
 Therefore, a continuous mixture model of the two underlying Gaussians
 were tried to test sampling efficiency or differences. Here, in stead of
-using compartment type as a switch (``choose A or B''), an assignment
-probability was used as a mixing weight for the two Gaussians. Though
-much faster (\textgreater20x), I reflect that the underlying biological
-assumptions about compartment identity is also marginalized (read: lost)
-when dropping the hard type assignment.
+using compartment type as a latent random variable switch (``choose A or
+B''), an assignment probability was used as a mixing weight for the two
+Gaussians. Note that the switch can be modeled in to distinct ways; one
+where it is a fitted random variable (probabilistic), or as a literal
+switch with an \texttt{if}-statement (deterministic). In reality, both
+methods cause the sampling distribution space to be discrete, making
+them unfit for the NUTS sampler, even though the deterministic switch
+\emph{can} be implemented with NUTS. Though the continous mixture model
+is much faster (\textgreater20x), I reflect that the underlying
+biological assumptions about compartment identity is also marginalized
+(largely lost) when dropping the hard type assignment. With that in
+mind, I fitted models both with and without the latent assignment.
 
 When taking advantage of PyMC's vectorization capabilities, a single
 variable \texttt{mu} can be defined with an array of \(\mu\)'s for
@@ -995,7 +1002,7 @@ A). 8 chains of 1000 samples (and \(8x1000\) tuning samples) results in
 
 The model might be able to fit well to the observed data, but it is
 unlikely that it can generalize. Here it is as a Mermaid-js diagram,
-embedded from the builtin Mermaid-representation of PyMC.
+embedded from the Mermaid-representation built into PyMC.
 
 \begin{figure}[H]
 
@@ -1134,15 +1141,26 @@ However, it seems that when using CV for model comparison, the same bias
 is introduced in all the compared models, and can thus largely be
 ignored.
 
+\section{Parameter sweep}\label{parameter-sweep}
+
 \section{Resolutions and subsets}\label{resolutions-and-subsets}
 
 After initial evaluations of the foundational architecture was done by
 fitting 100kb resolution data, the same architecture was applied to
-higher resolution (10kb) data. To achieve a comparable runtime, a subset
+higher resolution (10kb) data. That is, we assume the system of varables
+have the same relationship and can be drawn from the same distributions
+as the lower-resolution data. To achieve a comparable runtime, a subset
 of the data was selected from a 1500-bin interval that was qualitatively
 determined to have high variance. However, not only the resolution was
 exchanged, but also the data set. For the hi-res analysis, I used the
-GRCh37 data set from human X-bearing sperm.
+GRCh37-mapped data set from human X-bearing sperm, and did no further
+investigation of the macaque data.
+
+Initially, the selected subset was thought to have a good amount of
+variance, but upon further investigation, it could also be interpreted
+as a high level of noise compared to biological information. Therefore,
+the same model architecture was applied to the two chromatin arms
+seperately, and lastly the full X chromosome.
 
 \chapter{Results}\label{results}
 
@@ -1322,15 +1340,15 @@ model (same architecture).
 
 \centering{
 
-\includegraphics[width=6.21875in,height=3.10417in]{index_files/figure-latex/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png}
+\includegraphics[width=6.22917in,height=3.10417in]{index_files/figure-latex/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png}
 
 }
 
 \caption{\label{fig-posterior-cross-dens-ci-w}Posterior Probability with
-Raw Mixing Weight CI and Crossing Density. The CI rule used is 1/3
-\textless{} w\_mean \textless{} 2/3, as shown. The grey band indicates
-the regions where the CI rule is not satisfied. The crossing density
-bars show the number of crossings of the posterior mean at 0.5, with red
+Raw Mixing Weight CI and Crossing Density. The CI rule used is
+\(1/3 < \hat{w}_{post} < 2/3\), as shown. The grey band indicates the
+regions where the CI rule is not satisfied. The crossing density bars
+show the number of crossings of the posterior mean at 0.5, with red
 indicating crossings upwards and blue indicating crossings downwards.}
 
 \end{figure}%
@@ -1338,10 +1356,6 @@ indicating crossings upwards and blue indicating crossings downwards.}
 \chapter{Discussion}\label{discussion}
 
 The discussion
-
-Embed a figure with dynamic caption:
-
-Does this register?
 
 \chapter{Conclusion}\label{conclusion}
 
