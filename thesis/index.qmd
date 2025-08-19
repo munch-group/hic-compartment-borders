@@ -229,14 +229,14 @@ After remapping the macaque data to the T2T assembly, the  eigentracks were calc
 
 We were less confident in the human sperm data, as approximately half of the cells were filtered out compared to the original study (they had the Y chromosome), resulting in only $\sim 3,500,000$ valid interactions. This is evidently not sufficient for high-resolution analysis directly, visualized by the extreme noise level in fig-e1-sperm B) and C). 
 
-{{< embed ../notebooks/01_prep_e1_values.ipynb#fig-e1-sperm_x >}}
+{{< embed ../notebooks/01_prep_e1_values.ipynb#fig-e1-sperm-x >}}
 
 ## The models
 
 
 The best performing model on the 100kb data was re-fitted with the 10kb human data set. However, to get similar bin sizes, a subset of 1500 bins was taken from the E1 track. Additionally, the small chromatin was used as a subset, and lastly, the full chromosome X was fitted to the same model (same architecture). 
 
-{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-posterior-cross-dens-ci-w >}}
+{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-posterior-cross-dens-ci-w >}} 
 
 # Discussion
 

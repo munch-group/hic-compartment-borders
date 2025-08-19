@@ -54,6 +54,9 @@ book:
       - notebooks/05_PyMC_bernoulli_z.ipynb
       - notebooks/06_bootstrap_trace.ipynb
       - notebooks/07_hi_res_subset_analysis.ipynb
+      - notebooks/08_hi_res_subset_confidence.ipynb
+      - notebooks/09_hi_res_full_analysis.ipynb
+      - notebooks/10_hi_res_full_confidence.ipynb
     - part: "Workflows"
       chapters: 
       - master_workflow.py
