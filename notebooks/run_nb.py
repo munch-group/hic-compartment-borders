@@ -63,11 +63,10 @@ notebooks = glob.glob('*.ipynb')
 ## Loop through notebooks and generate a target for each
 """ 
 
+# %% 
+# Create a GWF workflow object
 gwf = Workflow(defaults={'account': 'hic-spermatogenesis'})
 
-
-# %%
-# loop through notebooks and generate a workflow object for each
 for notebook in notebooks:
     # Define the name
     par, nb = os.path.split(notebook)

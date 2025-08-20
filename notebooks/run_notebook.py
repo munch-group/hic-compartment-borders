@@ -7,7 +7,7 @@
 # ---
 
 # %% [markdown]
-r"""
+"""
 ## Usage:
 
 Run a specific notebook with the following command:
