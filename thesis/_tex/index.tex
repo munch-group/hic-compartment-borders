@@ -615,7 +615,7 @@ eigenvectors from Hi-C data analysis in a Bayesian framework}
 in a Gaussian Random Walk and infering a latent compartment assignment
 to A or B as an excuse to master PyMC}
 \author{Søren Jørgensen}
-\date{August 19, 2025}
+\date{August 20, 2025}
 \begin{document}
 \frontmatter
 \cleardoublepage
@@ -941,10 +941,11 @@ switch with an \texttt{if}-statement (deterministic). In reality, both
 methods cause the sampling distribution space to be discrete, making
 them unfit for the NUTS sampler, even though the deterministic switch
 \emph{can} be implemented with NUTS. Though the continous mixture model
-is much faster (\textgreater20x), I reflect that the underlying
-biological assumptions about compartment identity is also marginalized
-(largely lost) when dropping the hard type assignment. With that in
-mind, I fitted models both with and without the latent assignment.
+is much faster (\(\sim\!40x\)), I suspect that the underlying biological
+assumptions about compartment identity is also marginalized (largely
+lost) when dropping the hard type assignment. With that in mind, I
+fitted models both with and without the latent assignment to be able to
+compare the two architectures.
 
 When taking advantage of PyMC's vectorization capabilities, a single
 variable \texttt{mu} can be defined with an array of \(\mu\)'s for
