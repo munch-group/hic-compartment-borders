@@ -42,8 +42,8 @@ def run_notebook(path, memory='8g', walltime='00:10:00', cores=1):
 
     # commands to run in task (bash script)
     spec = f"""
-source $(conda info --base)/etc/profile.d/conda.sh
-conda activate pymc
+# source $(conda info --base)/etc/profile.d/conda.sh
+# conda activate hic
 jupyter nbconvert --to notebook --execute --inplace --allow-errors --ExecutePreprocessor.iopub_timeout=600 {path} && touch {sentinel}
 """
     # return target
