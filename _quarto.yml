@@ -57,6 +57,8 @@ book:
       - notebooks/08_hi_res_subset_confidence.ipynb
       - notebooks/09_hi_res_full_analysis.ipynb
       - notebooks/10_hi_res_full_confidence.ipynb
+      - notebooks/11_chr8_compare_X_Y_eigs.ipynb
+      - notebooks/12_chr8_compare_X_Y_model.ipynb
     - part: "Workflows"
       chapters: 
       - master_workflow.py
