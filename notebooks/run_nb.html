@@ -233,6 +233,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="../notebooks/10_hi_res_full_confidence.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Confidence from mixing weights</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/11_chr8_compare_X_Y_eigs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Comparing X/Y-bearing sperm cells on chr8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/12_chr8_compare_X_Y_model.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Comparing X/Y-bearing sperm cells on chr8</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -326,7 +336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>gwf -f run_nb.py run &lt;notebook_name&gt;</code> where <code>&lt;notebook_name&gt;</code> is the name of the notebook you want to run without the <code>.ipynb</code> extension. ““”</p>
 <section id="imports-and-utility-functions" class="level2">
 <h2 class="anchored" data-anchor-id="imports-and-utility-functions">Imports and utility functions</h2>
-<div id="98697ec0" class="cell" data-execution_count="1">
+<div id="69c78a39" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gwf <span class="im">import</span> Workflow, AnonymousTarget</span>
@@ -356,14 +366,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="list-the-available-notebooks-to-run" class="level2">
 <h2 class="anchored" data-anchor-id="list-the-available-notebooks-to-run">List the available notebooks to run</h2>
-<div id="c3fbbbd8" class="cell" data-execution_count="2">
+<div id="f0ce3a22" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list all notebooks in the current directory</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>notebooks <span class="op">=</span> glob.glob(<span class="st">'*.ipynb'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="loop-through-notebooks-and-generate-a-target-for-each" class="level2">
 <h2 class="anchored" data-anchor-id="loop-through-notebooks-and-generate-a-target-for-each">Loop through notebooks and generate a target for each</h2>
-<div id="18632354" class="cell" data-execution_count="3">
+<div id="5b98783b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a GWF workflow object</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gwf <span class="op">=</span> Workflow(defaults<span class="op">=</span>{<span class="st">'account'</span>: <span class="st">'hic-spermatogenesis'</span>})</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
