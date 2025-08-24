@@ -44,7 +44,6 @@ format:
     geometry:
       - left=1in
       - right=1in
-      
       # - textheight=9in,
       # - textwidth=6.5in,
       # - top=1in,

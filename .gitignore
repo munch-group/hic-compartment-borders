@@ -143,3 +143,5 @@ notebooks/.gwf/
 
 results/models
 results/traces
+data/bins
+data/eigs
