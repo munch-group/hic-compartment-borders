@@ -526,6 +526,14 @@
 \captionsetup[codelisting]{font=footnotesize, labelfont=bf}
 % \captionsetup[subtable]{font=scriptsize,labelfont=scriptsize, position=top}
 
+\captionsetup[subfigure]{skip=2pt}
+\captionsetup{aboveskip=2pt, belowskip=2pt}
+\setlength{\intextsep}{6pt}   % default ~12pt
+\setlength{\textfloatsep}{6pt}
+\setlength{\floatsep}{6pt}
+
+
+
 %\captionsetup[subfigure]{margin=150pt}
 
 % \setlength\LTleft{0pt}
@@ -615,7 +623,7 @@ eigenvectors from Hi-C data analysis in a Bayesian framework}
 in a Gaussian Random Walk and infering a latent compartment assignment
 to A or B as an excuse to master PyMC}
 \author{Søren Jørgensen}
-\date{August 22, 2025}
+\date{August 24, 2025}
 \begin{document}
 \frontmatter
 \cleardoublepage
@@ -800,6 +808,33 @@ NB: limitations of using the magnitude of the eigenvector in opposite to
 only the sign
 \end{quote}
 
+\section{Data sets}\label{data-sets}
+
+Macaque data (Wang et al. 2019) was reused and remapped to T2T assembly.
+The data consist of Hi-C reads from \emph{Macaca mulata} (macaque) in
+fibroblast and through 4 stages of spermatogenesis. I have previously
+analyzed this data {[}ref{]} by remapping to the \emph{at-the-time} most
+recent \emph{M. mulata} assembly, and quantifying distances to regions
+of extraordinary selection (Skov et al. 2023) (Extended Common
+Haplotypes) on the human X-chromosome. This was done at 100kb
+resolution.
+
+Xu et al. (2025) has published a single-cell Hi-C data set where each
+cell was determined to be either X- or Y-bearing (remember, sperm cells
+are haploid). The authors conclude after preliminary analysis that the
+difference between compartment calls were not varying much between the
+two groups, and thus they were pooled. However, they do not in detail
+describe how they quantify the variations between the two sets, so I
+believe it is reasonable to try so myself. This data set this provides
+us with two distinct analyses; we can compare the compartment calls
+between human sperm cells (either pooled or grouped by sex-chromosome)
+and macaque sperm, and we can quantify the difference between
+compartmant calls for autosomal chromosomes in cells that are either X-
+or Y-bearing.
+
+This could potentially link to sex-chromosome inactivation of autosomes,
+which is a potential mechanism facilitating meiotic drive.
+
 \chapter{Methods}\label{methods}
 
 \begin{Shaded}
@@ -813,14 +848,14 @@ only the sign
 \end{Highlighting}
 \end{Shaded}
 
-The pipeline from {[}ref{]} was reused in a modified form to accomodate
-a new data set of single-cell Hi-C sequencing of human cells. Here, an
-additional pooling step was introduced to generate merged Hi-C matrices
-after grouping the samples into two groups established in the sequencing
-study; the sex chromosome was determined either \emph{X} or \emph{Y}.
-Additionally, it was modified to accomodate the new telomere-2-telomere
-assembly of \emph{Macaca mulata}, as it was only available from NCBI,
-and not UCSC servers.
+The pipeline from {[}ref msc{]} was reused in a modified form to
+accomodate a new data set of single-cell Hi-C sequencing of human cells.
+Here, an additional pooling step was introduced to generate merged Hi-C
+matrices after grouping the samples into two groups established in the
+sequencing study; the sex chromosome was determined either \emph{X} or
+\emph{Y}. Additionally, it was modified to accomodate the new
+telomere-2-telomere assembly of \emph{Macaca mulata}, as it was only
+available from NCBI, and not UCSC servers.
 
 \section{Data generation}\label{data-generation}
 
@@ -832,7 +867,7 @@ al. 2009) after mapping raw Hi-C reads to the reference genome,
 validating Hi-C pairs, and constructing the interaction map (Hi-C
 matrix). It is implemented fully using the \emph{Open2C} tools and
 recommendations. Briefly, the raw read pairs are mapped (as paired-end
-reads) to the respective reference genome (either GRCh37 or
+reads) to the respective reference genome (either GRCh38 or
 T2T-MMU8v1.0) with \emph{bwa-mem2} {[}ref{]} with the \texttt{-P}
 option. Then the pairs are parsed and sorted with \emph{pairtools}, and
 a deduplication and quality filter (\(mapq \geq 30\)) is run to remove
@@ -866,13 +901,13 @@ inactive chromatin.
 As also described in {[}ref{]}, sometimes there is a larger amount of
 variance in interaction frequency between chromosome arms than within
 arms. In these cases, the eigendecomposition will not capture the
-compartments, but only change its sign at the centromere. Thus, it is a
-safe practice to do the eigendecomposition on the chromosome arms
-separately, and is readily implemented into \emph{cooltools} by
-providing a viewframe to the function that does the calculations. It is
-not clear how further experimentation with narrowing the
-eigendecomposition viewframe affects the biological explanation of the
-results, but it is suggested as a method of obtaining more local
+compartments, but only change its sign at the centromere. Thus, it is
+generally a safer practice to do the eigendecomposition on the
+chromosome arms separately, and is readily implemented into
+\emph{cooltools} by providing a viewframe to the function that does the
+calculations. It is not clear how further experimentation with narrowing
+the eigendecomposition viewframe affects the biological explanation of
+the results, but it is suggested as a method of obtaining more local
 compartmentalization (Wang et al. 2019) (termed local PCA). As no
 centromere was available from the T2T-MMU8v1.0, it was inferred from the
 largest cluster of sattelite repeats, approximately between 57 Mp and 69
@@ -960,14 +995,16 @@ respective distributions. That is, we can define
 \end{Shaded}
 
 Here, \texttt{shape=2} is not necessary as it is implicit from the shape
-of the \texttt{mu}-parameter, but adds clarity. For even more clarity,
-we can define the coordinates underlying the model and then pass it to
-the variable, as with
+of \texttt{mu}, but adds clarity. For even more clarity, we can define
+the coordinates underlying the model and then pass it to the variable,
+as with
 \texttt{coords\ =\ \{\textquotesingle{}label\textquotesingle{}:\ {[}\textquotesingle{}B\textquotesingle{},\ \textquotesingle{}A\textquotesingle{}{]}\}}
-and passing \texttt{dims=label} in stead of \texttt{shape=2}.
-Additionally, to prevent the distributions leaking into each other, I
-apply an \texttt{ordered.transform} to the variable, ensuring that the
-first of the 2 draws will be lower than the next.
+and passing \texttt{dims=label} in stead of \texttt{shape=2}. This has a
+theoretical benefit in computational efficiency as well in the
+implementation of PyTensor. Additionally, to prevent the distributions
+leaking into each other, I apply an \texttt{ordered.transform} to the
+variable, ensuring that the first of the 2 draws will be lower than the
+next.
 
 \subsection{Model 1: Spatially independent
 (i.i.d.)}\label{model-1-spatially-independent-i.i.d.}
@@ -1154,7 +1191,7 @@ as the lower-resolution data. To achieve a comparable runtime, a subset
 of the data was selected from a 1500-bin interval that was qualitatively
 determined to have high variance. However, not only the resolution was
 exchanged, but also the data set. For the hi-res analysis, I used the
-GRCh37-mapped data set from human X-bearing sperm, and did no further
+GRCh38-mapped data set from human X-bearing sperm, and did no further
 investigation of the macaque data.
 
 Initially, the selected subset was thought to have a good amount of
@@ -1354,6 +1391,94 @@ indicating crossings upwards and blue indicating crossings downwards.}
 
 \end{figure}%
 
+Here, I have something new:
+
+\begin{figure}
+
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.14583in,height=1.01042in]{index_files/figure-latex/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-1.png}
+
+}
+
+\subcaption[Compare chr8 E1 for X/Y-bearing
+sperm]{\label{fig-chr8-eigs-1}E1 for X-bearing sperm (10kb)}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.14583in,height=1.01042in]{index_files/figure-latex/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-2.png}
+
+}
+
+\subcaption[Compare chr8 E1 for X/Y-bearing
+sperm]{\label{fig-chr8-eigs-2}E1 for Y-bearing sperm (10kb)}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.14583in,height=1.01042in]{index_files/figure-latex/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-3.png}
+
+}
+
+\subcaption[Compare chr8 E1 for X/Y-bearing
+sperm]{\label{fig-chr8-eigs-3}E1 for X-bearing sperm (50kb)}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.14583in,height=1.01042in]{index_files/figure-latex/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-4.png}
+
+}
+
+\subcaption[Compare chr8 E1 for X/Y-bearing
+sperm]{\label{fig-chr8-eigs-4}E1 for Y-bearing sperm (50kb)}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.14583in,height=1.01042in]{index_files/figure-latex/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-5.png}
+
+}
+
+\subcaption[Compare chr8 E1 for X/Y-bearing
+sperm]{\label{fig-chr8-eigs-5}E1 for X-bearing sperm (100kb)}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.14583in,height=1.01042in]{index_files/figure-latex/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-6.png}
+
+}
+
+\subcaption[Compare chr8 E1 for X/Y-bearing
+sperm]{\label{fig-chr8-eigs-6}E1 for Y-bearing sperm (100kb)}
+
+\end{minipage}%
+
+\caption{\label{fig-chr8-eigs}Comparing the eigenvector E1 for chr8 in
+X- and Y-bearing sperm at different resolutions. Here, the eigenvectors
+are re-sorted by their Spearman correlation with the GC content.}
+
+\end{figure}%
+
 \chapter{Discussion}\label{discussion}
 
 The discussion
@@ -1394,11 +1519,24 @@ Imakaev, Tobias Ragoczy, Agnes Telling, Ido Amit, et al. 2009.
 Principles} of the {Human Genome}.''} \emph{Science} 326 (5950):
 289--93. \url{https://doi.org/10.1126/science.1181369}.
 
+\bibitem[\citeproctext]{ref-skov2023extraordinaryselectionhuman}
+Skov, Laurits, Moisès Coll Macià, Elise Anne Lucotte, Maria Izabel Alves
+Cavassim, David Castellano, Mikkel Heide Schierup, and Kasper Munch.
+2023. {``Extraordinary Selection on the Human {X} Chromosome Associated
+with Archaic Admixture.''} \emph{Cell Genomics} 3 (3): 100274.
+\url{https://doi.org/10.1016/j.xgen.2023.100274}.
+
 \bibitem[\citeproctext]{ref-wang2019reprogrammingmeioticchromatin}
 Wang, Yao, Hanben Wang, Yu Zhang, Zhenhai Du, Wei Si, Suixing Fan,
 Dongdong Qin, et al. 2019. {``Reprogramming of {Meiotic Chromatin
 Architecture} During {Spermatogenesis}.''} \emph{Molecular Cell} 73 (3):
 547--561.e6. \url{https://doi.org/10.1016/j.molcel.2018.11.019}.
+
+\bibitem[\citeproctext]{ref-xu2025threedimensionalgenomestructures}
+Xu, Heming, Yi Chi, Changjian Yin, Cheng Li, Yujie Chen, Zhiyuan Liu,
+Xiaowen Liu, et al. 2025. {``Three-Dimensional Genome Structures of
+Single Mammalian Sperm.''} \emph{Nature Communications} 16 (1): 3805.
+\url{https://doi.org/10.1038/s41467-025-59055-z}.
 
 \end{CSLReferences}
 

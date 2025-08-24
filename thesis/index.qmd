@@ -85,6 +85,16 @@ This study is a continuation of *Chromatin Compartments and Selection on X* (MSc
 
 > NB: limitations of using the magnitude of the eigenvector in opposite to only the sign
 
+## Data sets
+
+Macaque data [@wang2019reprogrammingmeioticchromatin] was reused and remapped to T2T assembly. The data consist of Hi-C reads from *Macaca mulata* (macaque) in fibroblast and through 4 stages of spermatogenesis. I have previously analyzed this data [ref] by remapping to the *at-the-time* most recent *M. mulata* assembly, and quantifying distances to regions of extraordinary selection [@skov2023extraordinaryselectionhuman] (Extended Common Haplotypes) on the human X-chromosome. This was done at 100kb resolution. 
+
+@xu2025threedimensionalgenomestructures has published a single-cell Hi-C data set where each cell was determined to be either X- or Y-bearing (remember, sperm cells are haploid). The authors conclude after preliminary analysis that the difference between compartment calls were not varying much between the two groups, and thus they were pooled. However, they do not in detail describe how they quantify the variations between the two sets, so I believe it is reasonable to try so myself. This data set this provides us with two distinct analyses; we can compare the compartment calls between human sperm cells (either pooled or grouped by sex-chromosome) and macaque sperm, and we can quantify the difference between compartmant calls for autosomal chromosomes in cells that are either X- or Y-bearing. 
+
+This could potentially link to sex-chromosome inactivation of autosomes, which is a potential mechanism facilitating meiotic drive. 
+
+
+
 
 # Methods
 
@@ -95,17 +105,17 @@ import pytensor.tensor as pt
 print(pm.__version, pt.__version__)
 ```
 
-The pipeline from [ref] was reused in a modified form to accomodate a new data set of single-cell Hi-C sequencing of human cells. Here, an additional pooling step was introduced to generate merged Hi-C matrices after grouping the samples into two groups established in the sequencing study; the sex chromosome was determined either *X* or *Y*. Additionally, it was modified to accomodate the new telomere-2-telomere assembly of *Macaca mulata*, as it was only available from NCBI, and not UCSC servers. 
+The pipeline from [ref msc] was reused in a modified form to accomodate a new data set of single-cell Hi-C sequencing of human cells. Here, an additional pooling step was introduced to generate merged Hi-C matrices after grouping the samples into two groups established in the sequencing study; the sex chromosome was determined either *X* or *Y*. Additionally, it was modified to accomodate the new telomere-2-telomere assembly of *Macaca mulata*, as it was only available from NCBI, and not UCSC servers. 
 
 ## Data generation 
 
 ### The ICE-method
 
-The pipeline previously developed implements the Iterative Correction and Eigendecomposition (ICE) method of Hi-C analysis [@lieberman-aiden2009comprehensivemappinglongrange] after mapping raw Hi-C reads to the reference genome, validating Hi-C pairs, and constructing the interaction map (Hi-C matrix). It is implemented fully using the *Open2C* tools and recommendations. Briefly, the raw read pairs are mapped (as paired-end reads) to the respective reference genome (either GRCh37 or T2T-MMU8v1.0) with *bwa-mem2* [ref] with the `-P` option. Then the pairs are parsed and sorted with *pairtools*, and a deduplication and quality filter ($mapq \geq 30$) is run to remove PCR duplicates and technical noise from low-quality reads. Lastly, the binned interaction matrices (`.cool` files, hence also *coolers*) are created from the remaining pairs into the base-resolution of 1kb bins that is then recursively coarsened until 1 Mb bins. The resulting raw interaction matrices do not have a uniform coverage profile along the genome as a result of differential binding or accesibility of the restriction enzyme and other technical factors. High or low coverage is visible in the interaction matrices, where genomic regions will appear as highly or weakly interacting regions even though they are artefacts of the coverage. Thus, it is needed to balance the interaction counts to avoid *visibility-induced biases* [ref]; it is time for ICE. 
+The pipeline previously developed implements the Iterative Correction and Eigendecomposition (ICE) method of Hi-C analysis [@lieberman-aiden2009comprehensivemappinglongrange] after mapping raw Hi-C reads to the reference genome, validating Hi-C pairs, and constructing the interaction map (Hi-C matrix). It is implemented fully using the *Open2C* tools and recommendations. Briefly, the raw read pairs are mapped (as paired-end reads) to the respective reference genome (either GRCh38 or T2T-MMU8v1.0) with *bwa-mem2* [ref] with the `-P` option. Then the pairs are parsed and sorted with *pairtools*, and a deduplication and quality filter ($mapq \geq 30$) is run to remove PCR duplicates and technical noise from low-quality reads. Lastly, the binned interaction matrices (`.cool` files, hence also *coolers*) are created from the remaining pairs into the base-resolution of 1kb bins that is then recursively coarsened until 1 Mb bins. The resulting raw interaction matrices do not have a uniform coverage profile along the genome as a result of differential binding or accesibility of the restriction enzyme and other technical factors. High or low coverage is visible in the interaction matrices, where genomic regions will appear as highly or weakly interacting regions even though they are artefacts of the coverage. Thus, it is needed to balance the interaction counts to avoid *visibility-induced biases* [ref]; it is time for ICE. 
 
 The interaction counts of each bin is corrected iteratively until convergence of the coverage, and the correction weight is saved to the cooler. The expected interaction matrix is derived from the decay in contact probability over genomic distance (also; distance decay), and is used to scale the observed interactions before performing eigendecomposition on the correlation matrix of observed/expected. Bins interacting with bins of the same type should keep a positive eigenvector, and vice versa otherwise. Thus, the first principal component *should* capture the variance explained by the compartment assignment. The eigenvectors are then oriented to correlate with GC content, to ensure that positive values represent A-compartments and active chromatin, and negative values represent B-compartments and inactive chromatin. 
 
-As also described in [ref], sometimes there is a larger amount of variance in interaction frequency between chromosome arms than within arms. In these cases, the eigendecomposition will not capture the compartments, but only change its sign at the centromere. Thus, it is a safe practice to do the eigendecomposition on the chromosome arms separately, and is readily implemented into *cooltools* by providing a viewframe to the function that does the calculations. It is not clear how further experimentation with narrowing the eigendecomposition viewframe affects the biological explanation of the results, but it is suggested as a method of obtaining more local compartmentalization [@wang2019reprogrammingmeioticchromatin] (termed local PCA). As no centromere was available from the T2T-MMU8v1.0, it was inferred from the largest cluster of sattelite repeats, approximately between 57 Mp and 69 Mp (@fig-t2t-satellites).
+As also described in [ref], sometimes there is a larger amount of variance in interaction frequency between chromosome arms than within arms. In these cases, the eigendecomposition will not capture the compartments, but only change its sign at the centromere. Thus, it is generally a safer practice to do the eigendecomposition on the chromosome arms separately, and is readily implemented into *cooltools* by providing a viewframe to the function that does the calculations. It is not clear how further experimentation with narrowing the eigendecomposition viewframe affects the biological explanation of the results, but it is suggested as a method of obtaining more local compartmentalization [@wang2019reprogrammingmeioticchromatin] (termed local PCA). As no centromere was available from the T2T-MMU8v1.0, it was inferred from the largest cluster of sattelite repeats, approximately between 57 Mp and 69 Mp (@fig-t2t-satellites).
 
 {{< embed ../notebooks/01_prep_e1_values.ipynb#fig-t2t-satellites >}}
 
@@ -128,7 +138,7 @@ When taking advantage of PyMC's vectorization capabilities, a single variable `m
 mu = pm.Normal('mu', mu=[-0.5, 0.5], sigma=sigma, shape=2)
 ```
 
-Here, `shape=2` is not necessary as it is implicit from the shape of the `mu`-parameter, but adds clarity. For even more clarity, we can define the coordinates underlying the model and then pass it to the variable, as with `coords = {'label': ['B', 'A']}` and passing `dims=label` in stead of `shape=2`. Additionally, to prevent the distributions leaking into each other, I apply an `ordered.transform` to the variable, ensuring that the first of the 2 draws will be lower than the next. 
+Here, `shape=2` is not necessary as it is implicit from the shape of `mu`, but adds clarity. For even more clarity, we can define the coordinates underlying the model and then pass it to the variable, as with `coords = {'label': ['B', 'A']}` and passing `dims=label` in stead of `shape=2`. This has a theoretical benefit in computational efficiency as well in the implementation of PyTensor. Additionally, to prevent the distributions leaking into each other, I apply an `ordered.transform` to the variable, ensuring that the first of the 2 draws will be lower than the next. 
 
 ### Model 1: Spatially independent (i.i.d.)
 
@@ -220,7 +230,7 @@ However, when an expected result of the model is that some peaks or small compar
 
 ## Resolutions and subsets
 
-After initial evaluations of the foundational architecture was done by fitting 100kb resolution data, the same architecture was applied to higher resolution (10kb) data. That is, we assume the system of varables have the same relationship and can be drawn from the same distributions as the lower-resolution data. To achieve a comparable runtime, a subset of the data was selected from a 1500-bin interval that was qualitatively determined to have high variance. However, not only the resolution was exchanged, but also the data set. For the hi-res analysis, I used the GRCh37-mapped data set from human X-bearing sperm, and did no further investigation of the macaque data. 
+After initial evaluations of the foundational architecture was done by fitting 100kb resolution data, the same architecture was applied to higher resolution (10kb) data. That is, we assume the system of varables have the same relationship and can be drawn from the same distributions as the lower-resolution data. To achieve a comparable runtime, a subset of the data was selected from a 1500-bin interval that was qualitatively determined to have high variance. However, not only the resolution was exchanged, but also the data set. For the hi-res analysis, I used the GRCh38-mapped data set from human X-bearing sperm, and did no further investigation of the macaque data. 
 
 Initially, the selected subset was thought to have a good amount of variance, but upon further investigation, it could also be interpreted as a high level of noise compared to biological information. Therefore, the same model architecture was applied to the two chromatin arms seperately, and lastly the full X chromosome.
 
@@ -233,7 +243,7 @@ After remapping the macaque data to the T2T assembly, the  eigentracks were calc
 
 {{< embed ../notebooks/01_prep_e1_values.ipynb#fig-e1-sperm >}}
 
-We were less confident in the human sperm data, as approximately half of the cells were filtered out compared to the original study (they had the Y chromosome), resulting in only $\sim 3,500,000$ valid interactions. This is evidently not sufficient for high-resolution analysis directly, visualized by the extreme noise level in fig-e1-sperm B) and C). 
+We were less confident in the human sperm data, as approximately half of the cells were filtered out compared to the original study (they had the Y chromosome), resulting in only $\sim 3,500,000$ valid interactions. This is evidently not sufficient for high-resolution analysis directly, visualized by the extreme noise level in fig-e1-sperm B) and C).  
 
 {{< embed ../notebooks/01_prep_e1_values.ipynb#fig-e1-sperm-x >}} 
 
@@ -244,6 +254,10 @@ The best performing model on the 100kb data was re-fitted with the 10kb human da
 
 {{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-posterior-cross-dens-ci-w >}}  
 
+Here, I have something new:
+
+{{< embed ../notebooks/11_chr8_compare_X_Y_eigs.ipynb#fig-chr8-eigs >}}
+ 
 # Discussion
 
 The discussion

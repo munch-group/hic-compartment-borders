@@ -338,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 22, 2025 <br> 12:06:03 (UTC +00:00)</p>
+      <p class="date">August 24, 2025 <br> 21:12:07 (UTC +00:00)</p>
     </div>
   </div>
   
@@ -362,7 +362,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>obtain confidence intervals</li>
 <li>quantify differences</li>
 </ol>
-<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-21T12:11:17.391030Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-21T12:11:17.390899Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-21T12:11:19.405363Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-21T12:11:19.405075Z&quot;}}" data-execution_count="1">
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-22T12:51:26.245094Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-22T12:51:26.244935Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-22T12:51:27.994587Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-22T12:51:27.994315Z&quot;}}" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooltools</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> bioframe</span>
@@ -378,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Read binned GC content</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>gc_cov <span class="op">=</span> pd.read_csv(<span class="ss">f"../data/bins/gc.</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">.tsv"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-21T12:11:19.407032Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-21T12:11:19.406810Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-21T12:11:19.471844Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-21T12:11:19.471603Z&quot;}}" data-execution_count="2">
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-22T12:51:27.996113Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-22T12:51:27.996002Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-22T12:51:28.048285Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-22T12:51:28.048080Z&quot;}}" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>display(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    clrX.info,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    clrY.info</span>
@@ -420,92 +420,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style type="text/css">
 </style>
 
-<table id="T_261ef" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_b090e" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_261ef_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">chrom</th>
-<th id="T_261ef_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">start</th>
-<th id="T_261ef_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">end</th>
-<th id="T_261ef_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">GC</th>
+<th id="T_b090e_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">chrom</th>
+<th id="T_b090e_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">start</th>
+<th id="T_b090e_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">end</th>
+<th id="T_b090e_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">GC</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_261ef_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
-<td id="T_261ef_row0_col0" class="data row0 col0">chr1</td>
-<td id="T_261ef_row0_col1" class="data row0 col1">0</td>
-<td id="T_261ef_row0_col2" class="data row0 col2">100000</td>
-<td id="T_261ef_row0_col3" class="data row0 col3">0.449850</td>
+<td id="T_b090e_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
+<td id="T_b090e_row0_col0" class="data row0 col0">chr1</td>
+<td id="T_b090e_row0_col1" class="data row0 col1">0</td>
+<td id="T_b090e_row0_col2" class="data row0 col2">100000</td>
+<td id="T_b090e_row0_col3" class="data row0 col3">0.449850</td>
 </tr>
 <tr class="even">
-<td id="T_261ef_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
-<td id="T_261ef_row1_col0" class="data row1 col0">chr1</td>
-<td id="T_261ef_row1_col1" class="data row1 col1">100000</td>
-<td id="T_261ef_row1_col2" class="data row1 col2">200000</td>
-<td id="T_261ef_row1_col3" class="data row1 col3">0.479110</td>
+<td id="T_b090e_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
+<td id="T_b090e_row1_col0" class="data row1 col0">chr1</td>
+<td id="T_b090e_row1_col1" class="data row1 col1">100000</td>
+<td id="T_b090e_row1_col2" class="data row1 col2">200000</td>
+<td id="T_b090e_row1_col3" class="data row1 col3">0.479110</td>
 </tr>
 <tr class="odd">
-<td id="T_261ef_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
-<td id="T_261ef_row2_col0" class="data row2 col0">chr1</td>
-<td id="T_261ef_row2_col1" class="data row2 col1">200000</td>
-<td id="T_261ef_row2_col2" class="data row2 col2">300000</td>
-<td id="T_261ef_row2_col3" class="data row2 col3">0.440770</td>
+<td id="T_b090e_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
+<td id="T_b090e_row2_col0" class="data row2 col0">chr1</td>
+<td id="T_b090e_row2_col1" class="data row2 col1">200000</td>
+<td id="T_b090e_row2_col2" class="data row2 col2">300000</td>
+<td id="T_b090e_row2_col3" class="data row2 col3">0.440770</td>
 </tr>
 <tr class="even">
-<td id="T_261ef_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
-<td id="T_261ef_row3_col0" class="data row3 col0">chr1</td>
-<td id="T_261ef_row3_col1" class="data row3 col1">300000</td>
-<td id="T_261ef_row3_col2" class="data row3 col2">400000</td>
-<td id="T_261ef_row3_col3" class="data row3 col3">0.411210</td>
+<td id="T_b090e_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
+<td id="T_b090e_row3_col0" class="data row3 col0">chr1</td>
+<td id="T_b090e_row3_col1" class="data row3 col1">300000</td>
+<td id="T_b090e_row3_col2" class="data row3 col2">400000</td>
+<td id="T_b090e_row3_col3" class="data row3 col3">0.411210</td>
 </tr>
 <tr class="odd">
-<td id="T_261ef_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
-<td id="T_261ef_row4_col0" class="data row4 col0">chr1</td>
-<td id="T_261ef_row4_col1" class="data row4 col1">400000</td>
-<td id="T_261ef_row4_col2" class="data row4 col2">500000</td>
-<td id="T_261ef_row4_col3" class="data row4 col3">0.381890</td>
+<td id="T_b090e_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
+<td id="T_b090e_row4_col0" class="data row4 col0">chr1</td>
+<td id="T_b090e_row4_col1" class="data row4 col1">400000</td>
+<td id="T_b090e_row4_col2" class="data row4 col2">500000</td>
+<td id="T_b090e_row4_col3" class="data row4 col3">0.381890</td>
 </tr>
 <tr class="even">
-<td id="T_261ef_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
-<td id="T_261ef_row5_col0" class="data row5 col0">chr1</td>
-<td id="T_261ef_row5_col1" class="data row5 col1">500000</td>
-<td id="T_261ef_row5_col2" class="data row5 col2">600000</td>
-<td id="T_261ef_row5_col3" class="data row5 col3">0.382540</td>
+<td id="T_b090e_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
+<td id="T_b090e_row5_col0" class="data row5 col0">chr1</td>
+<td id="T_b090e_row5_col1" class="data row5 col1">500000</td>
+<td id="T_b090e_row5_col2" class="data row5 col2">600000</td>
+<td id="T_b090e_row5_col3" class="data row5 col3">0.382540</td>
 </tr>
 <tr class="odd">
-<td id="T_261ef_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</td>
-<td id="T_261ef_row6_col0" class="data row6 col0">chr1</td>
-<td id="T_261ef_row6_col1" class="data row6 col1">600000</td>
-<td id="T_261ef_row6_col2" class="data row6 col2">700000</td>
-<td id="T_261ef_row6_col3" class="data row6 col3">0.408710</td>
+<td id="T_b090e_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</td>
+<td id="T_b090e_row6_col0" class="data row6 col0">chr1</td>
+<td id="T_b090e_row6_col1" class="data row6 col1">600000</td>
+<td id="T_b090e_row6_col2" class="data row6 col2">700000</td>
+<td id="T_b090e_row6_col3" class="data row6 col3">0.408710</td>
 </tr>
 <tr class="even">
-<td id="T_261ef_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</td>
-<td id="T_261ef_row7_col0" class="data row7 col0">chr1</td>
-<td id="T_261ef_row7_col1" class="data row7 col1">700000</td>
-<td id="T_261ef_row7_col2" class="data row7 col2">800000</td>
-<td id="T_261ef_row7_col3" class="data row7 col3">0.376220</td>
+<td id="T_b090e_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</td>
+<td id="T_b090e_row7_col0" class="data row7 col0">chr1</td>
+<td id="T_b090e_row7_col1" class="data row7 col1">700000</td>
+<td id="T_b090e_row7_col2" class="data row7 col2">800000</td>
+<td id="T_b090e_row7_col3" class="data row7 col3">0.376220</td>
 </tr>
 <tr class="odd">
-<td id="T_261ef_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</td>
-<td id="T_261ef_row8_col0" class="data row8 col0">chr1</td>
-<td id="T_261ef_row8_col1" class="data row8 col1">800000</td>
-<td id="T_261ef_row8_col2" class="data row8 col2">900000</td>
-<td id="T_261ef_row8_col3" class="data row8 col3">0.365910</td>
+<td id="T_b090e_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</td>
+<td id="T_b090e_row8_col0" class="data row8 col0">chr1</td>
+<td id="T_b090e_row8_col1" class="data row8 col1">800000</td>
+<td id="T_b090e_row8_col2" class="data row8 col2">900000</td>
+<td id="T_b090e_row8_col3" class="data row8 col3">0.365910</td>
 </tr>
 <tr class="even">
-<td id="T_261ef_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</td>
-<td id="T_261ef_row9_col0" class="data row9 col0">chr1</td>
-<td id="T_261ef_row9_col1" class="data row9 col1">900000</td>
-<td id="T_261ef_row9_col2" class="data row9 col2">1000000</td>
-<td id="T_261ef_row9_col3" class="data row9 col3">0.366420</td>
+<td id="T_b090e_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</td>
+<td id="T_b090e_row9_col0" class="data row9 col0">chr1</td>
+<td id="T_b090e_row9_col1" class="data row9 col1">900000</td>
+<td id="T_b090e_row9_col2" class="data row9 col2">1000000</td>
+<td id="T_b090e_row9_col3" class="data row9 col3">0.366420</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-21T12:11:19.473031Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-21T12:11:19.472796Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-21T12:11:19.590489Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-21T12:11:19.590248Z&quot;}}" data-execution_count="3">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-22T12:51:28.049549Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-22T12:51:28.049249Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-22T12:51:28.148688Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-22T12:51:28.148479Z&quot;}}" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make viewframes</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>assembly <span class="op">=</span> <span class="st">"GRCh38"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>centromeres <span class="op">=</span> bioframe.fetch_centromeres(assembly)</span>
@@ -548,64 +548,199 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-22T12:51:28.149791Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-22T12:51:28.149649Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-22T12:51:28.153980Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-22T12:51:28.153780Z&quot;}}" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a sliding 10Mb viewframe (local-PCA) from @wang2019</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>chromsize_8 <span class="op">=</span> chromsizes.loc[<span class="st">"chr8"</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>view_local <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"chrom"</span>: <span class="st">"chr8"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"start"</span>: np.arange(<span class="dv">0</span>, chromsize_8<span class="op">-</span><span class="dv">10_000_000</span>, <span class="dv">10_000_000</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"end"</span>: np.arange(<span class="dv">10_000_000</span>, chromsize_8, <span class="dv">10_000_000</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: [<span class="ss">f"chr8_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, chromsize_8<span class="op">-</span><span class="dv">10_000_000</span>, <span class="dv">10_000_000</span>)],</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>view_local</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">chrom</th>
+<th data-quarto-table-cell-role="th">start</th>
+<th data-quarto-table-cell-role="th">end</th>
+<th data-quarto-table-cell-role="th">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>chr8</td>
+<td>0</td>
+<td>10000000</td>
+<td>chr8_0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>chr8</td>
+<td>10000000</td>
+<td>20000000</td>
+<td>chr8_10000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>chr8</td>
+<td>20000000</td>
+<td>30000000</td>
+<td>chr8_20000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>chr8</td>
+<td>30000000</td>
+<td>40000000</td>
+<td>chr8_30000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>chr8</td>
+<td>40000000</td>
+<td>50000000</td>
+<td>chr8_40000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>chr8</td>
+<td>50000000</td>
+<td>60000000</td>
+<td>chr8_50000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>chr8</td>
+<td>60000000</td>
+<td>70000000</td>
+<td>chr8_60000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>chr8</td>
+<td>70000000</td>
+<td>80000000</td>
+<td>chr8_70000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>chr8</td>
+<td>80000000</td>
+<td>90000000</td>
+<td>chr8_80000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>chr8</td>
+<td>90000000</td>
+<td>100000000</td>
+<td>chr8_90000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>chr8</td>
+<td>100000000</td>
+<td>110000000</td>
+<td>chr8_100000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>chr8</td>
+<td>110000000</td>
+<td>120000000</td>
+<td>chr8_110000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>chr8</td>
+<td>120000000</td>
+<td>130000000</td>
+<td>chr8_120000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>chr8</td>
+<td>130000000</td>
+<td>140000000</td>
+<td>chr8_130000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="eigendecomposition" class="level2">
 <h2 class="anchored" data-anchor-id="eigendecomposition">Eigendecomposition</h2>
-<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-21T12:11:19.591760Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-21T12:11:19.591560Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-21T12:11:48.301645Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-21T12:11:48.301336Z&quot;}}" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooltools</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> bioframe</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Chosen resolution</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>resolutions <span class="op">=</span> [<span class="dv">100_000</span>, <span class="dv">50_000</span>, <span class="dv">10_000</span>]</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>eig_dict <span class="op">=</span> {}</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> resolution <span class="kw">in</span> resolutions:</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    eig_dict[resolution] <span class="op">=</span> {}</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Processing resolution: </span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    clrX <span class="op">=</span> cooler.Cooler(<span class="ss">f"../../data/human_sperm_haplo_seperated/sperm_X.merged.mcool::resolutions/</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    clrY <span class="op">=</span> cooler.Cooler(<span class="ss">f"../../data/human_sperm_haplo_seperated/sperm_Y.merged.mcool::resolutions/</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Read binned GC content</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    gc_cov <span class="op">=</span> pd.read_csv(<span class="ss">f"../data/bins/gc.</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">.tsv"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    eigval_x, df_e1_x <span class="op">=</span> cooltools.eigs_cis(</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        clrX, </span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        gc_cov,</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        view, </span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        n_eigs<span class="op">=</span><span class="dv">3</span>,</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        sort_metric<span class="op">=</span><span class="st">'spearmanr'</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    eig_dict[resolution][<span class="st">'X'</span>] <span class="op">=</span> df_e1_x</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    df_e1_x.to_csv(</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"../data/eigs/sperm_X.chr8.eigs.</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">.cis.vecs.tsv"</span>,</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>,</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span><span class="va">False</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"X is done, now processing Y"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    eigval_y, df_e1_y <span class="op">=</span> cooltools.eigs_cis(</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>        clrY, </span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>        gc_cov,</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>        view, </span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        n_eigs<span class="op">=</span><span class="dv">3</span>,</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>        sort_metric<span class="op">=</span><span class="st">'spearmanr'</span></span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    eig_dict[resolution][<span class="st">'Y'</span>] <span class="op">=</span> df_e1_y</span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    df_e1_y.to_csv(</span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"../data/eigs/sperm_Y.chr8.eigs.</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">.cis.vecs.tsv"</span>,</span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>        sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>,</span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span><span class="va">False</span></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"... done"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-22T12:51:28.154986Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-22T12:51:28.154884Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-22T12:51:41.040149Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-22T12:51:41.039795Z&quot;}}" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooltools</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> bioframe</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Chosen resolution</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>resolutions <span class="op">=</span> [<span class="dv">100_000</span>, <span class="dv">50_000</span>, <span class="dv">10_000</span>]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Chosen view</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>view <span class="op">=</span> view_local</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>eig_dict <span class="op">=</span> {}</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> resolution <span class="kw">in</span> resolutions:</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    eig_dict[resolution] <span class="op">=</span> {}</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Processing resolution: </span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    clrX <span class="op">=</span> cooler.Cooler(<span class="ss">f"../../data/human_sperm_haplo_seperated/sperm_X.merged.mcool::resolutions/</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    clrY <span class="op">=</span> cooler.Cooler(<span class="ss">f"../../data/human_sperm_haplo_seperated/sperm_Y.merged.mcool::resolutions/</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Read binned GC content</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    gc_cov <span class="op">=</span> pd.read_csv(<span class="ss">f"../data/bins/gc.</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">.tsv"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    eigval_x, df_e1_x <span class="op">=</span> cooltools.eigs_cis(</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        clrX, </span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        gc_cov,</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>        view, </span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        n_eigs<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># sort_metric='spearmanr'</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    eig_dict[resolution][<span class="st">'X'</span>] <span class="op">=</span> df_e1_x</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    df_e1_x.to_csv(</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"../data/eigs/sperm_X.chr8.eigs.</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">.cis.vecs.tsv"</span>,</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>        sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>,</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span><span class="va">False</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"X is done, now processing Y"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    eigval_y, df_e1_y <span class="op">=</span> cooltools.eigs_cis(</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>        clrY, </span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>        gc_cov,</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>        view, </span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>        n_eigs<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># sort_metric='spearmanr'</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>    eig_dict[resolution][<span class="st">'Y'</span>] <span class="op">=</span> df_e1_y</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>    df_e1_y.to_csv(</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"../data/eigs/sperm_Y.chr8.eigs.</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">.cis.vecs.tsv"</span>,</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>        sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>,</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span><span class="va">False</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"... done"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Processing resolution: 100000
 X is done, now processing Y... done
@@ -618,77 +753,78 @@ X is done, now processing Y... done</code></pre>
 </section>
 <section id="plot-the-e1s" class="level2">
 <h2 class="anchored" data-anchor-id="plot-the-e1s">Plot the E1’s</h2>
-<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-21T12:11:48.303646Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-21T12:11:48.302923Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-21T12:11:48.330681Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-21T12:11:48.330440Z&quot;}}" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the files back as the same dict to be able to start from here next time</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooltools</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>eig_dict <span class="op">=</span> {}</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>resolutions <span class="op">=</span> [<span class="dv">10_000</span>, <span class="dv">50_000</span>, <span class="dv">100_000</span>]</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> resolution <span class="kw">in</span> resolutions:</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    eig_dict[resolution] <span class="op">=</span> {}</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    eig_dict[resolution][<span class="st">'X'</span>] <span class="op">=</span> pd.read_csv(</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"../data/eigs/sperm_X.chr8.eigs.</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">.cis.vecs.tsv"</span>,</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    eig_dict[resolution][<span class="st">'Y'</span>] <span class="op">=</span> pd.read_csv(</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"../data/eigs/sperm_Y.chr8.eigs.</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">.cis.vecs.tsv"</span>,</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-22T12:51:41.042347Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-22T12:51:41.041889Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-22T12:51:41.069133Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-22T12:51:41.068843Z&quot;}}" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the files back as the same dict to be able to start from here next time</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooltools</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>eig_dict <span class="op">=</span> {}</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>resolutions <span class="op">=</span> [<span class="dv">10_000</span>, <span class="dv">50_000</span>, <span class="dv">100_000</span>]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> resolution <span class="kw">in</span> resolutions:</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    eig_dict[resolution] <span class="op">=</span> {}</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    eig_dict[resolution][<span class="st">'X'</span>] <span class="op">=</span> pd.read_csv(</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"../data/eigs/sperm_X.chr8.eigs.</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">.cis.vecs.tsv"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    eig_dict[resolution][<span class="st">'Y'</span>] <span class="op">=</span> pd.read_csv(</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"../data/eigs/sperm_Y.chr8.eigs.</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">.cis.vecs.tsv"</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-21T12:11:48.332601Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-21T12:11:48.332153Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-21T12:11:48.340974Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-21T12:11:48.340757Z&quot;}}" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib_inline</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>matplotlib_inline.backend_inline.set_matplotlib_formats(<span class="st">'retina'</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'smaller.mplstyle'</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the E1 tracks saved in a dict</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_eigenvectors(eigenvectors, title<span class="op">=</span><span class="va">None</span>, scatter<span class="op">=</span><span class="va">True</span>, scatter_alpha<span class="op">=</span><span class="fl">0.5</span>):</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">1</span>))</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> eigenvectors[<span class="st">'start'</span>]</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> eigenvectors[<span class="st">'E1'</span>]</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make stairs</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    x_stairs <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span> <span class="bu">len</span>(x))</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    x_stairs[::<span class="dv">2</span>] <span class="op">=</span> x</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    x_stairs[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> x <span class="op">+</span> resolution</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    y_stairs <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span> <span class="bu">len</span>(y))</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    y_stairs[::<span class="dv">2</span>] <span class="op">=</span> y</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    y_stairs[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> y</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> scatter:</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        ax.scatter(x, y, s<span class="op">=</span><span class="fl">0.4</span>, color<span class="op">=</span><span class="st">'k'</span>, alpha<span class="op">=</span>scatter_alpha, ec<span class="op">=</span><span class="st">'None'</span>)</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(x_stairs, y_stairs, where <span class="op">=</span> y_stairs<span class="op">&lt;</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>, lw<span class="op">=</span><span class="dv">1</span>, ec<span class="op">=</span><span class="st">'None'</span>, step<span class="op">=</span><span class="st">'post'</span>)</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(x_stairs, y_stairs, where <span class="op">=</span> y_stairs<span class="op">&gt;</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:red'</span>, lw<span class="op">=</span><span class="dv">1</span>, ec<span class="op">=</span><span class="st">'None'</span>, step<span class="op">=</span><span class="st">'post'</span>) </span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title)</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'E1'</span>)</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(x.<span class="bu">min</span>(), x.<span class="bu">max</span>())</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax.set_xlabel('Genomic Position (Mbp)')</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    ticks <span class="op">=</span> np.linspace(<span class="dv">0</span>, x.<span class="bu">max</span>(), num<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks(ticks)</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    ax.set_xticklabels([<span class="ss">f'</span><span class="sc">{</span><span class="bu">int</span>(t<span class="op">/</span><span class="fl">1e6</span>)<span class="sc">}</span><span class="ss"> Mb'</span> <span class="cf">for</span> t <span class="kw">in</span> ticks])</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    ax.spines[:].set_visible(<span class="va">False</span>)</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">'bottom'</span>].set_visible(<span class="va">True</span>)</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    fig.tight_layout()</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-22T12:51:41.071366Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-22T12:51:41.070912Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-22T12:51:41.079506Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-22T12:51:41.079247Z&quot;}}" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib_inline</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>matplotlib_inline.backend_inline.set_matplotlib_formats(<span class="st">'retina'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'smaller.mplstyle'</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the E1 tracks saved in a dict</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_eigenvectors(eigenvectors, title<span class="op">=</span><span class="va">None</span>, scatter<span class="op">=</span><span class="va">True</span>, scatter_alpha<span class="op">=</span><span class="fl">0.5</span>):</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">1</span>))</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> eigenvectors[<span class="st">'start'</span>]</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> eigenvectors[<span class="st">'E1'</span>]</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make stairs</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    x_stairs <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span> <span class="bu">len</span>(x))</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    x_stairs[::<span class="dv">2</span>] <span class="op">=</span> x</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    x_stairs[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> x <span class="op">+</span> resolution</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    y_stairs <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span> <span class="bu">len</span>(y))</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    y_stairs[::<span class="dv">2</span>] <span class="op">=</span> y</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    y_stairs[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> y</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> scatter:</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        ax.scatter(x, y, s<span class="op">=</span><span class="fl">0.4</span>, color<span class="op">=</span><span class="st">'k'</span>, alpha<span class="op">=</span>scatter_alpha, ec<span class="op">=</span><span class="st">'None'</span>)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(x_stairs, y_stairs, where <span class="op">=</span> y_stairs<span class="op">&lt;</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>, lw<span class="op">=</span><span class="dv">1</span>, ec<span class="op">=</span><span class="st">'None'</span>, step<span class="op">=</span><span class="st">'post'</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(x_stairs, y_stairs, where <span class="op">=</span> y_stairs<span class="op">&gt;</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:red'</span>, lw<span class="op">=</span><span class="dv">1</span>, ec<span class="op">=</span><span class="st">'None'</span>, step<span class="op">=</span><span class="st">'post'</span>) </span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'E1'</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(x.<span class="bu">min</span>(), x.<span class="bu">max</span>())</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax.set_xlabel('Genomic Position (Mbp)')</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    ticks <span class="op">=</span> np.linspace(<span class="dv">0</span>, x.<span class="bu">max</span>(), num<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks(ticks)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    ax.set_xticklabels([<span class="ss">f'</span><span class="sc">{</span><span class="bu">int</span>(t<span class="op">/</span><span class="fl">1e6</span>)<span class="sc">}</span><span class="ss"> Mb'</span> <span class="cf">for</span> t <span class="kw">in</span> ticks])</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    ax.spines[:].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">'bottom'</span>].set_visible(<span class="va">True</span>)</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-21T12:11:48.342412Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-21T12:11:48.342161Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-21T12:11:49.150273Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-21T12:11:49.150022Z&quot;}}" data-execution_count="7">
-<div id="fig-chr8-eigs" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-21T12:11:48.342412Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-21T12:11:48.342161Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-21T12:11:49.150273Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-21T12:11:49.150022Z&quot;}}" data-execution_count="7">
+<div id="fig-chr8-eigs" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chr8-eigs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-chr8-eigs" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-chr8-eigs-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chr8-eigs-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -700,7 +836,9 @@ X is done, now processing Y... done</code></pre>
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-display">
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-chr8-eigs" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-chr8-eigs-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chr8-eigs-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -712,7 +850,9 @@ X is done, now processing Y... done</code></pre>
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-display">
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-chr8-eigs" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-chr8-eigs-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chr8-eigs-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -724,7 +864,9 @@ X is done, now processing Y... done</code></pre>
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-display">
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-chr8-eigs" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-chr8-eigs-4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chr8-eigs-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -736,7 +878,9 @@ X is done, now processing Y... done</code></pre>
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-display">
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-chr8-eigs" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-chr8-eigs-5" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chr8-eigs-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -748,7 +892,9 @@ X is done, now processing Y... done</code></pre>
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-display">
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-chr8-eigs" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-chr8-eigs-6" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chr8-eigs-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -761,11 +907,11 @@ X is done, now processing Y... done</code></pre>
 </div>
 </div>
 </div>
+</div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chr8-eigs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.1: Comparing the eigenvector E1 for chr8 in X- and Y-bearing sperm at different resolutions. Here, the eigenvectors are re-sorted by their Spearman correlation with the GC content.
 </figcaption>
 </figure>
-</div>
 </div>
 
 
