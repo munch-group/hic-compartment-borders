@@ -7,19 +7,42 @@ format:
   code-fold: true
 --- -->
 
-# Preface { .unnumbered .noexport }
+---
+title: "Probabilistic Models for Hi-C Compartment Borders"
+author: "Søren Jørgensen"
+format:
+  html:
+    toc: false
+    number-sections: false
+---
 
-These pages are generated from a Git repository...
+# Abstract
 
+Here, I aim to do probabilistic modeling of eigenvectors obtained from the ICE method in Hi-C analysis. The idea is to capture some of the variance lost when hard-labeling the bins based on only the *sign* of the eigenvector.  
 
+This model infers A/B chromatin compartment structure from the first eigenvector (E1) of the Hi-C contact matrix using a Bayesian framework.
 
-## Section { .unnumbered .noexport  }
+## Goals
 
-{{< lipsum 1 >}} 
+1. Replace hard sign-thresholding of E1 with a probabilistic compartment assignment.  
+2. Quantify uncertainty in compartment calls for each genomic bin.  
+3. Allow for modeling of missing E1 values due to low signal.  
 
+## Assumptions
 
-## Section { .unnumbered .noexport  }
+1. Each bin belongs to one of two latent states: A or B compartment.  
+2. E1 values are generated from Gaussian distributions specific to each compartment.  
+3. Prior belief: A has positive E1 values ($\mu = 0.5$), B has negative ($\mu = -0.5$).  
+4. Bins are initially treated as independent.  
+5. Spatial dependency is added later (Gaussian Random Walk).  
 
-{{< lipsum 1 >}} 
+---
 
+## Project Structure
 
+- **Thesis**: Extended write-up with methods and results.  
+- **Notebooks**: Stepwise modeling pipeline in PyMC.  
+- **Workflows**: Automation scripts for reproducible analysis.  
+- **Reports**: Example rendered summaries.  
+
+📌 Repository: [GitHub Source](https://github.com/munch-group/hic-compartment-borders)

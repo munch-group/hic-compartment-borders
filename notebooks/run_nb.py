@@ -2,12 +2,12 @@
 # ---
 # title: GWF workflow to run a notebook
 # subtitle: Each target is a new notebook to run
-# execute:
+# execute: 
 #   eval: false
 # ---
 
 # %% [markdown]
-r"""
+"""
 ## Usage:
 
 Run a specific notebook with the following command:
