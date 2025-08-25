@@ -154,8 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Probabilistic Models for Hi-C Compartment Borders</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -302,7 +301,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#imports-and-utility-functions" id="toc-imports-and-utility-functions" class="nav-link active" data-scroll-target="#imports-and-utility-functions">Imports and utility functions</a></li>
+  <li><a href="#usage" id="toc-usage" class="nav-link active" data-scroll-target="#usage">Usage:</a></li>
+  <li><a href="#imports-and-utility-functions" id="toc-imports-and-utility-functions" class="nav-link" data-scroll-target="#imports-and-utility-functions">Imports and utility functions</a></li>
   <li><a href="#list-the-available-notebooks-to-run" id="toc-list-the-available-notebooks-to-run" class="nav-link" data-scroll-target="#list-the-available-notebooks-to-run">List the available notebooks to run</a></li>
   <li><a href="#loop-through-notebooks-and-generate-a-target-for-each" id="toc-loop-through-notebooks-and-generate-a-target-for-each" class="nav-link" data-scroll-target="#loop-through-notebooks-and-generate-a-target-for-each">Loop through notebooks and generate a target for each</a></li>
   </ul>
@@ -331,12 +331,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>r”“” # Usage:</p>
+<section id="usage" class="level2">
+<h2 class="anchored" data-anchor-id="usage">Usage:</h2>
 <p>Run a specific notebook with the following command:</p>
-<p><code>gwf -f run_nb.py run &lt;notebook_name&gt;</code> where <code>&lt;notebook_name&gt;</code> is the name of the notebook you want to run without the <code>.ipynb</code> extension. ““”</p>
+<p><code>gwf -f run_nb.py run &lt;notebook_name&gt;</code> where <code>&lt;notebook_name&gt;</code> is the name of the notebook you want to run without the <code>.ipynb</code> extension.</p>
+</section>
 <section id="imports-and-utility-functions" class="level2">
 <h2 class="anchored" data-anchor-id="imports-and-utility-functions">Imports and utility functions</h2>
-<div id="7bbbb07b" class="cell" data-execution_count="1">
+<div id="5224ac14" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gwf <span class="im">import</span> Workflow, AnonymousTarget</span>
@@ -366,14 +368,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="list-the-available-notebooks-to-run" class="level2">
 <h2 class="anchored" data-anchor-id="list-the-available-notebooks-to-run">List the available notebooks to run</h2>
-<div id="6bee520b" class="cell" data-execution_count="2">
+<div id="cbf5b5fe" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list all notebooks in the current directory</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>notebooks <span class="op">=</span> glob.glob(<span class="st">'*.ipynb'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="loop-through-notebooks-and-generate-a-target-for-each" class="level2">
 <h2 class="anchored" data-anchor-id="loop-through-notebooks-and-generate-a-target-for-each">Loop through notebooks and generate a target for each</h2>
-<div id="95a6878e" class="cell" data-execution_count="3">
+<div id="143f839f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a GWF workflow object</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gwf <span class="op">=</span> Workflow(defaults<span class="op">=</span>{<span class="st">'account'</span>: <span class="st">'hic-spermatogenesis'</span>})</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>

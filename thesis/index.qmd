@@ -53,7 +53,11 @@ This model infers A/B chromatin compartment structure from the first eigenvector
 
 Chromatin architecture is of high interest in molecular biology, and increasingly so in molecular evolution. A high-throughput method for mapping the 3D organization of the genome was proposed by @lieberman-aiden2009comprehensivemappinglongrange, and has since been the standard method of infering chromatin compartments [@lajoie2015hitchhikersguidehic]. Briefly, chromatin interactions from Hi-C sequencing is used to generate an interaction matrix of valid Hi-C contacts, and PCA is performed on the covariance matrix of the observed/expected matrix. The following rationale is proposed and experimentally supported; if clustering into 2 types (A/B compartments), genomic positions that interact will yield a positive value in the covariance matrix, and vice versa for positions that do not interact. Then, when PCA is performed, the first principal component captures the variance that arise from being in different compart by its sign. The direction of the eigenvector (the sign) is then phased with a biologically relevant measure (such as GC content) to establish that the A compartment is largely the *active* chromatin and B is largely *inactive*. 
 
-However, this approach may place too much confidence in how expected interaction frequencies are estimated. By using the eigenvectors within a probabilistic model, where compartment identity is treated as a latent variable, we aim to recover information discarded in hard-labeling based on eigenvector signs. We propose a Bayesian MCMC framework as a spatially aware clustering method that soft-assigns compartments based on the eigendecomposition by assuming that the magnitude of the eigenvector is significant.
+However, this approach may place too much confidence in how expected interaction frequencies are estimated. By using the eigenvectors within a probabilistic model, where compartment identity is treated as a latent variable, we aim to recover information discarded in hard-labeling based on eigenvector signs. We propose a Bayesian MCMC framework as a spatially aware clustering method that soft-assigns compartments based on the eigendecomposition by assuming that the magnitude of the eigenvector bears relevant biological information.
+
+## Hi-C sequencing, resolution, and up-scaling older Hi-C datasets (CNNs)
+
+There is a prominent limitation to analyzing or reusing published data sets, especially older data sets. The resolution that the Hi-C data can support is limited by the sequencing depth, and thus after just a few years, a data set will seem obsolete due to the advances in sequencing technology. Methods have been proposed to up-scale existing data sets [@zhang2018enhancinghicdata] with deep convolutional neural networks (in the same way as enhancing quality of old photos). In stead of up-scaling the raw data, we add an extra step to the classical Hi-C analysis pipeline to quantify the errors when using resolutions that the classical analysis should not support. 
 
 ## Bayesian Statistics and modeling 
 
@@ -115,7 +119,7 @@ The pipeline previously developed implements the Iterative Correction and Eigend
 
 The interaction counts of each bin is corrected iteratively until convergence of the coverage, and the correction weight is saved to the cooler. The expected interaction matrix is derived from the decay in contact probability over genomic distance (also; distance decay), and is used to scale the observed interactions before performing eigendecomposition on the correlation matrix of observed/expected. Bins interacting with bins of the same type should keep a positive eigenvector, and vice versa otherwise. Thus, the first principal component *should* capture the variance explained by the compartment assignment. The eigenvectors are then oriented to correlate with GC content, to ensure that positive values represent A-compartments and active chromatin, and negative values represent B-compartments and inactive chromatin. 
 
-As also described in [ref], sometimes there is a larger amount of variance in interaction frequency between chromosome arms than within arms. In these cases, the eigendecomposition will not capture the compartments, but only change its sign at the centromere. Thus, it is generally a safer practice to do the eigendecomposition on the chromosome arms separately, and is readily implemented into *cooltools* by providing a viewframe to the function that does the calculations. It is not clear how further experimentation with narrowing the eigendecomposition viewframe affects the biological explanation of the results, but it is suggested as a method of obtaining more local compartmentalization [@wang2019reprogrammingmeioticchromatin] (termed local PCA). As no centromere was available from the T2T-MMU8v1.0, it was inferred from the largest cluster of sattelite repeats, approximately between 57 Mp and 69 Mp (@fig-t2t-satellites).
+As also described in [ref], sometimes there is a larger amount of variance in interaction frequency between chromosome arms than within arms. In these cases, the eigendecomposition will not capture the compartments, but only change its sign at the centromere. Thus, it is generally a safer practice to do the eigendecomposition on the chromosome arms separately, and is readily implemented into *cooltools* by providing a viewframe to the function that does the calculations. It is not clear how further experimentation with narrowing the eigendecomposition viewframe affects the biological explanation of the results, but it is suggested as a method of obtaining more local compartmentalization [@wang2019reprogrammingmeioticchromatin] (termed local PCA). As no centromere was available from the T2T-MMU8v1.0, it was inferred from the largest cluster of sattelite repeats, approximately between 57 Mp and 69 Mp (@fig-t2t-satellites). Additionally, the 10Mb viewframe was also applied in the eigendecomposition. 
 
 {{< embed ../notebooks/01_prep_e1_values.ipynb#fig-t2t-satellites >}}
 
@@ -226,11 +230,12 @@ However, when an expected result of the model is that some peaks or small compar
 
 ## Parameter sweep
 
+The flexibility of a model can be increased by selecting a heavier-tailed distribution for the prior; allowing a broader exploration of the parameter space, and making extreme values more probable. This was done for the priors on $\mu_{A}$ and $\mu_{B}$, and for the scale parameter of the GRW, $\sigma_{\mathrm{GRW}}$. Here, special care has to be taken to strike a balance between a model that is too flexible and cannot generalize, and one that is to rigid that cannot learn from the data. For a heavier tailed distribution, the T-distribution was chosen with a varying number of degrees of freedom, `nu`. For large {$\nu$}s $\nu \geq 20$, the distribution closely approximates the normal distribuion. Here, $\sim\!30$ combinations of compartment and step scale distributions ($\mu_A,\mu_B, \sigma_{\mathrm{GRW}} \in [T_{\mathrm{dist}}, N_{\mathrm{dist}}]$) with different $\nu$ for the T distributions. The parameter sweep was performed using the continuous mixture model for efficiency purposes. So long as the bins are dependent, the assumed less accurate model was deemed sufficient. Then, the the posterior traces were compared with `arviz.compare()`, comparing the information retained in each model using leave-one-out cross-validation (LOO CV) to achieve the generic log-predictive density (ELPD). The best non-diverging models were chosen for further refinement, by adding the latent type assignment, `z`, and refitting the model. 
 
 
 ## Resolutions and subsets
 
-After initial evaluations of the foundational architecture was done by fitting 100kb resolution data, the same architecture was applied to higher resolution (10kb) data. That is, we assume the system of varables have the same relationship and can be drawn from the same distributions as the lower-resolution data. To achieve a comparable runtime, a subset of the data was selected from a 1500-bin interval that was qualitatively determined to have high variance. However, not only the resolution was exchanged, but also the data set. For the hi-res analysis, I used the GRCh38-mapped data set from human X-bearing sperm, and did no further investigation of the macaque data. 
+After initial evaluations of the foundational architecture was done by fitting 100kb resolution data, the same architecture was applied to higher resolution (10kb) data. That is, we assume the system of variables have the same relationship and can be drawn from the same distributions as the lower-resolution data. To achieve a comparable runtime, a subset of the data was selected from a 1500-bin interval that was qualitatively determined to have high variance. However, not only the resolution was changed, but also the data set. For the hi-res analysis, I used the GRCh38-mapped data set from human X-bearing sperm, and did no further investigation of the macaque data although it could be an interesting insight to quantify the differences of the compartment calls from the previous study.
 
 Initially, the selected subset was thought to have a good amount of variance, but upon further investigation, it could also be interpreted as a high level of noise compared to biological information. Therefore, the same model architecture was applied to the two chromatin arms seperately, and lastly the full X chromosome.
 
@@ -243,9 +248,22 @@ After remapping the macaque data to the T2T assembly, the  eigentracks were calc
 
 {{< embed ../notebooks/01_prep_e1_values.ipynb#fig-e1-sperm >}}
 
-We were less confident in the human sperm data, as approximately half of the cells were filtered out compared to the original study (they had the Y chromosome), resulting in only $\sim 3,500,000$ valid interactions. This is evidently not sufficient for high-resolution analysis directly, visualized by the extreme noise level in fig-e1-sperm B) and C).  
+We were less confident in the human sperm data, as approximately half of the cells were filtered out compared to the original study (they had the Y chromosome), resulting in only $\sim 3,500,000$ valid interactions. This is evidently not sufficient for high-resolution analysis directly, visualized by the extreme noise level in @fig-e1-sperm-x B) and C).  
 
 {{< embed ../notebooks/01_prep_e1_values.ipynb#fig-e1-sperm-x >}} 
+
+However, we remain optimistic about a probabilistic approach, as we observe a general trend even in the 10kb resolution, although with much more noise than in the macaque data. The noise level of the human X-bearing sperm data at 50kb resembles that of 5kb in the macaque sperm data (comparing @fig-e1-sperm and @fig-e1-sperm-x).
+
+Then, the i.i.d. model showed good mixing and separation of the two type distributions in the trace plots (@fig-iid-trace-mu-sigma), but the results from the posterior predictive steps showed a unimodal distribution of posterior mean of `y_lik`, being our $E1$ estimate (@fig-iid-ppc-mean-std). Additionally, plotting the posterior mean of the E1 estimate revealed that the model had learned it was safest to predict a value close to zero but with a wide HDI (@fig-iid-trace-ylik). This means that the i.i.d. model has no predictive power. Interestingly, the results from LOO-CV indicated that the model was well inside the Cummulative Distribution Function (CDF), seen from the Empirical CDF (ECDF) in `arviz.plot_loo_pit` (@fig-iid-ppc-loo-pit). This raises the question of the validity of the cross-validation in our case when the predictions are clearly not accurate. 
+
+{{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-iid-trace-mu-sigma >}}
+
+{{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-iid-ppc-mean-std >}}
+
+{{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-iid-trace-ylik >}}
+
+{{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-iid-ppc-loo-pit >}}
+
 
 ## The models
 

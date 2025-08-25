@@ -623,7 +623,7 @@ eigenvectors from Hi-C data analysis in a Bayesian framework}
 in a Gaussian Random Walk and infering a latent compartment assignment
 to A or B as an excuse to master PyMC}
 \author{Søren Jørgensen}
-\date{August 24, 2025}
+\date{August 25, 2025}
 \begin{document}
 \frontmatter
 \cleardoublepage
@@ -753,7 +753,21 @@ variable, we aim to recover information discarded in hard-labeling based
 on eigenvector signs. We propose a Bayesian MCMC framework as a
 spatially aware clustering method that soft-assigns compartments based
 on the eigendecomposition by assuming that the magnitude of the
-eigenvector is significant.
+eigenvector bears relevant biological information.
+
+\section{Hi-C sequencing, resolution, and up-scaling older Hi-C datasets
+(CNNs)}\label{hi-c-sequencing-resolution-and-up-scaling-older-hi-c-datasets-cnns}
+
+There is a prominent limitation to analyzing or reusing published data
+sets, especially older data sets. The resolution that the Hi-C data can
+support is limited by the sequencing depth, and thus after just a few
+years, a data set will seem obsolete due to the advances in sequencing
+technology. Methods have been proposed to up-scale existing data sets
+(Zhang et al. 2018) with deep convolutional neural networks (in the same
+way as enhancing quality of old photos). In stead of up-scaling the raw
+data, we add an extra step to the classical Hi-C analysis pipeline to
+quantify the errors when using resolutions that the classical analysis
+should not support.
 
 \section{Bayesian Statistics and
 modeling}\label{bayesian-statistics-and-modeling}
@@ -911,7 +925,8 @@ the results, but it is suggested as a method of obtaining more local
 compartmentalization (Wang et al. 2019) (termed local PCA). As no
 centromere was available from the T2T-MMU8v1.0, it was inferred from the
 largest cluster of sattelite repeats, approximately between 57 Mp and 69
-Mp (Figure~\ref{fig-t2t-satellites}).
+Mp (Figure~\ref{fig-t2t-satellites}). Additionally, the 10Mb viewframe
+was also applied in the eigendecomposition.
 
 \begin{figure}[H]
 
@@ -1181,18 +1196,43 @@ ignored.
 
 \section{Parameter sweep}\label{parameter-sweep}
 
+The flexibility of a model can be increased by selecting a
+heavier-tailed distribution for the prior; allowing a broader
+exploration of the parameter space, and making extreme values more
+probable. This was done for the priors on \(\mu_{A}\) and \(\mu_{B}\),
+and for the scale parameter of the GRW, \(\sigma_{\mathrm{GRW}}\). Here,
+special care has to be taken to strike a balance between a model that is
+too flexible and cannot generalize, and one that is to rigid that cannot
+learn from the data. For a heavier tailed distribution, the
+T-distribution was chosen with a varying number of degrees of freedom,
+\texttt{nu}. For large \{\(\nu\)\}s \(\nu \geq 20\), the distribution
+closely approximates the normal distribuion. Here, \(\sim\!30\)
+combinations of compartment and step scale distributions
+(\(\mu_A,\mu_B, \sigma_{\mathrm{GRW}} \in [T_{\mathrm{dist}}, N_{\mathrm{dist}}]\))
+with different \(\nu\) for the T distributions. The parameter sweep was
+performed using the continuous mixture model for efficiency purposes. So
+long as the bins are dependent, the assumed less accurate model was
+deemed sufficient. Then, the the posterior traces were compared with
+\texttt{arviz.compare()}, comparing the information retained in each
+model using leave-one-out cross-validation (LOO CV) to achieve the
+generic log-predictive density (ELPD). The best non-diverging models
+were chosen for further refinement, by adding the latent type
+assignment, \texttt{z}, and refitting the model.
+
 \section{Resolutions and subsets}\label{resolutions-and-subsets}
 
 After initial evaluations of the foundational architecture was done by
 fitting 100kb resolution data, the same architecture was applied to
-higher resolution (10kb) data. That is, we assume the system of varables
-have the same relationship and can be drawn from the same distributions
-as the lower-resolution data. To achieve a comparable runtime, a subset
-of the data was selected from a 1500-bin interval that was qualitatively
-determined to have high variance. However, not only the resolution was
-exchanged, but also the data set. For the hi-res analysis, I used the
-GRCh38-mapped data set from human X-bearing sperm, and did no further
-investigation of the macaque data.
+higher resolution (10kb) data. That is, we assume the system of
+variables have the same relationship and can be drawn from the same
+distributions as the lower-resolution data. To achieve a comparable
+runtime, a subset of the data was selected from a 1500-bin interval that
+was qualitatively determined to have high variance. However, not only
+the resolution was changed, but also the data set. For the hi-res
+analysis, I used the GRCh38-mapped data set from human X-bearing sperm,
+and did no further investigation of the macaque data although it could
+be an interesting insight to quantify the differences of the compartment
+calls from the previous study.
 
 Initially, the selected subset was thought to have a good amount of
 variance, but upon further investigation, it could also be interpreted
@@ -1293,7 +1333,8 @@ We were less confident in the human sperm data, as approximately half of
 the cells were filtered out compared to the original study (they had the
 Y chromosome), resulting in only \(\sim 3,500,000\) valid interactions.
 This is evidently not sufficient for high-resolution analysis directly,
-visualized by the extreme noise level in fig-e1-sperm B) and C).
+visualized by the extreme noise level in Figure~\ref{fig-e1-sperm-x} B)
+and C).
 
 \begin{figure}
 
@@ -1363,6 +1404,90 @@ the covariance matrix of the Hi-C contact matrix, and it captures the
 dominant mode of variation in the data. The classical definitions, A: E1
 \textgreater{} 0 and B: E1 \textless{} 0, are shown in red and blue,
 respectively. E1 values are overlayed as scatter.}
+
+\end{figure}%
+
+However, we remain optimistic about a probabilistic approach, as we
+observe a general trend even in the 10kb resolution, although with much
+more noise than in the macaque data. The noise level of the human
+X-bearing sperm data at 50kb resembles that of 5kb in the macaque sperm
+data (comparing Figure~\ref{fig-e1-sperm} and
+Figure~\ref{fig-e1-sperm-x}).
+
+Then, the i.i.d. model showed good mixing and separation of the two type
+distributions in the trace plots (Figure~\ref{fig-iid-trace-mu-sigma}),
+but the results from the posterior predictive steps showed a unimodal
+distribution of posterior mean of \texttt{y\_lik}, being our \(E1\)
+estimate (Figure~\ref{fig-iid-ppc-mean-std}). Additionally, plotting the
+posterior mean of the E1 estimate revealed that the model had learned it
+was safest to predict a value close to zero but with a wide HDI
+(Figure~\ref{fig-iid-trace-ylik}). This means that the i.i.d. model has
+no predictive power. Interestingly, the results from LOO-CV indicated
+that the model was well inside the Cummulative Distribution Function
+(CDF), seen from the Empirical CDF (ECDF) in
+\texttt{arviz.plot\_loo\_pit} (Figure~\ref{fig-iid-ppc-loo-pit}). This
+raises the question of the validity of the cross-validation in our case
+when the predictions are clearly not accurate.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=6.23958in,height=4.14583in]{index_files/figure-latex/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-mu-sigma-output-1.png}
+
+}
+
+\caption{\label{fig-iid-trace-mu-sigma}Trace plots for the posterior
+distributions of the mean (\texttt{mu}) and standard deviation
+(\texttt{sigma}) parameters in the i.i.d. model for E1 values in macaque
+data.}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=6.22917in,height=2.0625in]{index_files/figure-latex/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-mean-std-output-1.png}
+
+}
+
+\caption{\label{fig-iid-ppc-mean-std}Posterior predictive distribution
+summaries for the per-bin likelihood estimates (\texttt{y\_lik}). Left:
+Histogram of the posterior predictive means across all bins. Right:
+Histogram of the posterior predictive standard deviations across all
+bins.}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=6.29167in,height=2.04167in]{index_files/figure-latex/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-ylik-output-1.png}
+
+}
+
+\caption{\label{fig-iid-trace-ylik}Trace summary for the per-bin
+likelihood estimates (\texttt{y\_lik}). The shaded area indicates the
+95\% highest density interval (HDI).}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=3.6875in,height=1.32292in]{index_files/figure-latex/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-loo-pit-output-1.png}
+
+}
+
+\caption{\label{fig-iid-ppc-loo-pit}Leave-One-Out Probability Integral
+Transform (LOO-PIT) plot for the per-bin likelihood estimates
+(\texttt{y\_lik}). The LOO-PIT assesses the calibration of the model by
+comparing the predicted distributions to the observed data. A
+well-calibrated model will have a uniform distribution in the LOO-PIT
+plot.}
 
 \end{figure}%
 
@@ -1537,6 +1662,12 @@ Xu, Heming, Yi Chi, Changjian Yin, Cheng Li, Yujie Chen, Zhiyuan Liu,
 Xiaowen Liu, et al. 2025. {``Three-Dimensional Genome Structures of
 Single Mammalian Sperm.''} \emph{Nature Communications} 16 (1): 3805.
 \url{https://doi.org/10.1038/s41467-025-59055-z}.
+
+\bibitem[\citeproctext]{ref-zhang2018enhancinghicdata}
+Zhang, Yan, Lin An, Jie Xu, Bo Zhang, W. Jim Zheng, Ming Hu, Jijun Tang,
+and Feng Yue. 2018. {``Enhancing {Hi-C} Data Resolution with Deep
+Convolutional Neural Network {HiCPlus}.''} \emph{Nature Communications}
+9 (1): 750. \url{https://doi.org/10.1038/s41467-018-03113-2}.
 
 \end{CSLReferences}
 

@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-24">
+<meta name="dcterms.date" content="2025-08-25">
 <meta name="keywords" content="Gaussian Random Walk, Bayesian MCMC, Chromatin Structure in spermatogenesis">
 
 <title>Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework</title>
@@ -131,10 +131,10 @@ window.Quarto = {
 <meta name="citation_title" content="Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework">
 <meta name="citation_keywords" content="Gaussian Random Walk,Bayesian MCMC,Chromatin Structure in spermatogenesis">
 <meta name="citation_author" content="Søren Jørgensen">
-<meta name="citation_publication_date" content="2025-08-24">
-<meta name="citation_cover_date" content="2025-08-24">
+<meta name="citation_publication_date" content="2025-08-25">
+<meta name="citation_cover_date" content="2025-08-25">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-08-24">
+<meta name="citation_online_date" content="2025-08-25">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=PyMC: A modern, and comprehensive probabilistic programming framework in Python;,citation_abstract=PyMC is a probabilistic programming library for Python that provides tools for constructing and fitting Bayesian models. It offers an intuitive, readable syntax that is close to the natural syntax statisticians use to describe models. PyMC leverages the symbolic computation library PyTensor, allowing it to be compiled into a variety of computational backends, such as C, JAX, and Numba, which in turn offer access to different computational architectures including CPU, GPU, and TPU. Being a general modeling framework, PyMC supports a variety of models including generalized hierarchical linear regression and classification, time series, ordinary differential equations (ODEs), and non-parametric models such as Gaussian processes (GPs). We demonstrate PyMC’s versatility and ease of use with examples spanning a range of common statistical models. Additionally, we discuss the positive role of PyMC in the development of the open-source ecosystem for probabilistic programming.;,citation_author=Oriol Abril-Pla;,citation_author=Virgile Andreani;,citation_author=Colin Carroll;,citation_author=Larry Dong;,citation_author=Christopher J. Fonnesbeck;,citation_author=Maxim Kochurov;,citation_author=Ravin Kumar;,citation_author=Junpeng Lao;,citation_author=Christian C. Luhmann;,citation_author=Osvaldo A. Martin;,citation_author=Michael Osthege;,citation_author=Ricardo Vieira;,citation_author=Thomas Wiecki;,citation_author=Robert Zinkov;,citation_publication_date=2023-09;,citation_cover_date=2023-09;,citation_year=2023;,citation_doi=10.7717/peerj-cs.1516;,citation_issn=2376-5992;,citation_volume=9;,citation_language=en-US;,citation_journal_title=PeerJ Computer Science;">
 <meta name="citation_reference" content="citation_title=Key role for CTCF in establishing chromatin structure in human embryos;,citation_author=Xuepeng Chen;,citation_author=Yuwen Ke;,citation_author=Keliang Wu;,citation_author=Han Zhao;,citation_author=Yaoyu Sun;,citation_author=Lei Gao;,citation_author=Zhenbo Liu;,citation_author=Jingye Zhang;,citation_author=Wenrong Tao;,citation_author=Zhenzhen Hou;,citation_author=Hui Liu;,citation_author=Jiang Liu;,citation_author=Zi-Jiang Chen;,citation_publication_date=2019-12;,citation_cover_date=2019-12;,citation_year=2019;,citation_issue=7786;,citation_doi=10.1038/s41586-019-1812-0;,citation_issn=0028-0836, 1476-4687;,citation_volume=576;,citation_language=en-US;,citation_journal_title=Nature;">
@@ -188,7 +188,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">August 24, 2025</p>
+              <p class="date">August 25, 2025</p>
             </div>
           </div>
           
@@ -238,6 +238,7 @@ window.Quarto = {
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
+  <li><a href="#hi-c-sequencing-resolution-and-up-scaling-older-hi-c-datasets-cnns" id="toc-hi-c-sequencing-resolution-and-up-scaling-older-hi-c-datasets-cnns" class="nav-link" data-scroll-target="#hi-c-sequencing-resolution-and-up-scaling-older-hi-c-datasets-cnns">Hi-C sequencing, resolution, and up-scaling older Hi-C datasets (CNNs)</a></li>
   <li><a href="#bayesian-statistics-and-modeling" id="toc-bayesian-statistics-and-modeling" class="nav-link" data-scroll-target="#bayesian-statistics-and-modeling">Bayesian Statistics and modeling</a></li>
   <li><a href="#continuing-from-where-we-left" id="toc-continuing-from-where-we-left" class="nav-link" data-scroll-target="#continuing-from-where-we-left">Continuing from where we left</a></li>
   <li><a href="#data-sets" id="toc-data-sets" class="nav-link" data-scroll-target="#data-sets">Data sets</a></li>
@@ -281,7 +282,11 @@ window.Quarto = {
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>Chromatin architecture is of high interest in molecular biology, and increasingly so in molecular evolution. A high-throughput method for mapping the 3D organization of the genome was proposed by <span class="citation" data-cites="lieberman-aiden2009comprehensivemappinglongrange">Lieberman-Aiden et al. (<a href="#ref-lieberman-aiden2009comprehensivemappinglongrange" role="doc-biblioref">2009</a>)</span>, and has since been the standard method of infering chromatin compartments <span class="citation" data-cites="lajoie2015hitchhikersguidehic">(<a href="#ref-lajoie2015hitchhikersguidehic" role="doc-biblioref">Lajoie, Dekker, and Kaplan 2015</a>)</span>. Briefly, chromatin interactions from Hi-C sequencing is used to generate an interaction matrix of valid Hi-C contacts, and PCA is performed on the covariance matrix of the observed/expected matrix. The following rationale is proposed and experimentally supported; if clustering into 2 types (A/B compartments), genomic positions that interact will yield a positive value in the covariance matrix, and vice versa for positions that do not interact. Then, when PCA is performed, the first principal component captures the variance that arise from being in different compart by its sign. The direction of the eigenvector (the sign) is then phased with a biologically relevant measure (such as GC content) to establish that the A compartment is largely the <em>active</em> chromatin and B is largely <em>inactive</em>.</p>
-<p>However, this approach may place too much confidence in how expected interaction frequencies are estimated. By using the eigenvectors within a probabilistic model, where compartment identity is treated as a latent variable, we aim to recover information discarded in hard-labeling based on eigenvector signs. We propose a Bayesian MCMC framework as a spatially aware clustering method that soft-assigns compartments based on the eigendecomposition by assuming that the magnitude of the eigenvector is significant.</p>
+<p>However, this approach may place too much confidence in how expected interaction frequencies are estimated. By using the eigenvectors within a probabilistic model, where compartment identity is treated as a latent variable, we aim to recover information discarded in hard-labeling based on eigenvector signs. We propose a Bayesian MCMC framework as a spatially aware clustering method that soft-assigns compartments based on the eigendecomposition by assuming that the magnitude of the eigenvector bears relevant biological information.</p>
+<section id="hi-c-sequencing-resolution-and-up-scaling-older-hi-c-datasets-cnns" class="level2">
+<h2 class="anchored" data-anchor-id="hi-c-sequencing-resolution-and-up-scaling-older-hi-c-datasets-cnns">Hi-C sequencing, resolution, and up-scaling older Hi-C datasets (CNNs)</h2>
+<p>There is a prominent limitation to analyzing or reusing published data sets, especially older data sets. The resolution that the Hi-C data can support is limited by the sequencing depth, and thus after just a few years, a data set will seem obsolete due to the advances in sequencing technology. Methods have been proposed to up-scale existing data sets <span class="citation" data-cites="zhang2018enhancinghicdata">(<a href="#ref-zhang2018enhancinghicdata" role="doc-biblioref">Zhang et al. 2018</a>)</span> with deep convolutional neural networks (in the same way as enhancing quality of old photos). In stead of up-scaling the raw data, we add an extra step to the classical Hi-C analysis pipeline to quantify the errors when using resolutions that the classical analysis should not support.</p>
+</section>
 <section id="bayesian-statistics-and-modeling" class="level2">
 <h2 class="anchored" data-anchor-id="bayesian-statistics-and-modeling">Bayesian Statistics and modeling</h2>
 <p>I Bayesian statistics, a prior belief, <span class="math inline">\(P(\theta)\)</span> is combined with the likelihood of observed data, <span class="math inline">\(P(D|\theta)\)</span>, to achieve a posterior probability, <span class="math inline">\(P(\theta|D)\)</span>, as Bayes’ Theorem formulates in</p>
@@ -328,7 +333,7 @@ P(D) =\int P(D \ | \ \theta) \ P(\theta) \ \mathrm{d}\theta,
 <h3 class="anchored" data-anchor-id="the-ice-method">The ICE-method</h3>
 <p>The pipeline previously developed implements the Iterative Correction and Eigendecomposition (ICE) method of Hi-C analysis <span class="citation" data-cites="lieberman-aiden2009comprehensivemappinglongrange">(<a href="#ref-lieberman-aiden2009comprehensivemappinglongrange" role="doc-biblioref">Lieberman-Aiden et al. 2009</a>)</span> after mapping raw Hi-C reads to the reference genome, validating Hi-C pairs, and constructing the interaction map (Hi-C matrix). It is implemented fully using the <em>Open2C</em> tools and recommendations. Briefly, the raw read pairs are mapped (as paired-end reads) to the respective reference genome (either GRCh38 or T2T-MMU8v1.0) with <em>bwa-mem2</em> [ref] with the <code>-P</code> option. Then the pairs are parsed and sorted with <em>pairtools</em>, and a deduplication and quality filter (<span class="math inline">\(mapq \geq 30\)</span>) is run to remove PCR duplicates and technical noise from low-quality reads. Lastly, the binned interaction matrices (<code>.cool</code> files, hence also <em>coolers</em>) are created from the remaining pairs into the base-resolution of 1kb bins that is then recursively coarsened until 1 Mb bins. The resulting raw interaction matrices do not have a uniform coverage profile along the genome as a result of differential binding or accesibility of the restriction enzyme and other technical factors. High or low coverage is visible in the interaction matrices, where genomic regions will appear as highly or weakly interacting regions even though they are artefacts of the coverage. Thus, it is needed to balance the interaction counts to avoid <em>visibility-induced biases</em> [ref]; it is time for ICE.</p>
 <p>The interaction counts of each bin is corrected iteratively until convergence of the coverage, and the correction weight is saved to the cooler. The expected interaction matrix is derived from the decay in contact probability over genomic distance (also; distance decay), and is used to scale the observed interactions before performing eigendecomposition on the correlation matrix of observed/expected. Bins interacting with bins of the same type should keep a positive eigenvector, and vice versa otherwise. Thus, the first principal component <em>should</em> capture the variance explained by the compartment assignment. The eigenvectors are then oriented to correlate with GC content, to ensure that positive values represent A-compartments and active chromatin, and negative values represent B-compartments and inactive chromatin.</p>
-<p>As also described in [ref], sometimes there is a larger amount of variance in interaction frequency between chromosome arms than within arms. In these cases, the eigendecomposition will not capture the compartments, but only change its sign at the centromere. Thus, it is generally a safer practice to do the eigendecomposition on the chromosome arms separately, and is readily implemented into <em>cooltools</em> by providing a viewframe to the function that does the calculations. It is not clear how further experimentation with narrowing the eigendecomposition viewframe affects the biological explanation of the results, but it is suggested as a method of obtaining more local compartmentalization <span class="citation" data-cites="wang2019reprogrammingmeioticchromatin">(<a href="#ref-wang2019reprogrammingmeioticchromatin" role="doc-biblioref">Wang et al. 2019</a>)</span> (termed local PCA). As no centromere was available from the T2T-MMU8v1.0, it was inferred from the largest cluster of sattelite repeats, approximately between 57 Mp and 69 Mp (<a href="#fig-t2t-satellites" class="quarto-xref">Figure&nbsp;1</a>).</p>
+<p>As also described in [ref], sometimes there is a larger amount of variance in interaction frequency between chromosome arms than within arms. In these cases, the eigendecomposition will not capture the compartments, but only change its sign at the centromere. Thus, it is generally a safer practice to do the eigendecomposition on the chromosome arms separately, and is readily implemented into <em>cooltools</em> by providing a viewframe to the function that does the calculations. It is not clear how further experimentation with narrowing the eigendecomposition viewframe affects the biological explanation of the results, but it is suggested as a method of obtaining more local compartmentalization <span class="citation" data-cites="wang2019reprogrammingmeioticchromatin">(<a href="#ref-wang2019reprogrammingmeioticchromatin" role="doc-biblioref">Wang et al. 2019</a>)</span> (termed local PCA). As no centromere was available from the T2T-MMU8v1.0, it was inferred from the largest cluster of sattelite repeats, approximately between 57 Mp and 69 Mp (<a href="#fig-t2t-satellites" class="quarto-xref">Figure&nbsp;1</a>). Additionally, the 10Mb viewframe was also applied in the eigendecomposition.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/01_prep_e1_values.ipynb" data-notebook-title="High-res E1 on T2T-MMU8v1" data-notebook-cellid="cell-fig-t2t-satellites">
 <div id="cell-fig-t2t-satellites" class="cell">
 <div class="cell-output cell-output-display">
@@ -380,8 +385,8 @@ y_i &amp;\sim \mathcal{N}(\mu_i, \sigma) \\
 <p>where <span class="math inline">\(y_i\)</span> is the observed E1 value at bin <span class="math inline">\(i\)</span>, <span class="math inline">\(z_i \in \{0, 1\}\)</span> is the latent compartment assignment (0 = B, 1 = A). 8 chains of 1000 samples (and <span class="math inline">\(8x1000\)</span> tuning samples) results in 8000 posterior samples after the model has run.</p>
 <p>The model might be able to fit well to the observed data, but it is unlikely that it can generalize. Here it is as a Mermaid-js diagram, embedded from the Mermaid-representation built into PyMC.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/02_PyMC_independent_bins.ipynb" data-notebook-title="Independent Probabilistic A/B calls" data-notebook-cellid="cell-fig-simple_iid_model">
-<div id="cell-fig-simple_iid_model" class="cell" data-execution_count="89">
-<div class="cell-output cell-output-display" data-execution_count="89">
+<div id="cell-fig-simple_iid_model" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-25T19:40:05.044255Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-25T19:40:05.044139Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-25T19:40:06.356648Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-25T19:40:06.356413Z&quot;}}" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div id="fig-simple_iid_model" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-simple_iid_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -451,10 +456,11 @@ y_i &amp;\sim \mathcal{N}(\mu_i, \sigma) \\
 </section>
 <section id="parameter-sweep" class="level2">
 <h2 class="anchored" data-anchor-id="parameter-sweep">Parameter sweep</h2>
+<p>The flexibility of a model can be increased by selecting a heavier-tailed distribution for the prior; allowing a broader exploration of the parameter space, and making extreme values more probable. This was done for the priors on <span class="math inline">\(\mu_{A}\)</span> and <span class="math inline">\(\mu_{B}\)</span>, and for the scale parameter of the GRW, <span class="math inline">\(\sigma_{\mathrm{GRW}}\)</span>. Here, special care has to be taken to strike a balance between a model that is too flexible and cannot generalize, and one that is to rigid that cannot learn from the data. For a heavier tailed distribution, the T-distribution was chosen with a varying number of degrees of freedom, <code>nu</code>. For large {<span class="math inline">\(\nu\)</span>}s <span class="math inline">\(\nu \geq 20\)</span>, the distribution closely approximates the normal distribuion. Here, <span class="math inline">\(\sim\!30\)</span> combinations of compartment and step scale distributions (<span class="math inline">\(\mu_A,\mu_B, \sigma_{\mathrm{GRW}} \in [T_{\mathrm{dist}}, N_{\mathrm{dist}}]\)</span>) with different <span class="math inline">\(\nu\)</span> for the T distributions. The parameter sweep was performed using the continuous mixture model for efficiency purposes. So long as the bins are dependent, the assumed less accurate model was deemed sufficient. Then, the the posterior traces were compared with <code>arviz.compare()</code>, comparing the information retained in each model using leave-one-out cross-validation (LOO CV) to achieve the generic log-predictive density (ELPD). The best non-diverging models were chosen for further refinement, by adding the latent type assignment, <code>z</code>, and refitting the model.</p>
 </section>
 <section id="resolutions-and-subsets" class="level2">
 <h2 class="anchored" data-anchor-id="resolutions-and-subsets">Resolutions and subsets</h2>
-<p>After initial evaluations of the foundational architecture was done by fitting 100kb resolution data, the same architecture was applied to higher resolution (10kb) data. That is, we assume the system of varables have the same relationship and can be drawn from the same distributions as the lower-resolution data. To achieve a comparable runtime, a subset of the data was selected from a 1500-bin interval that was qualitatively determined to have high variance. However, not only the resolution was exchanged, but also the data set. For the hi-res analysis, I used the GRCh38-mapped data set from human X-bearing sperm, and did no further investigation of the macaque data.</p>
+<p>After initial evaluations of the foundational architecture was done by fitting 100kb resolution data, the same architecture was applied to higher resolution (10kb) data. That is, we assume the system of variables have the same relationship and can be drawn from the same distributions as the lower-resolution data. To achieve a comparable runtime, a subset of the data was selected from a 1500-bin interval that was qualitatively determined to have high variance. However, not only the resolution was changed, but also the data set. For the hi-res analysis, I used the GRCh38-mapped data set from human X-bearing sperm, and did no further investigation of the macaque data although it could be an interesting insight to quantify the differences of the compartment calls from the previous study.</p>
 <p>Initially, the selected subset was thought to have a good amount of variance, but upon further investigation, it could also be interpreted as a high level of noise compared to biological information. Therefore, the same model architecture was applied to the two chromatin arms seperately, and lastly the full X chromosome.</p>
 </section>
 </section>
@@ -544,7 +550,7 @@ Figure&nbsp;3: E1 eigenvector for T2T-MMU8v1 sperm at different resolutions. The
 </figure>
 </div>
 </div>
-<p>We were less confident in the human sperm data, as approximately half of the cells were filtered out compared to the original study (they had the Y chromosome), resulting in only <span class="math inline">\(\sim 3,500,000\)</span> valid interactions. This is evidently not sufficient for high-resolution analysis directly, visualized by the extreme noise level in fig-e1-sperm B) and C).</p>
+<p>We were less confident in the human sperm data, as approximately half of the cells were filtered out compared to the original study (they had the Y chromosome), resulting in only <span class="math inline">\(\sim 3,500,000\)</span> valid interactions. This is evidently not sufficient for high-resolution analysis directly, visualized by the extreme noise level in <a href="#fig-e1-sperm-x" class="quarto-xref">Figure&nbsp;4</a> B) and C).</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/01_prep_e1_values.ipynb" data-notebook-title="High-res E1 on T2T-MMU8v1" data-notebook-cellid="cell-fig-e1-sperm-x">
 <div id="fig-e1-sperm-x" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
@@ -626,6 +632,72 @@ Figure&nbsp;4: E1 eigenvector for human GRCh37 sperm at different resolutions. T
 </figure>
 </div>
 </div>
+<p>However, we remain optimistic about a probabilistic approach, as we observe a general trend even in the 10kb resolution, although with much more noise than in the macaque data. The noise level of the human X-bearing sperm data at 50kb resembles that of 5kb in the macaque sperm data (comparing <a href="#fig-e1-sperm" class="quarto-xref">Figure&nbsp;3</a> and <a href="#fig-e1-sperm-x" class="quarto-xref">Figure&nbsp;4</a>).</p>
+<p>Then, the i.i.d. model showed good mixing and separation of the two type distributions in the trace plots (<a href="#fig-iid-trace-mu-sigma" class="quarto-xref">Figure&nbsp;5</a>), but the results from the posterior predictive steps showed a unimodal distribution of posterior mean of <code>y_lik</code>, being our <span class="math inline">\(E1\)</span> estimate (<a href="#fig-iid-ppc-mean-std" class="quarto-xref">Figure&nbsp;6</a>). Additionally, plotting the posterior mean of the E1 estimate revealed that the model had learned it was safest to predict a value close to zero but with a wide HDI (<a href="#fig-iid-trace-ylik" class="quarto-xref">Figure&nbsp;7</a>). This means that the i.i.d. model has no predictive power. Interestingly, the results from LOO-CV indicated that the model was well inside the Cummulative Distribution Function (CDF), seen from the Empirical CDF (ECDF) in <code>arviz.plot_loo_pit</code> (<a href="#fig-iid-ppc-loo-pit" class="quarto-xref">Figure&nbsp;8</a>). This raises the question of the validity of the cross-validation in our case when the predictions are clearly not accurate.</p>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/02_PyMC_independent_bins.ipynb" data-notebook-title="Independent Probabilistic A/B calls" data-notebook-cellid="cell-fig-iid-trace-mu-sigma">
+<div id="cell-fig-iid-trace-mu-sigma" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-25T19:41:14.534053Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-25T19:41:14.533946Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-25T19:41:15.001093Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-25T19:41:15.000858Z&quot;}}" data-execution_count="39">
+<div class="cell-output cell-output-display">
+<div id="fig-iid-trace-mu-sigma" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-iid-trace-mu-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-mu-sigma-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure&nbsp;5: Trace plots for the posterior distributions of the mean (mu) and standard deviation (sigma) parameters in the i.i.d. model for E1 values in macaque data."><img src="index_files/figure-html/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-mu-sigma-output-1.png" width="599" height="398" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iid-trace-mu-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Trace plots for the posterior distributions of the mean (<code>mu</code>) and standard deviation (<code>sigma</code>) parameters in the i.i.d. model for E1 values in macaque data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/02_PyMC_independent_bins.ipynb" data-notebook-title="Independent Probabilistic A/B calls" data-notebook-cellid="cell-fig-iid-ppc-mean-std">
+<div id="cell-fig-iid-ppc-mean-std" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-25T19:41:16.315343Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-25T19:41:16.315098Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-25T19:41:16.489513Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-25T19:41:16.489205Z&quot;}}" data-execution_count="30">
+<div class="cell-output cell-output-display">
+<div id="fig-iid-ppc-mean-std" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-iid-ppc-mean-std-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-mean-std-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Figure&nbsp;6: Posterior predictive distribution summaries for the per-bin likelihood estimates (y_lik). Left: Histogram of the posterior predictive means across all bins. Right: Histogram of the posterior predictive standard deviations across all bins."><img src="index_files/figure-html/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-mean-std-output-1.png" width="598" height="198" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iid-ppc-mean-std-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Posterior predictive distribution summaries for the per-bin likelihood estimates (<code>y_lik</code>). Left: Histogram of the posterior predictive means across all bins. Right: Histogram of the posterior predictive standard deviations across all bins.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/02_PyMC_independent_bins.ipynb" data-notebook-title="Independent Probabilistic A/B calls" data-notebook-cellid="cell-fig-iid-trace-ylik">
+<div id="cell-fig-iid-trace-ylik" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-25T19:41:15.802046Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-25T19:41:15.801947Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-25T19:41:15.912317Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-25T19:41:15.912006Z&quot;}}" data-execution_count="27">
+<div class="cell-output cell-output-display">
+<div id="fig-iid-trace-ylik" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-iid-trace-ylik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-ylik-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Figure&nbsp;7: Trace summary for the per-bin likelihood estimates (y_lik). The shaded area indicates the 95% highest density interval (HDI)."><img src="index_files/figure-html/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-ylik-output-1.png" width="604" height="196" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iid-trace-ylik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Trace summary for the per-bin likelihood estimates (<code>y_lik</code>). The shaded area indicates the 95% highest density interval (HDI).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/02_PyMC_independent_bins.ipynb" data-notebook-title="Independent Probabilistic A/B calls" data-notebook-cellid="cell-fig-iid-ppc-loo-pit">
+<div id="cell-fig-iid-ppc-loo-pit" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-25T19:41:16.490579Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-25T19:41:16.490474Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-25T19:41:17.426455Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-25T19:41:17.426200Z&quot;}}" data-execution_count="31">
+<div class="cell-output cell-output-display">
+<div id="fig-iid-ppc-loo-pit" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-iid-ppc-loo-pit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-loo-pit-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Figure&nbsp;8: Leave-One-Out Probability Integral Transform (LOO-PIT) plot for the per-bin likelihood estimates (y_lik). The LOO-PIT assesses the calibration of the model by comparing the predicted distributions to the observed data. A well-calibrated model will have a uniform distribution in the LOO-PIT plot."><img src="index_files/figure-html/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-loo-pit-output-1.png" width="354" height="127" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iid-ppc-loo-pit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Leave-One-Out Probability Integral Transform (LOO-PIT) plot for the per-bin likelihood estimates (<code>y_lik</code>). The LOO-PIT assesses the calibration of the model by comparing the predicted distributions to the observed data. A well-calibrated model will have a uniform distribution in the LOO-PIT plot.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="the-models" class="level2">
 <h2 class="anchored" data-anchor-id="the-models">The models</h2>
@@ -636,10 +708,10 @@ Figure&nbsp;4: E1 eigenvector for human GRCh37 sperm at different resolutions. T
 <div id="fig-posterior-cross-dens-ci-w" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-posterior-cross-dens-ci-w-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure&nbsp;5: Posterior Probability with Raw Mixing Weight CI and Crossing Density. The CI rule used is 1/3 < \hat{w}_{post} < 2/3, as shown. The grey band indicates the regions where the CI rule is not satisfied. The crossing density bars show the number of crossings of the posterior mean at 0.5, with red indicating crossings upwards and blue indicating crossings downwards."><img src="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png" width="598" height="298" class="figure-img"></a>
+<a href="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Figure&nbsp;9: Posterior Probability with Raw Mixing Weight CI and Crossing Density. The CI rule used is 1/3 < \hat{w}_{post} < 2/3, as shown. The grey band indicates the regions where the CI rule is not satisfied. The crossing density bars show the number of crossings of the posterior mean at 0.5, with red indicating crossings upwards and blue indicating crossings downwards."><img src="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png" width="598" height="298" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posterior-cross-dens-ci-w-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Posterior Probability with Raw Mixing Weight CI and Crossing Density. The CI rule used is <span class="math inline">\(1/3 &lt; \hat{w}_{post} &lt; 2/3\)</span>, as shown. The grey band indicates the regions where the CI rule is not satisfied. The crossing density bars show the number of crossings of the posterior mean at 0.5, with red indicating crossings upwards and blue indicating crossings downwards.
+Figure&nbsp;9: Posterior Probability with Raw Mixing Weight CI and Crossing Density. The CI rule used is <span class="math inline">\(1/3 &lt; \hat{w}_{post} &lt; 2/3\)</span>, as shown. The grey band indicates the regions where the CI rule is not satisfied. The crossing density bars show the number of crossings of the posterior mean at 0.5, with red indicating crossings upwards and blue indicating crossings downwards.
 </figcaption>
 </figure>
 </div>
@@ -656,7 +728,7 @@ Figure&nbsp;5: Posterior Probability with Raw Mixing Weight CI and Crossing Dens
 <div id="fig-chr8-eigs-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chr8-eigs-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-1.png" class="lightbox" data-gallery="fig-chr8-eigs" title="Figure&nbsp;6&nbsp;(a): E1 for X-bearing sperm (10kb)"><img src="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-1.png" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm" data-ref-parent="fig-chr8-eigs" width="590" height="97" class="figure-img"></a>
+<a href="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-1.png" class="lightbox" data-gallery="fig-chr8-eigs" title="Figure&nbsp;10&nbsp;(a): E1 for X-bearing sperm (10kb)"><img src="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-1.png" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm" data-ref-parent="fig-chr8-eigs" width="590" height="97" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chr8-eigs-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) E1 for X-bearing sperm (10kb)
@@ -670,7 +742,7 @@ Figure&nbsp;5: Posterior Probability with Raw Mixing Weight CI and Crossing Dens
 <div id="fig-chr8-eigs-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chr8-eigs-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-2.png" class="lightbox" data-gallery="fig-chr8-eigs" title="Figure&nbsp;6&nbsp;(b): E1 for Y-bearing sperm (10kb)"><img src="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-2.png" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm" data-ref-parent="fig-chr8-eigs" width="590" height="97" class="figure-img"></a>
+<a href="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-2.png" class="lightbox" data-gallery="fig-chr8-eigs" title="Figure&nbsp;10&nbsp;(b): E1 for Y-bearing sperm (10kb)"><img src="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-2.png" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm" data-ref-parent="fig-chr8-eigs" width="590" height="97" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chr8-eigs-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) E1 for Y-bearing sperm (10kb)
@@ -684,7 +756,7 @@ Figure&nbsp;5: Posterior Probability with Raw Mixing Weight CI and Crossing Dens
 <div id="fig-chr8-eigs-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chr8-eigs-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-3.png" class="lightbox" data-gallery="fig-chr8-eigs" title="Figure&nbsp;6&nbsp;(c): E1 for X-bearing sperm (50kb)"><img src="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-3.png" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm" data-ref-parent="fig-chr8-eigs" width="590" height="97" class="figure-img"></a>
+<a href="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-3.png" class="lightbox" data-gallery="fig-chr8-eigs" title="Figure&nbsp;10&nbsp;(c): E1 for X-bearing sperm (50kb)"><img src="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-3.png" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm" data-ref-parent="fig-chr8-eigs" width="590" height="97" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chr8-eigs-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) E1 for X-bearing sperm (50kb)
@@ -698,7 +770,7 @@ Figure&nbsp;5: Posterior Probability with Raw Mixing Weight CI and Crossing Dens
 <div id="fig-chr8-eigs-4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chr8-eigs-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-4.png" class="lightbox" data-gallery="fig-chr8-eigs" title="Figure&nbsp;6&nbsp;(d): E1 for Y-bearing sperm (50kb)"><img src="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-4.png" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm" data-ref-parent="fig-chr8-eigs" width="590" height="97" class="figure-img"></a>
+<a href="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-4.png" class="lightbox" data-gallery="fig-chr8-eigs" title="Figure&nbsp;10&nbsp;(d): E1 for Y-bearing sperm (50kb)"><img src="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-4.png" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm" data-ref-parent="fig-chr8-eigs" width="590" height="97" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chr8-eigs-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (d) E1 for Y-bearing sperm (50kb)
@@ -712,7 +784,7 @@ Figure&nbsp;5: Posterior Probability with Raw Mixing Weight CI and Crossing Dens
 <div id="fig-chr8-eigs-5" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chr8-eigs-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-5.png" class="lightbox" data-gallery="fig-chr8-eigs" title="Figure&nbsp;6&nbsp;(e): E1 for X-bearing sperm (100kb)"><img src="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-5.png" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm" data-ref-parent="fig-chr8-eigs" width="590" height="97" class="figure-img"></a>
+<a href="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-5.png" class="lightbox" data-gallery="fig-chr8-eigs" title="Figure&nbsp;10&nbsp;(e): E1 for X-bearing sperm (100kb)"><img src="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-5.png" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm" data-ref-parent="fig-chr8-eigs" width="590" height="97" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chr8-eigs-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (e) E1 for X-bearing sperm (100kb)
@@ -726,7 +798,7 @@ Figure&nbsp;5: Posterior Probability with Raw Mixing Weight CI and Crossing Dens
 <div id="fig-chr8-eigs-6" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chr8-eigs-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-6.png" class="lightbox" data-gallery="fig-chr8-eigs" title="Figure&nbsp;6&nbsp;(f): E1 for Y-bearing sperm (100kb)"><img src="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-6.png" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm" data-ref-parent="fig-chr8-eigs" width="590" height="97" class="figure-img"></a>
+<a href="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-6.png" class="lightbox" data-gallery="fig-chr8-eigs" title="Figure&nbsp;10&nbsp;(f): E1 for Y-bearing sperm (100kb)"><img src="index_files/figure-html/..-notebooks-11_chr8_compare_X_Y_eigs-fig-chr8-eigs-output-6.png" data-fig-scap="Compare chr8 E1 for X/Y-bearing sperm" data-ref-parent="fig-chr8-eigs" width="590" height="97" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chr8-eigs-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (f) E1 for Y-bearing sperm (100kb)
@@ -737,7 +809,7 @@ Figure&nbsp;5: Posterior Probability with Raw Mixing Weight CI and Crossing Dens
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chr8-eigs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Comparing the eigenvector E1 for chr8 in X- and Y-bearing sperm at different resolutions. Here, the eigenvectors are re-sorted by their Spearman correlation with the GC content.
+Figure&nbsp;10: Comparing the eigenvector E1 for chr8 in X- and Y-bearing sperm at different resolutions. Here, the eigenvectors are re-sorted by their Spearman correlation with the GC content.
 </figcaption>
 </figure>
 </div>
@@ -779,6 +851,9 @@ Wang, Yao, Hanben Wang, Yu Zhang, Zhenhai Du, Wei Si, Suixing Fan, Dongdong Qin,
 </div>
 <div id="ref-xu2025threedimensionalgenomestructures" class="csl-entry" role="listitem">
 Xu, Heming, Yi Chi, Changjian Yin, Cheng Li, Yujie Chen, Zhiyuan Liu, Xiaowen Liu, et al. 2025. <span>“Three-Dimensional Genome Structures of Single Mammalian Sperm.”</span> <em>Nature Communications</em> 16 (1): 3805. <a href="https://doi.org/10.1038/s41467-025-59055-z">https://doi.org/10.1038/s41467-025-59055-z</a>.
+</div>
+<div id="ref-zhang2018enhancinghicdata" class="csl-entry" role="listitem">
+Zhang, Yan, Lin An, Jie Xu, Bo Zhang, W. Jim Zheng, Ming Hu, Jijun Tang, and Feng Yue. 2018. <span>“Enhancing <span>Hi-C</span> Data Resolution with Deep Convolutional Neural Network <span>HiCPlus</span>.”</span> <em>Nature Communications</em> 9 (1): 750. <a href="https://doi.org/10.1038/s41467-018-03113-2">https://doi.org/10.1038/s41467-018-03113-2</a>.
 </div>
 </div>
 </section>
