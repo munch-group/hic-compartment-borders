@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 1, 2025 <br> 13:32:44 (UTC +00:00)</p>
+      <p class="date">September 1, 2025 <br> 14:06:43 (UTC +00:00)</p>
     </div>
   </div>
   
@@ -404,45 +404,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>x<span class="op">/</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> Gb"</span></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-19T10:55:13.925133Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-19T10:55:13.924980Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-19T10:55:15.345139Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-19T10:55:15.344721Z&quot;}}" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-19T10:55:13.925133Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-19T10:55:13.924980Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-19T10:55:15.345139Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-19T10:55:15.344721Z&quot;}}" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">6</span>))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].fill_between(df_stair.start, df_stair.e1, where<span class="op">=</span>df_stair.e1 <span class="op">&gt;</span> <span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:red'</span> , ec<span class="op">=</span><span class="st">'None'</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].fill_between(df_stair.start, df_stair.e1, where<span class="op">=</span>df_stair.e1 <span class="op">&lt;</span> <span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>, ec<span class="op">=</span><span class="st">'None'</span>) </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>xticks <span class="op">=</span> np.linspace(<span class="dv">0</span>, df.start.<span class="bu">max</span>(), num<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xticks(xticks)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xticklabels([labeler(x) <span class="cf">for</span> x <span class="kw">in</span> xticks])</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">"Full chromosome X"</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the small chromosome arm</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>centromere <span class="op">=</span> (<span class="dv">57984683</span>, <span class="dv">69396537</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>small_arm <span class="op">=</span> (<span class="dv">0</span>, centromere[<span class="dv">0</span>])</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].vlines(small_arm, <span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, color<span class="op">=</span><span class="st">'tab:purple'</span>, lw<span class="op">=</span><span class="dv">1</span>, ls<span class="op">=</span><span class="st">'--'</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].text(np.mean(small_arm), <span class="fl">1.5</span>, <span class="st">"SMALL ARM"</span>, color<span class="op">=</span><span class="st">'tab:purple'</span>, ha<span class="op">=</span><span class="st">'center'</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].fill_between(df_stair.start, df_stair.e1, where<span class="op">=</span>df_stair.e1 <span class="op">&gt;</span> <span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:red'</span> , ec<span class="op">=</span><span class="st">'None'</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].fill_between(df_stair.start, df_stair.e1, where<span class="op">=</span>df_stair.e1 <span class="op">&lt;</span> <span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>, ec<span class="op">=</span><span class="st">'None'</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>xticks <span class="op">=</span> np.linspace(<span class="dv">0</span>, small_arm[<span class="dv">1</span>], num<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xticks(xticks)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xticklabels([labeler(x) <span class="cf">for</span> x <span class="kw">in</span> xticks])</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlim(small_arm)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">"Small chromosome arm"</span>)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the large chromosome arm</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>large_arm <span class="op">=</span> (centromere[<span class="dv">1</span>], df.start.<span class="bu">max</span>())</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].vlines(large_arm, <span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, color<span class="op">=</span><span class="st">'tab:green'</span>, lw<span class="op">=</span><span class="dv">1</span>, ls<span class="op">=</span><span class="st">'--'</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].text(np.mean(large_arm), <span class="fl">1.5</span>, <span class="st">"LARGE ARM"</span>, color<span class="op">=</span><span class="st">'tab:green'</span>, ha<span class="op">=</span><span class="st">'center'</span>)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].fill_between(df_stair.start, df_stair.e1, where<span class="op">=</span>df_stair.e1 <span class="op">&gt;</span> <span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:red'</span> , ec<span class="op">=</span><span class="st">'None'</span>)</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].fill_between(df_stair.start, df_stair.e1, where<span class="op">=</span>df_stair.e1 <span class="op">&lt;</span> <span class="dv">0</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>, ec<span class="op">=</span><span class="st">'None'</span>)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>ticks <span class="op">=</span> np.linspace(large_arm[<span class="dv">0</span>], df.start.<span class="bu">max</span>(), num<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_xticks(ticks)</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_xticklabels([labeler(x) <span class="cf">for</span> x <span class="kw">in</span> ticks])</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_xlim(large_arm)</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_title(<span class="st">"Large chromosome arm"</span>)</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Position on chromosome X"</span>)</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function to plot a single arm</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_chromosome_arm(ax, df, x_range, title, labeler, colors):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(df.start, df.e1, where<span class="op">=</span>df.e1 <span class="op">&gt;</span> <span class="dv">0</span>, color<span class="op">=</span>colors[<span class="st">'positive'</span>], ec<span class="op">=</span><span class="st">'None'</span>, step<span class="op">=</span><span class="st">'pre'</span>, interpolate<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(df.start, df.e1, where<span class="op">=</span>df.e1 <span class="op">&lt;</span> <span class="dv">0</span>, color<span class="op">=</span>colors[<span class="st">'negative'</span>], ec<span class="op">=</span><span class="st">'None'</span>, step<span class="op">=</span><span class="st">'pre'</span>, interpolate<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    xticks <span class="op">=</span> np.linspace(x_range[<span class="dv">0</span>], x_range[<span class="dv">1</span>], num<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks(xticks)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    ax.set_xticklabels([labeler(x) <span class="cf">for</span> x <span class="kw">in</span> xticks])</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(x_range)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function to add annotations</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_annotations(ax, x_range, label, color):</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    ax.vlines(x_range, ymin<span class="op">=</span>ax.get_ylim()[<span class="dv">0</span>], ymax<span class="op">=</span>ax.get_ylim()[<span class="dv">1</span>], color<span class="op">=</span>color, lw<span class="op">=</span><span class="dv">1</span>, ls<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    ax.text(np.mean(x_range), ax.get_ylim()[<span class="dv">1</span>] <span class="op">*</span> <span class="fl">0.75</span>, label, color<span class="op">=</span>color, ha<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">6</span>))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> {<span class="st">'positive'</span>: <span class="st">'tab:red'</span>, <span class="st">'negative'</span>: <span class="st">'tab:blue'</span>, <span class="st">'small_arm'</span>: <span class="st">'tab:purple'</span>, <span class="st">'large_arm'</span>: <span class="st">'tab:green'</span>}</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Full chromosome X</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>plot_chromosome_arm(ax[<span class="dv">0</span>], df, (<span class="dv">0</span>, df.start.<span class="bu">max</span>()), <span class="st">"Full chromosome X"</span>, labeler, colors)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>add_annotations(ax[<span class="dv">0</span>], (<span class="dv">0</span>, <span class="dv">57984683</span>), <span class="st">"SMALL ARM"</span>, colors[<span class="st">'small_arm'</span>])</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>add_annotations(ax[<span class="dv">0</span>], (<span class="dv">69396537</span>, df.start.<span class="bu">max</span>()), <span class="st">"LARGE ARM"</span>, colors[<span class="st">'large_arm'</span>])</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Small chromosome arm</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>small_arm <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">57984683</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>plot_chromosome_arm(ax[<span class="dv">1</span>], df, small_arm, <span class="st">"Small chromosome arm"</span>, labeler, colors)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Large chromosome arm</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>large_arm <span class="op">=</span> (<span class="dv">69396537</span>, df.start.<span class="bu">max</span>())</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>plot_chromosome_arm(ax[<span class="dv">2</span>], df, large_arm, <span class="st">"Large chromosome arm"</span>, labeler, colors)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Position on chromosome X"</span>)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -451,7 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-19T10:55:15.367230Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-19T10:55:15.367036Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-19T10:55:16.077703Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-19T10:55:16.077320Z&quot;}}" data-execution_count="3">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-19T10:55:15.367230Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-19T10:55:15.367036Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-19T10:55:16.077703Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-19T10:55:16.077320Z&quot;}}" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of distribution of E1 values (A and B)</span></span>

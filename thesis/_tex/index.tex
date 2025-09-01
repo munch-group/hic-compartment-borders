@@ -817,6 +817,31 @@ generate eigenvectors for binned genomes from raw Hi-C reads, utilizing
 {[}ref{]} from the \emph{Open Chromosome Collective} ecosystem
 {[}ref{]}.
 
+The distribution of E1 values from the previous study (Jørgensen 2025)
+was used as justification for the underlying architecture of the model.
+That is, from visual inspection of the distribution of E1 values
+(Figure~\ref{fig-e1-dist-50kb}) it is reasonable to believe that the
+eigenvectors fro A- or B-compartments can be drawn from two distinct
+distributions, one with a positive mode, and one with a negative,
+respectively.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=6.22917in,height=2.05208in]{index_files/figure-latex/..-notebooks-03_PyMC_GRW_logit-fig-e1-dist-50kb-output-1.png}
+
+}
+
+\caption[Dist(E1) chrX macaque sperm
+50kb]{\label{fig-e1-dist-50kb}Distribution of E1 values across chrX in
+macaque sperm at 50kb resolution. The theoretical normal distributions
+with respective means and standard deviations for A (red) and B (blue)
+compartments are overlaid, along with their combined (stacked)
+distribution (purple).}
+
+\end{figure}%
+
 \begin{quote}
 NB: limitations of using the magnitude of the eigenvector in opposite to
 only the sign
@@ -848,6 +873,14 @@ or Y-bearing.
 
 This could potentially link to sex-chromosome inactivation of autosomes,
 which is a potential mechanism facilitating meiotic drive.
+
+\section{Reproducibility statement}\label{reproducibility-statement}
+
+As in Jørgensen (2025), reproducibility is at the core of this study.
+
+\begin{quote}
+NB: ADD MORE here
+\end{quote}
 
 \chapter{Methods}\label{methods}
 
@@ -949,14 +982,16 @@ assembly, T2T-MMU8v1.0 {[}ref{]}, to improve the accuracy of the mapping
 from the previous study.
 
 Additionally, the pipeline was applied to generate a eigenvectors of
-human sperm cells harboring the \emph{X} chromosome. Even though the
-authors {[}ref{]} of this Hi-C data find high similarity between sperm
-cells harboring the \emph{X} or the \emph{Y} sex chromosomes, they
-barely describe their comparison. Thus, I decide to seperate them into
-two groups to be able to compare autosomal chromatin compartments later
-on if we wish to. A major downside of this is that the coverage is
+human sperm cells harboring the \emph{X} or \emph{Y} chromosome. Even
+though the authors {[}ref{]} of this Hi-C data report high similarity
+between sperm cells harboring the \emph{X} or the \emph{Y} sex
+chromosomes, they barely describe their comparison. Thus, I decide to
+seperate them into two groups to be able to compare autosomal chromatin
+compartments. A major downside of this is that the coverage is
 approximately halved, resulting in lower viable resolutions for
-subsequent analyses.
+subsequent analyses. However, eigendecomposition was performed and a
+comparative analysis was performed on autosome 8 between X- and
+Y-bearing cells.
 
 The results of the eigendecomposition are hereafter described as E1
 (eigenvector track of the first principal component).
@@ -1240,23 +1275,30 @@ as a high level of noise compared to biological information. Therefore,
 the same model architecture was applied to the two chromatin arms
 seperately, and lastly the full X chromosome.
 
+The best performing model on the 100kb data was re-fitted with the 10kb
+human data set. However, to get similar bin sizes, a subset of 1500 bins
+was taken from the E1 track. Additionally, the small chromatin arm was
+used as a subset, and lastly, the full chromosome X was fitted to the
+same model architecture.
+
 \chapter{Results}\label{results}
 
 \section{The ICE}\label{the-ice}
 
 After remapping the macaque data to the T2T assembly, the eigentracks
-were calculated as described. They were visually evaluated at the
-different resolutions (fig-e1-sperm), showing the expected shifts in E1
-values on the megabase scale for all resolutions except 1kb. This means
-that the sequencing was not sufficiently deep for binning Hi-C contacts
-into 1000 bp regions, and many bins has 0 or only a few contacts. To be
-sure to have informative enough data, the 10kb resolution was chosen for
-further analysis in probabilistic modeling. Factoring in the experience
-of Lajoie, Dekker, and Kaplan (2015) that \(100,000,000\) valid reads is
-sufficient for 40kb resolution without too much noise, this is still a
-rather optimistic choice, as we have only \(\sim 12,500,000\) valid
-interactions from the sperm cells. However, this underlines the need for
-modeling the noise when fitting the models later.
+were calculated as described. The E1 tracks were visually evaluated at
+the different resolutions (Figure~\ref{fig-e1-sperm}), showing the
+expected shifts in E1 values on the megabase scale for all resolutions
+except 1kb. This means that the sequencing was not sufficiently deep for
+binning Hi-C contacts into 1000 bp regions, and many bins has 0 or only
+a few contacts. To be sure to have informative enough data, the 10kb
+resolution was chosen for further analysis in probabilistic modeling.
+Factoring in the experience of Lajoie, Dekker, and Kaplan (2015) that
+\(100,000,000\) valid reads is sufficient for 40kb resolution without
+too much noise, this is still a rather optimistic choice, as we have
+only \(\sim 12,500,000\) valid interactions from the sperm cells.
+However, this underlines the need for modeling the noise when fitting
+the models later.
 
 \begin{figure}
 
@@ -1333,8 +1375,8 @@ We were less confident in the human sperm data, as approximately half of
 the cells were filtered out compared to the original study (they had the
 Y chromosome), resulting in only \(\sim 3,500,000\) valid interactions.
 This is evidently not sufficient for high-resolution analysis directly,
-visualized by the extreme noise level in Figure~\ref{fig-e1-sperm-x} B)
-and C).
+visualized by the extreme noise level in Figure~\ref{fig-e1-sperm-x-2}
+and Figure~\ref{fig-e1-sperm-x-3}.
 
 \begin{figure}
 
@@ -1414,109 +1456,17 @@ X-bearing sperm data at 50kb resembles that of 5kb in the macaque sperm
 data (comparing Figure~\ref{fig-e1-sperm} and
 Figure~\ref{fig-e1-sperm-x}).
 
-Then, the i.i.d. model showed good mixing and separation of the two type
-distributions in the trace plots (Figure~\ref{fig-iid-trace-mu-sigma}),
-but the results from the posterior predictive steps showed a unimodal
-distribution of posterior mean of \texttt{y\_lik}, being our \(E1\)
-estimate (Figure~\ref{fig-iid-ppc-mean-std}). Additionally, plotting the
-posterior mean of the E1 estimate revealed that the model had learned it
-was safest to predict a value close to zero but with a wide HDI
-(Figure~\ref{fig-iid-trace-ylik}). This means that the i.i.d. model has
-no predictive power. Interestingly, the results from LOO-CV indicated
-that the model was well inside the Cummulative Distribution Function
-(CDF), seen from the Empirical CDF (ECDF) in
-\texttt{arviz.plot\_loo\_pit} (Figure~\ref{fig-iid-ppc-loo-pit}). This
-raises the question of the validity of the cross-validation in our case
-when the predictions are clearly not accurate.
+\subsection{Autosomal comparison}\label{autosomal-comparison}
 
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics[width=6.23958in,height=4.14583in]{index_files/figure-latex/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-mu-sigma-output-1.png}
-
-}
-
-\caption{\label{fig-iid-trace-mu-sigma}Trace plots for the posterior
-distributions of the mean (\texttt{mu}) and standard deviation
-(\texttt{sigma}) parameters in the i.i.d. model for E1 values in macaque
-data.}
-
-\end{figure}%
-
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics[width=6.22917in,height=2.0625in]{index_files/figure-latex/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-mean-std-output-1.png}
-
-}
-
-\caption{\label{fig-iid-ppc-mean-std}Posterior predictive distribution
-summaries for the per-bin likelihood estimates (\texttt{y\_lik}). Left:
-Histogram of the posterior predictive means across all bins. Right:
-Histogram of the posterior predictive standard deviations across all
-bins.}
-
-\end{figure}%
-
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics[width=6.29167in,height=2.04167in]{index_files/figure-latex/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-ylik-output-1.png}
-
-}
-
-\caption{\label{fig-iid-trace-ylik}Trace summary for the per-bin
-likelihood estimates (\texttt{y\_lik}). The shaded area indicates the
-95\% highest density interval (HDI).}
-
-\end{figure}%
-
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics[width=3.6875in,height=1.32292in]{index_files/figure-latex/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-loo-pit-output-1.png}
-
-}
-
-\caption{\label{fig-iid-ppc-loo-pit}Leave-One-Out Probability Integral
-Transform (LOO-PIT) plot for the per-bin likelihood estimates
-(\texttt{y\_lik}). The LOO-PIT assesses the calibration of the model by
-comparing the predicted distributions to the observed data. A
-well-calibrated model will have a uniform distribution in the LOO-PIT
-plot.}
-
-\end{figure}%
-
-\section{The models}\label{the-models}
-
-The best performing model on the 100kb data was re-fitted with the 10kb
-human data set. However, to get similar bin sizes, a subset of 1500 bins
-was taken from the E1 track. Additionally, the small chromatin was used
-as a subset, and lastly, the full chromosome X was fitted to the same
-model (same architecture).
-
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics[width=6.22917in,height=3.10417in]{index_files/figure-latex/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png}
-
-}
-
-\caption{\label{fig-posterior-cross-dens-ci-w}Posterior Probability with
-Raw Mixing Weight CI and Crossing Density. The CI rule used is
-\(1/3 < \hat{w}_{post} < 2/3\), as shown. The grey band indicates the
-regions where the CI rule is not satisfied. The crossing density bars
-show the number of crossings of the posterior mean at 0.5, with red
-indicating crossings upwards and blue indicating crossings downwards.}
-
-\end{figure}%
-
-Here, I have something new:
+The eigendecompositon of chromosome 8 for X- or Y-bearing sperm resulted
+in a highly noisy E1 track, comparable to that of the X chromosome, and
+there is overall consistensy between resolutions
+(Figure~\ref{fig-chr8-eigs} A, C, E and B, D, F). Comparing chr8-X with
+chr8-Y reveals some distinction between boundaries, especially on the
+long chromatin arm. For chr8-X, there are generally more compartments
+predicted by eigendecomposition than for chr8-Y, which could indicate a
+connection between the harbored sex chromosome and higher-order
+structural architecture such as A/B-compartments.
 
 \begin{figure}
 
@@ -1604,6 +1554,143 @@ are re-sorted by their Spearman correlation with the GC content.}
 
 \end{figure}%
 
+\section{The models}\label{the-models}
+
+\subsection{Independent bins}\label{independent-bins}
+
+The i.i.d. model showed good mixing and separation of the two type
+distributions in the trace plots (Figure~\ref{fig-iid-trace-mu-sigma}),
+but the results from the posterior predictive steps showed a unimodal
+distribution of posterior mean of \texttt{y\_lik}, being our \(E1\)
+estimate (Figure~\ref{fig-iid-ppc-mean-std}). Additionally, plotting the
+posterior mean of the E1 estimate revealed that the model had learned it
+was safest to predict a value close to zero but with a wide HDI
+(Figure~\ref{fig-iid-trace-ylik}). This means that the i.i.d. model has
+no predictive power. Interestingly, the results from LOO-CV indicated
+that the model was well inside the Cummulative Distribution Function
+(CDF), seen from the Empirical CDF (ECDF) in
+\texttt{arviz.plot\_loo\_pit} (Figure~\ref{fig-iid-ppc-loo-pit}). This
+raises the question of the validity of the cross-validation in our case
+when the predictions are clearly not accurat e.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=6.23958in,height=4.15625in]{index_files/figure-latex/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-mu-sigma-output-1.png}
+
+}
+
+\caption{\label{fig-iid-trace-mu-sigma}Trace plots for the posterior
+distributions of the mean (\texttt{mu}) and standard deviation
+(\texttt{sigma}) parameters in the i.i.d. model for E1 values in macaque
+data.}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=6.3125in,height=2.0625in]{index_files/figure-latex/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-mean-std-output-1.png}
+
+}
+
+\caption{\label{fig-iid-ppc-mean-std}Posterior predictive distribution
+summaries for the per-bin likelihood estimates (\texttt{y\_lik}). Left:
+Histogram of the posterior predictive means across all bins. Right:
+Histogram of the posterior predictive standard deviations across all
+bins.}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=6.29167in,height=2.04167in]{index_files/figure-latex/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-ylik-output-1.png}
+
+}
+
+\caption{\label{fig-iid-trace-ylik}Trace summary for the per-bin
+likelihood estimates (\texttt{y\_lik}). The shaded area indicates the
+95\% highest density interval (HDI).}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=6.23958in,height=1.34375in]{index_files/figure-latex/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-loo-pit-output-1.png}
+
+}
+
+\caption{\label{fig-iid-ppc-loo-pit}Leave-One-Out Probability Integral
+Transform (LOO-PIT) plot for the per-bin likelihood estimates
+(\texttt{y\_lik}). The LOO-PIT assesses the calibration of the model by
+comparing the predicted distributions to the observed data. A
+well-calibrated model will have a uniform distribution in the LOO-PIT
+plot.}
+
+\end{figure}%
+
+\subsection{Random Walk (dependent
+bins)}\label{random-walk-dependent-bins}
+
+The initial random walk model fitted to macaque data showed good
+separation of underlying means, and good mixing. However, the LOO-CV did
+indicate an overdispersed model (Figure~\ref{fig-e1-ppc-50kb}), as the
+ECDF lied grosely outside of the uniform CDF. However, as mentioned
+previously, the LOO-CV might not even be a good indicator of fit, but in
+stead we may rely on a visual inspection of how well it seems to catch a
+trend in the observed E1 in a posterior predictive check. From this
+initial model, a parameter sweep was performed, varying the underlying
+distributions and parameters as described. Only the highest scoring
+(non-diverging) models were used in the followingm, as this was used for
+an indication of a model architecture that has biological relevance and
+could be generalized into other data as well. Thus, I continued on the
+human sperm cells.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=5.41667in,height=2.14583in]{index_files/figure-latex/..-notebooks-03_PyMC_GRW_logit-fig-e1-ppc-50kb-output-1.png}
+
+}
+
+\caption[LOO-PIT E1 model chrX macaque sperm
+50kb]{\label{fig-e1-ppc-50kb}LOO-PIT plot, transformed to ECDF/CDF for
+the observed/uniform distributions respectively, for the E1 model at
+50kb resolution. ECDF outside the credible interval indicates misfit.}
+
+\end{figure}%
+
+\subsection{Human data}\label{human-data}
+
+For the subset analysis, only a fully Gaussian model was fitted to the
+short chromatin arm og human X-bearing sperm in 10kb resolution. The
+model mixed well and showed two distinct means for underlying `type'
+distributions.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=6.22917in,height=3.10417in]{index_files/figure-latex/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png}
+
+}
+
+\caption{\label{fig-posterior-cross-dens-ci-w}Posterior Probability with
+Raw Mixing Weight CI and Crossing Density. The CI rule used is
+\(1/3 < \hat{w}_{post} < 2/3\), as shown. The grey band indicates the
+regions where the CI rule is not satisfied. The crossing density bars
+show the number of crossings of the posterior mean at 0.5, with red
+indicating crossings upwards and blue indicating crossings downwards.}
+
+\end{figure}%
+
 \chapter{Discussion}\label{discussion}
 
 The discussion
@@ -1630,6 +1717,10 @@ Christopher J. Fonnesbeck, Maxim Kochurov, Ravin Kumar, et al. 2023.
 {``{PyMC}: A Modern, and Comprehensive Probabilistic Programming
 Framework in {Python}.''} \emph{PeerJ Computer Science} 9 (September):
 e1516. \url{https://doi.org/10.7717/peerj-cs.1516}.
+
+\bibitem[\citeproctext]{ref-jorgensen2025chromatincompartmentsselection}
+Jørgensen, Søren. 2025. {``Chromatin {Compartments} and {Selection} on
+{X}.''} Master's thesis, Aarhus, Denmark: Aarhus University.
 
 \bibitem[\citeproctext]{ref-lajoie2015hitchhikersguidehic}
 Lajoie, Bryan R., Job Dekker, and Noam Kaplan. 2015. {``The
