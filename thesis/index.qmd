@@ -87,6 +87,11 @@ This enables us to perform inference in models without analytical evaluation.
 
 This study is a continuation of *Chromatin Compartments and Selection on X* (MSc thesis) [ref] and some methods were developed there. Especially, one product of the previous study was a pipeline to generate eigenvectors for binned genomes from raw Hi-C reads, utilizing *pairtools* [ref] *cooler* [ref] and *cooltools* [ref] from the *Open Chromosome Collective* ecosystem [ref]. 
 
+The distribution of E1 values from the previous study [@jorgensen2025chromatincompartmentsselection] was used as justification for the underlying architecture of the model. That is, from visual inspection of the distribution of E1 values (@fig-e1-dist-50kb) it is reasonable to believe that the eigenvectors fro A- or B-compartments can be drawn from two distinct distributions, one with a positive mode, and one with a negative, respectively.  
+
+{{< embed ../notebooks/03_PyMC_GRW_logit.ipynb#fig-e1-dist-50kb >}}
+
+
 > NB: limitations of using the magnitude of the eigenvector in opposite to only the sign
 
 ## Data sets
@@ -97,7 +102,11 @@ Macaque data [@wang2019reprogrammingmeioticchromatin] was reused and remapped to
 
 This could potentially link to sex-chromosome inactivation of autosomes, which is a potential mechanism facilitating meiotic drive. 
 
+## Reproducibility statement
 
+As in @jorgensen2025chromatincompartmentsselection, reproducibility is at the core of this study. 
+
+> NB: ADD MORE here
 
 
 # Methods
@@ -125,7 +134,7 @@ As also described in [ref], sometimes there is a larger amount of variance in in
 
 First, the pipeline was applied to generate high-resolution eigenvector tracks on the most recent, telomere-to-telomere *Macaca mulata* assembly, T2T-MMU8v1.0 [ref], to improve the accuracy of the mapping from the previous study.
 
-Additionally, the pipeline was applied to generate a eigenvectors of human sperm cells harboring the *X* chromosome. Even though the authors [ref] of this Hi-C data find high similarity between sperm cells harboring the *X* or the *Y* sex chromosomes, they barely describe their comparison. Thus, I decide to seperate them into two groups to be able to compare autosomal chromatin compartments later on if we wish to. A major downside of this is that the coverage is approximately halved, resulting in lower viable resolutions for subsequent analyses. 
+Additionally, the pipeline was applied to generate a eigenvectors of human sperm cells harboring the *X* or *Y* chromosome. Even though the authors [ref] of this Hi-C data report high similarity between sperm cells harboring the *X* or the *Y* sex chromosomes, they barely describe their comparison. Thus, I decide to seperate them into two groups to be able to compare autosomal chromatin compartments. A major downside of this is that the coverage is approximately halved, resulting in lower viable resolutions for subsequent analyses. However, eigendecomposition was performed and a comparative analysis was performed on autosome 8 between X- and Y-bearing cells. 
 
 The results of the eigendecomposition are hereafter described as E1 (eigenvector track of the first principal component). 
 
@@ -239,22 +248,35 @@ After initial evaluations of the foundational architecture was done by fitting 1
 
 Initially, the selected subset was thought to have a good amount of variance, but upon further investigation, it could also be interpreted as a high level of noise compared to biological information. Therefore, the same model architecture was applied to the two chromatin arms seperately, and lastly the full X chromosome.
 
+The best performing model on the 100kb data was re-fitted with the 10kb human data set. However, to get similar bin sizes, a subset of 1500 bins was taken from the E1 track. Additionally, the small chromatin arm was used as a subset, and lastly, the full chromosome X was fitted to the same model  architecture. 
+
 
 # Results
 
 ## The ICE
 
-After remapping the macaque data to the T2T assembly, the  eigentracks were calculated as described. They were visually evaluated at the different resolutions (fig-e1-sperm), showing the expected shifts in E1 values on the megabase scale for all resolutions except 1kb. This means that the sequencing was not sufficiently deep for binning Hi-C contacts into 1000 bp regions, and many bins has 0 or only a few contacts. To be sure to have informative enough data, the 10kb resolution was chosen for further analysis in probabilistic modeling. Factoring in the experience of @lajoie2015hitchhikersguidehic that $100,000,000$ valid reads is sufficient for 40kb resolution without too much noise, this is still a rather optimistic choice, as we have only $\sim 12,500,000$ valid interactions from the sperm cells. However, this underlines the need for modeling the noise when fitting the models later.  
+After remapping the macaque data to the T2T assembly, the  eigentracks were calculated as described. The E1 tracks were visually evaluated at the different resolutions (@fig-e1-sperm), showing the expected shifts in E1 values on the megabase scale for all resolutions except 1kb. This means that the sequencing was not sufficiently deep for binning Hi-C contacts into 1000 bp regions, and many bins has 0 or only a few contacts. To be sure to have informative enough data, the 10kb resolution was chosen for further analysis in probabilistic modeling. Factoring in the experience of @lajoie2015hitchhikersguidehic that $100,000,000$ valid reads is sufficient for 40kb resolution without too much noise, this is still a rather optimistic choice, as we have only $\sim 12,500,000$ valid interactions from the sperm cells. However, this underlines the need for modeling the noise when fitting the models later.  
 
 {{< embed ../notebooks/01_prep_e1_values.ipynb#fig-e1-sperm >}}
 
-We were less confident in the human sperm data, as approximately half of the cells were filtered out compared to the original study (they had the Y chromosome), resulting in only $\sim 3,500,000$ valid interactions. This is evidently not sufficient for high-resolution analysis directly, visualized by the extreme noise level in @fig-e1-sperm-x B) and C).  
+We were less confident in the human sperm data, as approximately half of the cells were filtered out compared to the original study (they had the Y chromosome), resulting in only $\sim 3,500,000$ valid interactions. This is evidently not sufficient for high-resolution analysis directly, visualized by the extreme noise level in @fig-e1-sperm-x-2 and @fig-e1-sperm-x-3.  
 
 {{< embed ../notebooks/01_prep_e1_values.ipynb#fig-e1-sperm-x >}} 
 
 However, we remain optimistic about a probabilistic approach, as we observe a general trend even in the 10kb resolution, although with much more noise than in the macaque data. The noise level of the human X-bearing sperm data at 50kb resembles that of 5kb in the macaque sperm data (comparing @fig-e1-sperm and @fig-e1-sperm-x).
 
-Then, the i.i.d. model showed good mixing and separation of the two type distributions in the trace plots (@fig-iid-trace-mu-sigma), but the results from the posterior predictive steps showed a unimodal distribution of posterior mean of `y_lik`, being our $E1$ estimate (@fig-iid-ppc-mean-std). Additionally, plotting the posterior mean of the E1 estimate revealed that the model had learned it was safest to predict a value close to zero but with a wide HDI (@fig-iid-trace-ylik). This means that the i.i.d. model has no predictive power. Interestingly, the results from LOO-CV indicated that the model was well inside the Cummulative Distribution Function (CDF), seen from the Empirical CDF (ECDF) in `arviz.plot_loo_pit` (@fig-iid-ppc-loo-pit). This raises the question of the validity of the cross-validation in our case when the predictions are clearly not accurate. 
+### Autosomal comparison
+
+The eigendecompositon of chromosome 8 for X- or Y-bearing sperm resulted in a highly noisy E1 track, comparable to that of the X chromosome, and there is overall consistensy between resolutions (@fig-chr8-eigs A, C, E and B, D, F). Comparing chr8-X with chr8-Y reveals some distinction between boundaries, especially on the long chromatin arm. For chr8-X, there are  generally more compartments predicted by eigendecomposition than for chr8-Y, which could indicate a connection between the harbored sex chromosome and higher-order structural architecture such as A/B-compartments. 
+
+{{< embed ../notebooks/11_chr8_compare_X_Y_eigs.ipynb#fig-chr8-eigs >}}
+
+
+## The models
+
+### Independent bins
+
+The i.i.d. model showed good mixing and separation of the two type distributions in the trace plots (@fig-iid-trace-mu-sigma), but the results from the posterior predictive steps showed a unimodal distribution of posterior mean of `y_lik`, being our $E1$ estimate (@fig-iid-ppc-mean-std). Additionally, plotting the posterior mean of the E1 estimate revealed that the model had learned it was safest to predict a value close to zero but with a wide HDI (@fig-iid-trace-ylik). This means that the i.i.d. model has no predictive power. Interestingly, the results from LOO-CV indicated that the model was well inside the Cummulative Distribution Function (CDF), seen from the Empirical CDF (ECDF) in `arviz.plot_loo_pit` (@fig-iid-ppc-loo-pit). This raises the question of the validity of the cross-validation in our case when the predictions are clearly not accurat e. 
 
 {{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-iid-trace-mu-sigma >}}
 
@@ -264,19 +286,21 @@ Then, the i.i.d. model showed good mixing and separation of the two type distrib
 
 {{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-iid-ppc-loo-pit >}}
 
+### Random Walk (dependent bins)
 
-## The models
+The initial random walk model fitted to macaque data showed good separation of underlying means, and good mixing. However, the LOO-CV did indicate an overdispersed model (@fig-e1-ppc-50kb), as the ECDF lied grosely outside of the uniform CDF. However, as mentioned previously, the LOO-CV might not even be a good indicator of fit, but in stead we may rely on a visual inspection of how well it seems to catch a trend in the observed E1 in a posterior predictive check. From this initial model, a parameter sweep was performed, varying the underlying distributions and parameters as described. Only the highest scoring (non-diverging) models were used in the followingm, as this was used for an indication of a model architecture that has biological relevance and could be generalized into other data as well. Thus, I continued on the human sperm cells. 
 
+{{< embed ../notebooks/03_PyMC_GRW_logit.ipynb#fig-e1-ppc-50kb >}}
 
-The best performing model on the 100kb data was re-fitted with the 10kb human data set. However, to get similar bin sizes, a subset of 1500 bins was taken from the E1 track. Additionally, the small chromatin was used as a subset, and lastly, the full chromosome X was fitted to the same model (same architecture). 
+### Human data
+
+For the subset analysis, only a fully Gaussian model was fitted to the short chromatin arm og human X-bearing sperm in 10kb resolution. The model mixed well and showed two distinct means for underlying 'type' distributions.
 
 {{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-posterior-cross-dens-ci-w >}}  
 
-Here, I have something new:
-
-{{< embed ../notebooks/11_chr8_compare_X_Y_eigs.ipynb#fig-chr8-eigs >}}
  
 # Discussion
+
 
 The discussion
 

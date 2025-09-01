@@ -74,5 +74,5 @@ for notebook in notebooks:
 
     gwf.target_from_template(
         name='run_'+nb,
-        template=run_notebook(notebook, memory='64g', walltime='24:00:00', cores=8)
+        template=run_notebook(notebook, memory='64g', walltime='12:00:00', cores=8)
     )
