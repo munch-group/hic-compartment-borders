@@ -6,3 +6,5 @@ ytick.labelsize: 6
 figure.titlesize: 9
 figure.figsize: 6.0, 2.0
 figure.labelsize: 7
+legend.fontsize: small
+figure.constrained_layout.use: True

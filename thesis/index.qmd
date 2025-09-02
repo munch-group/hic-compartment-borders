@@ -286,20 +286,44 @@ The i.i.d. model showed good mixing and separation of the two type distributions
 
 {{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-iid-ppc-loo-pit >}}
 
-### Random Walk (dependent bins)
+### Random Walk (spatial dependency)
 
-The initial random walk model fitted to macaque data showed good separation of underlying means, and good mixing. However, the LOO-CV did indicate an overdispersed model (@fig-e1-ppc-50kb), as the ECDF lied grosely outside of the uniform CDF. However, as mentioned previously, the LOO-CV might not even be a good indicator of fit, but in stead we may rely on a visual inspection of how well it seems to catch a trend in the observed E1 in a posterior predictive check. From this initial model, a parameter sweep was performed, varying the underlying distributions and parameters as described. Only the highest scoring (non-diverging) models were used in the followingm, as this was used for an indication of a model architecture that has biological relevance and could be generalized into other data as well. Thus, I continued on the human sperm cells. 
+The initial random walk model fitted to macaque data showed good separation of underlying means, and good mixing. However, the LOO-CV did indicate an overdispersed model (@fig-e1-ppc-50kb), as the ECDF lied grosely outside of the uniform CDF. However, as mentioned previously, the LOO-CV might not even be a good indicator of fit, but in stead we may rely on a visual inspection of how well it seems to catch a trend in the observed E1 in a posterior predictive check. From this initial model, a parameter sweep was performed, varying the underlying distributions and parameters as described. Only the highest scoring (non-diverging) models were used in the following, as this was used for an indication of a model architecture that has biological relevance and could be generalized into other data as well. Thus, I continued on the human sperm cells.
 
 {{< embed ../notebooks/03_PyMC_GRW_logit.ipynb#fig-e1-ppc-50kb >}}
 
 ### Human data
 
-For the subset analysis, only a fully Gaussian model was fitted to the short chromatin arm og human X-bearing sperm in 10kb resolution. The model mixed well and showed two distinct means for underlying 'type' distributions.
+For the subset analysis, only a fully Gaussian model was fitted to the short chromatin arm of chrX in human sperm in 10kb resolution. I both used the discrete and the continuous model architectures, `z` and `w`, respectively. The models both mixed well and each showed two distinct means for underlying 'type' distributions, supporting the idea of a generalizable underlying model architecture. This was additionally supported by the posterior preditive plot, $\widehat{E1}$, that seems to follow the trend of the observed $E1$ (@fig-ppc-trace-w-z-compare). However, the discrete model is seemingly more affected by the noisy fluctuations than the continuous model (@fig-ppc-trace-w-z-compare-1), even though it does not show in the builtin `pymc.plot_ppc(trace)` (@fig-ppc-dist-w-z-compare). 
 
-{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-posterior-cross-dens-ci-w >}}  
+{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-ppc-trace-w-z-compare >}}
+
+{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-ppc-dist-w-z-compare >}}
+
+From the model, we can quantify the uncertainty in compartment assignment from the mixing weight (designated `w`; values between $0$ and $1$), and the trace contains the full posterior sampling. To create a credible interval (CI) around the posterior mean of `w`, I use the $97.5th$ and $2.5th$ percentiles of each bin and plot a confidence band. Then transition zones were identified by a CI rule: $\mathrm{bin}_i$ *is in a transition zone if*
+
+$$
+\begin{aligned}
+1/3 &< \textrm{CI}^{2.5\%}_i &< 2/3 &\quad \mathbf{or} \\
+1/3 &< \textrm{CI}^{97.5\%}_i &< 2/3 &\quad \mathbf{or} \\
+1/3 &> \textrm{CI}^{2.5\%}_i &\mathbf{and} \; &2/3 < \textrm{CI}^{97.5\%}_i,
+\end{aligned}
+$$ {#eq-ci-rule}
+
+That is, if either of $\textrm{CI}^{2.5\%}_i$ and $\textrm{CI}^{97.5\%}_i$ are between $1/3$ and $2/3$, or if they are on each side of the CI (very wide band), the bin is in a transition zone. This results in three transition zones for chrX short arm in human sperm cells, excluding the first (@fig-hum-x-posterior-cross-dens-ci-w). Note that here, I used a simplified CI rule, 
+
+$$
+1/3 < \hat{w}_{post,i} < 2/3
+$$ {#eq-ci-rule-simple}
+
+Additionally, the transition zones are extracted, and the number of posterior draws that cross $0.5$ in each bin is counted as well. On @fig-hum-x-posterior-cross-dens-ci-w, the counts are divided by the total number of draws, giving the proportion of curves that cross the threshold at for a given bin. However, the bin size equals the resolution of the data (10kb windows), meaning there is ~6,000 bins for the chrX short arm. This makes the barplot unreadable, but I decide not to add an arbitrary normalization to increase the visibility, as it would not increase interpretability. Accummulating the crosses in each interval shows that many of the curves cross the threshold more than once (i.e. there are more crosses than there are curves), as is expected when the mean is hovering around the threshold.
+
+
+{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-hum-x-posterior-cross-dens-ci-w >}}  
+
 
  
-# Discussion
+# Discussion 
 
 
 The discussion

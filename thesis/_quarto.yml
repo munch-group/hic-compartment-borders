@@ -31,19 +31,21 @@ format:
     # #   path: filter1.lua
     #   - movesubcaptions.lua  
     # # latex-clean: false
+    keep-tex: true
     documentclass: scrbook
     classoption: openany # remove this option to return to book style chapters on right side
     pdf-engine: pdflatex
-    papersize: A4
+    papersize: A4 # 8.3" x 11.7"
     toc: true
     toc-depth: 2
     toc-title: "Table of contents"
     lof: false
     lot: false
     fig-align: center
+    fig-pos: htbp
     geometry:
-      - left=1in
-      - right=1in
+      - left=1in    # These margins leave room for 6" figures (set matplotlib rcParams['figure.figsize'] = (6,4))
+      - right=1in   # and a subtle inset (2x0.15") to please the eye
       # - textheight=9in,
       # - textwidth=6.5in,
       # - top=1in,

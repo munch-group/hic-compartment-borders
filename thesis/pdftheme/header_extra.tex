@@ -350,6 +350,23 @@
 \setlength{\textfloatsep}{6pt}
 \setlength{\floatsep}{6pt}
 
+% Reduce spacing between/around subfigures
+
+
+% Set \lineskip=0pt for every figure
+\AtBeginEnvironment{figure}{\setlength{\lineskip}{0pt}}
+% Set \lineskip=0pt for every center environment
+\AtBeginEnvironment{center}{\setlength{\lineskip}{0pt}}
+
+% Tighter spacing for subcaptions
+\usepackage{subcaption} % already loaded by Quarto, but safe
+\captionsetup[subfigure]{
+  skip=0pt,      % space between figure and subcaption
+  aboveskip=0pt,   % space above subcaption
+  belowskip=0pt,   % space below subcaption
+}
+
+
 
 
 %\captionsetup[subfigure]{margin=150pt}
