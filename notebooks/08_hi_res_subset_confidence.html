@@ -374,7 +374,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 1, 2025 <br> 14:06:43 (UTC +00:00)</p>
+      <p class="date">September 2, 2025 <br> 20:30:15 (UTC +00:00)</p>
     </div>
   </div>
   
@@ -391,7 +391,7 @@ window.Quarto = {
 <p>Previously, we have done some experiments on bootstrapping the <code>z</code> values to create confidence intervals. But as an afterthought, is might be much easier and also more accurate to create the confidence intervals from the mixing weights directly, as they are not binary and naturally have a distribution so</p>
 <section id="first-we-load-in-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="first-we-load-in-the-data">First, we load in the data</h3>
-<div id="cell-4" class="cell" data-execution_count="15">
+<div id="cell-4" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -421,10 +421,10 @@ window.Quarto = {
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>q_large <span class="op">=</span> <span class="st">"start &gt;= @large_arm[0] and start &lt;= @large_arm[1]"</span></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="16">
+<div id="cell-5" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dfs[<span class="st">'50kb'</span>].query(q_small)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 
 
@@ -503,7 +503,7 @@ window.Quarto = {
 <section id="no-bootstrapping" class="level3">
 <h3 class="anchored" data-anchor-id="no-bootstrapping">No bootstrapping</h3>
 <p>We actually don’t have to bootstrap now, as the mixing weights are not binary, but continuous. So we can just use the distribution of the mixing weights to create confidence intervals.</p>
-<div id="cell-7" class="cell" data-execution_count="1">
+<div id="cell-7" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -517,7 +517,7 @@ window.Quarto = {
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    sample<span class="op">=</span>[<span class="st">"chain"</span>, <span class="st">"draw"</span>]</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="4">
+<div id="cell-8" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>display(az.summary(trace_z, var_names<span class="op">=</span>[<span class="st">"mu"</span>, <span class="st">"sigma"</span>, <span class="st">"grw_sigma"</span>], round_to<span class="op">=</span><span class="dv">2</span>))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>display(az.summary(trace_w, var_names<span class="op">=</span>[<span class="st">"mu"</span>, <span class="st">"sigma"</span>, <span class="st">"grw_sigma"</span>], round_to<span class="op">=</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -691,7 +691,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="18">
+<div id="cell-9" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>display(w_stack_z, w_stack_w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
@@ -1082,7 +1082,7 @@ Coordinates:
   * pos      (pos) int64 43kB 278 279 280 281 282 ... 5794 5795 5796 5797 5798
   * sample   (sample) object 56kB MultiIndex
   * chain    (sample) int64 56kB 0 0 0 0 0 0 0 0 0 0 0 ... 6 6 6 6 6 6 6 6 6 6 6
-  * draw     (sample) int64 56kB 0 1 2 3 4 5 6 7 ... 993 994 995 996 997 998 999</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'w'</div><ul class="xr-dim-list"><li><span class="xr-has-index">pos</span>: 5376</li><li><span class="xr-has-index">sample</span>: 7000</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-bf17c9be-3bd0-414d-a15c-0d8b04a0fdcf" class="xr-array-in" type="checkbox" checked=""><label for="section-bf17c9be-3bd0-414d-a15c-0d8b04a0fdcf" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0.5086 0.4796 0.4953 0.5006 0.5094 ... 0.9901 0.9889 0.9946 0.9915</span></div><div class="xr-array-data"><pre>array([[0.50855592, 0.47955529, 0.49533573, ..., 0.48108606, 0.51131858,
+  * draw     (sample) int64 56kB 0 1 2 3 4 5 6 7 ... 993 994 995 996 997 998 999</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'w'</div><ul class="xr-dim-list"><li><span class="xr-has-index">pos</span>: 5376</li><li><span class="xr-has-index">sample</span>: 7000</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-d37a98b5-c82f-4244-9e80-b0165edcc7ae" class="xr-array-in" type="checkbox" checked=""><label for="section-d37a98b5-c82f-4244-9e80-b0165edcc7ae" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0.5086 0.4796 0.4953 0.5006 0.5094 ... 0.9901 0.9889 0.9946 0.9915</span></div><div class="xr-array-data"><pre>array([[0.50855592, 0.47955529, 0.49533573, ..., 0.48108606, 0.51131858,
         0.49195426],
        [0.50099056, 0.47593478, 0.49390709, ..., 0.48089991, 0.52637216,
         0.47838893],
@@ -1094,11 +1094,11 @@ Coordinates:
        [0.98639584, 0.99611564, 0.98918505, ..., 0.98895172, 0.99453151,
         0.99120603],
        [0.98627243, 0.99615631, 0.98939814, ..., 0.98889366, 0.99462367,
-        0.99146937]], shape=(5376, 7000))</pre></div></div></li><li class="xr-section-item"><input id="section-de30d14d-d00f-44db-a2ba-15221bbb8ded" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-de30d14d-d00f-44db-a2ba-15221bbb8ded" class="xr-section-summary">Coordinates: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">pos</span></div><div class="xr-var-dims">(pos)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">278 279 280 281 ... 5796 5797 5798</div><input id="attrs-9ede7522-6351-48f8-aa5e-3fbb8f65e0d9" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-9ede7522-6351-48f8-aa5e-3fbb8f65e0d9" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-9bfeeebe-ded6-4a7b-b67e-7656f5264cac" class="xr-var-data-in" type="checkbox"><label for="data-9bfeeebe-ded6-4a7b-b67e-7656f5264cac" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([ 278,  279,  280, ..., 5796, 5797, 5798], shape=(5376,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">sample</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">object</div><div class="xr-var-preview xr-preview">MultiIndex</div><input id="attrs-236eff9a-a3a3-4a85-9ad0-6294959ccb9b" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-236eff9a-a3a3-4a85-9ad0-6294959ccb9b" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-89168eac-a649-42ac-80ee-ea018e6c3172" class="xr-var-data-in" type="checkbox"><label for="data-89168eac-a649-42ac-80ee-ea018e6c3172" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([(0, 0), (0, 1), (0, 2), ..., (6, 997), (6, 998), (6, 999)],
-      shape=(202,), dtype=object)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">chain</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 0 0 0 0 0 0 0 ... 6 6 6 6 6 6 6 6</div><input id="attrs-0365ecb6-01f0-4615-b0ac-626f6b370b39" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-0365ecb6-01f0-4615-b0ac-626f6b370b39" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3e32fd98-ae79-42d9-a0fa-a7024d7f17fb" class="xr-var-data-in" type="checkbox"><label for="data-3e32fd98-ae79-42d9-a0fa-a7024d7f17fb" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([0, 0, 0, ..., 6, 6, 6], shape=(202,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">draw</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 1 2 3 4 5 ... 995 996 997 998 999</div><input id="attrs-4393bfd7-1b8e-4ef2-bd6f-c1132a66feae" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-4393bfd7-1b8e-4ef2-bd6f-c1132a66feae" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-200fb0e7-e8b0-4979-a166-a768a696fe2a" class="xr-var-data-in" type="checkbox"><label for="data-200fb0e7-e8b0-4979-a166-a768a696fe2a" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([  0,   1,   2, ..., 997, 998, 999], shape=(202,))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-c91fb024-9cc2-4b93-8559-119640b430a2" class="xr-section-summary-in" type="checkbox"><label for="section-c91fb024-9cc2-4b93-8559-119640b430a2" class="xr-section-summary">Indexes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>pos</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-27770b33-6c2d-4a8d-920e-6a16514f471a" class="xr-index-data-in" type="checkbox"><label for="index-27770b33-6c2d-4a8d-920e-6a16514f471a" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([ 278,  279,  280,  281,  282,  283,  284,  285,  286,  287,
+        0.99146937]], shape=(5376, 7000))</pre></div></div></li><li class="xr-section-item"><input id="section-61071d8e-888a-49fd-982b-03889a897e94" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-61071d8e-888a-49fd-982b-03889a897e94" class="xr-section-summary">Coordinates: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">pos</span></div><div class="xr-var-dims">(pos)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">278 279 280 281 ... 5796 5797 5798</div><input id="attrs-9d2242db-a283-4821-b439-684133caa291" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-9d2242db-a283-4821-b439-684133caa291" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-29e2ff4e-bd4d-499e-8c14-f8aaf486ca26" class="xr-var-data-in" type="checkbox"><label for="data-29e2ff4e-bd4d-499e-8c14-f8aaf486ca26" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([ 278,  279,  280, ..., 5796, 5797, 5798], shape=(5376,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">sample</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">object</div><div class="xr-var-preview xr-preview">MultiIndex</div><input id="attrs-d5e5aa6c-be6e-486a-9d4c-ea28fec675d8" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-d5e5aa6c-be6e-486a-9d4c-ea28fec675d8" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-128da261-5af7-4807-bf01-8b814c092b53" class="xr-var-data-in" type="checkbox"><label for="data-128da261-5af7-4807-bf01-8b814c092b53" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([(0, 0), (0, 1), (0, 2), ..., (6, 997), (6, 998), (6, 999)],
+      shape=(202,), dtype=object)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">chain</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 0 0 0 0 0 0 0 ... 6 6 6 6 6 6 6 6</div><input id="attrs-a1207f67-e2dd-4419-aa76-67bc8531b4d5" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-a1207f67-e2dd-4419-aa76-67bc8531b4d5" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c5b020c8-c811-4540-88d6-5f2736432f53" class="xr-var-data-in" type="checkbox"><label for="data-c5b020c8-c811-4540-88d6-5f2736432f53" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([0, 0, 0, ..., 6, 6, 6], shape=(202,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">draw</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 1 2 3 4 5 ... 995 996 997 998 999</div><input id="attrs-feda8c93-6155-4d49-b382-e423029c3176" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-feda8c93-6155-4d49-b382-e423029c3176" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-155a44af-7c34-4651-b9a6-7e2549544003" class="xr-var-data-in" type="checkbox"><label for="data-155a44af-7c34-4651-b9a6-7e2549544003" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([  0,   1,   2, ..., 997, 998, 999], shape=(202,))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-404f74eb-30ad-4fd1-bd1f-c611a1bb4145" class="xr-section-summary-in" type="checkbox"><label for="section-404f74eb-30ad-4fd1-bd1f-c611a1bb4145" class="xr-section-summary">Indexes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>pos</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-3f14e91f-6140-4445-bcec-289765356e3f" class="xr-index-data-in" type="checkbox"><label for="index-3f14e91f-6140-4445-bcec-289765356e3f" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([ 278,  279,  280,  281,  282,  283,  284,  285,  286,  287,
        ...
        5789, 5790, 5791, 5792, 5793, 5794, 5795, 5796, 5797, 5798],
-      dtype='int64', name='pos', length=5376))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>sample<br>chain<br>draw</div></div><div class="xr-index-preview">PandasMultiIndex</div><input type="checkbox" disabled=""><label></label><input id="index-73cdef5b-03d8-4133-8836-5a31b29efd70" class="xr-index-data-in" type="checkbox"><label for="index-73cdef5b-03d8-4133-8836-5a31b29efd70" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(MultiIndex([(0,   0),
+      dtype='int64', name='pos', length=5376))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>sample<br>chain<br>draw</div></div><div class="xr-index-preview">PandasMultiIndex</div><input type="checkbox" disabled=""><label></label><input id="index-f6e5b112-fbac-4ac9-ac4a-0e31026b5ba9" class="xr-index-data-in" type="checkbox"><label for="index-f6e5b112-fbac-4ac9-ac4a-0e31026b5ba9" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(MultiIndex([(0,   0),
             (0,   1),
             (0,   2),
             (0,   3),
@@ -1119,7 +1119,7 @@ Coordinates:
             (6, 997),
             (6, 998),
             (6, 999)],
-           name='sample', length=7000))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-3b3dec7e-9b32-4ebb-9921-3098825e4801" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-3b3dec7e-9b32-4ebb-9921-3098825e4801" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
+           name='sample', length=7000))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-4d5bbfc2-dc06-4bac-9234-00c1b429c645" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-4d5bbfc2-dc06-4bac-9234-00c1b429c645" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
 </div>
 <div class="cell-output cell-output-display">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
@@ -1510,7 +1510,7 @@ Coordinates:
   * pos      (pos) int64 43kB 278 279 280 281 282 ... 5794 5795 5796 5797 5798
   * sample   (sample) object 56kB MultiIndex
   * chain    (sample) int64 56kB 0 0 0 0 0 0 0 0 0 0 0 ... 6 6 6 6 6 6 6 6 6 6 6
-  * draw     (sample) int64 56kB 0 1 2 3 4 5 6 7 ... 993 994 995 996 997 998 999</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'w'</div><ul class="xr-dim-list"><li><span class="xr-has-index">pos</span>: 5376</li><li><span class="xr-has-index">sample</span>: 7000</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-9420ada1-4ac9-46c1-9856-e1713aa690f1" class="xr-array-in" type="checkbox" checked=""><label for="section-9420ada1-4ac9-46c1-9856-e1713aa690f1" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0.4818 0.4968 0.4904 0.4934 0.4931 ... 0.9394 0.9413 0.995 0.975</span></div><div class="xr-array-data"><pre>array([[0.48184014, 0.49675812, 0.49042409, ..., 0.49183007, 0.49851813,
+  * draw     (sample) int64 56kB 0 1 2 3 4 5 6 7 ... 993 994 995 996 997 998 999</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'w'</div><ul class="xr-dim-list"><li><span class="xr-has-index">pos</span>: 5376</li><li><span class="xr-has-index">sample</span>: 7000</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-6a927d5c-5b54-47ae-ad74-135b0315c0ea" class="xr-array-in" type="checkbox" checked=""><label for="section-6a927d5c-5b54-47ae-ad74-135b0315c0ea" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0.4818 0.4968 0.4904 0.4934 0.4931 ... 0.9394 0.9413 0.995 0.975</span></div><div class="xr-array-data"><pre>array([[0.48184014, 0.49675812, 0.49042409, ..., 0.49183007, 0.49851813,
         0.49795749],
        [0.48181092, 0.49076683, 0.48691288, ..., 0.49186527, 0.48619251,
         0.48884509],
@@ -1522,11 +1522,11 @@ Coordinates:
        [0.99586202, 0.95937027, 0.97871481, ..., 0.94241419, 0.99486929,
         0.97453365],
        [0.99610599, 0.95708045, 0.98005666, ..., 0.94130801, 0.99499015,
-        0.9749862 ]], shape=(5376, 7000))</pre></div></div></li><li class="xr-section-item"><input id="section-8a80ba39-7c95-4cdf-bcc5-f921c15a7133" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-8a80ba39-7c95-4cdf-bcc5-f921c15a7133" class="xr-section-summary">Coordinates: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">pos</span></div><div class="xr-var-dims">(pos)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">278 279 280 281 ... 5796 5797 5798</div><input id="attrs-f8616d77-3f0a-4f2d-b308-da86e6e585b3" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-f8616d77-3f0a-4f2d-b308-da86e6e585b3" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3abe7aac-8270-4060-bf45-eb7c359a4d81" class="xr-var-data-in" type="checkbox"><label for="data-3abe7aac-8270-4060-bf45-eb7c359a4d81" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([ 278,  279,  280, ..., 5796, 5797, 5798], shape=(5376,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">sample</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">object</div><div class="xr-var-preview xr-preview">MultiIndex</div><input id="attrs-e81cad53-b722-47b5-9628-ea02f7579b6a" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-e81cad53-b722-47b5-9628-ea02f7579b6a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f7a1d688-e57f-4e52-b5ab-77b3b656be55" class="xr-var-data-in" type="checkbox"><label for="data-f7a1d688-e57f-4e52-b5ab-77b3b656be55" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([(0, 0), (0, 1), (0, 2), ..., (6, 997), (6, 998), (6, 999)],
-      shape=(202,), dtype=object)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">chain</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 0 0 0 0 0 0 0 ... 6 6 6 6 6 6 6 6</div><input id="attrs-d942cf36-1899-4161-9a9e-89ec7ad6badc" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-d942cf36-1899-4161-9a9e-89ec7ad6badc" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b5154f6f-1634-42ab-957d-f135c877aa3d" class="xr-var-data-in" type="checkbox"><label for="data-b5154f6f-1634-42ab-957d-f135c877aa3d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([0, 0, 0, ..., 6, 6, 6], shape=(202,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">draw</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 1 2 3 4 5 ... 995 996 997 998 999</div><input id="attrs-d934b3a5-99f0-4d73-85d9-1363e0b351d5" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-d934b3a5-99f0-4d73-85d9-1363e0b351d5" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-44453f51-69f3-41fb-ae53-e00da1a8eea4" class="xr-var-data-in" type="checkbox"><label for="data-44453f51-69f3-41fb-ae53-e00da1a8eea4" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([  0,   1,   2, ..., 997, 998, 999], shape=(202,))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-66beb493-9396-4e26-b729-eaf5dcccd36e" class="xr-section-summary-in" type="checkbox"><label for="section-66beb493-9396-4e26-b729-eaf5dcccd36e" class="xr-section-summary">Indexes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>pos</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-234826e8-a2a0-406e-a0c2-1c2dded68862" class="xr-index-data-in" type="checkbox"><label for="index-234826e8-a2a0-406e-a0c2-1c2dded68862" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([ 278,  279,  280,  281,  282,  283,  284,  285,  286,  287,
+        0.9749862 ]], shape=(5376, 7000))</pre></div></div></li><li class="xr-section-item"><input id="section-d86124b9-df83-455d-ae93-6971c0c96cc6" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-d86124b9-df83-455d-ae93-6971c0c96cc6" class="xr-section-summary">Coordinates: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">pos</span></div><div class="xr-var-dims">(pos)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">278 279 280 281 ... 5796 5797 5798</div><input id="attrs-41c38e97-d3d2-40fd-92ba-90c9df013864" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-41c38e97-d3d2-40fd-92ba-90c9df013864" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-2aecd45b-c795-4072-9949-91fbef4d71d6" class="xr-var-data-in" type="checkbox"><label for="data-2aecd45b-c795-4072-9949-91fbef4d71d6" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([ 278,  279,  280, ..., 5796, 5797, 5798], shape=(5376,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">sample</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">object</div><div class="xr-var-preview xr-preview">MultiIndex</div><input id="attrs-0116ff71-33fd-4be2-8f0c-c5ec7d347db7" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-0116ff71-33fd-4be2-8f0c-c5ec7d347db7" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-d939bff3-458c-4f1a-aa9c-c3515cfbe265" class="xr-var-data-in" type="checkbox"><label for="data-d939bff3-458c-4f1a-aa9c-c3515cfbe265" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([(0, 0), (0, 1), (0, 2), ..., (6, 997), (6, 998), (6, 999)],
+      shape=(202,), dtype=object)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">chain</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 0 0 0 0 0 0 0 ... 6 6 6 6 6 6 6 6</div><input id="attrs-e2a7fe4b-b5e3-4ffe-831c-71a21cf2bb19" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-e2a7fe4b-b5e3-4ffe-831c-71a21cf2bb19" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-7f33315b-10c4-4f43-bfac-fa37a5d9341a" class="xr-var-data-in" type="checkbox"><label for="data-7f33315b-10c4-4f43-bfac-fa37a5d9341a" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([0, 0, 0, ..., 6, 6, 6], shape=(202,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">draw</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 1 2 3 4 5 ... 995 996 997 998 999</div><input id="attrs-eef664e0-2012-4bab-995a-5828a7a3b9a3" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-eef664e0-2012-4bab-995a-5828a7a3b9a3" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b8692bef-39ef-4b01-9e83-b403694906a4" class="xr-var-data-in" type="checkbox"><label for="data-b8692bef-39ef-4b01-9e83-b403694906a4" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([  0,   1,   2, ..., 997, 998, 999], shape=(202,))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-bd3ce7a0-d14a-40f5-a48c-a649e7950114" class="xr-section-summary-in" type="checkbox"><label for="section-bd3ce7a0-d14a-40f5-a48c-a649e7950114" class="xr-section-summary">Indexes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>pos</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-431860c0-9cf3-4315-af58-89bfa78d7745" class="xr-index-data-in" type="checkbox"><label for="index-431860c0-9cf3-4315-af58-89bfa78d7745" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([ 278,  279,  280,  281,  282,  283,  284,  285,  286,  287,
        ...
        5789, 5790, 5791, 5792, 5793, 5794, 5795, 5796, 5797, 5798],
-      dtype='int64', name='pos', length=5376))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>sample<br>chain<br>draw</div></div><div class="xr-index-preview">PandasMultiIndex</div><input type="checkbox" disabled=""><label></label><input id="index-902774ae-a268-4e8c-8e26-71474912904b" class="xr-index-data-in" type="checkbox"><label for="index-902774ae-a268-4e8c-8e26-71474912904b" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(MultiIndex([(0,   0),
+      dtype='int64', name='pos', length=5376))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>sample<br>chain<br>draw</div></div><div class="xr-index-preview">PandasMultiIndex</div><input type="checkbox" disabled=""><label></label><input id="index-36e53e04-9d22-43b2-8a89-41ae66460d72" class="xr-index-data-in" type="checkbox"><label for="index-36e53e04-9d22-43b2-8a89-41ae66460d72" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(MultiIndex([(0,   0),
             (0,   1),
             (0,   2),
             (0,   3),
@@ -1547,10 +1547,10 @@ Coordinates:
             (6, 997),
             (6, 998),
             (6, 999)],
-           name='sample', length=7000))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-d8cbb336-7de4-400f-a121-1dcfd27a2c54" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-d8cbb336-7de4-400f-a121-1dcfd27a2c54" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
+           name='sample', length=7000))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-4a80c1fb-5e35-4b00-a592-30454f159a8f" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-4a80c1fb-5e35-4b00-a592-30454f159a8f" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
 </div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="19">
+<div id="cell-10" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>compare <span class="op">=</span> az.compare({<span class="st">'Z'</span>:trace_z, <span class="st">'W'</span>:trace_w}, ic<span class="op">=</span><span class="st">'waic'</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>compare</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1558,7 +1558,7 @@ Coordinates:
 See http://arxiv.org/abs/1507.04544 for details
   warnings.warn(</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
 
@@ -1608,18 +1608,18 @@ See http://arxiv.org/abs/1507.04544 for details
 </div>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="20">
+<div id="cell-11" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>az.plot_compare(compare, plot_ic_diff<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="08_hi_res_subset_confidence_files/figure-html/cell-8-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="08_hi_res_subset_confidence_files/figure-html/cell-8-output-1.png" width="518" height="233" class="figure-img"></a></p>
+<p><a href="08_hi_res_subset_confidence_files/figure-html/cell-8-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="08_hi_res_subset_confidence_files/figure-html/cell-8-output-1.png" width="611" height="211" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <p>So, it seems the model with the latent hard assignment was better after all, based on the <code>az.compare</code>. The <code>weight</code> column can be losely interpreted as the probability of the model given the data, relative to the other model(s).</p>
-<div id="cell-13" class="cell" data-execution_count="21">
+<div id="cell-13" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the trace directly  in stead of bootstrapping</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>w_mean <span class="op">=</span> trace_z.posterior[<span class="st">"w"</span>].mean(dim<span class="op">=</span>(<span class="st">"chain"</span>, <span class="st">"draw"</span>))  <span class="co"># shape (8714,)</span></span>
@@ -1627,7 +1627,7 @@ See http://arxiv.org/abs/1507.04544 for details
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>w_ci_upper_direct <span class="op">=</span> w_ci_direct.sel(quantile<span class="op">=</span><span class="fl">0.05</span>)  <span class="co"># shape (8714,)</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>w_ci_lower_direct <span class="op">=</span> w_ci_direct.sel(quantile<span class="op">=</span><span class="fl">0.95</span>)  <span class="co"># shape (8714,)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-14" class="cell" data-execution_count="22">
+<div id="cell-14" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set matplotlib to display SVG format</span></span>
@@ -1648,7 +1648,7 @@ See http://arxiv.org/abs/1507.04544 for details
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Location (bp)"</span>)</span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Raw E1 for sperm_X data"</span>)</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># # # # # plt#tight_layout()</span></span>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1658,7 +1658,7 @@ See http://arxiv.org/abs/1507.04544 for details
 </div>
 </div>
 </div>
-<div id="cell-16" class="cell" data-execution_count="23">
+<div id="cell-16" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set matplotlib to display SVG format</span></span>
@@ -1709,7 +1709,7 @@ See http://arxiv.org/abs/1507.04544 for details
 <span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Location"</span>)</span>
 <span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
 <span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Posterior Probability with Raw Mixing Weight CI"</span>)</span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="co"># # plt#tight_layout()</span></span>
 <span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>zooms <span class="op">=</span> [(<span class="dv">10_000_000</span>,<span class="dv">19_000_000</span>), (<span class="dv">34_000_000</span>, <span class="dv">48_000_000</span>)]</span>
@@ -1741,29 +1741,29 @@ See http://arxiv.org/abs/1507.04544 for details
 <span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>    zax.set_xlim(zoom)</span>
 <span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>    zax.set_title(<span class="ss">f"Zoomed In: </span><span class="sc">{</span>zoom<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a><span class="co"># # plt#tight_layout()</span></span>
 <span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="08_hi_res_subset_confidence_files/figure-html/cell-12-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="08_hi_res_subset_confidence_files/figure-html/cell-12-output-1.png" width="1498" height="397" class="figure-img"></a></p>
+<p><a href="08_hi_res_subset_confidence_files/figure-html/cell-12-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="08_hi_res_subset_confidence_files/figure-html/cell-12-output-1.png" width="1511" height="411" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="08_hi_res_subset_confidence_files/figure-html/cell-12-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="08_hi_res_subset_confidence_files/figure-html/cell-12-output-2.png" width="999" height="597" class="figure-img"></a></p>
+<p><a href="08_hi_res_subset_confidence_files/figure-html/cell-12-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="08_hi_res_subset_confidence_files/figure-html/cell-12-output-2.png" width="1011" height="611" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <p>So, how can we visualize the density of confidence band?</p>
 <p>I will try to plot all the curves with a very low alpha to see if it looks nice.</p>
-<div id="cell-19" class="cell" data-execution_count="24">
+<div id="cell-19" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>w_stack_z.isel(sample<span class="op">=</span><span class="bu">slice</span>(<span class="dv">0</span>,<span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
 <symbol id="icon-database" viewbox="0 0 32 32">
@@ -2152,7 +2152,7 @@ Coordinates:
   * pos      (pos) int64 43kB 278 279 280 281 282 ... 5794 5795 5796 5797 5798
   * sample   (sample) object 800B MultiIndex
   * chain    (sample) int64 800B 0 0 0 0 0 0 0 0 0 0 0 ... 0 0 0 0 0 0 0 0 0 0 0
-  * draw     (sample) int64 800B 0 1 2 3 4 5 6 7 8 ... 92 93 94 95 96 97 98 99</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'w'</div><ul class="xr-dim-list"><li><span class="xr-has-index">pos</span>: 5376</li><li><span class="xr-has-index">sample</span>: 100</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-99e3dc8f-f495-4fbb-a66b-945dad4fca09" class="xr-array-in" type="checkbox" checked=""><label for="section-99e3dc8f-f495-4fbb-a66b-945dad4fca09" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0.5086 0.4796 0.4953 0.5006 0.5094 ... 0.9793 0.9946 0.9817 0.9896</span></div><div class="xr-array-data"><pre>array([[0.50855592, 0.47955529, 0.49533573, ..., 0.50887423, 0.49561875,
+  * draw     (sample) int64 800B 0 1 2 3 4 5 6 7 8 ... 92 93 94 95 96 97 98 99</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'w'</div><ul class="xr-dim-list"><li><span class="xr-has-index">pos</span>: 5376</li><li><span class="xr-has-index">sample</span>: 100</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-ab2d6a55-2c6b-42a7-bdca-9f0dd4bab12f" class="xr-array-in" type="checkbox" checked=""><label for="section-ab2d6a55-2c6b-42a7-bdca-9f0dd4bab12f" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0.5086 0.4796 0.4953 0.5006 0.5094 ... 0.9793 0.9946 0.9817 0.9896</span></div><div class="xr-array-data"><pre>array([[0.50855592, 0.47955529, 0.49533573, ..., 0.50887423, 0.49561875,
         0.49081788],
        [0.50099056, 0.47593478, 0.49390709, ..., 0.50987188, 0.48508137,
         0.49760707],
@@ -2164,7 +2164,7 @@ Coordinates:
        [0.98639584, 0.99611564, 0.98918505, ..., 0.99469591, 0.9830416 ,
         0.98928506],
        [0.98627243, 0.99615631, 0.98939814, ..., 0.99459059, 0.98169441,
-        0.98963428]], shape=(5376, 100))</pre></div></div></li><li class="xr-section-item"><input id="section-86ade389-ec27-4b4b-9353-31bf116b0a2a" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-86ade389-ec27-4b4b-9353-31bf116b0a2a" class="xr-section-summary">Coordinates: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">pos</span></div><div class="xr-var-dims">(pos)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">278 279 280 281 ... 5796 5797 5798</div><input id="attrs-4ea2d0c0-a138-47d9-9c44-3f3d523a2e9d" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-4ea2d0c0-a138-47d9-9c44-3f3d523a2e9d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-25289784-feab-41b4-8488-bb2ae6a29a12" class="xr-var-data-in" type="checkbox"><label for="data-25289784-feab-41b4-8488-bb2ae6a29a12" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([ 278,  279,  280, ..., 5796, 5797, 5798], shape=(5376,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">sample</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">object</div><div class="xr-var-preview xr-preview">MultiIndex</div><input id="attrs-043a2810-6b97-4bad-b3cd-27bf8178d88a" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-043a2810-6b97-4bad-b3cd-27bf8178d88a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-367fe128-b70e-403a-b328-906a355c8db7" class="xr-var-data-in" type="checkbox"><label for="data-367fe128-b70e-403a-b328-906a355c8db7" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7), (0, 8),
+        0.98963428]], shape=(5376, 100))</pre></div></div></li><li class="xr-section-item"><input id="section-89226793-88e6-4355-ac0d-4c64162cd573" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-89226793-88e6-4355-ac0d-4c64162cd573" class="xr-section-summary">Coordinates: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">pos</span></div><div class="xr-var-dims">(pos)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">278 279 280 281 ... 5796 5797 5798</div><input id="attrs-3f6f9cba-17a3-45a2-aa6f-9155a287ad1f" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-3f6f9cba-17a3-45a2-aa6f-9155a287ad1f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-5fa43197-ab46-4cf0-b384-ec8e9e8243fb" class="xr-var-data-in" type="checkbox"><label for="data-5fa43197-ab46-4cf0-b384-ec8e9e8243fb" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([ 278,  279,  280, ..., 5796, 5797, 5798], shape=(5376,))</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">sample</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">object</div><div class="xr-var-preview xr-preview">MultiIndex</div><input id="attrs-95df5cad-a57a-44e0-91e0-85eac49ab49e" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-95df5cad-a57a-44e0-91e0-85eac49ab49e" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-0fd93707-1f50-4eab-8237-6376bf44f611" class="xr-var-data-in" type="checkbox"><label for="data-0fd93707-1f50-4eab-8237-6376bf44f611" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7), (0, 8),
        (0, 9), (0, 10), (0, 11), (0, 12), (0, 13), (0, 14), (0, 15), (0, 16),
        (0, 17), (0, 18), (0, 19), (0, 20), (0, 21), (0, 22), (0, 23), (0, 24),
        (0, 25), (0, 26), (0, 27), (0, 28), (0, 29), (0, 30), (0, 31), (0, 32),
@@ -2176,19 +2176,19 @@ Coordinates:
        (0, 73), (0, 74), (0, 75), (0, 76), (0, 77), (0, 78), (0, 79), (0, 80),
        (0, 81), (0, 82), (0, 83), (0, 84), (0, 85), (0, 86), (0, 87), (0, 88),
        (0, 89), (0, 90), (0, 91), (0, 92), (0, 93), (0, 94), (0, 95), (0, 96),
-       (0, 97), (0, 98), (0, 99)], dtype=object)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">chain</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 0 0 0 0 0 0 0 ... 0 0 0 0 0 0 0 0</div><input id="attrs-a30853df-9f52-477b-8144-33d23be21024" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-a30853df-9f52-477b-8144-33d23be21024" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f6fdf398-ea9a-4bc6-930e-d43d15f4e7a2" class="xr-var-data-in" type="checkbox"><label for="data-f6fdf398-ea9a-4bc6-930e-d43d15f4e7a2" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       (0, 97), (0, 98), (0, 99)], dtype=object)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">chain</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 0 0 0 0 0 0 0 ... 0 0 0 0 0 0 0 0</div><input id="attrs-de11ffac-6d9b-4cb8-acc4-0fcfa78217cb" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-de11ffac-6d9b-4cb8-acc4-0fcfa78217cb" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-6e16698e-cc30-4169-86b8-299829bbdd3a" class="xr-var-data-in" type="checkbox"><label for="data-6e16698e-cc30-4169-86b8-299829bbdd3a" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-       0, 0, 0, 0])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">draw</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 1 2 3 4 5 6 ... 94 95 96 97 98 99</div><input id="attrs-4b41bf48-4e24-4634-9eba-fe92bdb66cc8" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-4b41bf48-4e24-4634-9eba-fe92bdb66cc8" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-61e8378a-add1-46f3-9e88-2408dad87c00" class="xr-var-data-in" type="checkbox"><label for="data-61e8378a-add1-46f3-9e88-2408dad87c00" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
+       0, 0, 0, 0])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">draw</span></div><div class="xr-var-dims">(sample)</div><div class="xr-var-dtype">int64</div><div class="xr-var-preview xr-preview">0 1 2 3 4 5 6 ... 94 95 96 97 98 99</div><input id="attrs-db56a11d-4cca-46bd-9874-f3f546bebabb" class="xr-var-attrs-in" type="checkbox" disabled=""><label for="attrs-db56a11d-4cca-46bd-9874-f3f546bebabb" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-fa16547d-9543-4304-85db-bc5837e2c924" class="xr-var-data-in" type="checkbox"><label for="data-fa16547d-9543-4304-85db-bc5837e2c924" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"></dl></div><div class="xr-var-data"><pre>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
        18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
        36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53,
        54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71,
        72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89,
-       90, 91, 92, 93, 94, 95, 96, 97, 98, 99])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-e76d10da-317a-4863-9fff-68bf9b7ff388" class="xr-section-summary-in" type="checkbox"><label for="section-e76d10da-317a-4863-9fff-68bf9b7ff388" class="xr-section-summary">Indexes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>pos</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-bcd59699-b991-4194-b82f-8619ea88d05f" class="xr-index-data-in" type="checkbox"><label for="index-bcd59699-b991-4194-b82f-8619ea88d05f" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([ 278,  279,  280,  281,  282,  283,  284,  285,  286,  287,
+       90, 91, 92, 93, 94, 95, 96, 97, 98, 99])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-79a76be3-a615-42af-ac03-fff66c84c176" class="xr-section-summary-in" type="checkbox"><label for="section-79a76be3-a615-42af-ac03-fff66c84c176" class="xr-section-summary">Indexes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>pos</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-54447c64-ee2e-4aca-91b3-e752eb0e0cf1" class="xr-index-data-in" type="checkbox"><label for="index-54447c64-ee2e-4aca-91b3-e752eb0e0cf1" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([ 278,  279,  280,  281,  282,  283,  284,  285,  286,  287,
        ...
        5789, 5790, 5791, 5792, 5793, 5794, 5795, 5796, 5797, 5798],
-      dtype='int64', name='pos', length=5376))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>sample<br>chain<br>draw</div></div><div class="xr-index-preview">PandasMultiIndex</div><input type="checkbox" disabled=""><label></label><input id="index-ba01b9b0-b8f0-4940-a799-d319fa203903" class="xr-index-data-in" type="checkbox"><label for="index-ba01b9b0-b8f0-4940-a799-d319fa203903" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(MultiIndex([(0,  0),
+      dtype='int64', name='pos', length=5376))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>sample<br>chain<br>draw</div></div><div class="xr-index-preview">PandasMultiIndex</div><input type="checkbox" disabled=""><label></label><input id="index-ea7ca87b-7606-4d69-8132-446200785b76" class="xr-index-data-in" type="checkbox"><label for="index-ea7ca87b-7606-4d69-8132-446200785b76" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(MultiIndex([(0,  0),
             (0,  1),
             (0,  2),
             (0,  3),
@@ -2288,10 +2288,10 @@ Coordinates:
             (0, 97),
             (0, 98),
             (0, 99)],
-           name='sample'))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-12cf41a1-51d9-4017-bc1c-e26f8bb518b9" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-12cf41a1-51d9-4017-bc1c-e26f8bb518b9" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
+           name='sample'))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-9c41172a-d383-467d-b545-6be7de97b5c2" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-9c41172a-d383-467d-b545-6be7de97b5c2" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
 </div>
 </div>
-<div id="cell-20" class="cell" data-execution_count="25">
+<div id="cell-20" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the all posterior samples of `w` in a single plot</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># but start out with a smaller subset</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set the inline display to low dpi</span></span>
@@ -2318,7 +2318,7 @@ Coordinates:
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"P(z=1)"</span>)</span>
 <span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Posterior Samples of Mixing Weights (n = </span><span class="sc">{</span>w_subset<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co"># # plt#tight_layout() # constrained: True is set in rcParams</span></span>
 <span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -2333,14 +2333,14 @@ Coordinates:
 <section id="translate-into-positional-uncertainty" class="level2">
 <h2 class="anchored" data-anchor-id="translate-into-positional-uncertainty">Translate into positional uncertainty</h2>
 <p>We translate the transitional regions (based on our CI rule) by counting the number of curves that cross the midpoint (0.5) between each position. Then we can summarize with statitics and establish the most likely transition.</p>
-<div id="cell-23" class="cell" data-execution_count="26">
+<div id="cell-23" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>w_np <span class="op">=</span> w_stack_z.values  <span class="co"># Convert to numpy array</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>w_da <span class="op">=</span> w_stack_z <span class="co"># Use the xarray DataArray directly</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-24" class="cell" data-execution_count="27">
+<div id="cell-24" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try again</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> (w_np <span class="op">&gt;</span> <span class="fl">0.5</span>)  <span class="co"># plain ndarray</span></span>
@@ -2388,19 +2388,91 @@ Shape of crossing_density_up: (5375,)
 Shape of crossing_density_down: (5375,)</code></pre>
 </div>
 </div>
-<div id="cell-fig-posterior-cross-dens-ci-w" class="cell" data-execution_count="60">
+<div id="cell-fig-hum-x-posterior-cross-dens-ci-w" class="cell" data-execution_count="52">
 <div class="cell-output cell-output-display">
-<div id="fig-posterior-cross-dens-ci-w" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-hum-x-posterior-cross-dens-ci-w" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-posterior-cross-dens-ci-w-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="08_hi_res_subset_confidence_files/figure-html/fig-posterior-cross-dens-ci-w-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;10.1: Posterior Probability with Raw Mixing Weight CI and Crossing Density. The CI rule used is 1/3 < \hat{w}_{post} < 2/3, as shown. The grey band indicates the regions where the CI rule is not satisfied. The crossing density bars show the number of crossings of the posterior mean at 0.5, with red indicating crossings upwards and blue indicating crossings downwards."><img src="08_hi_res_subset_confidence_files/figure-html/fig-posterior-cross-dens-ci-w-output-1.png" width="598" height="298" class="figure-img"></a>
+<div aria-describedby="fig-hum-x-posterior-cross-dens-ci-w-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08_hi_res_subset_confidence_files/figure-html/fig-hum-x-posterior-cross-dens-ci-w-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;10.1: Posterior Probability with Raw Mixing Weight CI and Crossing Density. The CI rule used is 1/3 < \hat{w}_{post} < 2/3, as shown. The grey band indicates the regions where the CI rule is not satisfied. The crossing density bars show the number of crossings of the posterior mean at 0.5, with red indicating crossings upwards and blue indicating crossings downwards."><img src="08_hi_res_subset_confidence_files/figure-html/fig-hum-x-posterior-cross-dens-ci-w-output-1.png" width="611" height="161" class="figure-img"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posterior-cross-dens-ci-w-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hum-x-posterior-cross-dens-ci-w-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.1: Posterior Probability with Raw Mixing Weight CI and Crossing Density. The CI rule used is <span class="math inline">\(1/3 &lt; \hat{w}_{post} &lt; 2/3\)</span>, as shown. The grey band indicates the regions where the CI rule is not satisfied. The crossing density bars show the number of crossings of the posterior mean at 0.5, with red indicating crossings upwards and blue indicating crossings downwards.
 </figcaption>
 </figure>
 </div>
 </div>
+</div>
+<div id="fig-ppc-trace-w-z-compare" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ppc-trace-w-z-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ppc-trace-w-z-compare" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-ppc-trace-w-z-compare-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="ChrX Posterior Predictive trace for human sperm for Z and W models.">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ppc-trace-w-z-compare-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08_hi_res_subset_confidence_files/figure-html/fig-ppc-trace-w-z-compare-output-1.png" class="lightbox" data-gallery="fig-ppc-trace-w-z-compare" title="Figure&nbsp;10.2&nbsp;(a): Discrete model"><img src="08_hi_res_subset_confidence_files/figure-html/fig-ppc-trace-w-z-compare-output-1.png" data-fig-scap="ChrX Posterior Predictive trace for human sperm for Z and W models." data-ref-parent="fig-ppc-trace-w-z-compare" width="611" height="131" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ppc-trace-w-z-compare-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Discrete model
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ppc-trace-w-z-compare" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-ppc-trace-w-z-compare-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="ChrX Posterior Predictive trace for human sperm for Z and W models.">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ppc-trace-w-z-compare-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08_hi_res_subset_confidence_files/figure-html/fig-ppc-trace-w-z-compare-output-2.png" class="lightbox" data-gallery="fig-ppc-trace-w-z-compare" title="Figure&nbsp;10.2&nbsp;(b): Continuous (mixture) model"><img src="08_hi_res_subset_confidence_files/figure-html/fig-ppc-trace-w-z-compare-output-2.png" data-fig-scap="ChrX Posterior Predictive trace for human sperm for Z and W models." data-ref-parent="fig-ppc-trace-w-z-compare" width="611" height="131" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ppc-trace-w-z-compare-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Continuous (mixture) model
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ppc-trace-w-z-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.2: ChrX Posterior Predictive Check for X-bearing sperm (<span class="math inline">\(\widehat{E1}\)</span>) for both the Z and W models. The posterior mean is shown as a blue line, with the 95% credible interval shaded in blue. The observed E1 values are shown in gray.
+</figcaption>
+</figure>
+</div>
+<div id="fig-ppc-dist-w-z-compare" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ppc-dist-w-z-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ppc-dist-w-z-compare" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ppc-dist-w-z-compare-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="ChrX Posterior Predictive Distribution for human sperm Z and W models">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ppc-dist-w-z-compare-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08_hi_res_subset_confidence_files/figure-html/fig-ppc-dist-w-z-compare-output-1.png" class="lightbox" data-gallery="fig-ppc-dist-w-z-compare" title="Figure&nbsp;10.3&nbsp;(a): Discrete model (Z)"><img src="08_hi_res_subset_confidence_files/figure-html/fig-ppc-dist-w-z-compare-output-1.png" data-fig-scap="ChrX Posterior Predictive Distribution for human sperm Z and W models" data-ref-parent="fig-ppc-dist-w-z-compare" width="311" height="161" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ppc-dist-w-z-compare-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Discrete model (<code>Z</code>)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ppc-dist-w-z-compare" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ppc-dist-w-z-compare-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="ChrX Posterior Predictive Distribution for human sperm Z and W models">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ppc-dist-w-z-compare-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="08_hi_res_subset_confidence_files/figure-html/fig-ppc-dist-w-z-compare-output-2.png" class="lightbox" data-gallery="fig-ppc-dist-w-z-compare" title="Figure&nbsp;10.3&nbsp;(b): Continuous (mixture) model (W)"><img src="08_hi_res_subset_confidence_files/figure-html/fig-ppc-dist-w-z-compare-output-2.png" data-fig-scap="ChrX Posterior Predictive Distribution for human sperm Z and W models" data-ref-parent="fig-ppc-dist-w-z-compare" width="311" height="161" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ppc-dist-w-z-compare-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Continuous (mixture) model (<code>W</code>)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ppc-dist-w-z-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.3: ChrX Posterior Predictive Check Distribution for X-bearing sperm (<span class="math inline">\(\widehat{E1}\)</span>) for both the Z and W models. The posterior predictive distribution is shown in blue, the predictive mean in dashed orange, and the observed E1 distribution in black.
+</figcaption>
+</figure>
 </div>
 
 

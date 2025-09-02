@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-09-01">
+<meta name="dcterms.date" content="2025-09-02">
 <meta name="keywords" content="Gaussian Random Walk, Bayesian MCMC, Chromatin Structure in spermatogenesis">
 
 <title>Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework</title>
@@ -131,10 +131,10 @@ window.Quarto = {
 <meta name="citation_title" content="Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework">
 <meta name="citation_keywords" content="Gaussian Random Walk,Bayesian MCMC,Chromatin Structure in spermatogenesis">
 <meta name="citation_author" content="Søren Jørgensen">
-<meta name="citation_publication_date" content="2025-09-01">
-<meta name="citation_cover_date" content="2025-09-01">
+<meta name="citation_publication_date" content="2025-09-02">
+<meta name="citation_cover_date" content="2025-09-02">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-09-01">
+<meta name="citation_online_date" content="2025-09-02">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=PyMC: A modern, and comprehensive probabilistic programming framework in Python;,citation_abstract=PyMC is a probabilistic programming library for Python that provides tools for constructing and fitting Bayesian models. It offers an intuitive, readable syntax that is close to the natural syntax statisticians use to describe models. PyMC leverages the symbolic computation library PyTensor, allowing it to be compiled into a variety of computational backends, such as C, JAX, and Numba, which in turn offer access to different computational architectures including CPU, GPU, and TPU. Being a general modeling framework, PyMC supports a variety of models including generalized hierarchical linear regression and classification, time series, ordinary differential equations (ODEs), and non-parametric models such as Gaussian processes (GPs). We demonstrate PyMC’s versatility and ease of use with examples spanning a range of common statistical models. Additionally, we discuss the positive role of PyMC in the development of the open-source ecosystem for probabilistic programming.;,citation_author=Oriol Abril-Pla;,citation_author=Virgile Andreani;,citation_author=Colin Carroll;,citation_author=Larry Dong;,citation_author=Christopher J. Fonnesbeck;,citation_author=Maxim Kochurov;,citation_author=Ravin Kumar;,citation_author=Junpeng Lao;,citation_author=Christian C. Luhmann;,citation_author=Osvaldo A. Martin;,citation_author=Michael Osthege;,citation_author=Ricardo Vieira;,citation_author=Thomas Wiecki;,citation_author=Robert Zinkov;,citation_publication_date=2023-09;,citation_cover_date=2023-09;,citation_year=2023;,citation_doi=10.7717/peerj-cs.1516;,citation_issn=2376-5992;,citation_volume=9;,citation_language=en-US;,citation_journal_title=PeerJ Computer Science;">
 <meta name="citation_reference" content="citation_title=Key role for CTCF in establishing chromatin structure in human embryos;,citation_author=Xuepeng Chen;,citation_author=Yuwen Ke;,citation_author=Keliang Wu;,citation_author=Han Zhao;,citation_author=Yaoyu Sun;,citation_author=Lei Gao;,citation_author=Zhenbo Liu;,citation_author=Jingye Zhang;,citation_author=Wenrong Tao;,citation_author=Zhenzhen Hou;,citation_author=Hui Liu;,citation_author=Jiang Liu;,citation_author=Zi-Jiang Chen;,citation_publication_date=2019-12;,citation_cover_date=2019-12;,citation_year=2019;,citation_issue=7786;,citation_doi=10.1038/s41586-019-1812-0;,citation_issn=0028-0836, 1476-4687;,citation_volume=576;,citation_language=en-US;,citation_journal_title=Nature;">
@@ -189,7 +189,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">September 1, 2025</p>
+              <p class="date">September 2, 2025</p>
             </div>
           </div>
           
@@ -269,7 +269,7 @@ window.Quarto = {
   <li><a href="#the-models" id="toc-the-models" class="nav-link" data-scroll-target="#the-models">The models</a>
   <ul class="collapse">
   <li><a href="#independent-bins" id="toc-independent-bins" class="nav-link" data-scroll-target="#independent-bins">Independent bins</a></li>
-  <li><a href="#random-walk-dependent-bins" id="toc-random-walk-dependent-bins" class="nav-link" data-scroll-target="#random-walk-dependent-bins">Random Walk (dependent bins)</a></li>
+  <li><a href="#random-walk-spatial-dependency" id="toc-random-walk-spatial-dependency" class="nav-link" data-scroll-target="#random-walk-spatial-dependency">Random Walk (spatial dependency)</a></li>
   <li><a href="#human-data" id="toc-human-data" class="nav-link" data-scroll-target="#human-data">Human data</a></li>
   </ul></li>
   </ul></li>
@@ -838,9 +838,9 @@ Figure&nbsp;10: Leave-One-Out Probability Integral Transform (LOO-PIT) plot for 
 </div>
 </div>
 </section>
-<section id="random-walk-dependent-bins" class="level3">
-<h3 class="anchored" data-anchor-id="random-walk-dependent-bins">Random Walk (dependent bins)</h3>
-<p>The initial random walk model fitted to macaque data showed good separation of underlying means, and good mixing. However, the LOO-CV did indicate an overdispersed model (<a href="#fig-e1-ppc-50kb" class="quarto-xref">Figure&nbsp;11</a>), as the ECDF lied grosely outside of the uniform CDF. However, as mentioned previously, the LOO-CV might not even be a good indicator of fit, but in stead we may rely on a visual inspection of how well it seems to catch a trend in the observed E1 in a posterior predictive check. From this initial model, a parameter sweep was performed, varying the underlying distributions and parameters as described. Only the highest scoring (non-diverging) models were used in the followingm, as this was used for an indication of a model architecture that has biological relevance and could be generalized into other data as well. Thus, I continued on the human sperm cells.</p>
+<section id="random-walk-spatial-dependency" class="level3">
+<h3 class="anchored" data-anchor-id="random-walk-spatial-dependency">Random Walk (spatial dependency)</h3>
+<p>The initial random walk model fitted to macaque data showed good separation of underlying means, and good mixing. However, the LOO-CV did indicate an overdispersed model (<a href="#fig-e1-ppc-50kb" class="quarto-xref">Figure&nbsp;11</a>), as the ECDF lied grosely outside of the uniform CDF. However, as mentioned previously, the LOO-CV might not even be a good indicator of fit, but in stead we may rely on a visual inspection of how well it seems to catch a trend in the observed E1 in a posterior predictive check. From this initial model, a parameter sweep was performed, varying the underlying distributions and parameters as described. Only the highest scoring (non-diverging) models were used in the following, as this was used for an indication of a model architecture that has biological relevance and could be generalized into other data as well. Thus, I continued on the human sperm cells.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/03_PyMC_GRW_logit.ipynb" data-notebook-title="Gaussian Random Walk Model for A/B Clustering" data-notebook-cellid="cell-fig-e1-ppc-50kb">
 <div id="cell-fig-e1-ppc-50kb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-28T15:13:56.774561Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-28T15:13:56.774360Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-28T15:14:00.507249Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-28T15:14:00.507025Z&quot;}}" data-execution_count="20">
 <div class="cell-output cell-output-display">
@@ -860,17 +860,106 @@ Figure&nbsp;11: LOO-PIT plot, transformed to ECDF/CDF for the observed/uniform d
 </section>
 <section id="human-data" class="level3">
 <h3 class="anchored" data-anchor-id="human-data">Human data</h3>
-<p>For the subset analysis, only a fully Gaussian model was fitted to the short chromatin arm og human X-bearing sperm in 10kb resolution. The model mixed well and showed two distinct means for underlying ‘type’ distributions.</p>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/08_hi_res_subset_confidence.ipynb" data-notebook-title="Confidence from mixing weights" data-notebook-cellid="cell-fig-posterior-cross-dens-ci-w">
-<div id="cell-fig-posterior-cross-dens-ci-w" class="cell" data-execution_count="60">
-<div class="cell-output cell-output-display">
-<div id="fig-posterior-cross-dens-ci-w" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p>For the subset analysis, only a fully Gaussian model was fitted to the short chromatin arm of chrX in human sperm in 10kb resolution. I both used the discrete and the continuous model architectures, <code>z</code> and <code>w</code>, respectively. The models both mixed well and each showed two distinct means for underlying ‘type’ distributions, supporting the idea of a generalizable underlying model architecture. This was additionally supported by the posterior preditive plot, <span class="math inline">\(\widehat{E1}\)</span>, that seems to follow the trend of the observed <span class="math inline">\(E1\)</span> (<a href="#fig-ppc-trace-w-z-compare" class="quarto-xref">Figure&nbsp;12</a>). However, the discrete model is seemingly more affected by the noisy fluctuations than the continuous model (<a href="#fig-ppc-trace-w-z-compare-1" class="quarto-xref">Figure&nbsp;12 (a)</a>), even though it does not show in the builtin <code>pymc.plot_ppc(trace)</code> (<a href="#fig-ppc-dist-w-z-compare" class="quarto-xref">Figure&nbsp;13</a>).</p>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/08_hi_res_subset_confidence.ipynb" data-notebook-title="Confidence from mixing weights" data-notebook-cellid="cell-fig-ppc-trace-w-z-compare">
+<div id="fig-ppc-trace-w-z-compare" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-posterior-cross-dens-ci-w-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Figure&nbsp;12: Posterior Probability with Raw Mixing Weight CI and Crossing Density. The CI rule used is 1/3 < \hat{w}_{post} < 2/3, as shown. The grey band indicates the regions where the CI rule is not satisfied. The crossing density bars show the number of crossings of the posterior mean at 0.5, with red indicating crossings upwards and blue indicating crossings downwards."><img src="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png" width="598" height="298" class="figure-img"></a>
+<div aria-describedby="fig-ppc-trace-w-z-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ppc-trace-w-z-compare" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-ppc-trace-w-z-compare-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="ChrX Posterior Predictive trace for human sperm for Z and W models.">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ppc-trace-w-z-compare-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-ppc-trace-w-z-compare-output-1.png" class="lightbox" data-gallery="fig-ppc-trace-w-z-compare" title="Figure&nbsp;12&nbsp;(a): Discrete model"><img src="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-ppc-trace-w-z-compare-output-1.png" data-fig-scap="ChrX Posterior Predictive trace for human sperm for Z and W models." data-ref-parent="fig-ppc-trace-w-z-compare" width="611" height="131" class="figure-img"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posterior-cross-dens-ci-w-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: Posterior Probability with Raw Mixing Weight CI and Crossing Density. The CI rule used is <span class="math inline">\(1/3 &lt; \hat{w}_{post} &lt; 2/3\)</span>, as shown. The grey band indicates the regions where the CI rule is not satisfied. The crossing density bars show the number of crossings of the posterior mean at 0.5, with red indicating crossings upwards and blue indicating crossings downwards.
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ppc-trace-w-z-compare-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Discrete model
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ppc-trace-w-z-compare" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-ppc-trace-w-z-compare-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="ChrX Posterior Predictive trace for human sperm for Z and W models.">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ppc-trace-w-z-compare-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-ppc-trace-w-z-compare-output-2.png" class="lightbox" data-gallery="fig-ppc-trace-w-z-compare" title="Figure&nbsp;12&nbsp;(b): Continuous (mixture) model"><img src="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-ppc-trace-w-z-compare-output-2.png" data-fig-scap="ChrX Posterior Predictive trace for human sperm for Z and W models." data-ref-parent="fig-ppc-trace-w-z-compare" width="611" height="131" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ppc-trace-w-z-compare-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Continuous (mixture) model
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ppc-trace-w-z-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: ChrX Posterior Predictive Check for X-bearing sperm (<span class="math inline">\(\widehat{E1}\)</span>) for both the Z and W models. The posterior mean is shown as a blue line, with the 95% credible interval shaded in blue. The observed E1 values are shown in gray.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/08_hi_res_subset_confidence.ipynb" data-notebook-title="Confidence from mixing weights" data-notebook-cellid="cell-fig-ppc-dist-w-z-compare">
+<div id="fig-ppc-dist-w-z-compare" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ppc-dist-w-z-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ppc-dist-w-z-compare" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ppc-dist-w-z-compare-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="ChrX Posterior Predictive Distribution for human sperm Z and W models">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ppc-dist-w-z-compare-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-ppc-dist-w-z-compare-output-1.png" class="lightbox" data-gallery="fig-ppc-dist-w-z-compare" title="Figure&nbsp;13&nbsp;(a): Discrete model (Z)"><img src="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-ppc-dist-w-z-compare-output-1.png" data-fig-scap="ChrX Posterior Predictive Distribution for human sperm Z and W models" data-ref-parent="fig-ppc-dist-w-z-compare" width="311" height="161" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ppc-dist-w-z-compare-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Discrete model (<code>Z</code>)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ppc-dist-w-z-compare" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ppc-dist-w-z-compare-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="ChrX Posterior Predictive Distribution for human sperm Z and W models">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ppc-dist-w-z-compare-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-ppc-dist-w-z-compare-output-2.png" class="lightbox" data-gallery="fig-ppc-dist-w-z-compare" title="Figure&nbsp;13&nbsp;(b): Continuous (mixture) model (W)"><img src="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-ppc-dist-w-z-compare-output-2.png" data-fig-scap="ChrX Posterior Predictive Distribution for human sperm Z and W models" data-ref-parent="fig-ppc-dist-w-z-compare" width="311" height="161" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ppc-dist-w-z-compare-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Continuous (mixture) model (<code>W</code>)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ppc-dist-w-z-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: ChrX Posterior Predictive Check Distribution for X-bearing sperm (<span class="math inline">\(\widehat{E1}\)</span>) for both the Z and W models. The posterior predictive distribution is shown in blue, the predictive mean in dashed orange, and the observed E1 distribution in black.
+</figcaption>
+</figure>
+</div>
+</div>
+<p>From the model, we can quantify the uncertainty in compartment assignment from the mixing weight (designated <code>w</code>; values between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>), and the trace contains the full posterior sampling. To create a credible interval (CI) around the posterior mean of <code>w</code>, I use the <span class="math inline">\(97.5th\)</span> and <span class="math inline">\(2.5th\)</span> percentiles of each bin and plot a confidence band. Then transition zones were identified by a CI rule: <span class="math inline">\(\mathrm{bin}_i\)</span> <em>is in a transition zone if</em></p>
+<p><span id="eq-ci-rule"><span class="math display">\[
+\begin{aligned}
+1/3 &amp;&lt; \textrm{CI}^{2.5\%}_i &amp;&lt; 2/3 &amp;\quad \mathbf{or} \\
+1/3 &amp;&lt; \textrm{CI}^{97.5\%}_i &amp;&lt; 2/3 &amp;\quad \mathbf{or} \\
+1/3 &amp;&gt; \textrm{CI}^{2.5\%}_i &amp;\mathbf{and} \; &amp;2/3 &lt; \textrm{CI}^{97.5\%}_i,
+\end{aligned}
+\tag{7}\]</span></span></p>
+<p>That is, if either of <span class="math inline">\(\textrm{CI}^{2.5\%}_i\)</span> and <span class="math inline">\(\textrm{CI}^{97.5\%}_i\)</span> are between <span class="math inline">\(1/3\)</span> and <span class="math inline">\(2/3\)</span>, or if they are on each side of the CI (very wide band), the bin is in a transition zone. This results in three transition zones for chrX short arm in human sperm cells, excluding the first (<a href="#fig-hum-x-posterior-cross-dens-ci-w" class="quarto-xref">Figure&nbsp;14</a>). Note that here, I used a simplified CI rule,</p>
+<p><span id="eq-ci-rule-simple"><span class="math display">\[
+1/3 &lt; \hat{w}_{post,i} &lt; 2/3
+\tag{8}\]</span></span></p>
+<p>Additionally, the transition zones are extracted, and the number of posterior draws that cross <span class="math inline">\(0.5\)</span> in each bin is counted as well. On <a href="#fig-hum-x-posterior-cross-dens-ci-w" class="quarto-xref">Figure&nbsp;14</a>, the counts are divided by the total number of draws, giving the proportion of curves that cross the threshold at for a given bin. However, the bin size equals the resolution of the data (10kb windows), meaning there is ~6,000 bins for the chrX short arm. This makes the barplot unreadable, but I decide not to add an arbitrary normalization to increase the visibility, as it would not increase interpretability. Accummulating the crosses in each interval shows that many of the curves cross the threshold more than once (i.e.&nbsp;there are more crosses than there are curves), as is expected when the mean is near the given threshold (<span class="math inline">\(w = 0.5\)</span> in this case).</p>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/08_hi_res_subset_confidence.ipynb" data-notebook-title="Confidence from mixing weights" data-notebook-cellid="cell-fig-hum-x-posterior-cross-dens-ci-w">
+<div id="cell-fig-hum-x-posterior-cross-dens-ci-w" class="cell" data-execution_count="52">
+<div class="cell-output cell-output-display">
+<div id="fig-hum-x-posterior-cross-dens-ci-w" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hum-x-posterior-cross-dens-ci-w-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-hum-x-posterior-cross-dens-ci-w-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29" title="Figure&nbsp;14: Posterior Probability with Raw Mixing Weight CI and Crossing Density. The CI rule used is 1/3 < \hat{w}_{post} < 2/3, as shown. The grey band indicates the regions where the CI rule is not satisfied. The crossing density bars show the number of crossings of the posterior mean at 0.5, with red indicating crossings upwards and blue indicating crossings downwards."><img src="index_files/figure-html/..-notebooks-08_hi_res_subset_confidence-fig-hum-x-posterior-cross-dens-ci-w-output-1.png" width="611" height="161" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hum-x-posterior-cross-dens-ci-w-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Posterior Probability with Raw Mixing Weight CI and Crossing Density. The CI rule used is <span class="math inline">\(1/3 &lt; \hat{w}_{post} &lt; 2/3\)</span>, as shown. The grey band indicates the regions where the CI rule is not satisfied. The crossing density bars show the number of crossings of the posterior mean at 0.5, with red indicating crossings upwards and blue indicating crossings downwards.
 </figcaption>
 </figure>
 </div>

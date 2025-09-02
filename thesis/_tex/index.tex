@@ -532,6 +532,23 @@
 \setlength{\textfloatsep}{6pt}
 \setlength{\floatsep}{6pt}
 
+% Reduce spacing between/around subfigures
+
+
+% Set \lineskip=0pt for every figure
+\AtBeginEnvironment{figure}{\setlength{\lineskip}{0pt}}
+% Set \lineskip=0pt for every center environment
+\AtBeginEnvironment{center}{\setlength{\lineskip}{0pt}}
+
+% Tighter spacing for subcaptions
+\usepackage{subcaption} % already loaded by Quarto, but safe
+\captionsetup[subfigure]{
+  skip=0pt,      % space between figure and subcaption
+  aboveskip=0pt,   % space above subcaption
+  belowskip=0pt,   % space below subcaption
+}
+
+
 
 
 %\captionsetup[subfigure]{margin=150pt}
@@ -623,7 +640,7 @@ eigenvectors from Hi-C data analysis in a Bayesian framework}
 in a Gaussian Random Walk and infering a latent compartment assignment
 to A or B as an excuse to master PyMC}
 \author{Søren Jørgensen}
-\date{September 1, 2025}
+\date{September 2, 2025}
 \begin{document}
 \frontmatter
 \cleardoublepage
@@ -825,7 +842,7 @@ eigenvectors fro A- or B-compartments can be drawn from two distinct
 distributions, one with a positive mode, and one with a negative,
 respectively.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 
 \centering{
 
@@ -961,7 +978,7 @@ largest cluster of sattelite repeats, approximately between 57 Mp and 69
 Mp (Figure~\ref{fig-t2t-satellites}). Additionally, the 10Mb viewframe
 was also applied in the eigendecomposition.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 
 \centering{
 
@@ -1092,7 +1109,7 @@ The model might be able to fit well to the observed data, but it is
 unlikely that it can generalize. Here it is as a Mermaid-js diagram,
 embedded from the Mermaid-representation built into PyMC.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 
 \centering{
 
@@ -1300,7 +1317,7 @@ only \(\sim 12,500,000\) valid interactions from the sperm cells.
 However, this underlines the need for modeling the noise when fitting
 the models later.
 
-\begin{figure}
+\begin{figure}[htbp]
 
 \begin{minipage}{\linewidth}
 
@@ -1378,7 +1395,7 @@ This is evidently not sufficient for high-resolution analysis directly,
 visualized by the extreme noise level in Figure~\ref{fig-e1-sperm-x-2}
 and Figure~\ref{fig-e1-sperm-x-3}.
 
-\begin{figure}
+\begin{figure}[htbp]
 
 \begin{minipage}{\linewidth}
 
@@ -1468,7 +1485,7 @@ predicted by eigendecomposition than for chr8-Y, which could indicate a
 connection between the harbored sex chromosome and higher-order
 structural architecture such as A/B-compartments.
 
-\begin{figure}
+\begin{figure}[htbp]
 
 \begin{minipage}{\linewidth}
 
@@ -1573,7 +1590,7 @@ that the model was well inside the Cummulative Distribution Function
 raises the question of the validity of the cross-validation in our case
 when the predictions are clearly not accurat e.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 
 \centering{
 
@@ -1588,7 +1605,7 @@ data.}
 
 \end{figure}%
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 
 \centering{
 
@@ -1604,7 +1621,7 @@ bins.}
 
 \end{figure}%
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 
 \centering{
 
@@ -1618,7 +1635,7 @@ likelihood estimates (\texttt{y\_lik}). The shaded area indicates the
 
 \end{figure}%
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 
 \centering{
 
@@ -1635,8 +1652,8 @@ plot.}
 
 \end{figure}%
 
-\subsection{Random Walk (dependent
-bins)}\label{random-walk-dependent-bins}
+\subsection{Random Walk (spatial
+dependency)}\label{random-walk-spatial-dependency}
 
 The initial random walk model fitted to macaque data showed good
 separation of underlying means, and good mixing. However, the LOO-CV did
@@ -1647,12 +1664,12 @@ stead we may rely on a visual inspection of how well it seems to catch a
 trend in the observed E1 in a posterior predictive check. From this
 initial model, a parameter sweep was performed, varying the underlying
 distributions and parameters as described. Only the highest scoring
-(non-diverging) models were used in the followingm, as this was used for
+(non-diverging) models were used in the following, as this was used for
 an indication of a model architecture that has biological relevance and
 could be generalized into other data as well. Thus, I continued on the
 human sperm cells.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 
 \centering{
 
@@ -1670,24 +1687,149 @@ the observed/uniform distributions respectively, for the E1 model at
 \subsection{Human data}\label{human-data}
 
 For the subset analysis, only a fully Gaussian model was fitted to the
-short chromatin arm og human X-bearing sperm in 10kb resolution. The
-model mixed well and showed two distinct means for underlying `type'
-distributions.
+short chromatin arm of chrX in human sperm in 10kb resolution. I both
+used the discrete and the continuous model architectures, \texttt{z} and
+\texttt{w}, respectively. The models both mixed well and each showed two
+distinct means for underlying `type' distributions, supporting the idea
+of a generalizable underlying model architecture. This was additionally
+supported by the posterior preditive plot, \(\widehat{E1}\), that seems
+to follow the trend of the observed \(E1\)
+(Figure~\ref{fig-ppc-trace-w-z-compare}). However, the discrete model is
+seemingly more affected by the noisy fluctuations than the continuous
+model (Figure~\ref{fig-ppc-trace-w-z-compare-1}), even though it does
+not show in the builtin \texttt{pymc.plot\_ppc(trace)}
+(Figure~\ref{fig-ppc-dist-w-z-compare}).
 
-\begin{figure}[H]
+\begin{figure}[htbp]
+
+\begin{minipage}{\linewidth}
 
 \centering{
 
-\includegraphics[width=6.22917in,height=3.10417in]{index_files/figure-latex/..-notebooks-08_hi_res_subset_confidence-fig-posterior-cross-dens-ci-w-output-1.png}
+\includegraphics[width=6.36458in,height=1.36458in]{index_files/figure-latex/..-notebooks-08_hi_res_subset_confidence-fig-ppc-trace-w-z-compare-output-1.png}
 
 }
 
-\caption{\label{fig-posterior-cross-dens-ci-w}Posterior Probability with
-Raw Mixing Weight CI and Crossing Density. The CI rule used is
-\(1/3 < \hat{w}_{post} < 2/3\), as shown. The grey band indicates the
-regions where the CI rule is not satisfied. The crossing density bars
-show the number of crossings of the posterior mean at 0.5, with red
-indicating crossings upwards and blue indicating crossings downwards.}
+\subcaption[ChrX Posterior Predictive trace for human sperm for Z and W
+models.]{\label{fig-ppc-trace-w-z-compare-1}Discrete model}
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\centering{
+
+\includegraphics[width=6.36458in,height=1.36458in]{index_files/figure-latex/..-notebooks-08_hi_res_subset_confidence-fig-ppc-trace-w-z-compare-output-2.png}
+
+}
+
+\subcaption[ChrX Posterior Predictive trace for human sperm for Z and W
+models.]{\label{fig-ppc-trace-w-z-compare-2}Continuous (mixture) model}
+
+\end{minipage}%
+
+\caption{\label{fig-ppc-trace-w-z-compare}ChrX Posterior Predictive
+Check for X-bearing sperm (\(\widehat{E1}\)) for both the Z and W
+models. The posterior mean is shown as a blue line, with the 95\%
+credible interval shaded in blue. The observed E1 values are shown in
+gray.}
+
+\end{figure}%
+
+\begin{figure}[htbp]
+
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\includegraphics[width=3.23958in,height=1.67708in]{index_files/figure-latex/..-notebooks-08_hi_res_subset_confidence-fig-ppc-dist-w-z-compare-output-1.png}
+
+}
+
+\subcaption[ChrX Posterior Predictive Distribution for human sperm Z and
+W models]{\label{fig-ppc-dist-w-z-compare-1}Discrete model (\texttt{Z})}
+
+\end{minipage}%
+%
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\includegraphics[width=3.23958in,height=1.67708in]{index_files/figure-latex/..-notebooks-08_hi_res_subset_confidence-fig-ppc-dist-w-z-compare-output-2.png}
+
+}
+
+\subcaption[ChrX Posterior Predictive Distribution for human sperm Z and
+W models]{\label{fig-ppc-dist-w-z-compare-2}Continuous (mixture) model
+(\texttt{W})}
+
+\end{minipage}%
+
+\caption{\label{fig-ppc-dist-w-z-compare}ChrX Posterior Predictive Check
+Distribution for X-bearing sperm (\(\widehat{E1}\)) for both the Z and W
+models. The posterior predictive distribution is shown in blue, the
+predictive mean in dashed orange, and the observed E1 distribution in
+black.}
+
+\end{figure}%
+
+From the model, we can quantify the uncertainty in compartment
+assignment from the mixing weight (designated \texttt{w}; values between
+\(0\) and \(1\)), and the trace contains the full posterior sampling. To
+create a credible interval (CI) around the posterior mean of \texttt{w},
+I use the \(97.5th\) and \(2.5th\) percentiles of each bin and plot a
+confidence band. Then transition zones were identified by a CI rule:
+\(\mathrm{bin}_i\) \emph{is in a transition zone if}
+
+\begin{equation}\phantomsection\label{eq-ci-rule}{
+\begin{aligned}
+1/3 &< \textrm{CI}^{2.5\%}_i &< 2/3 &\quad \mathbf{or} \\
+1/3 &< \textrm{CI}^{97.5\%}_i &< 2/3 &\quad \mathbf{or} \\
+1/3 &> \textrm{CI}^{2.5\%}_i &\mathbf{and} \; &2/3 < \textrm{CI}^{97.5\%}_i,
+\end{aligned}
+}\end{equation}
+
+That is, if either of \(\textrm{CI}^{2.5\%}_i\) and
+\(\textrm{CI}^{97.5\%}_i\) are between \(1/3\) and \(2/3\), or if they
+are on each side of the CI (very wide band), the bin is in a transition
+zone. This results in three transition zones for chrX short arm in human
+sperm cells, excluding the first
+(Figure~\ref{fig-hum-x-posterior-cross-dens-ci-w}). Note that here, I
+used a simplified CI rule,
+
+\begin{equation}\phantomsection\label{eq-ci-rule-simple}{
+1/3 < \hat{w}_{post,i} < 2/3
+}\end{equation}
+
+Additionally, the transition zones are extracted, and the number of
+posterior draws that cross \(0.5\) in each bin is counted as well. On
+Figure~\ref{fig-hum-x-posterior-cross-dens-ci-w}, the counts are divided
+by the total number of draws, giving the proportion of curves that cross
+the threshold at for a given bin. However, the bin size equals the
+resolution of the data (10kb windows), meaning there is
+\textasciitilde6,000 bins for the chrX short arm. This makes the barplot
+unreadable, but I decide not to add an arbitrary normalization to
+increase the visibility, as it would not increase interpretability.
+Accummulating the crosses in each interval shows that many of the curves
+cross the threshold more than once (i.e.~there are more crosses than
+there are curves), as is expected when the mean is near the given
+threshold (\(w = 0.5\) in this case).
+
+\begin{figure}[htbp]
+
+\centering{
+
+\includegraphics[width=6.36458in,height=1.67708in]{index_files/figure-latex/..-notebooks-08_hi_res_subset_confidence-fig-hum-x-posterior-cross-dens-ci-w-output-1.png}
+
+}
+
+\caption{\label{fig-hum-x-posterior-cross-dens-ci-w}Posterior
+Probability with Raw Mixing Weight CI and Crossing Density. The CI rule
+used is \(1/3 < \hat{w}_{post} < 2/3\), as shown. The grey band
+indicates the regions where the CI rule is not satisfied. The crossing
+density bars show the number of crossings of the posterior mean at 0.5,
+with red indicating crossings upwards and blue indicating crossings
+downwards.}
 
 \end{figure}%
 
