@@ -1,15 +1,7 @@
-<!-- ---
-title: About
-author: My Name
-date: 'April 25nd, 2024'
-format:
- html:
-  code-fold: true
---- -->
-
 ---
 title: "Probabilistic Models for Hi-C Compartment Borders"
 author: "Søren Jørgensen"
+date: last-modified
 format:
   html:
     toc: false
