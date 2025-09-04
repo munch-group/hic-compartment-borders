@@ -33,7 +33,7 @@ format:
     # # latex-clean: false
     keep-tex: true
     documentclass: scrbook
-    classoption: openany # remove this option to return to book style chapters on right side
+    classoption: openany # open chapters on any side (book default is right side)
     pdf-engine: pdflatex
     papersize: A4 # 8.3" x 11.7"
     toc: true
