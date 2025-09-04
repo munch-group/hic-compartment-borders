@@ -172,14 +172,14 @@ $${#eq-simple_iid_model}
 
 where $y_i$ is the observed E1 value at bin $i$, $z_i \in \{0, 1\}$ is the latent compartment assignment (0 = B, 1 = A). 8 chains of 1000 samples (and $8x1000$ tuning samples) result in 8000 posterior samples after the model has run. 
 
-The model could fit well with the observed data, but it is unlikely that it can generalize. Here it is as a Mermaid.js diagram, embedded from the Mermaid representation built into PyMC.
+The model could fit well with the observed data, but it is unlikely that it can generalize. @fig-simple_iid_model shows a Mermaid.js diagram, embedded from the Mermaid representation built into PyMC.
 
 {{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-simple_iid_model >}}
 
 
 ### Model 2: Spatially dependent (Random Walk)
 
-To account for autocorrelation along the positional axis, I implement a Gaussian Random Walk (GRW) in the logit space of the compartment assignment. That is, the steps between each assignment probability are restricted with a random walk from bin ` i to the next bin `i+1`. Instead of drawing the compartment probability, $p$, from a flat prior directly, some new variables are introduced. A GRW is effectively the cumulative sum of steps along the positional axis, and can be defined as centered or non-centered [ref]. The centered version is pre-implemented in PyMC as `pymc.GaussianRandomWalk` [ref], taking a `sigma` parameter for standard deviation. In the centered GRW, the step size and standard deviations are exploring parameter space together and might ot explore it as efficiently or as quickly as a non-centered model that samples the two parameters independently. On the other hand, the non-centered model might interact more with hyperparameters and data. Better results achieved from a non-centered model might indicate that the data is not informative enough for the tighter restrictions on the posterior imposed by the centered model.
+To account for autocorrelation along the positional axis, I implement a Gaussian Random Walk (GRW) in the logit space of the compartment assignment. That is, the steps between each assignment probability are restricted with a random walk from bin `i` to the next bin `i+1`. Instead of drawing the compartment probability, $p$, from a flat prior directly, some new variables are introduced. A GRW is effectively the cumulative sum of steps along the positional axis, and can be defined as centered or non-centered [ref]. The centered version is pre-implemented in PyMC as `pymc.GaussianRandomWalk` [ref], taking a `sigma` parameter for standard deviation. In the centered GRW, the step size and standard deviations are exploring parameter space together and might ot explore it as efficiently or as quickly as a non-centered model that samples the two parameters independently. On the other hand, the non-centered model might interact more with hyperparameters and data. Better results achieved from a non-centered model might indicate that the data is not informative enough for the tighter restrictions on the posterior imposed by the centered model.
 
 #### Centered GRW
 
