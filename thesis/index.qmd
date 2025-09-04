@@ -1,6 +1,6 @@
 ---
-title: Chromatin structure inference from probabilistic modeling of eigenvectors from Hi-C data analysis in a Bayesian framework
-subtitle: Modeling eigenvectors from Hi-C analysis with spatial depency in a Gaussian Random Walk and infering a latent compartment assignment to A or B as an excuse to master PyMC
+title: Inferring Chromatin Structure through Bayesian Modeling of Hi-C Eigenvectors
+subtitle: Gaussian Random Walks for Latent A/B Compartment Assignment — a Pretext to Master PyMC
 authors:
   - name: Søren Jørgensen
     affiliation: Aarhus University
@@ -15,7 +15,7 @@ keywords:
   - Bayesian MCMC
   - Chromatin Structure in spermatogenesis
 plain-language-summary: |
-  Using a Python Library (PyMC) for statistical modeling to extend the analysis of A/B chromatin compartment assignment, by using the results of the common analysis as input to a probilistic model. The underlying assumptions might not hold for all data, and therefore might not capture the variance that we want. We did extensive testing in parameter sweeps, etc. There might be a better way.
+  Using Bayesian modeling (PyMC) to extend A/B chromatin compartment analysis from Hi-C data. Instead of hard assignments, each bin gets a probability of belonging to a compartment, with uncertainty quantified, and spatial dependencies are modeled with a Gaussian random walk. Tested on macaque and human sperm, including X- and Y-bearing cells, the approach reveals sex-chromosome–linked differences, but assumptions may not hold for all datasets and further refinement is needed.
 key-points:
   - Using eigenvectors to hard-label A/B compartments puts too much confidence in the expected interaction frequencies across a genome
   - Probabilistic modeling can be used as a soft interpreter for eigenvectors
@@ -31,23 +31,7 @@ submission-date: September 15, 2025
 
 # Abstract
 
-Here, I aim to do probabilistic modeling of eigenvectors obatained from the ICE method in Hi-C analysis. The idea is to capture some of the variance lost when hard-labeleling the bins based on only the *sign* of the eigenvector. 
-
-This model infers A/B chromatin compartment structure from the first eigenvector (E1) of the Hi-C contact matrix using a Bayesian framework.
-
-**Goals**
-
-- Replace hard sign-thresholding of E1 with a probabilistic compartment assignment.
-- Quantify uncertainty in compartment calls for each genomic bin.
-- Allow for modeling of missing E1 values due to low signal.
-
-**Assumptions**
-
-- Each bin belongs to one of two latent states: A or B compartment.
-- E1 values are generated from Gaussian distributions specific to each compartment.
-- Prior belief: A has positive E1 values ($\mu = 0.5$), B has negative ($\mu = -0.5$).
-- Bins are initially treated as independent
-- Spatial depency are added later (Gaussian Random Walk)
+We present a probabilistic framework to model chromatin compartments from Hi-C data, moving beyond the conventional ICE-based eigenvector (E1) thresholding. Our approach infers A/B compartment structure using a Bayesian model, allowing each genomic bin to have a probability of belonging to a compartment rather than a hard assignment. E1 values are modeled as Gaussian distributions with compartment-specific means, and spatial dependencies are incorporated via a Gaussian random walk. Applied to macaque and human sperm, the model captures compartment patterns, quantifies uncertainty, and accommodates sparse or noisy data. Comparisons of human chrX and chromosome 8 in X- versus Y-bearing sperm reveal sex-chromosome–linked differences, suggesting potential implications for gene regulation, sperm biology, and the evolutionary dynamics of sex chromosomes. This framework provides a flexible, probabilistic approach to refine compartment boundaries and explore the functional and evolutionary consequences of 3D genome organization.
 
 # Introduction
 
@@ -102,39 +86,44 @@ Macaque data [@wang2019reprogrammingmeioticchromatin] was reused and remapped to
 
 This could potentially link to sex-chromosome inactivation of autosomes, which is a potential mechanism facilitating meiotic drive. 
 
-## Reproducibility statement
+## Reproducibility  
 
-As in @jorgensen2025chromatincompartmentsselection, reproducibility is at the core of this study. 
+All code, data processing pipelines, and the manuscript are openly available at [https://munch-group.org/hic-compartment-borders](https://munch-group.org/hic-compartment-borders). As in @jorgensen2025chromatincompartmentsselection, reproducibility is at the core of this study, and every step of the analysis can be traced, re-run, and verified through an open and automated workflow:  
 
-> NB: ADD MORE here
+- **Version control**: All code and manuscript text are tracked with *git* and hosted on GitHub, providing a complete history of changes and enabling collaborative development.  
+- **Reproducible environments**: Software dependencies are managed through *Conda*, ensuring the same package versions can be restored on any system.  
+- **Workflow management**: Computational tasks are executed and tracked with *GWF*, guaranteeing analyses are performed in the intended order and are reproducible from raw data to figures.  
+- **Notebooks and documentation**: Analyses are implemented in chronologically ordered *Jupyter Notebooks*. Figures are generated directly within notebooks and embedded into the manuscript via *Quarto*, linking narrative text with the code and data that produced it.  
+- **Publication-friendly output**: A custom *matplotlib* style template provides consistent, accessible, and publication-ready figures without manual editing.  
+- **Self-contained dissemination**: The manuscript, figures, code, and computational environment are bundled and published together with *GitHub Pages* and *Quarto*, yielding a fully reproducible study where readers can trace every result back to its source code and rerun analyses in their own environment.  
+
+This approach ensures transparency, minimizes human error, and turns the manuscript into a re-runnable “living document” rather than a static publication.  
 
 
-# Methods
+# Methods  
 
-```{{python}}
-import pymc as pm
-import pytensor.tensor as pt
+The analysis pipeline developed in @jorgensen2025chromatincompartmentsselection was adapted for the present study. Briefly, raw Hi-C reads were processed using the *Open Chromosome Collective* toolchain (*pairtools*, *cooler*, *cooltools*) to generate normalized contact matrices and eigenvectors. For the single-cell human Hi-C dataset, an additional pooling step was introduced: individual contact maps were merged after grouping cells by sex-chromosome content (*X*- or *Y*-bearing), as determined in the sequencing study.  
 
-print(pm.__version, pt.__version__)
-```
+The pipeline was further updated to support the telomere-to-telomere (T2T) assembly of *Macaca mulata*. Because this assembly is available only through NCBI and not UCSC servers, custom reference preparation and remapping steps were implemented to ensure compatibility with the pipeline.  
 
-The pipeline from [ref msc] was reused in a modified form to accomodate a new data set of single-cell Hi-C sequencing of human cells. Here, an additional pooling step was introduced to generate merged Hi-C matrices after grouping the samples into two groups established in the sequencing study; the sex chromosome was determined either *X* or *Y*. Additionally, it was modified to accomodate the new telomere-2-telomere assembly of *Macaca mulata*, as it was only available from NCBI, and not UCSC servers. 
 
-## Data generation 
+## Data generation  
 
-### The ICE-method
+### The ICE method  
 
-The pipeline previously developed implements the Iterative Correction and Eigendecomposition (ICE) method of Hi-C analysis [@lieberman-aiden2009comprehensivemappinglongrange] after mapping raw Hi-C reads to the reference genome, validating Hi-C pairs, and constructing the interaction map (Hi-C matrix). It is implemented fully using the *Open2C* tools and recommendations. Briefly, the raw read pairs are mapped (as paired-end reads) to the respective reference genome (either GRCh38 or T2T-MMU8v1.0) with *bwa-mem2* [ref] with the `-P` option. Then the pairs are parsed and sorted with *pairtools*, and a deduplication and quality filter ($mapq \geq 30$) is run to remove PCR duplicates and technical noise from low-quality reads. Lastly, the binned interaction matrices (`.cool` files, hence also *coolers*) are created from the remaining pairs into the base-resolution of 1kb bins that is then recursively coarsened until 1 Mb bins. The resulting raw interaction matrices do not have a uniform coverage profile along the genome as a result of differential binding or accesibility of the restriction enzyme and other technical factors. High or low coverage is visible in the interaction matrices, where genomic regions will appear as highly or weakly interacting regions even though they are artefacts of the coverage. Thus, it is needed to balance the interaction counts to avoid *visibility-induced biases* [ref]; it is time for ICE. 
+The pipeline developed in @jorgensen2025chromatincompartmentsselection implements the Iterative Correction and Eigenvector decomposition (ICE) method for Hi-C analysis [@lieberman-aiden2009comprehensivemappinglongrange]. Raw Hi-C reads are first mapped to the reference genome—GRCh38 for human or T2T-MMU8v1.0 for *Macaca mulatta*—as paired-end reads using *bwa-mem2* with the `-P` option. Valid Hi-C pairs are then parsed and sorted using *pairtools*, followed by deduplication and a quality filter ($\text{mapq} \geq 30$) to remove PCR duplicates and low-quality reads.  
+
+Binned interaction matrices (`.cool` files) are generated from the filtered pairs at a base resolution of 1 kb, then recursively coarsened up to 1 Mb bins. Raw interaction matrices often display non-uniform coverage along the genome due to differential restriction enzyme accessibility, sequence composition, or other technical factors. Such high- or low-coverage regions can create artefactual interaction patterns in the matrices. To correct for these *visibility-induced biases*, the ICE normalization procedure balances interaction counts across the genome [@lajoie2015hitchhikersguidehic], producing matrices suitable for downstream eigendecomposition and compartment analysis. 
 
 The interaction counts of each bin is corrected iteratively until convergence of the coverage, and the correction weight is saved to the cooler. The expected interaction matrix is derived from the decay in contact probability over genomic distance (also; distance decay), and is used to scale the observed interactions before performing eigendecomposition on the correlation matrix of observed/expected. Bins interacting with bins of the same type should keep a positive eigenvector, and vice versa otherwise. Thus, the first principal component *should* capture the variance explained by the compartment assignment. The eigenvectors are then oriented to correlate with GC content, to ensure that positive values represent A-compartments and active chromatin, and negative values represent B-compartments and inactive chromatin. 
 
-As also described in [ref], sometimes there is a larger amount of variance in interaction frequency between chromosome arms than within arms. In these cases, the eigendecomposition will not capture the compartments, but only change its sign at the centromere. Thus, it is generally a safer practice to do the eigendecomposition on the chromosome arms separately, and is readily implemented into *cooltools* by providing a viewframe to the function that does the calculations. It is not clear how further experimentation with narrowing the eigendecomposition viewframe affects the biological explanation of the results, but it is suggested as a method of obtaining more local compartmentalization [@wang2019reprogrammingmeioticchromatin] (termed local PCA). As no centromere was available from the T2T-MMU8v1.0, it was inferred from the largest cluster of sattelite repeats, approximately between 57 Mp and 69 Mp (@fig-t2t-satellites). Additionally, the 10Mb viewframe was also applied in the eigendecomposition. 
+As also described in [@lajoie2015hitchhikersguidehic], sometimes there is a larger amount of variance in interaction frequency between chromosome arms than within arms. In these cases, the eigendecomposition will not capture the compartments, but only change its sign at the centromere. Thus, it is generally a safer practice to do the eigendecomposition on the chromosome arms separately, and is readily implemented into *cooltools* by providing a viewframe to the function that does the calculations. It is not clear how further experimentation with narrowing the eigendecomposition viewframe affects the biological explanation of the results, but it is suggested as a method of obtaining more local compartmentalization [@wang2019reprogrammingmeioticchromatin] (termed local PCA). As no centromere was available from the T2T-MMU8v1.0, it was inferred from the largest cluster of sattelite repeats, approximately between 57 Mp and 69 Mp (@fig-t2t-satellites). Additionally, the 10Mb viewframe was also applied in the eigendecomposition. 
 
 {{< embed ../notebooks/01_prep_e1_values.ipynb#fig-t2t-satellites >}}
 
-First, the pipeline was applied to generate high-resolution eigenvector tracks on the most recent, telomere-to-telomere *Macaca mulata* assembly, T2T-MMU8v1.0 [ref], to improve the accuracy of the mapping from the previous study.
+First, the pipeline was applied to generate high-resolution eigenvector tracks on the most recent, telomere-to-telomere *Macaca mulata* assembly, T2T-MMU8v1.0 (GCA_049350105.1), to improve the accuracy of the mapping from the previous study.
 
-Additionally, the pipeline was applied to generate a eigenvectors of human sperm cells harboring the *X* or *Y* chromosome. Even though the authors [ref] of this Hi-C data report high similarity between sperm cells harboring the *X* or the *Y* sex chromosomes, they barely describe their comparison. Thus, I decide to seperate them into two groups to be able to compare autosomal chromatin compartments. A major downside of this is that the coverage is approximately halved, resulting in lower viable resolutions for subsequent analyses. However, eigendecomposition was performed and a comparative analysis was performed on autosome 8 between X- and Y-bearing cells. 
+Additionally, the pipeline was applied to generate a eigenvectors of human sperm cells harboring the *X* or *Y* chromosome. Even though the authors [@xu2025threedimensionalgenomestructures] of this Hi-C data report high similarity between sperm cells harboring the *X* or the *Y* sex chromosomes, they barely describe their comparison. Thus, I decide to seperate them into two groups to be able to compare autosomal chromatin compartments. A major downside of this is that the coverage is approximately halved, resulting in lower viable resolutions for subsequent analyses. However, eigendecomposition was performed and a comparative analysis was performed on autosome 8 between X- and Y-bearing cells. 
 
 The results of the eigendecomposition are hereafter described as E1 (eigenvector track of the first principal component). 
 
@@ -143,7 +132,7 @@ The results of the eigendecomposition are hereafter described as E1 (eigenvector
 
 I use PyMC [@abril-pla2023pymcmoderncomprehensive] for all modeling, relying as much as possible on functions and built-in functionality for all anaysis. I start out small in the simplest model possible, then progressing to larger and more complex models. The basis of the probabilistic modeling is the assumption that the eigenvectors of A- and B-compartments can be drawn from distinct distributions. I assume that the distributions underlying the compartments are Gaussian with different means, either $\mu_a = 0.5$ or $\mu_b = -0.5$. Additionally, I assume that a probability of being in A can be inferred from the eigenvector, and that a binary latent state can be derived from that to place compartment labels on each bin (I call that `z`). 
 
-I experimented with the possibility of marginalizing over the binary latent state to make sampling faster, as the No-U-Turn-Sampler (NUTS) [ref] can only sample from continuous variables, and the *BinaryGibbsMetropolis* sampler is significantly slower. PyMC notes some builtin automatic marginalization of discrete variables [ref], but the example used does not directly translate into my case. Therefore, a continuous mixture model of the two underlying Gaussians were tried to test sampling efficiency or differences. Here, in stead of using compartment type as a latent random variable switch ("choose A or B"), an assignment probability was used as a mixing weight for the two Gaussians. Note that the switch can be modeled in to distinct ways; one where it is a fitted random variable (probabilistic), or as a literal switch with an `if`-statement (deterministic). In reality, both methods cause the sampling distribution space to be discrete, making them unfit for the NUTS sampler, even though the deterministic switch *can* be implemented with NUTS. Though the continous mixture model is much faster ($\sim\!40x$), I suspect that the underlying biological assumptions about compartment identity is also marginalized (largely lost) when dropping the hard type assignment. With that in mind, I fitted models both with and without the latent assignment to be able to compare the two architectures. 
+I experimented with the possibility of marginalizing over the binary latent state to make sampling faster, as the No-U-Turn-Sampler (NUTS) can only sample from continuous variables, and the *BinaryGibbsMetropolis* sampler is significantly slower. PyMC notes some builtin automatic marginalization of discrete variables [ref], but the example used does not directly translate into my case. Therefore, a continuous mixture model of the two underlying Gaussians were tried to test sampling efficiency or differences. Here, in stead of using compartment type as a latent random variable switch ("choose A or B"), an assignment probability was used as a mixing weight for the two Gaussians. Note that the switch can be modeled in to distinct ways; one where it is a fitted random variable (probabilistic), or as a literal switch with an `if`-statement (deterministic). In reality, both methods cause the sampling distribution space to be discrete, making them unfit for the NUTS sampler, even though the deterministic switch *can* be implemented with NUTS. Though the continous mixture model is much faster ($\sim\!40x$), I suspect that the underlying biological assumptions about compartment identity is also marginalized (largely lost) when dropping the hard type assignment. With that in mind, I fitted models both with and without the latent assignment to be able to compare the two architectures. 
 
 When taking advantage of PyMC's vectorization capabilities, a single variable `mu` can be defined with an array of $\mu$'s for respective distributions. That is, we can define 
 
@@ -276,11 +265,9 @@ The eigendecompositon of chromosome 8 for X- or Y-bearing sperm resulted in a hi
 
 ### Independent bins
 
-The i.i.d. model showed good mixing and separation of the two type distributions in the trace plots (@fig-iid-trace-mu-sigma), but the results from the posterior predictive steps showed a unimodal distribution of posterior mean of `y_lik`, being our $E1$ estimate (@fig-iid-ppc-mean-std). Additionally, plotting the posterior mean of the E1 estimate revealed that the model had learned it was safest to predict a value close to zero but with a wide HDI (@fig-iid-trace-ylik). This means that the i.i.d. model has no predictive power. Interestingly, the results from LOO-CV indicated that the model was well inside the Cummulative Distribution Function (CDF), seen from the Empirical CDF (ECDF) in `arviz.plot_loo_pit` (@fig-iid-ppc-loo-pit). This raises the question of the validity of the cross-validation in our case when the predictions are clearly not accurat e. 
+The i.i.d. model showed good mixing and separation of the two type distributions in the trace plots (@fig-iid-trace-mu-sigma), and the distribution from the posterior predictive checks resembles the observed distribution, `y_lik` being our $E1$ estimate (@fig-iid-trace-mu-sigma, bottom row). However, plotting the posterior mean of the E1 estimate revealed that the model had learned it was safest to predict a value close to zero but with a wide HDI (@fig-iid-trace-ylik). This means that the i.i.d. model has no predictive power. Interestingly, the results from LOO-CV indicated that the model was well inside the Cummulative Distribution Function (CDF), seen from the Empirical CDF (ECDF) in `arviz.plot_loo_pit` (@fig-iid-ppc-loo-pit). This raises the question of the validity of using cross-validation to evaluate our models; though the posterior predictive distribution resembles the observed variable, the credible intervals are enormous.  
 
 {{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-iid-trace-mu-sigma >}}
-
-{{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-iid-ppc-mean-std >}}
 
 {{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-iid-trace-ylik >}}
 
@@ -288,17 +275,19 @@ The i.i.d. model showed good mixing and separation of the two type distributions
 
 ### Random Walk (spatial dependency)
 
-The initial random walk model fitted to macaque data showed good separation of underlying means, and good mixing. However, the LOO-CV did indicate an overdispersed model (@fig-e1-ppc-50kb), as the ECDF lied grosely outside of the uniform CDF. However, as mentioned previously, the LOO-CV might not even be a good indicator of fit, but in stead we may rely on a visual inspection of how well it seems to catch a trend in the observed E1 in a posterior predictive check. From this initial model, a parameter sweep was performed, varying the underlying distributions and parameters as described. Only the highest scoring (non-diverging) models were used in the following, as this was used for an indication of a model architecture that has biological relevance and could be generalized into other data as well. Thus, I continued on the human sperm cells.
+The initial random walk model fitted to macaque data showed good separation of underlying means, and good mixing. However, the LOO-CV did indicate an overdispersed model (@fig-grw-ppc-50kb-loo-pit), as the ECDF lied grosely outside of the uniform CDF. However, as mentioned previously, the LOO-CV might not even be a good indicator of fit, but in stead we may rely on a visual inspection of how well it seems to catch a trend in the observed E1 in a posterior predictive check. From this initial model, a parameter sweep was performed, varying the underlying distributions and parameters as described. Only the highest scoring (non-diverging) models were used in the following, as this was used for an indication of a model architecture that has biological relevance and could be generalized into other data as well. Thus, I continued on the human sperm cells.
 
-{{< embed ../notebooks/03_PyMC_GRW_logit.ipynb#fig-e1-ppc-50kb >}}
+{{< embed ../notebooks/03_PyMC_GRW_logit.ipynb#fig-grw-ppc-50kb-loo-pit >}}
 
-### Human data
+## Human data
 
-For the subset analysis, only a fully Gaussian model was fitted to the short chromatin arm of chrX in human sperm in 10kb resolution. I both used the discrete and the continuous model architectures, `z` and `w`, respectively. The models both mixed well and each showed two distinct means for underlying 'type' distributions, supporting the idea of a generalizable underlying model architecture. This was additionally supported by the posterior preditive plot, $\widehat{E1}$, that seems to follow the trend of the observed $E1$ (@fig-ppc-trace-w-z-compare). However, the discrete model is seemingly more affected by the noisy fluctuations than the continuous model (@fig-ppc-trace-w-z-compare-1), even though it does not show in the builtin `pymc.plot_ppc(trace)` (@fig-ppc-dist-w-z-compare). 
+### Small chromosome arm
 
-{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-ppc-trace-w-z-compare >}}
+For the subset analysis, only a fully Gaussian model was fitted to the short chromatin arm of chrX in human sperm in 10kb resolution. I both used the discrete and the continuous model architectures, `z` and `w`, respectively. The models both mixed well and each showed two distinct means for underlying 'type' distributions, supporting the idea of a generalizable underlying model architecture. This was additionally supported by the posterior preditive plot, $\widehat{E1}$, that seems to follow the trend of the observed $E1$ (@fig-hum-x-subset-ppc-trace-w-z-compare). However, the discrete model is seemingly more affected by the noisy fluctuations than the continuous model (@fig-hum-x-subset-ppc-trace-w-z-compare-1), even though it does not show in the builtin `pymc.plot_ppc(trace)` (@fig-hum-x-subset-ppc-dist-w-z-compare). 
 
-{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-ppc-dist-w-z-compare >}}
+{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-hum-x-subset-ppc-trace-w-z-compare >}}
+
+{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-hum-x-subset-ppc-dist-w-z-compare >}}
 
 From the model, we can quantify the uncertainty in compartment assignment from the mixing weight (designated `w`; values between $0$ and $1$), and the trace contains the full posterior sampling. To create a credible interval (CI) around the posterior mean of `w`, I use the $97.5th$ and $2.5th$ percentiles of each bin and plot a confidence band. Then transition zones were identified by a CI rule: $\mathrm{bin}_i$ *is in a transition zone if*
 
@@ -310,37 +299,70 @@ $$
 \end{aligned}
 $$ {#eq-ci-rule}
 
-That is, if either of $\textrm{CI}^{2.5\%}_i$ and $\textrm{CI}^{97.5\%}_i$ are between $1/3$ and $2/3$, or if they are on each side of the CI (very wide band), the bin is in a transition zone. This results in three transition zones for chrX short arm in human sperm cells, excluding the first (@fig-hum-x-posterior-cross-dens-ci-w). Note that here, I used a simplified CI rule, 
+That is, if either of $\textrm{CI}^{2.5\%}_i$ and $\textrm{CI}^{97.5\%}_i$ are between $1/3$ and $2/3$, or if they are on each side of the CI (very wide band), the bin is in a transition zone. This results in three transition zones for chrX short arm in human sperm cells, excluding the first (@fig-hum-x-subset-posterior-cross-dens-ci-w). Note that here, I used a simplified CI rule, 
 
 $$
 1/3 < \hat{w}_{post,i} < 2/3
 $$ {#eq-ci-rule-simple}
 
-Additionally, the transition zones are extracted, and the number of posterior draws that cross $0.5$ in each bin is counted as well. On @fig-hum-x-posterior-cross-dens-ci-w, the counts are divided by the total number of draws, giving the proportion of curves that cross the threshold at for a given bin. However, the bin size equals the resolution of the data (10kb windows), meaning there is ~6,000 bins for the chrX short arm. This makes the barplot unreadable, but I decide not to add an arbitrary normalization to increase the visibility, as it would not increase interpretability. Accummulating the crosses in each interval shows that many of the curves cross the threshold more than once (i.e. there are more crosses than there are curves), as is expected when the mean is near the given threshold ($w = 0.5$ in this case). 
+Additionally, the transition zones are extracted, and the number of posterior draws that cross $0.5$ in each bin is counted as well. On @fig-hum-x-subset-posterior-cross-dens-ci-w-1, the counts are divided by the total number of draws, giving the proportion of curves that cross the threshold at for a given bin. Additionally, the crosses were grouped into upwards and downwards crosses, distinguishing $A\rightarrow B$- from $B\rightarrow A$ crosses. However, the bin size equals the resolution of the data (10kb windows), meaning there is ~6,000 bins for the chrX short arm. This makes the barplot unreadable when on the same y-axis as $w$, but I decided not to add an arbitrary normalization to increase the visibility, as it would not increase interpretability. Accummulating the crosses in each interval shows that many of the curves cross the threshold more than once (i.e. there are more crosses than there are curves), as is expected when the mean is near the given threshold ($w = 0.5$ in this case). Despite the low proportion crossing at each bin (0%-3% range), @fig-hum-x-subset-posterior-cross-dens-ci-w-2, visually confirms the expectation that within a transition zone, the majority of crosses are upwards when the mean also crosses upwards ($B\rightarrow A$) and vice versa. 
+
+{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-hum-x-subset-posterior-cross-dens-ci-w >}}  
+
+### Full chromosome X
+As the subset analysis looked promising, the same architecture was used to model the full chromosome X. That is, I still assume that E1 values can be drawn from Gaussian distributions with a negative mean for B compartments and a positive mean for A compartments. Then, I assume the compartment type (A or B) for each bin is a latent state that can be inferred from the value of the E1. I assume spatial dependency and use a GRW to walk along the E1 track. 
+
+Again, both the discrete and mixture model were fitted, and even though both models seem to mix well (@fig-hum-x-full-ppc-trace-w-z-compare), the NUTS-sampler threw warnings for the discrete model and the posterior predictive $\hat{y}_{post}$ for the discrete model is, as with the subset, less smooth than the continuous model, even though the 95% CI bands are indistinguishable. However, both models seem to catch the variance of the observed E1 track in their posterior predictive (@fig-hum-x-full-ppc-dist-w-z-compare). 
+
+{{< embed ../notebooks/10_hi_res_full_confidence.ipynb#fig-hum-x-full-ppc-trace-w-z-compare >}}
+
+{{< embed ../notebooks/10_hi_res_full_confidence.ipynb#fig-hum-x-full-ppc-dist-w-z-compare >}}
+
+It *looks like* I have found a model architecture that can infer a probability of being in a given compartment, and that the model parameters are somewhat generalizable to multiple data sets and resolutions. 
+
+### Chromosome 8 on X- or Y-bearing sperm
+
+I fit the model to chr8 of X- or Y-bearing human sperm, to see if the crossing distributions change between the presence of either X or Y. By visual inspection, the results of ICE indicate some differences between assignment, especially on the long arm, where the Y-bearing sperm only show a few transitions. This could mean that either the PC1 does not capture the variance attributed to 3D organization, but some other feature that correlates in the obs/exp matrix, or it could mean that the compartmental structure of chromosome 8 is different between X- and Y-bearing sperm. The short arm looks nearly identical between the two data sets. 
+
+Only the model on X-bearing sperm (X-model) mixed well as the previous models have done. In the model for Y-bearing sperm (Y-model), the chains do not mix fully, a new mode appears in the trace plot (@fig-chr8-compare-traces-energy-nnhn, dashed curve) at $\mu=0.2$, approximately in the midpoint between the two expected means. This is accompanied by an extra mode in `grw_sigma` as well, and both modes of `grw_sigma` are below that of the X-model. As `grw_sigma` is the scaling of the step size, this means that the sampler has difficulty taking larger steps, which is possibly the reason for the 'middle' mode of `mu` ---allowing for smaller steps that still satisfy the ordering of `mu` ($\mu_B < \mu_A$). 
+
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-compare-traces-energy-nnhn >}}
+
+For further investigation, `arviz.plot_rank()` was used to evaluate the chains. This plots a histogram of the rank of each draw per chain. If the chains are mixing well, i.e., they are sampling from the same distribution, the ranks should be uniformly distributed. For `grw_sigma` in the Y-bearing sperm data (@fig-chr8-compare-rank-nnhn), the ranks are not uniform, indicating that some chains are exploring only part of the posterior or are trapped in local modes, which limits full exploration of the parameter space. This is expected for `grw_sigma` because it governs the scale of the GRW innovations, which are highly coupled to the latent weights; noisy E1 tracks can create multiple plausible step sizes, leading to multimodal posteriors and non-uniform ranks. With that critique in place, the posterior predictive (from `arviz.plot_ppc()`, @fig-chr8-compare-traces-energy-nnhn bottom) follows the observed data very closely. 
+
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-compare-rank-nnhn >}}
+
+As a last resort, I returned to the parameter sweep and selected another ‘good’ configuration. In this setup, the GRW innovations were modeled with a Student-T distribution with 10 degrees of freedom, providing a heavier-tailed alternative to the Normal distribution that allows occasional large steps. This change produced the opposite outcome: the X-bearing sperm model exhibited poor mixing and many divergences, while the Y-bearing sperm model mixed successfully (*data not shown*). 
+
+#### GRW Innovations and Mixing Behavior
+
+Modeling the GRW innovations with a Student-T distribution ($\nu=10$) introduces heavier tails compared to the Normal distribution, allowing occasional large steps. This adjustment improved mixing for the noisier Y-bearing sperm E1 track, but caused poor mixing for the X-bearing sperm track. 
+
+The effect occurs because the X-bearing data are less noisy: the heavy-tailed innovations produce extreme step proposals that create multimodality or steep posterior regions, which the NUTS sampler struggles to explore. Conversely, the Y-bearing data benefit from the heavier tails, which allow the sampler to traverse occasional large GRW steps without getting trapped.
+
+#### Mitigation for future analysis
+
+To balance robustness and sampling stability, we could try lightening the tails for the Student-T GRW innovations ($\nu > 10$). Additionally, adaptive prior scaling for `grw_sigma` could help account for differences in data noise, preventing extreme latent steps in cleaner datasets or higher resolutions. Finally, monitoring rank plots and posterior predictive checks for all datasets ensures that heavy-tailed innovations improve sampler performance without introducing spurious modes. 
+
+#### Credible intervals 
+
+As previously, the mixing weight trace was evaluated and the credible intervals were extracted as well. Here, the credible intervals for the Y-model (not properly mixing) were very wide as expected (@fig-chr8-compare-w-credible-intervals). To visualize how the extra mode affects the trace, a subset of the full posterior curve for the mixing weight `w` was plotted for each chain (@fig-chr8-compare-w-raw-curves), showing two distinct paths along the chromosome. Here, the red curve (chain 0,2,3,4 inferred from the rank plot) closely resemble the trace of the X-model. That means we could mask the chains that do not mix until we have experimented further with initializing the random variables. Although it is not the optimal scientific practice, it allows us to move on. 
+
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-compare-w-credible-intervals >}}
+
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-compare-w-raw-curves >}}
+
+The uncertainty in mixing weight was converted to positional uncertainty as above, by counting the crossings in each bin and making a histogram of the crosses in each direction. By visual inspection, the CI-based transition zones are largely unique between the two sets, supporting the hypothesis that the chromosomal architecture is highly affected by the sex chromosome it carries. Assuming this model holds up to further testing, the next interesting thing to analyze is specific genomic regions of interest that are hypothesized to affect viability or development of sperm cells. 
+
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-compare-w-transition-zones >}}
 
 
-{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-hum-x-posterior-cross-dens-ci-w >}}  
+# Conclusive Discussion  
 
+As there is no way of knowing if the model estimates are closer to reality than the compartments assigned by the classical analysis, as stated in @kalluchi2023considerationscaveatsanalyzing, one general problem with modeling of chromatin 3D-architecture is that PCA (or ICE) is used as ground truth. This means that *whatever* analysis we do *on* the eigenvectors, it will deviate from the conventional ground truth. However, while we cannot determine *if* we get closer to reality, we can still *use* it as such. Additionally, even if we get the same compartment predictions as with ICE, we have also generated a full posterior distribution of each eigenvector, meaning we can use probabilistics to determine credible intervals, and thus assign less arbitrary transition zones than would otherwise be possible. Moreover, this method could be a way to gain a more precise estimate of compartment borders, when using higher resolution matrices than is viable with the classical Hi-C analysis
 
- 
-# Discussion 
+Although not fully tried and tested, this study provides the initial steps towards a probabilistic modeling of the chromatin compartment calls, providing a baseline architecture that is still subject for parameter tuning. Additionally, we have still not adressed the limitations to the magnitude of the eigenvectors themselves, and it should be investigated in a separate study, possibly by factoring in different known correlations along the genome. 
 
-
-The discussion
-
-
-
-
-# Conclusion
-
-I am concluding this analysis
- 
-
-# Bon mot
-
-> Nothing in Biology Makes Sense except in the Light of Evolution
->
-> \- Theodosius Dobzhansky
 
 
 # References
