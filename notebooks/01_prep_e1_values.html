@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../thesis/index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-af267ccb64c81d9058feb218608c2886.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-28b8ac69c58b9e8de69d1669de04e673.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -113,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
@@ -131,7 +132,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -171,7 +172,9 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Probabilistic Models for Hi-C Compartment Borders</a> 
         <div class="sidebar-tools-main">
@@ -391,7 +394,7 @@ window.Quarto = {
 <p>The workflow was adapted to work with NCBI (the assembly is not yet on UCSC)</p>
 <p>Use MultiQC to visualize the dedup and mapping steps</p>
 <div id="cell-3" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>mkdir ..<span class="op">/</span>data<span class="op">/</span>multiqc<span class="op">/</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -400,7 +403,7 @@ window.Quarto = {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    multiqc <span class="op">-</span>i $dir <span class="op">-</span>o ..<span class="op">/</span>data<span class="op">/</span>multiqc<span class="op">/</span> <span class="op">-</span>d ..<span class="op">/</span>steps<span class="op">/</span>pairs<span class="op">/</span>$dir </span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    echo <span class="st">""</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>done</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>fibroblast</code></pre>
 </div>
@@ -559,15 +562,15 @@ spermatogonia</code></pre>
 <h3 class="anchored" data-anchor-id="rename-chromosomes-from-accessions-to-chromosomes">Rename chromosomes from accessions to chromosomes</h3>
 <p>Use the assembly information file from NCBI</p>
 <div id="cell-5" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-6" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mclrs <span class="op">=</span> glob.glob(<span class="st">"../steps/cool/*/*.merged.mcool"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>clrs <span class="op">=</span> [<span class="ss">f"</span><span class="sc">{</span>mcl<span class="sc">}</span><span class="ss">::</span><span class="sc">{</span>res<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> mcl <span class="kw">in</span> mclrs <span class="cf">for</span> res <span class="kw">in</span> cooler.fileops.list_coolers(mcl)]</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -583,7 +586,7 @@ spermatogonia</code></pre>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> clr <span class="kw">in</span> clrs:</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    tmp_clr <span class="op">=</span> cooler.Cooler(clr)</span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    cooler.rename_chroms(tmp_clr, rep_dict)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="calculate-the-gc-content" class="level3">
@@ -592,7 +595,7 @@ spermatogonia</code></pre>
 <p>I will try to use the CLI to make quick work of it.</p>
 <p>It is used as the phasing track for the eigendecomposition.</p>
 <div id="cell-8" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>REF<span class="op">=</span>..<span class="op">/</span>steps<span class="op">/</span>ref<span class="op">/</span>T2T<span class="op">-</span>MMU8v1<span class="fl">.0</span><span class="op">/</span>T2T<span class="op">-</span>MMU8v1<span class="fl">.0</span>.renamed.fa</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -600,14 +603,14 @@ spermatogonia</code></pre>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    BINS<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>bins<span class="op">/</span>t2tbins.${res}.tsv</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    GC_OUT<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>bins<span class="op">/</span>gc.${res}.tsv</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    cooltools genome gc $BINS $REF <span class="op">&gt;</span> $GC_OUT</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>done</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="infer-the-centromeres" class="level3">
 <h3 class="anchored" data-anchor-id="infer-the-centromeres">Infer the centromeres</h3>
 <p>I found a <code>T2T-MMU8v1repeatMasker.out.gz</code> file and placed it <code>../steps/ref/T2T-MMU8v1/</code>, then extracted information about longest stretches of satellite repeats.</p>
 <div id="cell-10" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>cd ..<span class="op">/</span>steps<span class="op">/</span>ref<span class="op">/</span>T2T<span class="op">-</span>MMU8v1<span class="fl">.0</span></span>
@@ -628,7 +631,7 @@ spermatogonia</code></pre>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>bedtools merge <span class="op">-</span>d <span class="dv">10000</span> <span class="op">-</span>c <span class="dv">4</span> <span class="op">-</span>o distinct <span class="op">&gt;</span> chrX_centromere.bed</span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the largest satellite repeat</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>awk <span class="st">'{ print $0, $3 - $2 }'</span> chrX_centromere.bed <span class="op">|</span> sort <span class="op">-</span>k5,<span class="dv">5</span><span class="er">nr</span> <span class="op">|</span> head <span class="op">-</span>n1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>awk <span class="st">'{ print $0, $3 - $2 }'</span> chrX_centromere.bed <span class="op">|</span> sort <span class="op">-</span>k5,<span class="dv">5</span><span class="er">nr</span> <span class="op">|</span> head <span class="op">-</span>n1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>--2025-08-29 10:47:01--  https://hgdownload.soe.ucsc.edu/hubs/GCA/049/350/105/GCA_049350105.1/GCA_049350105.1.repeatMasker.out.gz
 Resolving proxy-default (proxy-default)... 10.220.101.1
@@ -4078,17 +4081,17 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <section id="plot-the-satellites-along-the-genome" class="level3">
 <h3 class="anchored" data-anchor-id="plot-the-satellites-along-the-genome">Plot the satellites along the genome</h3>
 <div id="cell-12" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>satellites <span class="op">=</span> pd.read_csv(<span class="st">"../steps/ref/T2T-MMU8v1.0/chrX_centromere.bed"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>,names<span class="op">=</span>[<span class="st">'chrom'</span>, <span class="st">'start'</span>, <span class="st">'end'</span>, <span class="st">'type'</span>])</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>satellites <span class="op">=</span> satellites.assign(length <span class="op">=</span> satellites[<span class="st">'end'</span>] <span class="op">-</span> satellites[<span class="st">'start'</span>])</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>satellites</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>satellites</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -4101,7 +4104,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
+<th data-quarto-table-cell-role="th">0</th>
 <td>CM111679.1</td>
 <td>32690</td>
 <td>34175</td>
@@ -4109,7 +4112,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>1485</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
+<th data-quarto-table-cell-role="th">1</th>
 <td>CM111679.1</td>
 <td>61833</td>
 <td>64229</td>
@@ -4117,7 +4120,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>2396</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
+<th data-quarto-table-cell-role="th">2</th>
 <td>CM111679.1</td>
 <td>75320</td>
 <td>75573</td>
@@ -4125,7 +4128,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>253</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
+<th data-quarto-table-cell-role="th">3</th>
 <td>CM111679.1</td>
 <td>139366</td>
 <td>144319</td>
@@ -4133,7 +4136,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>4953</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
+<th data-quarto-table-cell-role="th">4</th>
 <td>CM111679.1</td>
 <td>330552</td>
 <td>330740</td>
@@ -4141,7 +4144,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>188</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
+<th data-quarto-table-cell-role="th">5</th>
 <td>CM111679.1</td>
 <td>352214</td>
 <td>352447</td>
@@ -4149,7 +4152,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>233</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
+<th data-quarto-table-cell-role="th">6</th>
 <td>CM111679.1</td>
 <td>942561</td>
 <td>944348</td>
@@ -4157,7 +4160,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>1787</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
+<th data-quarto-table-cell-role="th">7</th>
 <td>CM111679.1</td>
 <td>1649803</td>
 <td>1650073</td>
@@ -4165,7 +4168,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>270</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
+<th data-quarto-table-cell-role="th">8</th>
 <td>CM111679.1</td>
 <td>19835317</td>
 <td>19835575</td>
@@ -4173,7 +4176,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>258</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
+<th data-quarto-table-cell-role="th">9</th>
 <td>CM111679.1</td>
 <td>57984683</td>
 <td>58105884</td>
@@ -4181,7 +4184,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>121201</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
+<th data-quarto-table-cell-role="th">10</th>
 <td>CM111679.1</td>
 <td>58121345</td>
 <td>58500472</td>
@@ -4189,7 +4192,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>379127</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
+<th data-quarto-table-cell-role="th">11</th>
 <td>CM111679.1</td>
 <td>58511557</td>
 <td>58577243</td>
@@ -4197,7 +4200,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>65686</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">12</td>
+<th data-quarto-table-cell-role="th">12</th>
 <td>CM111679.1</td>
 <td>58588407</td>
 <td>69173434</td>
@@ -4205,7 +4208,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>10585027</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">13</td>
+<th data-quarto-table-cell-role="th">13</th>
 <td>CM111679.1</td>
 <td>69185731</td>
 <td>69396537</td>
@@ -4213,7 +4216,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>210806</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">14</td>
+<th data-quarto-table-cell-role="th">14</th>
 <td>CM111679.1</td>
 <td>81125660</td>
 <td>81125936</td>
@@ -4221,7 +4224,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>276</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">15</td>
+<th data-quarto-table-cell-role="th">15</th>
 <td>CM111679.1</td>
 <td>91155209</td>
 <td>91155564</td>
@@ -4229,7 +4232,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>355</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">16</td>
+<th data-quarto-table-cell-role="th">16</th>
 <td>CM111679.1</td>
 <td>101367705</td>
 <td>101370099</td>
@@ -4237,7 +4240,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>2394</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">17</td>
+<th data-quarto-table-cell-role="th">17</th>
 <td>CM111679.1</td>
 <td>101381293</td>
 <td>101672426</td>
@@ -4245,7 +4248,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>291133</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">18</td>
+<th data-quarto-table-cell-role="th">18</th>
 <td>CM111679.1</td>
 <td>101694480</td>
 <td>101866874</td>
@@ -4253,7 +4256,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>172394</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">19</td>
+<th data-quarto-table-cell-role="th">19</th>
 <td>CM111679.1</td>
 <td>131939481</td>
 <td>131939602</td>
@@ -4261,7 +4264,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>121</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">20</td>
+<th data-quarto-table-cell-role="th">20</th>
 <td>CM111679.1</td>
 <td>148325133</td>
 <td>148325227</td>
@@ -4269,7 +4272,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>94</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">21</td>
+<th data-quarto-table-cell-role="th">21</th>
 <td>CM111679.1</td>
 <td>162229277</td>
 <td>162230384</td>
@@ -4277,7 +4280,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <td>1107</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">22</td>
+<th data-quarto-table-cell-role="th">22</th>
 <td>CM111679.1</td>
 <td>162259731</td>
 <td>162261221</td>
@@ -4291,7 +4294,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 </div>
 </div>
 <div id="cell-13" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib_inline</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Rectangle</span>
@@ -4312,7 +4315,7 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks(ticks) </span>
 <span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    ax.set_xticklabels([<span class="ss">f'</span><span class="sc">{</span><span class="bu">int</span>(t<span class="op">/</span><span class="fl">1e6</span>)<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> t <span class="kw">in</span> ticks])</span>
 <span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Position (Mbp)"</span>)</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    f.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    f.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-fig-t2t-satellites" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display">
@@ -4329,9 +4332,9 @@ Figure&nbsp;3.1: Satellite repeats on chrX, inferred from <code>repeatMasker</co
 </div>
 </div>
 <div id="cell-15" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>largest <span class="op">=</span> satellites.loc[satellites[<span class="st">'length'</span>].idxmax()]</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(largest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(largest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>chrom     CM111679.1
 start       58588407
@@ -4346,7 +4349,7 @@ Name: 12, dtype: object</code></pre>
 <h3 class="anchored" data-anchor-id="make-a-viewframe-for-cooltools">Make a viewframe for cooltools</h3>
 <p>Here, we partition the chromosome into three parts. 1) small arm, 2) large arm, 3) centromere. The centromere is defined as the region of the chromosome that contains the longest stretch of satellite repeats.</p>
 <div id="cell-17" class="cell" data-execution_count="79">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bioframe <span class="im">import</span> make_viewframe</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bioframe <span class="im">import</span> make_viewframe</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>X_length <span class="op">=</span> rep.query(<span class="st">'`Sequence-Name` == "chrX"'</span>)[<span class="st">'Sequence-Length'</span>].values[<span class="dv">0</span>]</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -4355,14 +4358,14 @@ Name: 12, dtype: object</code></pre>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>               (<span class="st">'chrX'</span>, largest[<span class="st">'start'</span>], largest[<span class="st">'end'</span>], <span class="st">'centromere'</span>),</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>               (<span class="st">'chrX'</span>, largest[<span class="st">'end'</span>], X_length, <span class="st">'large_arm'</span>)])</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>view_T2T_MMU8v1_X_chromarms.to_csv(<span class="st">"../data/view_T2T_MMU8v1_X_chromarms.tsv"</span>,  index<span class="op">=</span><span class="va">False</span>, header<span class="op">=</span><span class="va">False</span>, sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>view_T2T_MMU8v1_X_chromarms.to_csv(<span class="st">"../data/view_T2T_MMU8v1_X_chromarms.tsv"</span>,  index<span class="op">=</span><span class="va">False</span>, header<span class="op">=</span><span class="va">False</span>, sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="do-the-eigendecomposition" class="level3">
 <h3 class="anchored" data-anchor-id="do-the-eigendecomposition">Do the eigendecomposition</h3>
 <p>Using that viewframe.</p>
 <div id="cell-19" class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find multires coolers</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>MCOOLS<span class="op">=</span>..<span class="op">/</span>steps<span class="op">/</span>cool<span class="op">/*/*</span>.merged.mcool</span>
@@ -4386,7 +4389,7 @@ Name: 12, dtype: object</code></pre>
 <span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    echo <span class="st">""</span></span>
 <span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>done</span>
 <span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>echo All done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>echo All done</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>fibroblast
  - 1000 OK - 5000 OK - 10000 OK - 50000 OK - 100000 OK
@@ -4407,7 +4410,7 @@ All done</code></pre>
 <section id="define-the-eigenvectors" class="level4">
 <h4 class="anchored" data-anchor-id="define-the-eigenvectors">Define the eigenvectors</h4>
 <div id="cell-22" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -4420,10 +4423,10 @@ All done</code></pre>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tissue'</span>: [eigname.split(<span class="st">'.eigs.'</span>)[<span class="dv">0</span>] <span class="cf">for</span> eigname <span class="kw">in</span> eignames],</span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'resolution'</span>: [eigname.split(<span class="st">'.eigs.'</span>)[<span class="dv">1</span>] <span class="cf">for</span> eigname <span class="kw">in</span> eignames]</span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-23" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_eig[<span class="st">'path'</span>].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_eig[<span class="st">'path'</span>].values</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>array(['../data/eigs/round_spermatid.eigs.1000.cis.vecs.tsv',
        '../data/eigs/spermatogonia.eigs.5000.cis.vecs.tsv',
@@ -4465,7 +4468,7 @@ All done</code></pre>
 </div>
 </div>
 <div id="cell-24" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove sperm_X and sperm_Y</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove sperm_X and sperm_Y</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df_eig_mmul <span class="op">=</span> df_eig[<span class="op">~</span>df_eig[<span class="st">'tissue'</span>].isin([<span class="st">'sperm_X'</span>, <span class="st">'sperm_Y'</span>])]</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>sperm_dict <span class="op">=</span> {</span>
@@ -4476,7 +4479,7 @@ All done</code></pre>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    res: pd.read_csv(df_eig_mmul.query(<span class="st">'tissue == "fibroblast" and resolution == @res'</span>)[<span class="st">'path'</span>].values[<span class="dv">0</span>], sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, header<span class="op">=</span><span class="dv">0</span>) <span class="cf">for</span> res <span class="kw">in</span> df_eig_mmul[<span class="st">'resolution'</span>].unique()</span>
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sperm_dict[<span class="st">'1000'</span>][<span class="dv">495</span>:<span class="dv">500</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sperm_dict[<span class="st">'1000'</span>][<span class="dv">495</span>:<span class="dv">500</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    chrom   start     end    weight        E1        E2        E3
 495  chrX  495000  496000  0.475304 -1.028117  0.017465  0.007392
@@ -4487,7 +4490,7 @@ All done</code></pre>
 </div>
 </div>
 <div id="cell-25" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib_inline</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>matplotlib_inline.backend_inline.set_matplotlib_formats(<span class="st">'retina'</span>)</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -4521,7 +4524,7 @@ All done</code></pre>
 <span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a><span class="co">#res = '100000'</span></span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a><span class="co">#plot_eigenvectors(sperm_dict[res], title=f'Sperm E1 at {int(int(res)/1000)}kb resolution')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a><span class="co">#plot_eigenvectors(sperm_dict[res], title=f'Sperm E1 at {int(int(res)/1000)}kb resolution')</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-e1-sperm" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
@@ -4612,9 +4615,9 @@ Figure&nbsp;3.2: E1 eigenvector for T2T-MMU8v1 sperm at different resolutions. T
 </ol>
 <p>There are <em>a lot</em> of missing values in the 1kb resolution weight and E1, possibly because cooler found that too few contacts were observed to include the bins. That results in a practically unusable E1 track.</p>
 <div id="cell-28" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"../data/eigs/fibroblast.eigs.1000.cis.vecs.tsv"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, header<span class="op">=</span><span class="dv">0</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"../data/eigs/fibroblast.eigs.1000.cis.vecs.tsv"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, header<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>chrom         0
 start         0
@@ -4627,7 +4630,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="cell-29" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check how many contacts we have on chrX</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check how many contacts we have on chrX</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -4642,7 +4645,7 @@ dtype: int64</code></pre>
 <span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="ss">    n_chrX contacts: </span><span class="sc">{</span>tmp_clr<span class="sc">.</span>pixels()<span class="sc">.</span>fetch(<span class="st">"chrX"</span>)[<span class="st">'count'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="op">\</span></span>
 <span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span>
 <span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>spermatogonia.merged.mcool:
     n_chrX contacts: 14,285,893
@@ -4668,16 +4671,16 @@ fibroblast.merged.mcool:
 <h1>EEigendecomposition of human sperm sexchromosome separated samples</h1>
 <p>Here, we prep the E1 values of the data from the human sperm sexchromosome separated samples.</p>
 <div id="cell-32" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> bioframe</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> bioframe</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>sperm_X <span class="op">=</span> <span class="st">"../../data/human_sperm_haplo_seperated/sperm_X.merged.mcool"</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>sperm_Y <span class="op">=</span> <span class="st">"../../data/human_sperm_haplo_seperated/sperm_Y.merged.mcool"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>sperm_Y <span class="op">=</span> <span class="st">"../../data/human_sperm_haplo_seperated/sperm_Y.merged.mcool"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-33" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make viewframes</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make viewframes</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>assembly <span class="op">=</span> <span class="st">"GRCh38"</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>centromeres <span class="op">=</span> bioframe.fetch_centromeres(assembly)</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>chromsizes <span class="op">=</span> bioframe.fetch_chromsizes(assembly)</span>
@@ -4688,12 +4691,12 @@ fibroblast.merged.mcool:
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>view_y.to_csv(<span class="ss">f"../data/view_</span><span class="sc">{</span>assembly<span class="sc">}</span><span class="ss">_Y_chromarms.tsv"</span>,  index<span class="op">=</span><span class="va">False</span>, header<span class="op">=</span><span class="va">False</span>, sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span>
 <span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Just for views</span></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>pd.concat([view_x, view_y])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>pd.concat([view_x, view_y])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -4705,28 +4708,28 @@ fibroblast.merged.mcool:
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">44</td>
+<th data-quarto-table-cell-role="th">44</th>
 <td>chrX</td>
 <td>0</td>
 <td>61000000</td>
 <td>chrX_p</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">45</td>
+<th data-quarto-table-cell-role="th">45</th>
 <td>chrX</td>
 <td>61000000</td>
 <td>156040895</td>
 <td>chrX_q</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">46</td>
+<th data-quarto-table-cell-role="th">46</th>
 <td>chrY</td>
 <td>0</td>
 <td>10400000</td>
 <td>chrY_p</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">47</td>
+<th data-quarto-table-cell-role="th">47</th>
 <td>chrY</td>
 <td>10400000</td>
 <td>57227415</td>
@@ -4741,7 +4744,7 @@ fibroblast.merged.mcool:
 <section id="calculate-the-gc-contetn-coverage" class="level2">
 <h2 class="anchored" data-anchor-id="calculate-the-gc-contetn-coverage">Calculate the GC contetn coverage</h2>
 <div id="cell-35" class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>REF<span class="op">=</span>..<span class="op">/</span>..<span class="op">/</span>data<span class="op">/</span>human_sperm_haplo_seperated<span class="op">/</span>references<span class="op">/</span>GRCh38.fa</span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -4749,13 +4752,13 @@ fibroblast.merged.mcool:
 <span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    BINS<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>bins<span class="op">/</span>hg38.bins.${res}.tsv</span>
 <span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    GC_OUT<span class="op">=</span>..<span class="op">/</span>data<span class="op">/</span>bins<span class="op">/</span>hg38.gc.${res}.tsv</span>
 <span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    cooltools genome gc $BINS $REF <span class="op">&gt;</span> $GC_OUT</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>done</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="do-eigendecomposition" class="level2">
 <h2 class="anchored" data-anchor-id="do-eigendecomposition">Do eigendecomposition</h2>
 <div id="cell-37" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find multires coolers</span></span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>SPERM_X<span class="op">=</span><span class="st">"../../data/human_sperm_haplo_seperated/sperm_X.merged.mcool"</span></span>
@@ -4795,7 +4798,7 @@ fibroblast.merged.mcool:
 <span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a>done</span>
 <span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a>echo <span class="st">""</span></span>
 <span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a>echo All done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a>echo All done</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>sperm_X
 1000</code></pre>
@@ -4889,10 +4892,10 @@ All done</code></pre>
 </div>
 </div>
 <div id="cell-38" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>sperm_X_dict <span class="op">=</span> {</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>    res: pd.read_csv(df_eig.query(<span class="st">'tissue == "sperm_X" and resolution == @res'</span>)[<span class="st">'path'</span>].values[<span class="dv">0</span>], sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, header<span class="op">=</span><span class="dv">0</span>) <span class="cf">for</span> res <span class="kw">in</span> df_eig[<span class="st">'resolution'</span>].unique()</span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-e1-sperm-x" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
@@ -4976,7 +4979,7 @@ Figure&nbsp;4.1: E1 eigenvector for human GRCh37 sperm at different resolutions.
 <section id="check-the-valid-interaction-counts" class="level4">
 <h4 class="anchored" data-anchor-id="check-the-valid-interaction-counts">Check the valid interaction counts</h4>
 <div id="cell-41" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cooler</span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
 <span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -4989,7 +4992,7 @@ Figure&nbsp;4.1: E1 eigenvector for human GRCh37 sperm at different resolutions.
 <span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>os<span class="sc">.</span>path<span class="sc">.</span>basename(clr.split(<span class="st">'::'</span>)[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">:</span></span>
 <span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a><span class="ss">    n_chrX contacts: </span><span class="sc">{</span>tmp_clr<span class="sc">.</span>pixels()<span class="sc">.</span>fetch(<span class="st">"chrX"</span>)[<span class="st">'count'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="op">\</span></span>
 <span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span>
-<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>sperm_X.merged.mcool:
     n_chrX contacts: 3,493,029</code></pre>
@@ -5053,13 +5056,14 @@ Figure&nbsp;4.1: E1 eigenvector for human GRCh37 sperm at different resolutions.
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

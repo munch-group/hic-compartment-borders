@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../notebooks/04_PyMC_GRW_compare.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-af267ccb64c81d9058feb218608c2886.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-28b8ac69c58b9e8de69d1669de04e673.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -113,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
@@ -131,7 +132,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -171,7 +172,9 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Probabilistic Models for Hi-C Compartment Borders</a> 
         <div class="sidebar-tools-main">
@@ -372,7 +375,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 4, 2025 <br> 10:36:06 (UTC +00:00)</p>
+      <p class="date">September 22, 2025 <br> 12:36:34 (UTC +00:00)</p>
     </div>
   </div>
   
@@ -389,7 +392,7 @@ window.Quarto = {
 <p>Here, we re-introduce the latent binwise assignment of compartments A or B from the eigenvector track.</p>
 <p>First, we will try to do a simple post-hoc simulation of the <span class="math inline">\(\hat{y}\)</span> values estimated from the previous notebook. There, no latent state was assigned each bin, but only a mixture weight, <span class="math inline">\(w\)</span>, of the two compartment distribitutions.</p>
 <div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:21.728399Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:21.728221Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:42.841484Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:42.841114Z&quot;}}" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cloudpickle <span class="im">as</span> cp</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"N_N_HN"</span></span>
@@ -397,10 +400,10 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>trace <span class="op">=</span> az.from_netcdf(<span class="ss">f"../results/traces/</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">_trace.nc"</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f"../results/models/</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">_model.pkl"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> cp.load(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> cp.load(f)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:42.843563Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:42.843056Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:42.898954Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:42.898556Z&quot;}}" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>trace</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>trace</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 
             <div>
@@ -3569,7 +3572,7 @@ dl.xr-attrs {
 </div>
 </div>
 <div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:42.941672Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:42.941446Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:42.945392Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:42.945145Z&quot;}}" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
 <p><span class="math display">\[
             \begin{array}{rcl}
@@ -3582,7 +3585,7 @@ dl.xr-attrs {
 <section id="post-hoc-decoding-of-mixture-weight" class="level2">
 <h2 class="anchored" data-anchor-id="post-hoc-decoding-of-mixture-weight">Post-hoc decoding of mixture weight</h2>
 <div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:42.946473Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:42.946261Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:44.631982Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:44.631561Z&quot;}}" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract posterior samples of w</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>w_samples <span class="op">=</span> trace.posterior[<span class="st">"w"</span>].values   <span class="co"># shape (chains, draws, pos)</span></span>
@@ -3593,17 +3596,17 @@ dl.xr-attrs {
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>z_samples <span class="op">=</span> rng.binomial(<span class="dv">1</span>, w_flat)   <span class="co"># shape (samples, pos)</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute posterior probability of z=1</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>z_probs <span class="op">=</span> z_samples.mean(axis<span class="op">=</span><span class="dv">0</span>)      <span class="co"># per-position probability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>z_probs <span class="op">=</span> z_samples.mean(axis<span class="op">=</span><span class="dv">0</span>)      <span class="co"># per-position probability</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:44.634176Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:44.634002Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:44.637157Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:44.636895Z&quot;}}" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>z_probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>z_probs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>array([0.50057143, 0.55657143, 0.64128571, ..., 0.63271429, 0.62814286,
        0.60557143], shape=(1438,))</code></pre>
 </div>
 </div>
 <div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:44.638485Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:44.638282Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:44.640731Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:44.640537Z&quot;}}" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>z_samples</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>z_samples</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>array([[1, 0, 1, ..., 1, 1, 1],
        [0, 0, 1, ..., 0, 1, 0],
@@ -3616,7 +3619,7 @@ dl.xr-attrs {
 </div>
 <p>Try some other logic:</p>
 <div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:44.641720Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:44.641535Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:44.660685Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:44.660413Z&quot;}}" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> <span class="fl">0.5</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> <span class="fl">0.5</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># w_samples: shape (n_draws, n_positions)</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># How many of the samples are above the threshold?</span></span>
@@ -3627,14 +3630,14 @@ dl.xr-attrs {
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Proportion of samples above threshold for each position</span></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>transition_prop <span class="op">=</span> n_above <span class="op">/</span> above_thresh.shape[<span class="dv">0</span>]  <span class="co"># shape: (n_positions,)</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>transition_prop</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>array([0.49942857, 0.44342857, 0.35871429, ..., 0.36728571, 0.37185714,
        0.39442857], shape=(1438,))</code></pre>
 </div>
 </div>
 <div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:44.661900Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:44.661776Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:44.664262Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:44.664040Z&quot;}}" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lower_bound <span class="op">=</span> <span class="fl">0.05</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lower_bound <span class="op">=</span> <span class="fl">0.05</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>upper_bound <span class="op">=</span> <span class="fl">0.95</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>in_transition <span class="op">=</span> (transition_prop <span class="op">&gt;</span> lower_bound) <span class="op">&amp;</span> (transition_prop <span class="op">&lt;</span> upper_bound)</span>
@@ -3642,12 +3645,12 @@ dl.xr-attrs {
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> trace.observed_data.pos.values</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Get positions where transition_prop is in the specified range</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>idx_in_transition <span class="op">=</span> pos[in_transition]</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># transition_positions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># transition_positions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="load-the-data-and-plot" class="level3">
 <h3 class="anchored" data-anchor-id="load-the-data-and-plot">Load the data and plot</h3>
 <div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:44.665514Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:44.665303Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:44.992333Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:44.992034Z&quot;}}" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib_inline</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -3683,7 +3686,7 @@ dl.xr-attrs {
 <span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -3698,7 +3701,7 @@ dl.xr-attrs {
 <h2 class="anchored" data-anchor-id="include-z-as-s-rv-in-the-model">Include z as s rv in the model</h2>
 <p>Let’s fetch the results from the stats of the previous notebook. Then, we will use some of the configs that 1) did not have any divergences or other warnings, and 2) otherwise had good results.</p>
 <div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:44.995915Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:44.995718Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:45.033630Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:45.033213Z&quot;}}" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span>  pd</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span>  pd</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>model_comparison <span class="op">=</span> pd.read_csv(<span class="st">"../results/model_comparison.csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
@@ -3706,12 +3709,12 @@ dl.xr-attrs {
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>top3 <span class="op">=</span> model_comparison[:<span class="dv">3</span>]</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>configs <span class="op">=</span> pd.concat([top3, valid])</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>configs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>configs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3728,7 +3731,7 @@ dl.xr-attrs {
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">N_T_HT_5_10</td>
+<th data-quarto-table-cell-role="th">N_T_HT_5_10</th>
 <td>0</td>
 <td>-13.942824</td>
 <td>112.407689</td>
@@ -3740,7 +3743,7 @@ dl.xr-attrs {
 <td>log</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">N_T_HT_10_10</td>
+<th data-quarto-table-cell-role="th">N_T_HT_10_10</th>
 <td>1</td>
 <td>-14.232323</td>
 <td>115.634082</td>
@@ -3752,7 +3755,7 @@ dl.xr-attrs {
 <td>log</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">N_T_HT_10_5</td>
+<th data-quarto-table-cell-role="th">N_T_HT_10_5</th>
 <td>2</td>
 <td>-15.196429</td>
 <td>113.624439</td>
@@ -3764,7 +3767,7 @@ dl.xr-attrs {
 <td>log</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">N_T_HN_10</td>
+<th data-quarto-table-cell-role="th">N_T_HN_10</th>
 <td>13</td>
 <td>-173.060588</td>
 <td>68.185244</td>
@@ -3776,7 +3779,7 @@ dl.xr-attrs {
 <td>log</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">N_N_HN</td>
+<th data-quarto-table-cell-role="th">N_N_HN</th>
 <td>16</td>
 <td>-190.088696</td>
 <td>65.218096</td>
@@ -3788,7 +3791,7 @@ dl.xr-attrs {
 <td>log</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">T_T_HN_10_10</td>
+<th data-quarto-table-cell-role="th">T_T_HN_10_10</th>
 <td>17</td>
 <td>-192.626419</td>
 <td>65.398645</td>
@@ -3800,7 +3803,7 @@ dl.xr-attrs {
 <td>log</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">T_N_HN_10</td>
+<th data-quarto-table-cell-role="th">T_N_HN_10</th>
 <td>19</td>
 <td>-208.959314</td>
 <td>61.984608</td>
@@ -3812,7 +3815,7 @@ dl.xr-attrs {
 <td>log</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">T_T_HN_5_10</td>
+<th data-quarto-table-cell-role="th">T_T_HN_5_10</th>
 <td>20</td>
 <td>-216.997040</td>
 <td>62.653391</td>
@@ -3824,7 +3827,7 @@ dl.xr-attrs {
 <td>log</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">T_N_HN_5</td>
+<th data-quarto-table-cell-role="th">T_N_HN_5</th>
 <td>23</td>
 <td>-233.133380</td>
 <td>59.696692</td>
@@ -3836,7 +3839,7 @@ dl.xr-attrs {
 <td>log</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">N_T_HN_5</td>
+<th data-quarto-table-cell-role="th">N_T_HN_5</th>
 <td>24</td>
 <td>-248.998777</td>
 <td>58.803980</td>
@@ -3848,7 +3851,7 @@ dl.xr-attrs {
 <td>log</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">T_T_HN_5_5</td>
+<th data-quarto-table-cell-role="th">T_T_HN_5_5</th>
 <td>26</td>
 <td>-291.694932</td>
 <td>54.513089</td>
@@ -3866,7 +3869,7 @@ dl.xr-attrs {
 </div>
 </div>
 <div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:45.035262Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:45.035118Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:45.328878Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:45.328573Z&quot;}}" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>az.plot_compare(configs, order_by_rank<span class="op">=</span><span class="va">False</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>az.plot_compare(configs, order_by_rank<span class="op">=</span><span class="va">False</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -3877,8 +3880,8 @@ dl.xr-attrs {
 </div>
 <p>Make a model that includes the latent state <span class="math inline">\(z\)</span> as a stochastic random variable (rv) in the model on a couple of these configs.</p>
 <div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:45.330449Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:45.330295Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:45.333201Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:45.332995Z&quot;}}" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>top_n <span class="op">=</span> configs[:<span class="dv">6</span>].copy()</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>top_n.index.to_list()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>top_n <span class="op">=</span> configs[:<span class="dv">6</span>].copy()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>top_n.index.to_list()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>['N_T_HT_5_10',
  'N_T_HT_10_10',
@@ -3889,20 +3892,20 @@ dl.xr-attrs {
 </div>
 </div>
 <div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:45.334196Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:45.334088Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:45.338958Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:45.338706Z&quot;}}" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch the configs from JSON</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"../results/model_grid.json"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    model_grid <span class="op">=</span> json.load(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    model_grid <span class="op">=</span> json.load(f)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:45.340091Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:45.339939Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:45.343404Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:45.343162Z&quot;}}" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the configs for the top 3 models</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>configs <span class="op">=</span> [config </span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">for</span> config <span class="kw">in</span> model_grid </span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">if</span> config[<span class="st">'name'</span>] <span class="kw">in</span> top_n.index]</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>configs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>configs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>[{'name': 'N_N_HN',
   'comp_dist': 'Normal',
@@ -3969,7 +3972,7 @@ dl.xr-attrs {
 <section id="model-builder" class="level3">
 <h3 class="anchored" data-anchor-id="model-builder">Model builder</h3>
 <div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:45.344458Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:45.344350Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T19:22:45.348192Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T19:22:45.347955Z&quot;}}" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc <span class="im">as</span> pm </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc <span class="im">as</span> pm </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytensor.tensor <span class="im">as</span> pt</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_z_model_from_config(df, cfg):</span>
@@ -4012,13 +4015,13 @@ dl.xr-attrs {
 <span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>        y_hat <span class="op">=</span> pm.Mixture(<span class="st">"y_hat"</span>, w<span class="op">=</span>pt.stack([z, <span class="dv">1</span><span class="op">-</span>z], axis<span class="op">=</span><span class="dv">1</span>), comp_dists<span class="op">=</span>components,</span>
 <span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>                           observed<span class="op">=</span>e1, dims<span class="op">=</span><span class="st">'pos'</span>)</span>
 <span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="model-sampler" class="level3">
 <h3 class="anchored" data-anchor-id="model-sampler">Model sampler</h3>
 <div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T19:22:45.349298Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T19:22:45.349120Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T21:20:23.493018Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T21:20:23.492745Z&quot;}}" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log(msg, path<span class="op">=</span><span class="st">".05_PyMC_bernoulli_z.log"</span>, overwrite<span class="op">=</span><span class="va">False</span>):</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"LOG: </span><span class="sc">{</span>msg<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -4055,7 +4058,7 @@ dl.xr-attrs {
 <span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>        model_traces[name][<span class="st">'trace'</span>] <span class="op">=</span> trace</span>
 <span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>        log(<span class="ss">f"--&gt; Took </span><span class="sc">{</span>(datetime.now()<span class="op">-</span>start)<span class="sc">.</span>total_seconds()<span class="sc">}</span><span class="ss"> seconds!</span><span class="ch">\n</span><span class="ss">"</span>)</span>
 <span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>        log(<span class="ss">f"Model </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> failed: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>        log(<span class="ss">f"Model </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> failed: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>LOG: Resetting log... 
 
@@ -4182,7 +4185,7 @@ Sampling 7 chains for 1_500 tune and 1_500 draw iterations (10_500 + 10_500 draw
 </div>
 </div>
 <div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T21:20:23.494224Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T21:20:23.494032Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T21:24:57.396277Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T21:24:57.395951Z&quot;}}" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, model_dict <span class="kw">in</span> model_traces.items():</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, model_dict <span class="kw">in</span> model_traces.items():</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># model_dict.keys(): {'model', 'trace', 'scores'}</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
@@ -4217,7 +4220,7 @@ Sampling 7 chains for 1_500 tune and 1_500 draw iterations (10_500 + 10_500 draw
 <span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a>            <span class="st">"waic"</span>: waic</span>
 <span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a>        }</span>
 <span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> failed during loo/waic: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> failed during loo/waic: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>N_N_HN</code></pre>
 </div>
@@ -4316,7 +4319,7 @@ See http://arxiv.org/abs/1507.04544 for details
 </div>
 </div>
 <div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T21:24:57.397578Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T21:24:57.397409Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T21:29:23.163001Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T21:29:23.162699Z&quot;}}" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>matplotlib_inline.backend_inline.set_matplotlib_formats(<span class="st">'retina'</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>matplotlib_inline.backend_inline.set_matplotlib_formats(<span class="st">'retina'</span>)</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name,d <span class="kw">in</span> model_traces.items():</span>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    trace <span class="op">=</span> d[<span class="st">'trace'</span>]</span>
@@ -4337,7 +4340,7 @@ See http://arxiv.org/abs/1507.04544 for details
 <span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>    az.plot_loo_pit(trace, y<span class="op">=</span><span class="st">"y_hat"</span>, ax<span class="op">=</span>axs[<span class="dv">2</span>], ecdf<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>    az.plot_energy(trace, ax <span class="op">=</span> axs[<span class="dv">3</span>])</span>
 <span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>    plt.suptitle(<span class="ss">f"PPC and stats for model: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/home/sojern/miniconda3/envs/pymc/lib/python3.13/site-packages/arviz/stats/stats.py:1045: RuntimeWarning: overflow encountered in exp
   weights = 1 / np.exp(len_scale - len_scale[:, None]).sum(axis=1)
@@ -4495,7 +4498,7 @@ See http://arxiv.org/abs/1507.04544 for details
 <section id="save-the-models-and-traces" class="level3">
 <h3 class="anchored" data-anchor-id="save-the-models-and-traces">Save the models and traces</h3>
 <div id="cell-29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-07-22T21:29:23.164879Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-07-22T21:29:23.164724Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-07-22T21:31:08.022823Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-07-22T21:31:08.022422Z&quot;}}" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os.path <span class="im">as</span> op</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os.path <span class="im">as</span> op</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cloudpickle</span>
 <span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -4515,7 +4518,7 @@ See http://arxiv.org/abs/1507.04544 for details
 <span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Save the trace as a netcdf file</span></span>
 <span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>    trace_path <span class="op">=</span> op.join(<span class="bu">dir</span>, <span class="st">"traces"</span>, <span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">_trace.nc"</span>)</span>
 <span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>    os.makedirs(op.dirname(trace_path), exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>    az.to_netcdf(d[<span class="st">'trace'</span>], trace_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>    az.to_netcdf(d[<span class="st">'trace'</span>], trace_path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
@@ -4574,13 +4577,14 @@ See http://arxiv.org/abs/1507.04544 for details
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

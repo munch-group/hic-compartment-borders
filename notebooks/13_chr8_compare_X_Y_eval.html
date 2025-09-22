@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../notebooks/12_chr8_compare_X_Y_model.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-af267ccb64c81d9058feb218608c2886.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-28b8ac69c58b9e8de69d1669de04e673.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -113,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
@@ -142,7 +143,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Probabilistic Models for Hi-C Compartment Borders</a> 
         <div class="sidebar-tools-main">
@@ -341,19 +344,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div id="cell-0" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib_inline</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>matplotlib_inline.backend_inline.set_matplotlib_formats(<span class="st">"png"</span>, dpi<span class="op">=</span><span class="dv">600</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'seaborn-v0_8-paper'</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'smaller.mplstyle'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'smaller.mplstyle'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="plot-the-e1s" class="level2">
 <h2 class="anchored" data-anchor-id="plot-the-e1s">Plot the E1’s</h2>
 <div id="cell-2" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the files back as the same dict to be able to start from here next time</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the files back as the same dict to be able to start from here next time</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -370,10 +373,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"../data/eigs/sperm_Y.chr8.eigs.</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">.arms.cis.vecs.tsv"</span>,</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-3" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_e1_distribution(df, e1_column<span class="op">=</span><span class="st">'E1'</span>, start_column<span class="op">=</span><span class="st">'start'</span>, bins<span class="op">=</span><span class="dv">101</span>, title<span class="op">=</span><span class="va">None</span>):</span>
@@ -456,7 +459,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>    <span class="co"># </span></span>
 <span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
 <span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-chr8-eigs" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
@@ -552,13 +555,13 @@ Figure&nbsp;15.1: Comparing the eigenvector E1 for chr8 in X- and Y-bearing sper
 </figure>
 </div>
 <div id="cell-5" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> res, <span class="bu">dict</span> <span class="kw">in</span> eig_dict.items():</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    df_e1_x <span class="op">=</span> <span class="bu">dict</span>[<span class="st">'X'</span>]</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    df_e1_y <span class="op">=</span> <span class="bu">dict</span>[<span class="st">'Y'</span>]</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    plot_e1_distribution(df_e1_x, title<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    plot_e1_distribution(df_e1_y, title<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    plot_e1_distribution(df_e1_y, title<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -607,11 +610,11 @@ Figure&nbsp;15.1: Comparing the eigenvector E1 for chr8 in X- and Y-bearing sper
 <h2 class="anchored" data-anchor-id="load-back-the-traces">Load back the traces</h2>
 <p>To be able to start from here</p>
 <div id="cell-7" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-8" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Decide resolution to load </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Decide resolution to load </span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>resolution <span class="op">=</span> <span class="dv">10_000</span>  </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>resname <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>resolution<span class="op">//</span><span class="dv">1000</span><span class="sc">}</span><span class="ss">kb"</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -628,7 +631,7 @@ Figure&nbsp;15.1: Comparing the eigenvector E1 for chr8 in X- and Y-bearing sper
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'</span><span class="sc">{</span>resname<span class="sc">}</span><span class="ss">.X.NTHN'</span>: az.from_netcdf(chr8_x_NTHN_path),</span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'</span><span class="sc">{</span>resname<span class="sc">}</span><span class="ss">.Y.NTHN'</span>: az.from_netcdf(chr8_y_NTHN_path)}</span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>traces[<span class="ss">f'</span><span class="sc">{</span>resname<span class="sc">}</span><span class="ss">.X.NNHN'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>traces[<span class="ss">f'</span><span class="sc">{</span>resname<span class="sc">}</span><span class="ss">.X.NNHN'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 
             <div>
@@ -3813,17 +3816,17 @@ dl.xr-attrs {
 </div>
 </div>
 <div id="cell-9" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>display(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>display(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    az.summary(traces[<span class="ss">f'</span><span class="sc">{</span>resname<span class="sc">}</span><span class="ss">.X.NNHN'</span>], var_names<span class="op">=</span>[<span class="st">"mu"</span>, <span class="st">"sigma"</span>, <span class="st">"grw_sigma"</span>]),</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    az.summary(traces[<span class="ss">f'</span><span class="sc">{</span>resname<span class="sc">}</span><span class="ss">.Y.NNHN'</span>], var_names<span class="op">=</span>[<span class="st">"mu"</span>, <span class="st">"sigma"</span>, <span class="st">"grw_sigma"</span>]),</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    az.summary(traces[<span class="ss">f'</span><span class="sc">{</span>resname<span class="sc">}</span><span class="ss">.X.NTHN'</span>], var_names<span class="op">=</span>[<span class="st">"mu"</span>, <span class="st">"sigma"</span>, <span class="st">"grw_sigma"</span>]),</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    az.summary(traces[<span class="ss">f'</span><span class="sc">{</span>resname<span class="sc">}</span><span class="ss">.Y.NTHN'</span>], var_names<span class="op">=</span>[<span class="st">"mu"</span>, <span class="st">"sigma"</span>, <span class="st">"grw_sigma"</span>]),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3840,7 +3843,7 @@ dl.xr-attrs {
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">mu[B]</td>
+<th data-quarto-table-cell-role="th">mu[B]</th>
 <td>-0.293</td>
 <td>0.005</td>
 <td>-0.304</td>
@@ -3852,7 +3855,7 @@ dl.xr-attrs {
 <td>1.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">mu[A]</td>
+<th data-quarto-table-cell-role="th">mu[A]</th>
 <td>0.321</td>
 <td>0.008</td>
 <td>0.306</td>
@@ -3864,7 +3867,7 @@ dl.xr-attrs {
 <td>1.0</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">sigma[B]</td>
+<th data-quarto-table-cell-role="th">sigma[B]</th>
 <td>0.327</td>
 <td>0.003</td>
 <td>0.322</td>
@@ -3876,7 +3879,7 @@ dl.xr-attrs {
 <td>1.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">sigma[A]</td>
+<th data-quarto-table-cell-role="th">sigma[A]</th>
 <td>0.325</td>
 <td>0.004</td>
 <td>0.318</td>
@@ -3888,7 +3891,7 @@ dl.xr-attrs {
 <td>1.0</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">grw_sigma</td>
+<th data-quarto-table-cell-role="th">grw_sigma</th>
 <td>0.080</td>
 <td>0.003</td>
 <td>0.075</td>
@@ -3908,7 +3911,7 @@ dl.xr-attrs {
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3925,7 +3928,7 @@ dl.xr-attrs {
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">mu[B]</td>
+<th data-quarto-table-cell-role="th">mu[B]</th>
 <td>0.006</td>
 <td>0.165</td>
 <td>-0.147</td>
@@ -3937,7 +3940,7 @@ dl.xr-attrs {
 <td>1.68</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">mu[A]</td>
+<th data-quarto-table-cell-role="th">mu[A]</th>
 <td>0.332</td>
 <td>0.118</td>
 <td>0.189</td>
@@ -3949,7 +3952,7 @@ dl.xr-attrs {
 <td>1.68</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">sigma[B]</td>
+<th data-quarto-table-cell-role="th">sigma[B]</th>
 <td>0.328</td>
 <td>0.010</td>
 <td>0.310</td>
@@ -3961,7 +3964,7 @@ dl.xr-attrs {
 <td>1.65</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">sigma[A]</td>
+<th data-quarto-table-cell-role="th">sigma[A]</th>
 <td>0.406</td>
 <td>0.108</td>
 <td>0.307</td>
@@ -3973,7 +3976,7 @@ dl.xr-attrs {
 <td>1.68</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">grw_sigma</td>
+<th data-quarto-table-cell-role="th">grw_sigma</th>
 <td>0.057</td>
 <td>0.006</td>
 <td>0.046</td>
@@ -3993,7 +3996,7 @@ dl.xr-attrs {
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -4010,7 +4013,7 @@ dl.xr-attrs {
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">mu[B]</td>
+<th data-quarto-table-cell-role="th">mu[B]</th>
 <td>-0.221</td>
 <td>0.089</td>
 <td>-0.307</td>
@@ -4022,7 +4025,7 @@ dl.xr-attrs {
 <td>1.69</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">mu[A]</td>
+<th data-quarto-table-cell-role="th">mu[A]</th>
 <td>0.122</td>
 <td>0.208</td>
 <td>-0.126</td>
@@ -4034,7 +4037,7 @@ dl.xr-attrs {
 <td>1.68</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">sigma[B]</td>
+<th data-quarto-table-cell-role="th">sigma[B]</th>
 <td>0.479</td>
 <td>0.174</td>
 <td>0.322</td>
@@ -4046,7 +4049,7 @@ dl.xr-attrs {
 <td>1.69</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">sigma[A]</td>
+<th data-quarto-table-cell-role="th">sigma[A]</th>
 <td>0.343</td>
 <td>0.013</td>
 <td>0.327</td>
@@ -4058,7 +4061,7 @@ dl.xr-attrs {
 <td>1.68</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">grw_sigma</td>
+<th data-quarto-table-cell-role="th">grw_sigma</th>
 <td>0.306</td>
 <td>0.039</td>
 <td>0.244</td>
@@ -4078,7 +4081,7 @@ dl.xr-attrs {
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -4095,7 +4098,7 @@ dl.xr-attrs {
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">mu[B]</td>
+<th data-quarto-table-cell-role="th">mu[B]</th>
 <td>-0.137</td>
 <td>0.006</td>
 <td>-0.149</td>
@@ -4107,7 +4110,7 @@ dl.xr-attrs {
 <td>1.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">mu[A]</td>
+<th data-quarto-table-cell-role="th">mu[A]</th>
 <td>0.427</td>
 <td>0.005</td>
 <td>0.417</td>
@@ -4119,7 +4122,7 @@ dl.xr-attrs {
 <td>1.0</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">sigma[B]</td>
+<th data-quarto-table-cell-role="th">sigma[B]</th>
 <td>0.338</td>
 <td>0.004</td>
 <td>0.332</td>
@@ -4131,7 +4134,7 @@ dl.xr-attrs {
 <td>1.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">sigma[A]</td>
+<th data-quarto-table-cell-role="th">sigma[A]</th>
 <td>0.317</td>
 <td>0.003</td>
 <td>0.311</td>
@@ -4143,7 +4146,7 @@ dl.xr-attrs {
 <td>1.0</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">grw_sigma</td>
+<th data-quarto-table-cell-role="th">grw_sigma</th>
 <td>0.182</td>
 <td>0.018</td>
 <td>0.148</td>
@@ -4161,13 +4164,13 @@ dl.xr-attrs {
 </div>
 </div>
 <div id="cell-10" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the w variable and stack for each model</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the w variable and stack for each model</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>w_vars <span class="op">=</span> {name: trace.posterior.w.stack(sample<span class="op">=</span>(<span class="st">'chain'</span>, <span class="st">'draw'</span>)) <span class="cf">for</span> name, trace <span class="kw">in</span> traces.items()}</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key,w <span class="kw">in</span> w_vars.items():</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Model: </span><span class="sc">{</span>key<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    display(w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    display(w)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Model: 10kb.X.NNHN</code></pre>
 </div>
@@ -5908,7 +5911,7 @@ Coordinates:
 </div>
 </div>
 <div id="cell-11" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'smaller.mplstyle'</span>)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -5955,7 +5958,7 @@ Coordinates:
 <span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i,key <span class="kw">in</span> <span class="bu">enumerate</span>(trace_keys):</span>
 <span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> axs[i]</span>
 <span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>        ax.set_title(<span class="ss">f'Energy plot for </span><span class="sc">{</span>key<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>        az.plot_energy(traces[key], bfmi<span class="op">=</span><span class="va">False</span>, backend_kwargs<span class="op">=</span>{<span class="st">'layout'</span>: layout}, ax<span class="op">=</span>ax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>        az.plot_energy(traces[key], bfmi<span class="op">=</span><span class="va">False</span>, backend_kwargs<span class="op">=</span>{<span class="st">'layout'</span>: layout}, ax<span class="op">=</span>ax)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-chr8-compare-traces-energy-nnhn" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
@@ -6108,13 +6111,13 @@ Figure&nbsp;15.5: Posterior samples of the mixing weights for the four models fi
 <h2 class="anchored" data-anchor-id="count-the-transitions">Count the transitions</h2>
 <p>Start with just one trace</p>
 <div id="cell-19" class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Just filter out the chains that did not mix in 10kb.Y.NNHN</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Just filter out the chains that did not mix in 10kb.Y.NNHN</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>good_chains <span class="op">=</span> [<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>traces[<span class="st">'10kb.Y.NNHN'</span>] <span class="op">=</span> traces[<span class="st">'10kb.Y.NNHN'</span>].sel(chain<span class="op">=</span>good_chains)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>traces[<span class="st">'10kb.Y.NNHN'</span>] <span class="op">=</span> traces[<span class="st">'10kb.Y.NNHN'</span>].sel(chain<span class="op">=</span>good_chains)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-20" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, trace <span class="kw">in</span> traces.items():</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"T"</span> <span class="kw">in</span> name:</span>
@@ -6142,7 +6145,7 @@ Figure&nbsp;15.5: Posterior samples of the mixing weights for the four models fi
 <span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
 <span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># </span></span>
 <span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -6159,12 +6162,12 @@ Figure&nbsp;15.5: Posterior samples of the mixing weights for the four models fi
 </div>
 </div>
 <div id="cell-21" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the posterior predictive check for each model</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the posterior predictive check for each model</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, trace <span class="kw">in</span> traces.items():</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"T"</span> <span class="kw">in</span> name:</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    az.plot_ppc(trace, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">2</span>), num_pp_samples<span class="op">=</span><span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    az.plot_ppc(trace, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">2</span>), num_pp_samples<span class="op">=</span><span class="dv">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -6181,7 +6184,7 @@ Figure&nbsp;15.5: Posterior samples of the mixing weights for the four models fi
 </div>
 </div>
 <div id="cell-22" class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_crossings(w_stack, threshold<span class="op">=</span><span class="fl">0.5</span>):</span>
@@ -6255,10 +6258,10 @@ Figure&nbsp;15.5: Posterior samples of the mixing weights for the four models fi
 <span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>            types.append(<span class="st">"AB"</span>)</span>
 <span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> types</span>
-<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-24" class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_trace(name, trace, threshold<span class="op">=</span><span class="fl">0.5</span>):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_trace(name, trace, threshold<span class="op">=</span><span class="fl">0.5</span>):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Process a single trace to compute summarized crossing data and save intermediate steps.</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -6378,7 +6381,7 @@ Figure&nbsp;15.5: Posterior samples of the mixing weights for the four models fi
 <span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
 <span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a>    plt.suptitle(<span class="st">"Posterior Mean with Transition Zones and Crossing Histograms"</span>)</span>
 <span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a>    <span class="co"># </span></span>
-<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-chr8-compare-w-transition-zones" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
@@ -6473,13 +6476,14 @@ Figure&nbsp;15.6: Posterior mean of the mixing weights with 95% credible interva
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
