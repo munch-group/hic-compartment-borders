@@ -1,15 +1,257 @@
 ---
-editor:
-  render-on-save: true
 title: "Bayesian Modeling of Hi-C Eigenvectors"
 subtitle: "Probabilistic Inference of Chromatin Compartment State from Gaussian Random Walks along the Genome"
-author: 
-    - "Søren Jørgensen" 
-    - "Kasper Munch (Supervisor)"
-institute: 
-    - "Stud. MSc. Bioinformatics, BiRC"
-    - "Associate Professor, BiRC"
-date: last-modified
+footer: |
+      :::: {.footer-cols}
+      ::: {} 
+      Søren Jørgensen
+      :::
+      ::: {} 
+      Bayesian Inference of Chromatin Architecture 
+      :::
+      ::: {style="font-size:clamp(3px, 1.1vw, 65%)"} 
+      [munch-group.org/<br>hic-compartment-borders](https://munch-group.org/hic-compartment-borders) 
+      :::
+      ::::
 title-slide-attributes: 
-  data-notes: "*Opening:* Welcome everyone, and thank you all for joining in to listen to what I've spent my time doing since September. Let's get started. The X chromosome stands out in our genome due to its unique inheritance and hemizygosity in males, which is a probable cause of reduced diversity. We then ask a fundamental question: Could chromatin architecture help explain observed patterns of reduced diversity on X? [45s]"
+  data-notes: "*Opening:* "
 ---
+ 
+## Introduction
+
+
+### Chromatin Architecture: Classical Inference
+
+* Hi-C Reads $\rightarrow$ Interaction matrix
+* Iterative Correction and Eigendecomposition (ICE)
+* Assign $A$ to $\mathrm{E1} > 0$ and $B$ to $\mathrm{E1} < 0$  
+
+### Our Goal: Bayesian Probabilistic inference
+
+* Model the $\mathrm{E1}$ as *observed* random variable (RV) under following assumptions:
+  * $\mu_a$ and $\mu_b$ can be drawn from $\mathcal{N}(0.5, \sigma)$ and $\mathcal{N}(-0.5, \sigma)$.
+  * We can infer latent state from the value of $mu$ by a fitting prior. 
+  * Add spatial dependency with a Random Walk
+
+
+::: {.absolute .fragment .tight style="width:735px;padding-left:130px;padding-top:10px; top: 45px; background:white;"}
+::: {.nocap}
+{{< embed ../notebooks/03_PyMC_GRW_logit.ipynb#fig-e1-dist-50kb >}}
+:::
+:::
+
+## Bayesian inference: Markov Chain Monte Carlo
+
+![](illustrations/markov-proces-1.png)
+
+![](illustrations/markov-proces-2.png)
+
+:::: {layout="[-20,30,30,-20]"}
+
+::: {#left}
+Bayes' rule:
+:::
+::: {#right}
+$$
+P(\theta \mid D) = \frac{P(D \mid \theta)\, P(\theta)}{P(D)}
+$$
+:::
+::::
+
+::: notes
+1. We begin by specifying a statistical model: a lieklihood for the data and priors for the parameters
+2. Using Bayes' rule, we combine likelihood and prior into the posterior distribution we want to explore
+3. We select a Markov Chain Monte Carlo algorithm appropriate for our model and parameter space
+4. We start the sampler from initial parameter values, which can influence early chain behavior
+5. The algorithm propoeses new parameter values and accepts or rejects them according to the posterior
+6. We monitor convergence with diagnostics like R-hat, effective sample size, and visual checks
+7. Once convergence is reached, we tretain samples after burn-in and possible thin them to reduce autocorrelation
+8. We summarise the posterior with point estimates, uncertainty intervals and visualizations
+9. Finally, we interpret the posterior to draw conclusions or support decisions made under uncertainty
+:::
+ 
+## Model architectures
+
+:::: {.columns}
+::: {.column width="50%"}
+
+### Simple (i.i.d.) model
+
+{{< embed ../notebooks/02_PyMC_independent_bins.ipynb#simpler_iid_model-nocap >}}
+
+:::
+
+::: {.column width="50%"}
+
+### More complex (GRW) model 
+
+{{< embed ../notebooks/07_hi_res_subset_analysis.ipynb#grw-z-model-nocap >}}
+
+:::
+::::
+
+## Analysis
+
+### PyMC
+
+* Probabilistic Programming Language (PPL) module for Python
+* Leverages the No-U-Turn Sampler (NUTS)
+* Fully integrates with *Arviz* and *PyTensor* methods for analyses
+
+:::: {layout="[-10,40,40,-10]" style="padding-top:100px;"}
+::: {}
+![](illustrations/arviz.png){height="200px" width="200px"}
+:::
+
+::: {}
+![](illustrations/pytensor.png){height="150px" width="350"}
+:::
+::::
+
+
+## Results (Macaque)
+
+:::: {.columns style="text-align:center;font-size:0.5em;" }
+::: {#left .column .nocap .tight style="width:50%;margin: 0;"}
+
+**Simple (i.i.d.)**
+
+{{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-iid-trace-mu-sigma >}}
+{{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-iid-ppc-loo-pit >}}
+{{< embed ../notebooks/02_PyMC_independent_bins.ipynb#fig-iid-trace-ylik >}}
+
+:::
+::: {#right .column .nocap .tight style="width:50%;height:450px; margin: 0 auto;"}
+
+**GRW model**
+
+{{< embed ../notebooks/03_PyMC_GRW_logit.ipynb#fig-grw-trace-mu-sigma >}}
+{{< embed ../notebooks/03_PyMC_GRW_logit.ipynb#fig-grw-ppc-50kb-loo-pit >}}
+{{< embed ../notebooks/03_PyMC_GRW_logit.ipynb#fig-grw-trace-ylik >}}
+:::
+::::
+
+## Results (Macaque)
+
+### Recap
+
+* [x] 100kb to reduce runtime
+* [x] Dispute about the CV results
+* [x] Seemingly promising posterior predictive
+* [ ] Use higher resolution (and longer runtime)
+
+## Results (Human data)
+
+:::: {.columns}
+
+::: {.column width="30%"}
+### ICE
+
+:::
+
+
+::: {.column .tight style="width:70%;transform:scale(0.90);transform-origin: top center;font-size:0.6em"}
+{{< embed ../notebooks/01_prep_e1_values.ipynb#fig-e1-sperm-x >}}
+:::
+
+::::
+
+## Results (10kb Human data short arm)
+
+### Cut to the trace - E1 estimate
+
+::: {.tight style="font-size:0.6em;"}
+{{< embed ../notebooks/08_hi_res_subset_confidence.ipynb#fig-hum-x-subset-ppc-trace-w-z-compare >}}
+:::
+
+## Results (10kb Human data full)
+
+### E1 estimate
+
+::: {.tight style="font-size:0.6em;"}
+{{< embed ../notebooks/10_hi_res_full_confidence.ipynb#fig-hum-x-full-ppc-trace-w-z-compare >}}
+:::
+
+## Results (10kb Human data full)
+
+### Latent space (logit through sigmoid): $w$
+
+::: {.tight style="width:90%;font-size:0.6em;margin:0 auto"}
+{{< embed ../notebooks/10_hi_res_full_confidence.ipynb#fig-hum-x-full-posterior-cross-dens-ci-w >}}
+:::
+
+## Autosomal comparison (chr8) {auto-animate=true}
+:::: {.columns .tight style="font-size:0.6em;margin:0 auto;"}
+::: {.column style="width:50%;transform:scale(0.85);transform-origin: top center;"}
+{{< embed ../notebooks/11_chr8_compare_X_Y_eigs.ipynb#fig-chr8-eigs >}}
+:::
+::: {.column style="width:50%;transform:scale(0.75);transform-origin: top center;"}
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-compare-traces-energy-nnhn >}}
+:::
+::::
+
+## Autosomal comparison (chr8) {auto-animate=true}
+
+:::: {.columns .tight style="font-size:0.6em;margin:0 auto;"}
+::: {.column style="width:45%;transform:scale(0.85);transform-origin: top center;"}
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-compare-traces-energy-nnhn >}}
+:::
+::: {.column style="width:55%;transform:scale(0.80);transform-origin: top center;"}
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-compare-rank-nnhn >}}
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-compare-w-credible-intervals >}}
+:::
+::::
+
+## Autosomal comparison (chr8) {auto-animate=true}
+
+### A bit of cherry-picking 
+
+:::: {.columns .tight .center style="font-size:0.6em;margin:0 auto;"}
+::: {.column style="width:45%;transform:scale(0.95);transform-origin: top center;padding-top:8px;"}
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-compare-w-raw-curves >}}
+:::
+::: {data-id="trans-zones" .column style="width:55%;transform:scale(0.95);transform-origin: top center;"}
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-compare-w-transition-zones >}}
+:::
+::::
+
+## Autosomal comparison (chr8) {auto-animate=true}
+
+### A bit of cherry-picking 
+
+:::: {.columns .tight .center style="font-size:0.6em;margin:0 auto;"}
+::: {data-id="trans-zones" .column style="width:50%;transform:scale(0.95);transform-origin: top center;"}
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-compare-w-transition-zones >}}
+:::
+::: {.column style="width:50%;transform:scale(0.95);transform-origin: top center;padding-top:3px;"}
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-x-y-compare-ppc >}}
+:::
+::::
+
+## Limitations
+
+### Resolution/Sparsity
+
+::: {.tight style="width:90%;transform:scale(0.95);transform-origin: top center;margin:0 auto;font-size:1.2rem;"}
+{{< embed ../notebooks/13_chr8_compare_X_Y_eval.ipynb#fig-chr8-eigs-distribution >}}
+:::
+
+## Limitations
+
+* We do not know where the flaw is; too sparse data for PCA or the modeling?
+  * Definitely not a good thing not all chains mix
+  * Refit the model on data we know has enough interactions
+* We need to be able to compare to ground truth
+* We need to adress the assumption about compartment strength 
+  * @chen2019keyrolectcf: $\log(\text{AA} \times \text{BB}/\text{AB}^2)$
+
+- [ ] Explain *CScoreTool*
+- [ ] PyMC Centered/Non-centered parameterizations
+- [ ] LOO-CV for model comparison (issues with Random Walks, same bias introduced)
+- [ ] Explain *Adaptive prior scaling* 
+
+## Future // What would I have done
+
+* Adaptive prior scaling 
+* 
+

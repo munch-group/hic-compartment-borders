@@ -1,7 +1,32 @@
 
 format:
   clean-revealjs:
-    smaller: true
+    author: 
+      - "Søren Jørgensen" 
+      - "Kasper Munch (Supervisor)"
+    institute: 
+      - "Stud. MSc. Bioinformatics, BiRC"
+      - "Associate Professor, BiRC"
+    date: 2025-09-29
+    date-format: long
+    css: layout/custom.css
+    smaller: false
+    toc: false
+    toc-title: "Overview"
+    toc-depth: 2
+    width: 1080
+    height: 720
+    margin: 0.05
+    logo: layout/aulogo_uk_var2_blue.png
+    include-after-body: layout/clean_title_page.html
+    history: false
+    auto-animate-unmatched: false
+    auto-animate-duration: 0.3
+    incremental: false
+    slide-number: true
+    lightbox: true
+    editor:
+      render-on-save: true
 
 execute:
   freeze: auto
@@ -12,3 +37,4 @@ project:
   render:
     - index.qmd
 
+bibliography: ../references.bib
