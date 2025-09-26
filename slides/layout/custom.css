@@ -1,0 +1,106 @@
+/* Ensure embedded figures never overflow the slide */
+.quarto-embed-nb-cell img {
+  max-width: 100%;
+  max-height: 80vh;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reveal .quarto-layout-panel {
+  max-height: 80vh;
+}
+
+
+
+/* === Caption control === */
+.nocap figcaption {
+  display: none !important;
+}
+
+/* === Tight stacking of figures/embeds === */
+.tight .cell-output,
+.tight .cell-output-display,
+.quarto-embed-nb-cell,
+.tight .quarto-float,
+.tight .quarto-figure,
+.tight .quarto-figure-center,
+.tight .quarto-float-fig,
+.tight figure,
+.tight figure > div {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Reduce spacing above and below embedded figures */
+.tight img {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+/* Reduce spacing above paragraphs in revealjs slides (clean.scss defines 1.25em) */
+.reveal p {
+  margin-top: 0.25em !important;
+}
+
+.reveal .tight p {
+  margin: 0.10em !important;
+}
+
+.reveal .slide-number {
+  position: fixed !important;
+  top: 8px !important;
+  right: 35px !important;
+}
+
+/* Adapt the footer footer default class */
+/* Truncate the width to where slide-logo class starts */
+.footer {
+  bottom: 10px !important;
+  left: 0;
+  right: 0;
+  padding-left: 5rem;
+  padding-right: 10rem; /* leave room for slide-logo */
+  text-align: center;
+  font-size: clamp(5px, 1.35vw, 100%) !important;       /* scales with viewport width, no min */
+  line-height: 1;
+  white-space: normal;    /* allow wrapping */
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+}
+
+/* Footer columns */
+.footer-cols {
+  display: flex;
+  justify-content: space-between;
+  font-style: italic;
+  align-items: center;   /* vertical alignment to bottom */
+}
+
+/* Each column takes equal space and centers its content */
+.footer-cols div {
+  flex: 1;
+  text-align: center;
+}
+
+.footer-cols,
+.footer-cols div,
+.footer-cols div p,
+.footer-cols div a {
+  padding: 0;
+  margin: 0;
+  line-height: 1.1 !important;
+;
+}
+
+@media screen and (max-width: 800px) {
+  .footer {
+      padding-right: 1.5rem;
+  }
+}
+
+

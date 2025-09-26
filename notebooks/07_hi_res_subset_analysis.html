@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-28b8ac69c58b9e8de69d1669de04e673.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-84820c485c43afc6c4cd6946bf8827e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -349,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 22, 2025 <br> 12:36:34 (UTC +00:00)</p>
+      <p class="date">September 26, 2025 <br> 13:26:11 (UTC +00:00)</p>
     </div>
   </div>
   
@@ -432,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T09:17:28.964245Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T09:17:28.963966Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T09:17:29.001630Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T09:17:29.001162Z&quot;}}" data-execution_count="2">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T09:17:28.964245Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T09:17:28.963966Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T09:17:29.001630Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T09:17:29.001162Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the zoomed region for further analysis</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df_zoom <span class="op">=</span> df.query(<span class="ss">f"start &gt;= </span><span class="sc">{</span>zoom[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> and start &lt;= </span><span class="sc">{</span>zoom[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -440,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Full small arm</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df_zoom <span class="op">=</span> df.query(<span class="ss">f"</span><span class="sc">{</span>small_arm[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> &lt;= start &lt;= </span><span class="sc">{</span>small_arm[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>df_zoom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -515,7 +515,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T09:17:29.003052Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T09:17:29.002828Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T09:17:34.055761Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T09:17:34.055231Z&quot;}}" data-execution_count="3">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T09:17:29.003052Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T09:17:29.002828Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T09:17:34.055761Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T09:17:34.055231Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of distribution of E1 values (A and B)</span></span>
@@ -581,7 +581,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="model-factory-function" class="level3">
 <h3 class="anchored" data-anchor-id="model-factory-function">Model factory function</h3>
 <p>Define the model builder, and import the configuration from file.</p>
-<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T09:17:34.057672Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T09:17:34.057411Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T09:17:44.165070Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T09:17:44.164454Z&quot;}}" data-execution_count="4">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T09:17:34.057672Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T09:17:34.057411Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T09:17:44.165070Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T09:17:44.164454Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc <span class="im">as</span> pm </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytensor.tensor <span class="im">as</span> pt</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -678,7 +678,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T09:17:44.167429Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T09:17:44.167101Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T09:17:44.172381Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T09:17:44.171918Z&quot;}}" data-execution_count="5">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T09:17:44.167429Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T09:17:44.167101Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T09:17:44.172381Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T09:17:44.171918Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"../results/model_grid.json"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
@@ -691,7 +691,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> configs[name]</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>config[<span class="st">'grw_sigma_kwargs'</span>] <span class="op">=</span> {<span class="st">'sigma'</span>: <span class="fl">0.005</span>}</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>config</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>{'name': 'N_N_HN',
  'comp_dist': 'Normal',
  'comp_kwargs': {},
@@ -704,7 +704,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  'sigma': 0.3}</code></pre>
 </div>
 </div>
-<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T09:17:44.173969Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T09:17:44.173595Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T09:18:04.752518Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T09:18:04.752013Z&quot;}}" data-execution_count="6">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T09:17:44.173969Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T09:17:44.173595Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T09:18:04.752518Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T09:18:04.752013Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc <span class="im">as</span> pm</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mermaid <span class="im">import</span> Mermaid, Graph</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span>
@@ -724,8 +724,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mermaid_z.script)</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the models</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>display(Image(render_z.img_response.content, width<span class="op">=</span><span class="dv">1000</span>, height<span class="op">=</span><span class="dv">600</span>, retina<span class="op">=</span><span class="va">True</span>))</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>display(Image(render_w.img_response.content, width<span class="op">=</span><span class="dv">1000</span>, height<span class="op">=</span><span class="dv">600</span>, retina<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># display(Image(render_z.img_response.content, width=1000, height=600, retina=True))</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># display(Image(render_w.img_response.content, width=1000, height=600, retina=True))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>graph TD
 %% Nodes:
@@ -762,29 +762,24 @@ subgraph "label (2)"
     sigma
 end
 subgraph "pos (5376)"
-    w
-    logit_w
     y_hat
-    eps
+    logit_w
     z
+    eps
+    w
 end</code></pre>
 </div>
-<div class="cell-output cell-output-display">
+</div>
+<div id="cell-grw-z-model-nocap" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-7-output-2.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="07_hi_res_subset_analysis_files/figure-html/cell-7-output-2.jpeg" width="500" height="300" class="figure-img"></a></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-7-output-3.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="07_hi_res_subset_analysis_files/figure-html/cell-7-output-3.jpeg" width="500" height="300" class="figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/grw-z-model-nocap-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="07_hi_res_subset_analysis_files/figure-html/grw-z-model-nocap-output-1.png" id="grw-z-model-nocap" width="500" height="500" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T09:18:04.754218Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T09:18:04.754072Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T11:18:01.689189Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T11:18:01.688544Z&quot;}}" data-execution_count="7">
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T09:18:04.754218Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T09:18:04.754072Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T11:18:01.689189Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T11:18:01.688544Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model_z:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    idata_z <span class="op">=</span> pm.sample(draws<span class="op">=</span><span class="dv">1000</span>, tune<span class="op">=</span><span class="dv">1000</span>, chains<span class="op">=</span><span class="dv">7</span>, cores<span class="op">=</span><span class="dv">7</span>, progressbar<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    pm.compute_log_likelihood(idata_z, progressbar<span class="op">=</span><span class="va">False</span>)</span>
@@ -819,7 +814,7 @@ Sampling: [eps, grw_sigma, mu, sigma, y_hat]
 Sampling: [y_hat]</code></pre>
 </div>
 </div>
-<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T11:18:01.691769Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T11:18:01.691591Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T11:19:28.925203Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T11:19:28.924746Z&quot;}}" data-execution_count="8">
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T11:18:01.691769Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T11:18:01.691591Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T11:19:28.925203Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T11:19:28.924746Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name,idata <span class="kw">in</span> {<span class="st">'Model_z'</span>: idata_z, <span class="st">'Model_w'</span>: idata_w}.items():</span>
@@ -842,35 +837,35 @@ Sampling: [y_hat]</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-9-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="07_hi_res_subset_analysis_files/figure-html/cell-9-output-1.png" width="986" height="495" class="figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-10-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="07_hi_res_subset_analysis_files/figure-html/cell-10-output-1.png" width="986" height="495" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-9-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="07_hi_res_subset_analysis_files/figure-html/cell-9-output-2.png" width="987" height="886" class="figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-10-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="07_hi_res_subset_analysis_files/figure-html/cell-10-output-2.png" width="987" height="886" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-9-output-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="07_hi_res_subset_analysis_files/figure-html/cell-9-output-3.png" width="986" height="495" class="figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-10-output-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="07_hi_res_subset_analysis_files/figure-html/cell-10-output-3.png" width="986" height="495" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-9-output-4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="07_hi_res_subset_analysis_files/figure-html/cell-9-output-4.png" width="990" height="886" class="figure-img"></a></p>
+<p><a href="07_hi_res_subset_analysis_files/figure-html/cell-10-output-4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="07_hi_res_subset_analysis_files/figure-html/cell-10-output-4.png" width="990" height="886" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <p><del>So, it looks like the data may not come from two distrinct distributions for E1 values in this sample. I am confused. I guess we go back to the drawing board.</del></p>
 <p>For some reason, the distributions of E1 values in the <code>sperm_x</code> dataset do not look like two distinct distributions, in opposite to the macaque data, although both are from sperm cells. I do not think it has anything to do with the sex chromosome being only X.</p>
-<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T11:19:28.928079Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T11:19:28.927924Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T11:21:37.413652Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T11:21:37.413211Z&quot;}}" data-execution_count="9">
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-14T11:19:28.928079Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-14T11:19:28.927924Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-14T11:21:37.413652Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-14T11:21:37.413211Z&quot;}}" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Saving the trace for later use</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os.path <span class="im">as</span> op</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>

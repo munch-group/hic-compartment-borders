@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-09-22">
+<meta name="dcterms.date" content="2025-09-26">
 <meta name="keywords" content="Gaussian Random Walk, Bayesian MCMC, Chromatin Structure in Spermatogenesis">
 
 <title>Inferring Chromatin Structure through Bayesian Modeling of Hi-C Eigenvectors</title>
@@ -91,7 +91,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-87a30bb52edbaa1f531be99b429da128.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0a61af393cc41664e89a7addda21b354.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -132,10 +132,10 @@ window.Quarto = {
 <meta name="citation_title" content="Inferring Chromatin Structure through Bayesian Modeling of Hi-C Eigenvectors">
 <meta name="citation_keywords" content="Gaussian Random Walk,Bayesian MCMC,Chromatin Structure in Spermatogenesis">
 <meta name="citation_author" content="Søren Jørgensen">
-<meta name="citation_publication_date" content="2025-09-22">
-<meta name="citation_cover_date" content="2025-09-22">
+<meta name="citation_publication_date" content="2025-09-26">
+<meta name="citation_cover_date" content="2025-09-26">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-09-22">
+<meta name="citation_online_date" content="2025-09-26">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=PyMC: A modern, and comprehensive probabilistic programming framework in Python;,citation_abstract=PyMC is a probabilistic programming library for Python that provides tools for constructing and fitting Bayesian models. It offers an intuitive, readable syntax that is close to the natural syntax statisticians use to describe models. PyMC leverages the symbolic computation library PyTensor, allowing it to be compiled into a variety of computational backends, such as C, JAX, and Numba, which in turn offer access to different computational architectures including CPU, GPU, and TPU. Being a general modeling framework, PyMC supports a variety of models including generalized hierarchical linear regression and classification, time series, ordinary differential equations (ODEs), and non-parametric models such as Gaussian processes (GPs). We demonstrate PyMC’s versatility and ease of use with examples spanning a range of common statistical models. Additionally, we discuss the positive role of PyMC in the development of the open-source ecosystem for probabilistic programming.;,citation_author=Oriol Abril-Pla;,citation_author=Virgile Andreani;,citation_author=Colin Carroll;,citation_author=Larry Dong;,citation_author=Christopher J. Fonnesbeck;,citation_author=Maxim Kochurov;,citation_author=Ravin Kumar;,citation_author=Junpeng Lao;,citation_author=Christian C. Luhmann;,citation_author=Osvaldo A. Martin;,citation_author=Michael Osthege;,citation_author=Ricardo Vieira;,citation_author=Thomas Wiecki;,citation_author=Robert Zinkov;,citation_publication_date=2023-09;,citation_cover_date=2023-09;,citation_year=2023;,citation_doi=10.7717/peerj-cs.1516;,citation_issn=2376-5992;,citation_volume=9;,citation_language=en-US;,citation_journal_title=PeerJ Computer Science;">
 <meta name="citation_reference" content="citation_title=Key role for CTCF in establishing chromatin structure in human embryos;,citation_author=Xuepeng Chen;,citation_author=Yuwen Ke;,citation_author=Keliang Wu;,citation_author=Han Zhao;,citation_author=Yaoyu Sun;,citation_author=Lei Gao;,citation_author=Zhenbo Liu;,citation_author=Jingye Zhang;,citation_author=Wenrong Tao;,citation_author=Zhenzhen Hou;,citation_author=Hui Liu;,citation_author=Jiang Liu;,citation_author=Zi-Jiang Chen;,citation_publication_date=2019-12;,citation_cover_date=2019-12;,citation_year=2019;,citation_issue=7786;,citation_doi=10.1038/s41586-019-1812-0;,citation_issn=0028-0836, 1476-4687;,citation_volume=576;,citation_language=en-US;,citation_journal_title=Nature;">
@@ -190,7 +190,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">September 22, 2025</p>
+              <p class="date">September 26, 2025</p>
             </div>
           </div>
           
@@ -308,7 +308,7 @@ P(D) =\int P(D \ | \ \theta) \ P(\theta) \ \mathrm{d}\theta,
 <p>This study builds upon the MSc thesis <em>Chromatin Compartments and Selection on X</em> <span class="citation" data-cites="jorgensen2025chromatincompartmentsselection">(<a href="#ref-jorgensen2025chromatincompartmentsselection" role="doc-biblioref">Jørgensen 2025</a>)</span>, in which several methods were developed for Hi-C analysis. Notably, the previous work produced a pipeline to generate eigenvectors from binned Hi-C contact matrices, starting from raw sequencing reads. This pipeline leverages the <em>Open Chromosome Collective</em> ecosystem, including <em>pairtools</em>, <em>cooler</em>, and <em>cooltools</em>.</p>
 <p>The E1 distributions from the previous study provide the foundation for the current Bayesian model. Visual inspection of these distributions (<a href="#fig-e1-dist-50kb" class="quarto-xref">Figure&nbsp;1</a>) indicates that bins corresponding to A- and B-compartments form two distinct modes—positive for A and negative for B—allowing the probabilistic framework to assign compartments while quantifying uncertainty rather than relying on a hard sign threshold.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/03_PyMC_GRW_logit.ipynb" data-notebook-title="Gaussian Random Walk Model for A/B Clustering" data-notebook-cellid="cell-fig-e1-dist-50kb">
-<div id="cell-fig-e1-dist-50kb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-09-03T13:03:39.494876Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-09-03T13:03:39.494628Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-09-03T13:03:39.704870Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-09-03T13:03:39.704515Z&quot;}}" data-execution_count="4">
+<div id="cell-fig-e1-dist-50kb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-09-25T11:14:53.901214Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-09-25T11:14:53.901080Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-09-25T11:14:54.155255Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-09-25T11:14:54.154987Z&quot;}}" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-e1-dist-50kb" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Dist(E1) chrX macaque sperm 50kb">
 <figure class="quarto-float quarto-float-fig figure">
@@ -416,8 +416,8 @@ y_i &amp;\sim \mathcal{N}(\mu_i, \sigma) \\
 <p>where <span class="math inline">\(y_i\)</span> is the observed E1 value at bin <span class="math inline">\(i\)</span>, <span class="math inline">\(z_i \in \{0, 1\}\)</span> is the latent compartment assignment (0 = B, 1 = A). 8 chains of 1000 samples (and <span class="math inline">\(8x1000\)</span> tuning samples) result in 8000 posterior samples after the model has run.</p>
 <p>The model could fit well with the observed data, but it is unlikely that it can generalize. <a href="#fig-simple_iid_model" class="quarto-xref">Figure&nbsp;3</a> shows a Mermaid.js diagram, embedded from the Mermaid representation built into PyMC.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/02_PyMC_independent_bins.ipynb" data-notebook-title="Independent Probabilistic A/B calls" data-notebook-cellid="cell-fig-simple_iid_model">
-<div id="cell-fig-simple_iid_model" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-25T19:40:05.044255Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-25T19:40:05.044139Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-25T19:40:06.356648Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-25T19:40:06.356413Z&quot;}}" data-execution_count="20">
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div id="cell-fig-simple_iid_model" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-25T19:40:05.044255Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-25T19:40:05.044139Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-25T19:40:06.356648Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-25T19:40:06.356413Z&quot;}}" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <div id="fig-simple_iid_model" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-simple_iid_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -823,12 +823,12 @@ Figure&nbsp;9: Leave-One-Out Probability Integral Transform (LOO-PIT) plot for t
 <h3 class="anchored" data-anchor-id="random-walk-spatial-dependency">Random Walk (spatial dependency)</h3>
 <p>The initial random walk model fitted to macaque data showed good separation of underlying means and good mixing. However, the LOO-CV did indicate an overdispersed model (<a href="#fig-grw-ppc-50kb-loo-pit" class="quarto-xref">Figure&nbsp;10</a>), as the ECDF lay grossly outside of the uniform CDF. However, as mentioned previously, the LOO-CV might not even be a good indicator of fit, but instead we may rely on a visual inspection of how well it seems to catch a trend in the observed E1 in a posterior predictive check. From this initial model, a parameter sweep was performed, varying the underlying distributions and parameters as described. Only the highest-scoring (non-diverging) models were used in the following, as this was used for an indication of a model architecture that has biological relevance and could be generalized into other data as well. Thus, I continued on the human sperm cells.</p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/03_PyMC_GRW_logit.ipynb" data-notebook-title="Gaussian Random Walk Model for A/B Clustering" data-notebook-cellid="cell-fig-grw-ppc-50kb-loo-pit">
-<div id="cell-fig-grw-ppc-50kb-loo-pit" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-09-03T13:26:25.005559Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-09-03T13:26:25.005425Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-09-03T13:26:30.508567Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-09-03T13:26:30.508154Z&quot;}}" data-execution_count="20">
+<div id="cell-fig-grw-ppc-50kb-loo-pit" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-09-25T11:23:27.105830Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-09-25T11:23:27.105720Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-09-25T11:23:29.352884Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-09-25T11:23:29.352625Z&quot;}}" data-execution_count="20">
 <div class="cell-output cell-output-display">
 <div id="fig-grw-ppc-50kb-loo-pit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="LOO-PIT E1 model chrX macaque sperm 50kb">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-grw-ppc-50kb-loo-pit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/..-notebooks-03_PyMC_GRW_logit-fig-grw-ppc-50kb-loo-pit-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Figure&nbsp;10: LOO-PIT plot, transformed to ECDF/CDF for the observed/uniform distributions respectively, for the E1 model on macaque sperm at 50kb resolution. ECDF outside the credible interval indicates misfit."><img src="index_files/figure-html/..-notebooks-03_PyMC_GRW_logit-fig-grw-ppc-50kb-loo-pit-output-1.png" data-fig-scap="LOO-PIT E1 model chrX macaque sperm 50kb" width="611" height="141" class="figure-img"></a>
+<a href="index_files/figure-html/..-notebooks-03_PyMC_GRW_logit-fig-grw-ppc-50kb-loo-pit-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Figure&nbsp;10: LOO-PIT plot, transformed to ECDF/CDF for the observed/uniform distributions respectively, for the E1 model on macaque sperm at 50kb resolution. ECDF outside the credible interval indicates misfit."><img src="index_files/figure-html/..-notebooks-03_PyMC_GRW_logit-fig-grw-ppc-50kb-loo-pit-output-1.png" class="img-fluid figure-img" data-fig-scap="LOO-PIT E1 model chrX macaque sperm 50kb"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-grw-ppc-50kb-loo-pit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10: LOO-PIT plot, transformed to ECDF/CDF for the observed/uniform distributions respectively, for the E1 model on macaque sperm at 50kb resolution. ECDF outside the credible interval indicates misfit.
