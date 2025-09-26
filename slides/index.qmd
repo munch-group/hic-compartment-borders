@@ -90,6 +90,10 @@ $$
 :::
 ::::
 
+::: notes
+PyMC Centered/Non-centered parameterizations
+:::
+
 ## Analysis
 
 ### PyMC
@@ -131,6 +135,10 @@ $$
 :::
 ::::
 
+::: notes
+LOO-CV for model comparison (issues with Random Walks, same bias introduced)
+:::
+
 ## Results (Macaque)
 
 ### Recap
@@ -138,7 +146,7 @@ $$
 * [x] 100kb to reduce runtime
 * [x] Dispute about the CV results
 * [x] Seemingly promising posterior predictive
-* [ ] Use higher resolution (and longer runtime)
+* [ ] Use high resolution (and longer runtime)
 
 ## Results (Human data)
 
@@ -150,7 +158,7 @@ $$
 :::
 
 
-::: {.column .tight style="width:70%;transform:scale(0.90);transform-origin: top center;font-size:0.6em"}
+::: {.column .tight style="width:70%;transform:scale(0.70);transform-origin: top center;font-size:0.6em;padding-top:20px;"}
 {{< embed ../notebooks/01_prep_e1_values.ipynb#fig-e1-sperm-x >}}
 :::
 
@@ -238,20 +246,26 @@ $$
 
 ## Limitations
 
-* We do not know where the flaw is; too sparse data for PCA or the modeling?
-  * Definitely not a good thing not all chains mix
-  * Refit the model on data we know has enough interactions
-* We need to be able to compare to ground truth
-* We need to adress the assumption about compartment strength 
-  * @chen2019keyrolectcf: $\log(\text{AA} \times \text{BB}/\text{AB}^2)$
+* We do not know *ground truth*; too sparse data for PCA or the modeling?
+  * Definitely not good that not all chains mix
+  * The chains seem to mix at 100kb more often
+* Revisit the assumption about compartment strength\*
+* No quantitative comparison
 
-- [ ] Explain *CScoreTool*
-- [ ] PyMC Centered/Non-centered parameterizations
-- [ ] LOO-CV for model comparison (issues with Random Walks, same bias introduced)
-- [ ] Explain *Adaptive prior scaling* 
+::: aside
+\* @chen2019keyrolectcf: $\log(\text{AA} \times \text{BB}/\text{AB}^2)$
+:::
 
-## Future // What would I have done
 
-* Adaptive prior scaling 
-* 
+## Future Analyses
+
+* Dial in the model on more abundant data (e.g. [@wang2019reprogrammingmeioticchromatin])
+  * Compare the genomic intervals (quantitatively) with the ICE types
+  * Adaptive prior scaling (e.g. take resolution, or variance into account)
+* Compare **compartment strength** between X- and Y-bearing sperm an all autosomes
+  * May be used as an indicator for chromosomes of interest
+* Try out *CScoreTool* [@zheng2018cscoretoolfasthic]
+  * MLE approach suitable for sparse data
+
+## References
 

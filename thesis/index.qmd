@@ -83,7 +83,7 @@ First, PCA-derived eigenvectors primarily capture correlations between genomic l
 
 Second, compartmental states are frequently treated as categorical variables, with genomic bins assigned exclusively to A or B. Although this approach is practical for identifying pronounced compartmental switches, it lacks the quantitative resolution necessary to assess intermediate or subtle variations in compartmental association. Quantitative metrics, such as "compartment strength" defined as $\log(\text{AA} \times \text{BB}/\text{AB}^2)$, have therefore been introduced to more accurately capture the segregation between compartments.  
 
-Finally, probabilistic approaches offer a more direct estimation of compartmental status. For example, methods such as *CscoreTool* assign to each genomic bin a probability of being in the A compartment. This probabilistic framework offers a quantitative measure that more accurately reflects chromatin accessibility and accounts for uncertainty, thereby highlighting the limitations of interpreting eigenvector magnitude as a definitive indicator of compartment strength.
+Finally, probabilistic approaches offer a more direct estimation of compartmental status. For example, methods such as *CscoreTool* [@zheng2018cscoretoolfasthic] assign to each genomic bin a probability of being in the A compartment. This probabilistic framework offers a quantitative measure that more accurately reflects chromatin accessibility and accounts for uncertainty, thereby highlighting the limitations of interpreting eigenvector magnitude as a definitive indicator of compartment strength.
   
 
 ## Data sets
