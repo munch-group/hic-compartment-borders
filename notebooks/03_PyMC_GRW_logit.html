@@ -214,13 +214,29 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Notebooks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Slides</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Bayesian Modeling of Hi-C Eigenvectors with PyMC</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Notebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/01_prep_e1_values.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">High-res E1 on T2T-MMU8v1</span></a>
@@ -290,13 +306,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Workflows</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../master_workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">GWF workflow</span></a>
@@ -321,13 +337,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Reports</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reports/example.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Markdown in Quarto</span></a>
@@ -471,10 +487,10 @@ window.Quarto = {
 <div id="fig-e1-dist-50kb" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="Dist(E1) chrX macaque sperm 50kb">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-e1-dist-50kb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="03_PyMC_GRW_logit_files/figure-html/fig-e1-dist-50kb-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;5.1: Distribution of E1 values across chrX in macaque sperm at 50kb resolution. The theoretical normal distributions with respective means and standard deviations for A (red) and B (blue) compartments are overlaid, along with their combined (stacked) distribution (purple)."><img src="03_PyMC_GRW_logit_files/figure-html/fig-e1-dist-50kb-output-2.png" class="img-fluid figure-img" data-fig-scap="Dist(E1) chrX macaque sperm 50kb"></a>
+<a href="03_PyMC_GRW_logit_files/figure-html/fig-e1-dist-50kb-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;6.1: Distribution of E1 values across chrX in macaque sperm at 50kb resolution. The theoretical normal distributions with respective means and standard deviations for A (red) and B (blue) compartments are overlaid, along with their combined (stacked) distribution (purple)."><img src="03_PyMC_GRW_logit_files/figure-html/fig-e1-dist-50kb-output-2.png" class="img-fluid figure-img" data-fig-scap="Dist(E1) chrX macaque sperm 50kb"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-e1-dist-50kb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.1: Distribution of E1 values across chrX in macaque sperm at 50kb resolution. The theoretical normal distributions with respective means and standard deviations for A (red) and B (blue) compartments are overlaid, along with their combined (stacked) distribution (purple).
+Figure&nbsp;6.1: Distribution of E1 values across chrX in macaque sperm at 50kb resolution. The theoretical normal distributions with respective means and standard deviations for A (red) and B (blue) compartments are overlaid, along with their combined (stacked) distribution (purple).
 </figcaption>
 </figure>
 </div>
@@ -5737,10 +5753,10 @@ dl.xr-attrs {
 <div id="fig-grw-trace-mu-sigma" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-grw-trace-mu-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="03_PyMC_GRW_logit_files/figure-html/fig-grw-trace-mu-sigma-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;5.2: Trace plots for the posterior distributions of the mean (mu) and standard deviation (sigma) parameters in the GRW model for E1 values in macaque data."><img src="03_PyMC_GRW_logit_files/figure-html/fig-grw-trace-mu-sigma-output-1.png" class="img-fluid figure-img"></a>
+<a href="03_PyMC_GRW_logit_files/figure-html/fig-grw-trace-mu-sigma-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;6.2: Trace plots for the posterior distributions of the mean (mu) and standard deviation (sigma) parameters in the GRW model for E1 values in macaque data."><img src="03_PyMC_GRW_logit_files/figure-html/fig-grw-trace-mu-sigma-output-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-grw-trace-mu-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.2: Trace plots for the posterior distributions of the mean (<code>mu</code>) and standard deviation (<code>sigma</code>) parameters in the GRW model for E1 values in macaque data.
+Figure&nbsp;6.2: Trace plots for the posterior distributions of the mean (<code>mu</code>) and standard deviation (<code>sigma</code>) parameters in the GRW model for E1 values in macaque data.
 </figcaption>
 </figure>
 </div>
@@ -5857,10 +5873,10 @@ Pareto k diagnostic values:
 <div id="fig-grw-ppc-50kb-loo-pit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-scap="LOO-PIT E1 model chrX macaque sperm 50kb">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-grw-ppc-50kb-loo-pit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="03_PyMC_GRW_logit_files/figure-html/fig-grw-ppc-50kb-loo-pit-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Figure&nbsp;5.3: LOO-PIT plot, transformed to ECDF/CDF for the observed/uniform distributions respectively, for the E1 model on macaque sperm at 50kb resolution. ECDF outside the credible interval indicates misfit."><img src="03_PyMC_GRW_logit_files/figure-html/fig-grw-ppc-50kb-loo-pit-output-1.png" class="img-fluid figure-img" data-fig-scap="LOO-PIT E1 model chrX macaque sperm 50kb"></a>
+<a href="03_PyMC_GRW_logit_files/figure-html/fig-grw-ppc-50kb-loo-pit-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Figure&nbsp;6.3: LOO-PIT plot, transformed to ECDF/CDF for the observed/uniform distributions respectively, for the E1 model on macaque sperm at 50kb resolution. ECDF outside the credible interval indicates misfit."><img src="03_PyMC_GRW_logit_files/figure-html/fig-grw-ppc-50kb-loo-pit-output-1.png" class="img-fluid figure-img" data-fig-scap="LOO-PIT E1 model chrX macaque sperm 50kb"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-grw-ppc-50kb-loo-pit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.3: LOO-PIT plot, transformed to ECDF/CDF for the observed/uniform distributions respectively, for the E1 model on macaque sperm at 50kb resolution. ECDF outside the credible interval indicates misfit.
+Figure&nbsp;6.3: LOO-PIT plot, transformed to ECDF/CDF for the observed/uniform distributions respectively, for the E1 model on macaque sperm at 50kb resolution. ECDF outside the credible interval indicates misfit.
 </figcaption>
 </figure>
 </div>
@@ -6014,10 +6030,10 @@ sds    0.2676  0.0782</code></pre>
 <div id="fig-grw-trace-ylik" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-grw-trace-ylik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="03_PyMC_GRW_logit_files/figure-html/fig-grw-trace-ylik-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure&nbsp;5.4: "><img src="03_PyMC_GRW_logit_files/figure-html/fig-grw-trace-ylik-output-1.png" id="fig-grw-trace-ylik" class="img-fluid figure-img"></a>
+<a href="03_PyMC_GRW_logit_files/figure-html/fig-grw-trace-ylik-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure&nbsp;6.4: "><img src="03_PyMC_GRW_logit_files/figure-html/fig-grw-trace-ylik-output-1.png" id="fig-grw-trace-ylik" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-grw-trace-ylik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.4
+Figure&nbsp;6.4
 </figcaption>
 </figure>
 </div>

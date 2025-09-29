@@ -214,13 +214,29 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Notebooks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Slides</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Bayesian Modeling of Hi-C Eigenvectors with PyMC</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Notebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/01_prep_e1_values.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">High-res E1 on T2T-MMU8v1</span></a>
@@ -290,13 +306,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Workflows</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../master_workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">GWF workflow</span></a>
@@ -321,13 +337,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Reports</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reports/example.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Markdown in Quarto</span></a>
@@ -750,10 +766,10 @@ Sampling: [nu_exp, nu_norm]</code></pre>
 <div id="fig-simple_iid_model" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-simple_iid_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_PyMC_independent_bins_files/figure-html/fig-simple_iid_model-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;4.1: Simple i.i.d. model for E1 values. p is the probability of a bin being in compartment A, z is the latent state variable indicating whether a bin is A or B, and mu_a and mu_b are the expected means for A and B compartments, respectively. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation sigma."><img src="02_PyMC_independent_bins_files/figure-html/fig-simple_iid_model-output-1.png" width="300" height="300" class="figure-img"></a>
+<a href="02_PyMC_independent_bins_files/figure-html/fig-simple_iid_model-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;5.1: Simple i.i.d. model for E1 values. p is the probability of a bin being in compartment A, z is the latent state variable indicating whether a bin is A or B, and mu_a and mu_b are the expected means for A and B compartments, respectively. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation sigma."><img src="02_PyMC_independent_bins_files/figure-html/fig-simple_iid_model-output-1.png" width="300" height="300" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simple_iid_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.1: Simple i.i.d. model for E1 values. <code>p</code> is the probability of a bin being in compartment A, <code>z</code> is the latent state variable indicating whether a bin is A or B, and <code>mu_a</code> and <code>mu_b</code> are the expected means for A and B compartments, respectively. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation <code>sigma</code>.
+Figure&nbsp;5.1: Simple i.i.d. model for E1 values. <code>p</code> is the probability of a bin being in compartment A, <code>z</code> is the latent state variable indicating whether a bin is A or B, and <code>mu_a</code> and <code>mu_b</code> are the expected means for A and B compartments, respectively. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation <code>sigma</code>.
 </figcaption>
 </figure>
 </div>
@@ -815,10 +831,10 @@ Figure&nbsp;4.1: Simple i.i.d. model for E1 values. <code>p</code> is the probab
 <div id="fig-simpler_iid_model" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-simpler_iid_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_PyMC_independent_bins_files/figure-html/fig-simpler_iid_model-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;4.2: Simple i.i.d. model for E1 values. w is the probability of a bin being in compartment A, used as a mixing weight of the vectorized mu (shape=2), the expected means for A and B compartments, respectively. sigma is the standard deviation for the mixture, also with 2 dimensions to match mu. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation sigma."><img src="02_PyMC_independent_bins_files/figure-html/fig-simpler_iid_model-output-1.png" width="300" height="250" class="figure-img"></a>
+<a href="02_PyMC_independent_bins_files/figure-html/fig-simpler_iid_model-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;5.2: Simple i.i.d. model for E1 values. w is the probability of a bin being in compartment A, used as a mixing weight of the vectorized mu (shape=2), the expected means for A and B compartments, respectively. sigma is the standard deviation for the mixture, also with 2 dimensions to match mu. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation sigma."><img src="02_PyMC_independent_bins_files/figure-html/fig-simpler_iid_model-output-1.png" width="300" height="250" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simpler_iid_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.2: Simple i.i.d. model for E1 values. <code>w</code> is the probability of a bin being in compartment A, used as a mixing weight of the vectorized <code>mu</code> (shape=2), the expected means for A and B compartments, respectively. <code>sigma</code> is the standard deviation for the mixture, also with 2 dimensions to match <code>mu</code>. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation <code>sigma</code>.
+Figure&nbsp;5.2: Simple i.i.d. model for E1 values. <code>w</code> is the probability of a bin being in compartment A, used as a mixing weight of the vectorized <code>mu</code> (shape=2), the expected means for A and B compartments, respectively. <code>sigma</code> is the standard deviation for the mixture, also with 2 dimensions to match <code>mu</code>. The model assumes that the E1 values are normally distributed around these means with a shared standard deviation <code>sigma</code>.
 </figcaption>
 </figure>
 </div>
@@ -6087,10 +6103,10 @@ Pareto k diagnostic values:
 <div id="fig-iid-trace-mu-sigma" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-iid-trace-mu-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_PyMC_independent_bins_files/figure-html/fig-iid-trace-mu-sigma-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Figure&nbsp;4.3: Trace plots for the posterior distributions of the mean (mu) and standard deviation (sigma) parameters in the i.i.d. model for E1 values in macaque data."><img src="02_PyMC_independent_bins_files/figure-html/fig-iid-trace-mu-sigma-output-1.png" class="img-fluid figure-img"></a>
+<a href="02_PyMC_independent_bins_files/figure-html/fig-iid-trace-mu-sigma-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Figure&nbsp;5.3: Trace plots for the posterior distributions of the mean (mu) and standard deviation (sigma) parameters in the i.i.d. model for E1 values in macaque data."><img src="02_PyMC_independent_bins_files/figure-html/fig-iid-trace-mu-sigma-output-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iid-trace-mu-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.3: Trace plots for the posterior distributions of the mean (<code>mu</code>) and standard deviation (<code>sigma</code>) parameters in the i.i.d. model for E1 values in macaque data.
+Figure&nbsp;5.3: Trace plots for the posterior distributions of the mean (<code>mu</code>) and standard deviation (<code>sigma</code>) parameters in the i.i.d. model for E1 values in macaque data.
 </figcaption>
 </figure>
 </div>
@@ -6214,10 +6230,10 @@ Figure&nbsp;4.3: Trace plots for the posterior distributions of the mean (<code>
 <div id="fig-iid-trace-ylik" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-iid-trace-ylik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_PyMC_independent_bins_files/figure-html/fig-iid-trace-ylik-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Figure&nbsp;4.4: Trace summary for the per-bin likelihood estimates (y_lik). The shaded area indicates the 95% highest density interval (HDI)."><img src="02_PyMC_independent_bins_files/figure-html/fig-iid-trace-ylik-output-1.png" width="611" height="141" class="figure-img"></a>
+<a href="02_PyMC_independent_bins_files/figure-html/fig-iid-trace-ylik-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Figure&nbsp;5.4: Trace summary for the per-bin likelihood estimates (y_lik). The shaded area indicates the 95% highest density interval (HDI)."><img src="02_PyMC_independent_bins_files/figure-html/fig-iid-trace-ylik-output-1.png" width="611" height="141" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iid-trace-ylik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.4: Trace summary for the per-bin likelihood estimates (<code>y_lik</code>). The shaded area indicates the 95% highest density interval (HDI).
+Figure&nbsp;5.4: Trace summary for the per-bin likelihood estimates (<code>y_lik</code>). The shaded area indicates the 95% highest density interval (HDI).
 </figcaption>
 </figure>
 </div>
@@ -6679,10 +6695,10 @@ Attributes:
 <div id="fig-iid-ppc-mean-std" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-iid-ppc-mean-std-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_PyMC_independent_bins_files/figure-html/fig-iid-ppc-mean-std-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Figure&nbsp;4.5: Posterior predictive distribution summaries for the per-bin likelihood estimates (y_lik). Left: Histogram of the posterior predictive means across all bins. Right: Histogram of the posterior predictive standard deviations across all bins."><img src="02_PyMC_independent_bins_files/figure-html/fig-iid-ppc-mean-std-output-1.png" width="611" height="211" class="figure-img"></a>
+<a href="02_PyMC_independent_bins_files/figure-html/fig-iid-ppc-mean-std-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Figure&nbsp;5.5: Posterior predictive distribution summaries for the per-bin likelihood estimates (y_lik). Left: Histogram of the posterior predictive means across all bins. Right: Histogram of the posterior predictive standard deviations across all bins."><img src="02_PyMC_independent_bins_files/figure-html/fig-iid-ppc-mean-std-output-1.png" width="611" height="211" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iid-ppc-mean-std-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.5: Posterior predictive distribution summaries for the per-bin likelihood estimates (<code>y_lik</code>). Left: Histogram of the posterior predictive means across all bins. Right: Histogram of the posterior predictive standard deviations across all bins.
+Figure&nbsp;5.5: Posterior predictive distribution summaries for the per-bin likelihood estimates (<code>y_lik</code>). Left: Histogram of the posterior predictive means across all bins. Right: Histogram of the posterior predictive standard deviations across all bins.
 </figcaption>
 </figure>
 </div>
@@ -6695,10 +6711,10 @@ Figure&nbsp;4.5: Posterior predictive distribution summaries for the per-bin lik
 <div id="fig-iid-ppc-loo-pit" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-iid-ppc-loo-pit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_PyMC_independent_bins_files/figure-html/fig-iid-ppc-loo-pit-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Figure&nbsp;4.6: Leave-One-Out Probability Integral Transform (LOO-PIT) plot for the per-bin likelihood estimates (y_lik). The LOO-PIT assesses the calibration of the model by comparing the predicted distributions to the observed data. A well-calibrated model will have a uniform distribution in the LOO-PIT plot."><img src="02_PyMC_independent_bins_files/figure-html/fig-iid-ppc-loo-pit-output-1.png" width="599" height="129" class="figure-img"></a>
+<a href="02_PyMC_independent_bins_files/figure-html/fig-iid-ppc-loo-pit-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Figure&nbsp;5.6: Leave-One-Out Probability Integral Transform (LOO-PIT) plot for the per-bin likelihood estimates (y_lik). The LOO-PIT assesses the calibration of the model by comparing the predicted distributions to the observed data. A well-calibrated model will have a uniform distribution in the LOO-PIT plot."><img src="02_PyMC_independent_bins_files/figure-html/fig-iid-ppc-loo-pit-output-1.png" width="599" height="129" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iid-ppc-loo-pit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.6: Leave-One-Out Probability Integral Transform (LOO-PIT) plot for the per-bin likelihood estimates (<code>y_lik</code>). The LOO-PIT assesses the calibration of the model by comparing the predicted distributions to the observed data. A well-calibrated model will have a uniform distribution in the LOO-PIT plot.
+Figure&nbsp;5.6: Leave-One-Out Probability Integral Transform (LOO-PIT) plot for the per-bin likelihood estimates (<code>y_lik</code>). The LOO-PIT assesses the calibration of the model by comparing the predicted distributions to the observed data. A well-calibrated model will have a uniform distribution in the LOO-PIT plot.
 </figcaption>
 </figure>
 </div>

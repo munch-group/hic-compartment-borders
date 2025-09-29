@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../notebooks/02_PyMC_independent_bins.html" rel="next">
-<link href="../thesis/index.html" rel="prev">
+<link href="../slides/index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -213,13 +213,29 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Notebooks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Slides</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Bayesian Modeling of Hi-C Eigenvectors with PyMC</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Notebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/01_prep_e1_values.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">High-res E1 on T2T-MMU8v1</span></a>
@@ -289,13 +305,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Workflows</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../master_workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">GWF workflow</span></a>
@@ -320,13 +336,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Reports</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reports/example.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Markdown in Quarto</span></a>
@@ -4322,10 +4338,10 @@ Downloaded: 1 files, 167M in 11s (14.5 MB/s)</code></pre>
 <div id="fig-t2t-satellites" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-t2t-satellites-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01_prep_e1_values_files/figure-html/fig-t2t-satellites-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;3.1: Satellite repeats on chrX, inferred from repeatMasker file from the T2T-MMU8v1.0 assembly. The centromere is locdated at the largest cluster of satellite repeats, merging intervals within 20kb."><img src="01_prep_e1_values_files/figure-html/fig-t2t-satellites-output-1.png" width="599" height="97" class="figure-img"></a>
+<a href="01_prep_e1_values_files/figure-html/fig-t2t-satellites-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;4.1: Satellite repeats on chrX, inferred from repeatMasker file from the T2T-MMU8v1.0 assembly. The centromere is locdated at the largest cluster of satellite repeats, merging intervals within 20kb."><img src="01_prep_e1_values_files/figure-html/fig-t2t-satellites-output-1.png" width="599" height="97" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t2t-satellites-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: Satellite repeats on chrX, inferred from <code>repeatMasker</code> file from the T2T-MMU8v1.0 assembly. The centromere is locdated at the largest cluster of satellite repeats, merging intervals within 20kb.
+Figure&nbsp;4.1: Satellite repeats on chrX, inferred from <code>repeatMasker</code> file from the T2T-MMU8v1.0 assembly. The centromere is locdated at the largest cluster of satellite repeats, merging intervals within 20kb.
 </figcaption>
 </figure>
 </div>
@@ -4534,7 +4550,7 @@ All done</code></pre>
 <div id="fig-e1-sperm-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-e1-sperm-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-1.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;3.2&nbsp;(a): Sperm E1 at 1kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-1.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
+<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-1.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;4.2&nbsp;(a): Sperm E1 at 1kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-1.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Sperm E1 at 1kb resolution
@@ -4548,7 +4564,7 @@ All done</code></pre>
 <div id="fig-e1-sperm-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-e1-sperm-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-2.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;3.2&nbsp;(b): Sperm E1 at 5kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-2.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
+<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-2.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;4.2&nbsp;(b): Sperm E1 at 5kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-2.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Sperm E1 at 5kb resolution
@@ -4562,7 +4578,7 @@ All done</code></pre>
 <div id="fig-e1-sperm-3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-e1-sperm-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-3.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;3.2&nbsp;(c): Sperm E1 at 10kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-3.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
+<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-3.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;4.2&nbsp;(c): Sperm E1 at 10kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-3.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) Sperm E1 at 10kb resolution
@@ -4576,7 +4592,7 @@ All done</code></pre>
 <div id="fig-e1-sperm-4" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-e1-sperm-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-4.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;3.2&nbsp;(d): Sperm E1 at 50kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-4.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
+<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-4.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;4.2&nbsp;(d): Sperm E1 at 50kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-4.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (d) Sperm E1 at 50kb resolution
@@ -4590,7 +4606,7 @@ All done</code></pre>
 <div id="fig-e1-sperm-5" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-e1-sperm-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-5.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;3.2&nbsp;(e): Sperm E1 at 100kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-5.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
+<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-5.png" class="lightbox" data-gallery="fig-e1-sperm" title="Figure&nbsp;4.2&nbsp;(e): Sperm E1 at 100kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-output-5.png" data-ref-parent="fig-e1-sperm" width="598" height="107" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (e) Sperm E1 at 100kb resolution
@@ -4601,7 +4617,7 @@ All done</code></pre>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-e1-sperm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.2: E1 eigenvector for T2T-MMU8v1 sperm at different resolutions. The E1 eigenvector is the first eigenvector of the covariance matrix of the Hi-C contact matrix, and it captures the dominant mode of variation in the data. The classical definitions, A: E1 &gt; 0 and B: E1 &lt; 0, are shown in red and blue, respectively. E1 values are overlayed as scatter.
+Figure&nbsp;4.2: E1 eigenvector for T2T-MMU8v1 sperm at different resolutions. The E1 eigenvector is the first eigenvector of the covariance matrix of the Hi-C contact matrix, and it captures the dominant mode of variation in the data. The classical definitions, A: E1 &gt; 0 and B: E1 &lt; 0, are shown in red and blue, respectively. E1 values are overlayed as scatter.
 </figcaption>
 </figure>
 </div>
@@ -4905,7 +4921,7 @@ All done</code></pre>
 <div id="fig-e1-sperm-x-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-e1-sperm-x-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-1.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;4.1&nbsp;(a): 1kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-1.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
+<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-1.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;5.1&nbsp;(a): 1kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-1.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-x-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) 1kb resolution
@@ -4919,7 +4935,7 @@ All done</code></pre>
 <div id="fig-e1-sperm-x-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-e1-sperm-x-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-2.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;4.1&nbsp;(b): 5kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-2.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
+<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-2.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;5.1&nbsp;(b): 5kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-2.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-x-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) 5kb resolution
@@ -4933,7 +4949,7 @@ All done</code></pre>
 <div id="fig-e1-sperm-x-3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-e1-sperm-x-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-3.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;4.1&nbsp;(c): 10kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-3.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
+<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-3.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;5.1&nbsp;(c): 10kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-3.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-x-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) 10kb resolution
@@ -4947,7 +4963,7 @@ All done</code></pre>
 <div id="fig-e1-sperm-x-4" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-e1-sperm-x-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-4.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;4.1&nbsp;(d): 50kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-4.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
+<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-4.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;5.1&nbsp;(d): 50kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-4.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-x-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (d) 50kb resolution
@@ -4961,7 +4977,7 @@ All done</code></pre>
 <div id="fig-e1-sperm-x-5" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-e1-sperm-x-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-5.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;4.1&nbsp;(e): 100kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-5.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
+<a href="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-5.png" class="lightbox" data-gallery="fig-e1-sperm-x" title="Figure&nbsp;5.1&nbsp;(e): 100kb resolution"><img src="01_prep_e1_values_files/figure-html/fig-e1-sperm-x-output-5.png" data-ref-parent="fig-e1-sperm-x" width="598" height="107" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-e1-sperm-x-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (e) 100kb resolution
@@ -4972,7 +4988,7 @@ All done</code></pre>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-e1-sperm-x-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.1: E1 eigenvector for human GRCh37 sperm at different resolutions. The E1 eigenvector is the first eigenvector of the covariance matrix of the Hi-C contact matrix, and it captures the dominant mode of variation in the data. The classical definitions, A: E1 &gt; 0 and B: E1 &lt; 0, are shown in red and blue, respectively. E1 values are overlayed as scatter.
+Figure&nbsp;5.1: E1 eigenvector for human GRCh37 sperm at different resolutions. The E1 eigenvector is the first eigenvector of the covariance matrix of the Hi-C contact matrix, and it captures the dominant mode of variation in the data. The classical definitions, A: E1 &gt; 0 and B: E1 &lt; 0, are shown in red and blue, respectively. E1 values are overlayed as scatter.
 </figcaption>
 </figure>
 </div>
@@ -5407,8 +5423,8 @@ Figure&nbsp;4.1: E1 eigenvector for human GRCh37 sperm at different resolutions.
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../thesis/index.html" class="pagination-link" aria-label="Inferring Chromatin Structure through Bayesian Modeling of Hi-C Eigenvectors">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Inferring Chromatin Structure through Bayesian Modeling of Hi-C Eigenvectors</span></span>
+      <a href="../slides/index.html" class="pagination-link" aria-label="Bayesian Modeling of Hi-C Eigenvectors with PyMC">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Bayesian Modeling of Hi-C Eigenvectors with PyMC</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
