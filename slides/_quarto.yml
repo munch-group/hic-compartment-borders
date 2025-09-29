@@ -20,7 +20,7 @@ format:
     logo: layout/aulogo_uk_var2_blue.png
     include-after-body: layout/clean_title_page.html
     history: false
-    auto-animate-unmatched: false
+    auto-animate-unmatched: true
     auto-animate-duration: 0.3
     incremental: false
     slide-number: true
