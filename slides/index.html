@@ -15,7 +15,7 @@
   <meta name="author" content="Søren Jørgensen">
   <meta name="author" content="Kasper Munch (Supervisor)">
   <meta name="dcterms.date" content="2025-09-29">
-  <title>Bayesian Modeling of Hi-C Eigenvectors</title>
+  <title>Bayesian Modeling of Hi-C Eigenvectors with PyMC</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -155,9 +155,9 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-notes="<em>Opening:</em>" class="quarto-title-block center">
-  <h1 class="title">Bayesian Modeling of Hi-C Eigenvectors</h1>
-  <p class="subtitle">Probabilistic Inference of Chromatin Compartment State from Gaussian Random Walks along the Genome</p>
+<section id="title-slide" data-notes="<em>Opening:</em> Hello, and welcome to this PiB presentation. I am going to present my work on probabilistic modeling of Hi-C eigenvectors, extending the classical inference method. Let us begin." class="quarto-title-block center">
+  <h1 class="title">Bayesian Modeling of Hi-C Eigenvectors with PyMC</h1>
+  <p class="subtitle">Probabilistic Inference of Chromatin Compartments from Gaussian Random Walks along the Genome</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -180,9 +180,9 @@ Kasper Munch (Supervisor)
 
   <p class="date">September 29, 2025</p>
 </section>
-<section id="introduction" class="slide level2">
-<h2>Introduction</h2>
-<h3 id="chromatin-architecture-classical-inference">Chromatin Architecture: Classical Inference</h3>
+<section id="introduction" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Introduction</h2>
+<h3 data-id="ice-dist" id="chromatin-architecture-classical-inference">Chromatin Architecture: Classical Inference</h3>
 <ul>
 <li>Hi-C Reads <span class="math inline">\(\rightarrow\)</span> Interaction matrix</li>
 <li>Iterative Correction and Eigendecomposition (ICE)</li>
@@ -197,8 +197,23 @@ Kasper Munch (Supervisor)
 <li>Add spatial dependency with a Random Walk</li>
 </ul></li>
 </ul>
-<div class="absolute fragment tight" style="width:735px;padding-left:130px;padding-top:10px; top: 45px; background:white;">
-<div class="nocap">
+<aside class="notes">
+<p>I will start us off with a <em>very</em> brief introduction to chromatin architecture and the classical inference of compartment type. First, using the special Hi-C sequencing method, physically proximal DNA-sequences are linked in paired-end reads. By aligning and parsing the reads into proper (valid) pairs, we obtain the raw interaction matrix. Now, due to technical artifacts and for example differential binding of the restriction enzyme, the coverage along the genome will not be uniform. This will cause a <em>visibility bias</em> where some regions will appear more or less important than they are in reality. Here comes the ICE. Therefore, we have to correct the interaction matrix, and we do so iteratively until the variance is minimized and coverage is uniform. Now, borrowing a distance decay from polymer physics, the expected interaction frequency is calculated, and PCA is performed on the correlation matrix of the observed over the expected interaction matrix. So, we are a couple of steps away from the raw interaction matrix.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="introduction-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Introduction</h2>
+<div class="nocap tight" data-id="ice-dist" style="width:900px;margin:0 auto">
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/03_PyMC_GRW_logit.ipynb" data-notebook-title="Gaussian Random Walk Model for A/B Clustering" data-notebook-cellid="cell-fig-e1-dist-50kb">
 <div id="cell-fig-e1-dist-50kb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-09-25T11:14:53.901214Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-09-25T11:14:53.901080Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-09-25T11:14:54.155255Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-09-25T11:14:54.154987Z&quot;}}" data-execution_count="4">
 <div class="cell-output cell-output-display">
@@ -216,33 +231,52 @@ Figure&nbsp;1: Distribution of E1 values across chrX in macaque sperm at 50kb re
 </div>
 </div>
 </div>
-</div>
+<h3 id="our-goal-bayesian-probabilistic-inference-1">Our Goal: Bayesian Probabilistic inference</h3>
+<ul>
+<li>Model the <span class="math inline">\(\mathrm{E1}\)</span> as <em>observed</em> random variable (RV) under following assumptions:
+<ul>
+<li><span class="math inline">\(\mu_a\)</span> and <span class="math inline">\(\mu_b\)</span> can be drawn from <span class="math inline">\(\mathcal{N}(0.5, \sigma)\)</span> and <span class="math inline">\(\mathcal{N}(-0.5, \sigma)\)</span>.</li>
+<li>We can infer latent state from the value of <span class="math inline">\(mu\)</span> by a fitting prior.</li>
+<li>Add spatial dependency with a Random Walk</li>
+<li><em>Predict more precise compartment transitions</em></li>
+</ul></li>
+</ul>
+<aside class="notes">
+<p>This yields a 1D track of E1 values along the genome, and counting these for the Macaque data leads to one of the basic assumptions for the aim of this project; that the eigenvectors come from two distinct distributions, and that we can model this probabilistically. We think of the compartment type as a latent variable that emits an eigenvector, and we can infer that latent state by Bayesian MCMC methods by choosing the right prior.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="bayesian-inference-markov-chain-monte-carlo" class="slide level2">
 <h2>Bayesian inference: Markov Chain Monte Carlo</h2>
-<p><a href="illustrations/markov-proces-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="illustrations/markov-proces-1.png"></a></p>
-<p><a href="illustrations/markov-proces-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="illustrations/markov-proces-2.png"></a></p>
-<div class="quarto-layout-panel" data-layout="[-20,30,30,-20]">
+<div class="quarto-layout-panel" data-layout="[1,1,-1]">
 <div class="quarto-layout-row">
-<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
-<p>&nbsp;</p>
+<div id="left" class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<h3 id="bayes-rule">Bayes’ rule</h3>
 </div>
-<div id="left" class="quarto-layout-cell" style="flex-basis: 30.0%;justify-content: flex-start;">
-<p>Bayes’ rule:</p>
-</div>
-<div id="right" class="quarto-layout-cell" style="flex-basis: 30.0%;justify-content: flex-start;">
+<div id="right" class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <p><span class="math display">\[
 P(\theta \mid D) = \frac{P(D \mid \theta)\, P(\theta)}{P(D)}
 \]</span></p>
 </div>
-<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <p>&nbsp;</p>
 </div>
 </div>
 </div>
+<p><a href="illustrations/markov-proces-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="illustrations/markov-proces-1.png" class="fragment"></a></p>
+<p><a href="illustrations/markov-proces-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="illustrations/markov-proces-2.png" class="fragment"></a></p>
 <aside class="notes">
 <ol type="1">
-<li>We begin by specifying a statistical model: a lieklihood for the data and priors for the parameters</li>
+<li>We begin by specifying a statistical model: a likelihood for the data and priors for the parameters</li>
 <li>Using Bayes’ rule, we combine likelihood and prior into the posterior distribution we want to explore</li>
 <li>We select a Markov Chain Monte Carlo algorithm appropriate for our model and parameter space</li>
 <li>We start the sampler from initial parameter values, which can influence early chain behavior</li>
@@ -264,11 +298,12 @@ P(\theta \mid D) = \frac{P(D \mid \theta)\, P(\theta)}{P(D)}
           display:block!important;
       }</style></aside>
 </section>
-<section id="model-architectures" class="slide level2">
-<h2>Model architectures</h2>
+<section id="model-architectures" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Model architectures</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="fragment column" style="width:50%;">
 <h3 id="simple-i.i.d.-model">Simple (i.i.d.) model</h3>
+<div data-id="simple" style="width:65%;transform:scale(0.75);transform-origin: top left;">
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/02_PyMC_independent_bins.ipynb" data-notebook-title="Independent Probabilistic A/B calls" data-notebook-cellid="cell-simpler_iid_model-nocap">
 <div id="cell-simpler_iid_model-nocap" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display" data-execution_count="13">
@@ -280,6 +315,42 @@ P(\theta \mid D) = \frac{P(D \mid \theta)\, P(\theta)}{P(D)}
 </div>
 </div>
 </div>
+</div>
+</div><div class="column" style="width:50%;">
+
+</div></div>
+<aside class="notes">
+<p>These are the models that I used. First, the simplest possible model. The bins are i.i.d., and the parameters are the fewest possible. The shape of <code>mu</code> and <code>sigma</code> is to, indicating that it is fitting two distinct values for each. The mixing weight is drawn from a uniform prior.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="model-architectures-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Model architectures</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="simple-i.i.d.-model-1">Simple (i.i.d.) model</h3>
+<div data-id="simple" style="width:65%;transform:scale(0.75);transform-origin: bottom left;margin-top:56%;margin-left:auto">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/02_PyMC_independent_bins.ipynb" data-notebook-title="Independent Probabilistic A/B calls" data-notebook-cellid="cell-simpler_iid_model-nocap">
+<div id="cell-simpler_iid_model-nocap" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+<figure>
+<p><a href="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-simpler_iid_model-nocap-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img data-src="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-simpler_iid_model-nocap-output-1.png" id="simpler_iid_model-nocap" width="300" height="250"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div><div class="column" style="width:50%;">
 <h3 id="more-complex-grw-model">More complex (GRW) model</h3>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/07_hi_res_subset_analysis.ipynb" data-notebook-title="GRW modeling on (subset) Hi-Res data" data-notebook-cellid="cell-grw-z-model-nocap">
@@ -287,13 +358,26 @@ P(\theta \mid D) = \frac{P(D \mid \theta)\, P(\theta)}{P(D)}
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 <figure>
-<p><a href="index_files/figure-revealjs/..-notebooks-07_hi_res_subset_analysis-grw-z-model-nocap-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img data-src="index_files/figure-revealjs/..-notebooks-07_hi_res_subset_analysis-grw-z-model-nocap-output-1.png" id="grw-z-model-nocap" width="500" height="500"></a></p>
+<p><a href="index_files/figure-revealjs/..-notebooks-07_hi_res_subset_analysis-grw-z-model-nocap-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img data-src="index_files/figure-revealjs/..-notebooks-07_hi_res_subset_analysis-grw-z-model-nocap-output-1.png" id="grw-z-model-nocap" width="500" height="500"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div></div>
+<aside class="notes">
+<p>Then, I fitted a more complex model. Here I introduce spatial dependency with a Random walk and <em>also</em> introduce a hard type-assignment by putting a Bernoulli trial on the resulting mixing weight. The result is a much slower sampling, but it conceptually sticks better with biology. Inversing the expectation of decay in interaction frequency, we expect that the difference in E1 between adjacent bins is constricted by some physical property, and we aim to model that step size. A Random Walk is the cummulative sum of random steps along the genome. The vector of steps is then passed through a sigmoid function to force the values between 0 and 1 to resemble the probability of being in an A compartment. This is either used directly as a mixing weight or passed through a Bernoulli trial as a probabilistic if-statement. Then it turned out that PyMC devs says we <em>might as well</em> just marginalize the discrete variable, as the posterior mean will approximate the mixing weight anyways.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="analysis" class="slide level2">
 <h2>Analysis</h2>
@@ -303,27 +387,40 @@ P(\theta \mid D) = \frac{P(D \mid \theta)\, P(\theta)}{P(D)}
 <li>Leverages the No-U-Turn Sampler (NUTS)</li>
 <li>Fully integrates with <em>Arviz</em> and <em>PyTensor</em> methods for analyses</li>
 </ul>
-<div class="quarto-layout-panel" data-layout="[-10,40,40,-10]" style="padding-top:100px;">
+<div class="quarto-layout-panel" style="padding-top:100px;" data-layout="[-10,40,40,-10]">
 <div class="quarto-layout-row">
 <div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
 <p>&nbsp;</p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: center;">
-<p><a href="illustrations/arviz.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img data-src="illustrations/arviz.png" width="200"></a></p>
+<p><a href="illustrations/arviz.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="illustrations/arviz.png" width="200"></a></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: center;">
-<p><a href="illustrations/pytensor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="illustrations/pytensor.png" width="350"></a></p>
+<p><a href="illustrations/pytensor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="illustrations/pytensor.png" width="350"></a></p>
 </div>
 <div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
 <p>&nbsp;</p>
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>Okay, I said most of this already, but a convenient way of doing probabilistic inference is with PyMC. They state themselves it is a PPL, whatever that means, except it allows me to do my analysis. It is based off of the NUTS sampler a very efficient sampler compared to older algorithms, and it leverages <em>Arviz</em> and <em>PyTensor</em>.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="results-macaque" class="slide level2">
 <h2>Results (Macaque)</h2>
 <div class="columns" style="text-align:center;font-size:0.5em;">
-<div id="left" class="column nocap tight" style="width:50%;margin: 0;">
+<div id="left" class="column fragment nocap tight" style="width:50%;margin: 0;">
 <p><strong>Simple (i.i.d.)</strong></p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/02_PyMC_independent_bins.ipynb" data-notebook-title="Independent Probabilistic A/B calls" data-notebook-cellid="cell-fig-iid-trace-mu-sigma">
 <div id="cell-fig-iid-trace-mu-sigma" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-08-25T19:41:14.534053Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-08-25T19:41:14.533946Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-08-25T19:41:15.001093Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-08-25T19:41:15.000858Z&quot;}}" data-execution_count="31">
@@ -331,7 +428,7 @@ P(\theta \mid D) = \frac{P(D \mid \theta)\, P(\theta)}{P(D)}
 <div id="fig-iid-trace-mu-sigma" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-iid-trace-mu-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-mu-sigma-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;2: Trace plots for the posterior distributions of the mean (mu) and standard deviation (sigma) parameters in the i.i.d. model for E1 values in macaque data."><img data-src="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-mu-sigma-output-1.png"></a>
+<a href="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-mu-sigma-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;2: Trace plots for the posterior distributions of the mean (mu) and standard deviation (sigma) parameters in the i.i.d. model for E1 values in macaque data."><img data-src="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-mu-sigma-output-1.png"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iid-trace-mu-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Trace plots for the posterior distributions of the mean (<code>mu</code>) and standard deviation (<code>sigma</code>) parameters in the i.i.d. model for E1 values in macaque data.
@@ -347,7 +444,7 @@ Figure&nbsp;2: Trace plots for the posterior distributions of the mean (<code>mu
 <div id="fig-iid-ppc-loo-pit" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-iid-ppc-loo-pit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-loo-pit-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;3: Leave-One-Out Probability Integral Transform (LOO-PIT) plot for the per-bin likelihood estimates (y_lik). The LOO-PIT assesses the calibration of the model by comparing the predicted distributions to the observed data. A well-calibrated model will have a uniform distribution in the LOO-PIT plot."><img data-src="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-loo-pit-output-1.png" width="599" height="129"></a>
+<a href="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-loo-pit-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Figure&nbsp;3: Leave-One-Out Probability Integral Transform (LOO-PIT) plot for the per-bin likelihood estimates (y_lik). The LOO-PIT assesses the calibration of the model by comparing the predicted distributions to the observed data. A well-calibrated model will have a uniform distribution in the LOO-PIT plot."><img data-src="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-fig-iid-ppc-loo-pit-output-1.png" width="599" height="129"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iid-ppc-loo-pit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Leave-One-Out Probability Integral Transform (LOO-PIT) plot for the per-bin likelihood estimates (<code>y_lik</code>). The LOO-PIT assesses the calibration of the model by comparing the predicted distributions to the observed data. A well-calibrated model will have a uniform distribution in the LOO-PIT plot.
@@ -363,7 +460,7 @@ Figure&nbsp;3: Leave-One-Out Probability Integral Transform (LOO-PIT) plot for t
 <div id="fig-iid-trace-ylik" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-iid-trace-ylik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-ylik-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Figure&nbsp;4: Trace summary for the per-bin likelihood estimates (y_lik). The shaded area indicates the 95% highest density interval (HDI)."><img data-src="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-ylik-output-1.png" width="611" height="141"></a>
+<a href="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-ylik-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Figure&nbsp;4: Trace summary for the per-bin likelihood estimates (y_lik). The shaded area indicates the 95% highest density interval (HDI)."><img data-src="index_files/figure-revealjs/..-notebooks-02_PyMC_independent_bins-fig-iid-trace-ylik-output-1.png" width="611" height="141"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iid-trace-ylik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4: Trace summary for the per-bin likelihood estimates (<code>y_lik</code>). The shaded area indicates the 95% highest density interval (HDI).
@@ -373,7 +470,7 @@ Figure&nbsp;4: Trace summary for the per-bin likelihood estimates (<code>y_lik</
 </div>
 </div>
 </div>
-</div><div id="right" class="column nocap tight" style="width:50%;height:450px; margin: 0 auto;">
+</div><div id="right" class="column fragment nocap tight" style="width:50%;height:450px; margin: 0 auto;">
 <p><strong>GRW model</strong></p>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/03_PyMC_GRW_logit.ipynb" data-notebook-title="Gaussian Random Walk Model for A/B Clustering" data-notebook-cellid="cell-fig-grw-trace-mu-sigma">
 <div id="cell-fig-grw-trace-mu-sigma" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-09-25T11:23:18.960282Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-09-25T11:23:18.960141Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-09-25T11:23:22.263260Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-09-25T11:23:22.262983Z&quot;}}" data-execution_count="15">
@@ -381,7 +478,7 @@ Figure&nbsp;4: Trace summary for the per-bin likelihood estimates (<code>y_lik</
 <div id="fig-grw-trace-mu-sigma" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-grw-trace-mu-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-revealjs/..-notebooks-03_PyMC_GRW_logit-fig-grw-trace-mu-sigma-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Figure&nbsp;5: Trace plots for the posterior distributions of the mean (mu) and standard deviation (sigma) parameters in the GRW model for E1 values in macaque data."><img data-src="index_files/figure-revealjs/..-notebooks-03_PyMC_GRW_logit-fig-grw-trace-mu-sigma-output-1.png"></a>
+<a href="index_files/figure-revealjs/..-notebooks-03_PyMC_GRW_logit-fig-grw-trace-mu-sigma-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Figure&nbsp;5: Trace plots for the posterior distributions of the mean (mu) and standard deviation (sigma) parameters in the GRW model for E1 values in macaque data."><img data-src="index_files/figure-revealjs/..-notebooks-03_PyMC_GRW_logit-fig-grw-trace-mu-sigma-output-1.png"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-grw-trace-mu-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5: Trace plots for the posterior distributions of the mean (<code>mu</code>) and standard deviation (<code>sigma</code>) parameters in the GRW model for E1 values in macaque data.
@@ -397,7 +494,7 @@ Figure&nbsp;5: Trace plots for the posterior distributions of the mean (<code>mu
 <div id="fig-grw-ppc-50kb-loo-pit" class="quarto-float quarto-figure quarto-figure-center" data-fig-scap="LOO-PIT E1 model chrX macaque sperm 50kb">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-grw-ppc-50kb-loo-pit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-revealjs/..-notebooks-03_PyMC_GRW_logit-fig-grw-ppc-50kb-loo-pit-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Figure&nbsp;6: LOO-PIT plot, transformed to ECDF/CDF for the observed/uniform distributions respectively, for the E1 model on macaque sperm at 50kb resolution. ECDF outside the credible interval indicates misfit."><img data-src="index_files/figure-revealjs/..-notebooks-03_PyMC_GRW_logit-fig-grw-ppc-50kb-loo-pit-output-1.png" data-fig-scap="LOO-PIT E1 model chrX macaque sperm 50kb"></a>
+<a href="index_files/figure-revealjs/..-notebooks-03_PyMC_GRW_logit-fig-grw-ppc-50kb-loo-pit-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure&nbsp;6: LOO-PIT plot, transformed to ECDF/CDF for the observed/uniform distributions respectively, for the E1 model on macaque sperm at 50kb resolution. ECDF outside the credible interval indicates misfit."><img data-src="index_files/figure-revealjs/..-notebooks-03_PyMC_GRW_logit-fig-grw-ppc-50kb-loo-pit-output-1.png" data-fig-scap="LOO-PIT E1 model chrX macaque sperm 50kb"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-grw-ppc-50kb-loo-pit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6: LOO-PIT plot, transformed to ECDF/CDF for the observed/uniform distributions respectively, for the E1 model on macaque sperm at 50kb resolution. ECDF outside the credible interval indicates misfit.
@@ -413,7 +510,7 @@ Figure&nbsp;6: LOO-PIT plot, transformed to ECDF/CDF for the observed/uniform di
 <div id="fig-grw-trace-ylik" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-grw-trace-ylik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-revealjs/..-notebooks-03_PyMC_GRW_logit-fig-grw-trace-ylik-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure&nbsp;7: "><img data-src="index_files/figure-revealjs/..-notebooks-03_PyMC_GRW_logit-fig-grw-trace-ylik-output-1.png" id="fig-grw-trace-ylik"></a>
+<a href="index_files/figure-revealjs/..-notebooks-03_PyMC_GRW_logit-fig-grw-trace-ylik-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Figure&nbsp;7: "><img data-src="index_files/figure-revealjs/..-notebooks-03_PyMC_GRW_logit-fig-grw-trace-ylik-output-1.png" id="fig-grw-trace-ylik"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-grw-trace-ylik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7
@@ -424,23 +521,54 @@ Figure&nbsp;7
 </div>
 </div>
 </div></div>
+<aside class="notes">
+<p>Let’s dive straight into the results of the initial runs: First, I ran the i.i.d. model and did not expect it to perform well, but as a kind of null model and to get the feel of PyMC. Initially it looked like it was capturing the observed distribution, and it looked very good on the cross-validation. But, when investigating the posterior mean, it was a completely flat curve. I actually do not understand how both of these [<strong>ppc</strong> and <strong>y_post</strong>] can be true. Then the random walk was implemented, showing the same good mixing and following the same posterior predictive distribution. Then it looked worse on the LOO-PIT, but a lot more encouraging in the <code>y_post</code>. So it seems like the actual predictive of the observed variable switches along the genome, resembling the observed curve. Then I rationalize that if the purpose of the model is to reduce importance of small, short compartments, it is by definition a worse fit than the unrestricted model. Maybe the i.i.d. model is just overfitting, and we cannot really use the measure for evaluating. It might still be feasible for model comparison (between GRW models), as we then introduce the same bias.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="results-macaque-1" class="slide level2">
 <h2>Results (Macaque)</h2>
-<h3 id="recap">Recap</h3>
+<h3 id="summarize">Summarize</h3>
 <ul class="task-list">
 <li><label><input type="checkbox" checked="">100kb to reduce runtime</label></li>
 <li><label><input type="checkbox" checked="">Dispute about the CV results</label></li>
 <li><label><input type="checkbox" checked="">Seemingly promising posterior predictive</label></li>
-<li><label><input type="checkbox">Use higher resolution (and longer runtime)</label></li>
+<li><label><input type="checkbox">Use high resolution (and longer runtime)</label></li>
 </ul>
+<aside class="notes">
+<ul>
+<li>So, until now I have performed some initial analysis on coarse data</li>
+<li>I have talked briefly about the validity of CV results</li>
+<li>We have a seemingly promising posterior for the GRW model</li>
+<li>We are just missing the high resolution analysis, so here is where it becomes a bit spicy</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="results-human-data" class="slide level2">
 <h2>Results (Human data)</h2>
-<div class="columns">
-<div class="column" style="width:30%;">
+<div class="columns" style="margin:0;">
+<div class="column" style="width:20%;">
 <h3 id="ice">ICE</h3>
-</div><div class="column tight" style="width:70%;transform:scale(0.90);transform-origin: top center;font-size:0.6em">
+</div><div class="column tight" style="width:80%;transform:scale(0.65);transform-origin: top left;font-size:0.6em;padding-top:10px;">
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/01_prep_e1_values.ipynb" data-notebook-title="High-res E1 on T2T-MMU8v1" data-notebook-cellid="cell-fig-e1-sperm-x">
 <div id="fig-e1-sperm-x" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig">
@@ -523,6 +651,19 @@ Figure&nbsp;8: E1 eigenvector for human GRCh37 sperm at different resolutions. T
 </div>
 </div>
 </div></div>
+<aside class="notes">
+<p>Okay, so I performed the ICE analysis on human sperm on chromosome X, and as we can see, the noise level for 10kb (that I continue with) is very high.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="results-10kb-human-data-short-arm" class="slide level2">
 <h2>Results (10kb Human data short arm)</h2>
@@ -568,6 +709,19 @@ Figure&nbsp;9: ChrX Posterior Predictive Check for X-bearing sperm (<span class=
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>Next, I fitted both the discrete and continuous GRW models to the short arm, and as we can see, the discrete model seems to switch back and forth, even for the mean of the posterior. I realized I could delay it no longer, and fitted the model to the full chrX.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="results-10kb-human-data-full" class="slide level2">
 <h2>Results (10kb Human data full)</h2>
@@ -613,6 +767,19 @@ Figure&nbsp;10: ChrX Posterior Predictive Check for X-bearing sperm (<span class
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>We see the exact same pattern, where the discrete model seems to take jumps in the posterior predictive, which is not so useful, as we then have many many single-bin compartments. So it is clearly not resembling our biological understanding after all. The continuous model looks better.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="results-10kb-human-data-full-1" class="slide level2">
 <h2>Results (10kb Human data full)</h2>
@@ -658,6 +825,19 @@ Figure&nbsp;11: Posterior Probability with Raw Mixing Weight CI and Crossing Den
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>So let’s look at the latent <code>w</code> variable on the continuous model, and fast forward a couple of steps. I made a function to map the crossings of a given threshold for the full posterior, where the predicition is <em>uncertain</em>, into a list of intervals. Within these intervals, I count the number of curves that cross in either direction, resulting in a distribution of crossings at each transition zone, which could be translated into a credible point of transition.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="autosomal-comparison-chr8" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Autosomal comparison (chr8)</h2>
@@ -799,6 +979,19 @@ Figure&nbsp;13: Trace and energy plots for the two NNHN models fitted to chr8 in
 </div>
 </div>
 </div></div>
+<aside class="notes">
+<p>Then, skipping a couple of steps forward again, I did the same analysis on chr8 in X- and Y-bearing sperm to compare the two. Here, the model only fully mixes when fitted to the X-bearing data, but not on the Y-bearing. Here, a new mode is introduced halfway between the two expected modes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="autosomal-comparison-chr8-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Autosomal comparison (chr8)</h2>
@@ -921,6 +1114,19 @@ Figure&nbsp;16: Posterior mixing weights with 95% credible intervals for the fou
 </div>
 </div>
 </div></div>
+<aside class="notes">
+<p>And we can also see from the rank plot that grw_sigma is not uniform throughout the draws (it is supposed to be). This has a large effect on the HDI interval on the posterior predictive, even though the PPC plot shows it follows the observed. Up until this point, I had not investigated the chains separately, but I thought now is the time to do</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="autosomal-comparison-chr8-2" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Autosomal comparison (chr8)</h2>
@@ -1007,6 +1213,19 @@ Figure&nbsp;18: Posterior mean of the mixing weights with 95% credible intervals
 </div>
 </div>
 </div></div>
+<aside class="notes">
+<p>Clearly, the new mode introduced in the trace plots results in a completely new posterior distribution of <code>w</code>. Which is what happens when a chain is stuck in a limited parameter space. Then Kasper suggested I could do some cherry-picking (which I think is fine as long as we are open about it) to see where the model could take us. By picking the red curve (the chains deemed ‘good’), we narrow the HDI for the posterior (as expected).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="autosomal-comparison-chr8-3" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Autosomal comparison (chr8)</h2>
@@ -1052,7 +1271,7 @@ Figure&nbsp;19: Posterior mean of the mixing weights with 95% credible intervals
 </figure>
 </div>
 </div>
-</div><div class="column" style="width:50%;transform:scale(0.95);transform-origin: top center;padding-top:3px;">
+</div><div class="fragment column" style="width:50%;transform:scale(0.95);transform-origin: top center;padding-top:3px;">
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/hic-compartment-borders/hic-compartment-borders/notebooks/13_chr8_compare_X_Y_eval.ipynb" data-notebook-title="Plot the E1's" data-notebook-cellid="cell-fig-chr8-x-y-compare-ppc">
 <div id="fig-chr8-x-y-compare-ppc" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig">
@@ -1093,6 +1312,19 @@ Figure&nbsp;20: Posterior predictive checks for the four models fitted to chr8 i
 </div>
 </div>
 </div></div>
+<aside class="notes">
+<p>So let’s look at the posterior predictive for these two, with the filtered draws: Now they both resemble a typical path of the E1, but I have no quantitative comparison between them. I have mapped the CI intervals as previously ready for comparing the distributions. I think this is a good initial exploration of the method, leaving plenty of points for future studies.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="limitations" class="slide level2">
 <h2>Limitations</h2>
@@ -1188,36 +1420,81 @@ Figure&nbsp;21: Distribution of E1 values for A and B compartments in chr8 for X
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>But we have to talk about the limitations to this: the sparsity of the data I used is far beyond the recommendation, and I think it was a step too far. Additionally, we observe a change in the E1 distribution when decreasing resolution, and 100kb is more so resembling the initial assumption than the 10kb.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="limitations-1" class="slide level2">
 <h2>Limitations</h2>
 <ul>
-<li>We do not know where the flaw is; too sparse data for PCA or the modeling?
+<li>We do not know <em>ground truth</em> <span class="citation" data-cites="kalluchi2023considerationscaveatsanalyzing">(<a href="#/references" role="doc-biblioref" onclick="">Kalluchi et al. 2023</a>)</span>; too sparse data for PCA or the modeling?
 <ul>
-<li>Definitely not a good thing not all chains mix</li>
-<li>Refit the model on data we know has enough interactions</li>
+<li>Definitely not good that not all chains mix</li>
+<li>The chains seem to mix at 100kb more often</li>
 </ul></li>
-<li>We need to be able to compare to ground truth</li>
-<li>We need to adress the assumption about compartment strength
+<li>Revisit the assumption about compartment strength*</li>
+<li>No quantitative comparison</li>
+</ul>
+
+<aside class="notes">
+<p>Additionally, we do not know ground truth as also noted by the review. We should also revisit the assumption that the magnitude of the E1 is biologically representing (even just somewhat) the strength of association And as stated, we have no quantitative comparison of the fit of the model.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>* <span class="citation" data-cites="chen2019keyrolectcf">Chen et al. (<a href="#/references" role="doc-biblioref" onclick="">2019</a>)</span>: <span class="math inline">\(\log(\text{AA} \times \text{BB}/\text{AB}^2)\)</span></p>
+</div></aside></section>
+<section id="future-analyses" class="slide level2">
+<h2>Future Analyses</h2>
 <ul>
-<li><span class="citation" data-cites="chen2019keyrolectcf">Chen et al. (<a href="#/future-what-would-i-have-done" role="doc-biblioref" onclick="">2019</a>)</span>: <span class="math inline">\(\log(\text{AA} \times \text{BB}/\text{AB}^2)\)</span></li>
+<li>Dial in the model on more abundant data (e.g. <span class="citation" data-cites="wang2019reprogrammingmeioticchromatin">(<a href="#/references" role="doc-biblioref" onclick="">Wang et al. 2019</a>)</span>)
+<ul>
+<li>Compare the genomic intervals (quantitatively) with the ICE types</li>
+<li>Adaptive prior scaling (e.g.&nbsp;take resolution, or variance into account)</li>
 </ul></li>
-<li><label><input type="checkbox">Explain <em>CScoreTool</em></label></li>
-<li><label><input type="checkbox">PyMC Centered/Non-centered parameterizations</label></li>
-<li><label><input type="checkbox">LOO-CV for model comparison (issues with Random Walks, same bias introduced)</label></li>
-<li><label><input type="checkbox">Explain <em>Adaptive prior scaling</em></label></li>
+<li>Compare <strong>compartment strength</strong> between X- and Y-bearing sperm in <em>all</em> autosomes
+<ul>
+<li>May be used as an indicator for chromosomes of interest</li>
+</ul></li>
+<li>Try out <em>CScoreTool</em> <span class="citation" data-cites="zheng2018cscoretoolfasthic">(<a href="#/references" role="doc-biblioref" onclick="">Zheng and Zheng 2018</a>)</span>
+<ul>
+<li>MLE approach suitable for sparse data</li>
+</ul></li>
 </ul>
 </section>
-<section id="future-what-would-i-have-done" class="slide level2 smaller scrollable">
-<h2>Future // What would I have done</h2>
-<ul>
-<li>Adaptive prior scaling</li>
-<li></li>
-</ul>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-chen2019keyrolectcf" class="csl-entry" role="listitem">
 Chen, Xuepeng, Yuwen Ke, Keliang Wu, Han Zhao, Yaoyu Sun, Lei Gao, Zhenbo Liu, et al. 2019. <span>“Key Role for <span>CTCF</span> in Establishing Chromatin Structure in Human Embryos.”</span> <em>Nature</em> 576 (7786): 306–10. <a href="https://doi.org/10.1038/s41586-019-1812-0">https://doi.org/10.1038/s41586-019-1812-0</a>.
+</div>
+<div id="ref-kalluchi2023considerationscaveatsanalyzing" class="csl-entry" role="listitem">
+Kalluchi, Achyuth, Hannah L. Harris, Timothy E. Reznicek, and M. Jordan Rowley. 2023. <span>“Considerations and Caveats for Analyzing Chromatin Compartments.”</span> <em>Frontiers in Molecular Biosciences</em> 10 (April): 1168562. <a href="https://doi.org/10.3389/fmolb.2023.1168562">https://doi.org/10.3389/fmolb.2023.1168562</a>.
+</div>
+<div id="ref-wang2019reprogrammingmeioticchromatin" class="csl-entry" role="listitem">
+Wang, Yao, Hanben Wang, Yu Zhang, Zhenhai Du, Wei Si, Suixing Fan, Dongdong Qin, et al. 2019. <span>“Reprogramming of <span>Meiotic Chromatin Architecture</span> During <span>Spermatogenesis</span>.”</span> <em>Molecular Cell</em> 73 (3): 547–561.e6. <a href="https://doi.org/10.1016/j.molcel.2018.11.019">https://doi.org/10.1016/j.molcel.2018.11.019</a>.
+</div>
+<div id="ref-zheng2018cscoretoolfasthic" class="csl-entry" role="listitem">
+Zheng, Xiaobin, and Yixian Zheng. 2018. <span>“<span>CscoreTool</span>: Fast <span>Hi-C</span> Compartment Analysis at High Resolution.”</span> Edited by John Hancock. <em>Bioinformatics</em> 34 (9): 1568–70. <a href="https://doi.org/10.1093/bioinformatics/btx802">https://doi.org/10.1093/bioinformatics/btx802</a>.
 </div>
 </div>
 </section>
@@ -1226,13 +1503,13 @@ Chen, Xuepeng, Yuwen Ke, Keliang Wu, Han Zhao, Yaoyu Sun, Lei Gao, Zhenbo Liu, e
 <p><img src="layout/aulogo_uk_var2_blue.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <div class="footer-cols">
-<div>
+<div id="left-footer-col">
 <p>Søren Jørgensen</p>
 </div>
-<div>
+<div id="middle-footer-col">
 <p>Bayesian Inference of Chromatin Architecture</p>
 </div>
-<div style="font-size:clamp(3px, 1.1vw, 65%)">
+<div id="right-footer-col" style="font-size:clamp(3px, 1.1vw, 65%)">
 <p><a href="https://munch-group.org/hic-compartment-borders">munch-group.org/<br>hic-compartment-borders</a></p>
 </div>
 </div>
@@ -1265,7 +1542,7 @@ Chen, Xuepeng, Yuwen Ke, Keliang Wu, Han Zhao, Yaoyu Sun, Lei Gao, Zhenbo Liu, e
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 0.3,
-'autoAnimateUnmatched': false,
+'autoAnimateUnmatched': true,
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"slide-number":true,"date-format":"long"},
 'smaller': false,

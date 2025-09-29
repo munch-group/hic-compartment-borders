@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-    <meta name="dcterms.date" content="2025-09-26">
+    <meta name="dcterms.date" content="2025-09-29">
     <meta name="keywords" content="Gaussian Random Walk, Bayesian MCMC, Chromatin Structure in Spermatogenesis">
 
     <title>Inferring Chromatin Structure through Bayesian Modeling of Hi-C Eigenvectors</title>
@@ -190,10 +190,10 @@
       <meta name="citation_title" content="Inferring Chromatin Structure through Bayesian Modeling of Hi-C Eigenvectors">
 <meta name="citation_keywords" content="Gaussian Random Walk,Bayesian MCMC,Chromatin Structure in Spermatogenesis">
 <meta name="citation_author" content="Søren Jørgensen">
-<meta name="citation_publication_date" content="2025-09-26">
-<meta name="citation_cover_date" content="2025-09-26">
+<meta name="citation_publication_date" content="2025-09-29">
+<meta name="citation_cover_date" content="2025-09-29">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-09-26">
+<meta name="citation_online_date" content="2025-09-29">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=PyMC: A modern, and comprehensive probabilistic programming framework in Python;,citation_abstract=PyMC is a probabilistic programming library for Python that provides tools for constructing and fitting Bayesian models. It offers an intuitive, readable syntax that is close to the natural syntax statisticians use to describe models. PyMC leverages the symbolic computation library PyTensor, allowing it to be compiled into a variety of computational backends, such as C, JAX, and Numba, which in turn offer access to different computational architectures including CPU, GPU, and TPU. Being a general modeling framework, PyMC supports a variety of models including generalized hierarchical linear regression and classification, time series, ordinary differential equations (ODEs), and non-parametric models such as Gaussian processes (GPs). We demonstrate PyMC’s versatility and ease of use with examples spanning a range of common statistical models. Additionally, we discuss the positive role of PyMC in the development of the open-source ecosystem for probabilistic programming.;,citation_author=Oriol Abril-Pla;,citation_author=Virgile Andreani;,citation_author=Colin Carroll;,citation_author=Larry Dong;,citation_author=Christopher J. Fonnesbeck;,citation_author=Maxim Kochurov;,citation_author=Ravin Kumar;,citation_author=Junpeng Lao;,citation_author=Christian C. Luhmann;,citation_author=Osvaldo A. Martin;,citation_author=Michael Osthege;,citation_author=Ricardo Vieira;,citation_author=Thomas Wiecki;,citation_author=Robert Zinkov;,citation_publication_date=2023-09;,citation_cover_date=2023-09;,citation_year=2023;,citation_doi=10.7717/peerj-cs.1516;,citation_issn=2376-5992;,citation_volume=9;,citation_language=en-US;,citation_journal_title=PeerJ Computer Science;">
 <meta name="citation_reference" content="citation_title=Key role for CTCF in establishing chromatin structure in human embryos;,citation_author=Xuepeng Chen;,citation_author=Yuwen Ke;,citation_author=Keliang Wu;,citation_author=Han Zhao;,citation_author=Yaoyu Sun;,citation_author=Lei Gao;,citation_author=Zhenbo Liu;,citation_author=Jingye Zhang;,citation_author=Wenrong Tao;,citation_author=Zhenzhen Hou;,citation_author=Hui Liu;,citation_author=Jiang Liu;,citation_author=Zi-Jiang Chen;,citation_publication_date=2019-12;,citation_cover_date=2019-12;,citation_year=2019;,citation_issue=7786;,citation_doi=10.1038/s41586-019-1812-0;,citation_issn=0028-0836, 1476-4687;,citation_volume=576;,citation_language=en-US;,citation_journal_title=Nature;">
@@ -255,7 +255,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">September 26, 2025</p>
+              <p class="date">September 29, 2025</p>
             </div>
           </div>
           
@@ -422,7 +422,7 @@ Figure&nbsp;1: Distribution of E1 values across chrX in macaque sperm at 50kb re
 <p>The magnitude of eigenvectors obtained from Principal Component Analysis (PCA), commonly employed to identify A/B chromatin compartments, does not necessarily convey the certainty or strength of compartment assignment. This limitation arises for several reasons.</p>
 <p>First, PCA-derived eigenvectors primarily capture correlations between genomic loci rather than the absolute strength of their interactions. While the sign of the eigenvector can classify loci as belonging to either A (active) or B (inactive) compartments, the magnitude does not provide a direct measure of the degree to which a locus associates with its compartment or the intensity of compartmental interactions.</p>
 <p>Second, compartmental states are frequently treated as categorical variables, with genomic bins assigned exclusively to A or B. Although this approach is practical for identifying pronounced compartmental switches, it lacks the quantitative resolution necessary to assess intermediate or subtle variations in compartmental association. Quantitative metrics, such as “compartment strength” defined as <span class="math inline">\(\log(\text{AA} \times \text{BB}/\text{AB}^2)\)</span>, have therefore been introduced to more accurately capture the segregation between compartments.</p>
-<p>Finally, probabilistic approaches offer a more direct estimation of compartmental status. For example, methods such as <em>CscoreTool</em> assign to each genomic bin a probability of being in the A compartment. This probabilistic framework offers a quantitative measure that more accurately reflects chromatin accessibility and accounts for uncertainty, thereby highlighting the limitations of interpreting eigenvector magnitude as a definitive indicator of compartment strength.</p>
+<p>Finally, probabilistic approaches offer a more direct estimation of compartmental status. For example, methods such as <em>CscoreTool</em> <span class="citation" data-cites="zheng2018cscoretoolfasthic">(<a href="#ref-zheng2018cscoretoolfasthic" role="doc-biblioref">Zheng and Zheng 2018</a>)</span> assign to each genomic bin a probability of being in the A compartment. This probabilistic framework offers a quantitative measure that more accurately reflects chromatin accessibility and accounts for uncertainty, thereby highlighting the limitations of interpreting eigenvector magnitude as a definitive indicator of compartment strength.</p>
 </section>
 <section id="data-sets" class="level2">
 <h2 class="anchored" data-anchor-id="data-sets">Data sets</h2>
@@ -1775,6 +1775,9 @@ Xu, Heming, Yi Chi, Changjian Yin, Cheng Li, Yujie Chen, Zhiyuan Liu, Xiaowen Li
 </div>
 <div id="ref-zhang2018enhancinghicdata" class="csl-entry" role="listitem">
 Zhang, Yan, Lin An, Jie Xu, Bo Zhang, W. Jim Zheng, Ming Hu, Jijun Tang, and Feng Yue. 2018. <span>“Enhancing <span>Hi-C</span> Data Resolution with Deep Convolutional Neural Network <span>HiCPlus</span>.”</span> <em>Nature Communications</em> 9 (1): 750. <a href="https://doi.org/10.1038/s41467-018-03113-2">https://doi.org/10.1038/s41467-018-03113-2</a>.
+</div>
+<div id="ref-zheng2018cscoretoolfasthic" class="csl-entry" role="listitem">
+Zheng, Xiaobin, and Yixian Zheng. 2018. <span>“<span>CscoreTool</span>: Fast <span>Hi-C</span> Compartment Analysis at High Resolution.”</span> Edited by John Hancock. <em>Bioinformatics</em> 34 (9): 1568–70. <a href="https://doi.org/10.1093/bioinformatics/btx802">https://doi.org/10.1093/bioinformatics/btx802</a>.
 </div>
 </div>
 </section>
