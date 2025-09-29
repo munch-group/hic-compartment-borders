@@ -39,7 +39,7 @@ Therefore, we have to correct the interaction matrix, and we do so iteratively u
 
 ## Introduction {auto-animate=true}
 
-::: {data-id="ice-dist" .nocap .tight style="width:900px;margin:0 auto"} 
+::: {data-id="ice-dist" .nocap .tight style="width:800px;margin:0 auto"} 
 {{< embed ../notebooks/03_PyMC_GRW_logit.ipynb#fig-e1-dist-50kb >}}
 :::
 
