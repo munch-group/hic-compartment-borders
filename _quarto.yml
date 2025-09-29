@@ -42,9 +42,9 @@ book:
     - part: "Thesis"
       chapters:
       - thesis/index.qmd 
-    # - part: "Slides"
-    #   chapters:
-    #   - slides/index.qmd 
+    - part: "Slides"
+      chapters:
+      - slides/index.qmd 
     - part: "Notebooks"
       chapters: 
       - notebooks/01_prep_e1_values.ipynb
