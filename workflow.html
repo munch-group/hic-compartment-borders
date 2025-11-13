@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Søren Jørgensen">
-<meta name="dcterms.date" content="2025-10-01">
+<meta name="dcterms.date" content="2025-11-13">
 
 <title>master_workflow – Probabilistic Models for Hi-C Compartment Borders</title>
 <style>
@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-84820c485c43afc6c4cd6946bf8827e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -104,9 +104,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Probabilistic Models for Hi-C Compartment Borders</a> 
         <div class="sidebar-tools-main">
@@ -318,7 +316,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 1, 2025</p>
+      <p class="date">November 13, 2025</p>
     </div>
   </div>
   
@@ -330,7 +328,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>from gwf import * import os import subprocess import os.path as op import pandas as pd from cooler.fileops import list_coolers from pprintpp import pprint as pp</p>
+<p>from gwf import Workflow, AnonymousTarget import os import subprocess import os.path as op import pandas as pd from cooler.fileops import list_coolers from pprintpp import pprint as pp</p>
 <section id="section" class="level38">
 <p class="heading"></p>
 <p><code>gwf</code> workflow for the full pipeline from downloading raw reads to compartmentalization analysis. We are using <code>bwa mem</code> for mapping.</p>
@@ -348,14 +346,14 @@ ul.task-list li input[type="checkbox"] {
 <p class="heading">Templates</p>
 <section id="section-3" class="level44">
 <p class="heading"></p>
-<p>def download_index_reference(name, refdir): ““” Download the reference genome from NCBI, and index it for bwa ““” out_dir = op.join(refdir, name) inputs = [] outputs = [f”{out_dir}/index/bwa/{name}.fa”, f”{out_dir}/index/bwa/{name}.fa.amb”, f”{out_dir}/index/bwa/{name}.fa.ann”, f”{out_dir}/index/bwa/{name}.fa.bwt”, f”{out_dir}/index/bwa/{name}.fa.pac”, f”{out_dir}/index/bwa/{name}.fa.sa”, f”{out_dir}/assembly_report.txt”, f”{out_dir}/{name}.fa.sizes”, f”{out_dir}/{name}.fa.fai”, f”{out_dir}/{name}.gaps.bed”, ] options = { ‘memory’: ‘16g’, ‘walltime’: ‘01:00:00’, ‘cores’: 8, } spec = f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic genomepy plugin enable bwa &amp;&amp;<br>
+<p>def download_index_reference(name, refdir): ““” Download the reference genome from NCBI, and index it for bwa ““” out_dir = op.join(refdir, name) inputs = [] outputs = [f”{out_dir}/index/bwa/{name}.fa”, f”{out_dir}/index/bwa/{name}.fa.amb”, f”{out_dir}/index/bwa/{name}.fa.ann”, f”{out_dir}/index/bwa/{name}.fa.bwt”, f”{out_dir}/index/bwa/{name}.fa.pac”, f”{out_dir}/index/bwa/{name}.fa.sa”, f”{out_dir}/assembly_report.txt”, f”{out_dir}/{name}.fa.sizes”, f”{out_dir}/{name}.fa.fai”, f”{out_dir}/{name}.gaps.bed”, ] options = { ‘memory’: ‘16g’, ‘walltime’: ‘08:00:00’, ‘cores’: 8, } spec = f”“” pixi run genomepy plugin enable bwa &amp;&amp;<br>
 genomepy install {name} –provider ncbi –genomes_dir {refdir} –threads 8 ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
-<p>def download_reads(sra_downloader, srr_id, read_dir): “““Download raw reads from SRA”“” inputs = [sra_downloader] outputs = [f”{read_dir}/{srr_id}_1.fastq.gz”, f”{read_dir}/{srr_id}<em>2.fastq.gz”, f”{read_dir}/dl</em>{srr_id}.done”] options = {‘cores’:16, ‘memory’: “4g”, ‘walltime’:“06:00:00”} spec = f”“” singularity run {sra_downloader} {srr_id} –save-dir {read_dir} –cores 16 &amp;&amp;<br>
+<p>def download_reads(sra_downloader, srr_id, read_dir): “““Download raw reads from SRA”“” inputs = [sra_downloader] outputs = [f”{read_dir}/{srr_id}_1.fastq.gz”, f”{read_dir}/{srr_id}<em>2.fastq.gz”, f”{read_dir}/dl</em>{srr_id}.done”] options = {‘cores’:16, ‘memory’: “4g”, ‘walltime’:“06:00:00”} spec = f”“” pixi run singularity run {sra_downloader} {srr_id} –save-dir {read_dir} –cores 16 &amp;&amp;<br>
 touch {read_dir}/dl_{srr_id}.done ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
-<p>def bwa_index(ref_genome): “““Template for indexing the reference genome with bwa”“” inputs = [ref_genome] outputs = [f”{ref_genome}.amb”, f”{ref_genome}.ann”, f”{ref_genome}.bwt”, f”{ref_genome}.pac”, f”{ref_genome}.sa”] options = {‘cores’:1, ‘memory’: “8g”, ‘walltime’:“02:00:00”} spec = f’’’ source $(conda info –base)/etc/profile.d/conda.sh conda activate hic bwa index -p {ref_genome} -a bwtsw {ref_genome} ’’’ return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
-<p>def sam_index(ref_genome): “““Creating a fasta index. <code>bwa mem</code> also needs a fasta index generated by samtools”“” inputs = [ref_genome] outputs = [f”{ref_genome}.fai”] options = {‘cores’:1, ‘memory’:“1g”, ‘walltime’:“00:20:00”} spec=f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic samtools faidx {ref_genome} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
-<p>def bwa_map(ref_genome, mate_1, mate_2, download_ok, out_bam): ““” Template for mapping reads to a reference genome using <code>bwa</code> and <code>samtools</code>. NB! Here, we map the mates together, as bwa states it is no problem for Hi-C reads. ““” threads = 32 inputs = [f”{ref_genome}.amb”, f”{ref_genome}.ann”, f”{ref_genome}.bwt”, f”{ref_genome}.pac”, f”{ref_genome}.sa”, #f”{ref_genome}.fai”, mate_1, mate_2, download_ok] outputs = [out_bam] options = {‘cores’:threads, ‘memory’: “32g”, ‘walltime’:“24:00:00”} spec = f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic bwa mem -t {threads} -SP {ref_genome} {mate_1} {mate_2} &gt; {out_bam} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
-<p>Updated version uses –walks-policy 5unique in stead of mask def pair_sort_alignments(chromsizes, bam_merged, sorted_pairs): “““Convert the paired-end alignments to .pairs with <code>pairtools parse</code>, then sort”“” inputs = [bam_merged] outputs = [f”{bam_merged}_parsed.stats”, sorted_pairs] options = {‘cores’:32, ‘memory’:“16g”, ‘walltime’:“10:00:00”} spec=f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic pairtools parse<br>
+<p>def bwa_index(ref_genome): “““Template for indexing the reference genome with bwa”“” inputs = [ref_genome] outputs = [f”{ref_genome}.amb”, f”{ref_genome}.ann”, f”{ref_genome}.bwt”, f”{ref_genome}.pac”, f”{ref_genome}.sa”] options = {‘cores’:1, ‘memory’: “8g”, ‘walltime’:“02:00:00”} spec = f’’’ pixi run bwa index -p {ref_genome} -a bwtsw {ref_genome} ’’’ return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
+<p>def sam_index(ref_genome): “““Creating a fasta index. <code>bwa mem</code> also needs a fasta index generated by samtools”“” inputs = [ref_genome] outputs = [f”{ref_genome}.fai”] options = {‘cores’:1, ‘memory’:“1g”, ‘walltime’:“01:00:00”} spec=f”“” pixi run samtools faidx {ref_genome} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
+<p>def bwa_map(ref_genome, mate_1, mate_2, download_ok, out_bam): ““” Template for mapping reads to a reference genome using <code>bwa</code> and <code>samtools</code>. NB! Here, we map the mates together, as bwa states it is no problem for Hi-C reads. ““” threads = 32 inputs = [f”{ref_genome}.amb”, f”{ref_genome}.ann”, f”{ref_genome}.bwt”, f”{ref_genome}.pac”, f”{ref_genome}.sa”, #f”{ref_genome}.fai”, mate_1, mate_2, download_ok] outputs = [out_bam] options = {‘cores’:threads, ‘memory’: “32g”, ‘walltime’:“24:00:00”} spec = f”“” pixi run bwa mem -t {threads} -SP {ref_genome} {mate_1} {mate_2} &gt; {out_bam} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
+<p>Updated version uses –walks-policy 5unique in stead of mask def pair_sort_alignments(chromsizes, bam_merged, sorted_pairs): “““Convert the paired-end alignments to .pairs with <code>pairtools parse</code>, then sort”“” inputs = [bam_merged] outputs = [f”{bam_merged}_parsed.stats”, sorted_pairs] options = {‘cores’:32, ‘memory’:“16g”, ‘walltime’:“10:00:00”} spec=f”“” pixi run pairtools parse<br>
 -c {chromsizes}<br>
 –drop-sam –drop-seq<br>
 –output-stats {bam_merged}_parsed.stats<br>
@@ -364,7 +362,7 @@ touch {read_dir}/dl_{srr_id}.done ““” return AnonymousTarget(inputs=inputs
 –walks-policy 5unique<br>
 {bam_merged} |<br>
 pairtools sort -o {sorted_pairs} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
-<p>def dedup(sorted_pairs, chromsizes): “““Deduplicate the sorted pairs with <code>pairtools dedup</code>”“” pairs_prefix = sorted_pairs.split(“.sorted”)[0] inputs = [sorted_pairs] outputs = [f”{pairs_prefix}.nodups.pairs.gz”, f”{pairs_prefix}.unmapped.pairs.gz”, f”{pairs_prefix}.dups.pairs.gz”, f”{pairs_prefix}.dedup.stats”, f”{pairs_prefix}.dedup.done”] options = {‘cores’:12, ‘memory’: “4g”, ‘walltime’: “03:30:00”} spec = f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic pairtools dedup<br>
+<p>def dedup(sorted_pairs, chromsizes): “““Deduplicate the sorted pairs with <code>pairtools dedup</code>”“” pairs_prefix = sorted_pairs.split(“.sorted”)[0] inputs = [sorted_pairs] outputs = [f”{pairs_prefix}.nodups.pairs.gz”, f”{pairs_prefix}.unmapped.pairs.gz”, f”{pairs_prefix}.dups.pairs.gz”, f”{pairs_prefix}.dedup.stats”, f”{pairs_prefix}.dedup.done”] options = {‘cores’:12, ‘memory’: “4g”, ‘walltime’: “03:30:00”} spec = f”“” pixi pairtools dedup<br>
 –max-mismatch 3<br>
 –mark-dups<br>
 –chunksize 100000<br>
@@ -375,7 +373,7 @@ pairtools sort -o {sorted_pairs} ““” return AnonymousTarget(inputs=inputs,
 –output-dups {pairs_prefix}.dups.pairs.gz<br>
 {sorted_pairs} &amp;&amp;<br>
 touch {pairs_prefix}.dedup.done ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
-<p>Updated version uses pairtools select to filter out low quality reads def make_pairs_cool(chromsizes, pairs, cool_out): “““Create coolers from pairs with <code>cooler cload pairs</code>”“” base = os.path.basename(pairs).split(“.pairs.gz”)[0] inputs = [pairs] outputs = [cool_out] options = {‘cores’:1, ‘memory’:“8g”, ‘walltime’:“06:30:00”} spec = f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic pairtools select “(mapq1&gt;=30) and (mapq2&gt;=30)” {pairs} |<br>
+<p>Updated version uses pairtools select to filter out low quality reads def make_pairs_cool(chromsizes, pairs, cool_out): “““Create coolers from pairs with <code>cooler cload pairs</code>”“” base = os.path.basename(pairs).split(“.pairs.gz”)[0] inputs = [pairs] outputs = [cool_out] options = {‘cores’:1, ‘memory’:“8g”, ‘walltime’:“06:30:00”} spec = f”“” pixi run pairtools select “(mapq1&gt;=30) and (mapq2&gt;=30)” {pairs} |<br>
 cooler cload pairs<br>
 -c1 2 -p1 3 -c2 4 -p2 5<br>
 –assembly ‘T2T-MMU8v1’<br>
@@ -383,14 +381,14 @@ cooler cload pairs<br>
 {chromsizes}:1000<br>
 -<br>
 {cool_out} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
-<p>def merge_zoomify_balance(cooler_list, merged, mcool): “““Merge a given list of coolers with <code>cooler merge</code> and then zoomify the merged cooler with <code>cooler zoomify</code>”“” cooler_list_unix_str = ” “.join(cooler_list) inputs = [cooler_list] outputs = [merged, mcool] options = {‘cores’:16, ‘memory’:”32g”, ‘walltime’:“08:00:00”} spec = f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic cooler merge -c 50000000 {merged} {cooler_list_unix_str} &amp;&amp;<br>
+<p>def merge_zoomify_balance(cooler_list, merged, mcool): “““Merge a given list of coolers with <code>cooler merge</code> and then zoomify the merged cooler with <code>cooler zoomify</code>”“” cooler_list_unix_str = ” “.join(cooler_list) inputs = [cooler_list] outputs = [merged, mcool] options = {‘cores’:16, ‘memory’:”32g”, ‘walltime’:“08:00:00”} spec = f”“” pixi run cooler merge -c 50000000 {merged} {cooler_list_unix_str} &amp;&amp;<br>
 cooler zoomify –nproc 16<br>
 –resolutions 1000,5000,10000,50000,100000<br>
 –balance<br>
 –balance-args ‘–nproc 16’<br>
 -o {mcool}<br>
 {merged} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
-<p>DRAFT: Not implemented as a target yet def balance_cooler_cis(cool_in, cool_out): “““Balance a cooler with <code>cooler balance</code>”“” mcool = cool_in.split(“::”)[0] inputs = [mcool] outputs = [cool_out] options = {‘cores’:8, ‘memory’:“32g”, ‘walltime’:“03:00:00”} spec = f”“” source $(conda info –base)/etc/profile.d/conda.sh conda activate hic cooler balance -p 32 –cis-only –name cis_weights {cool_in} &amp;&amp;<br>
+<p>DRAFT: Not implemented as a target yet def balance_cooler_cis(cool_in, cool_out): “““Balance a cooler with <code>cooler balance</code>”“” mcool = cool_in.split(“::”)[0] inputs = [mcool] outputs = [cool_out] options = {‘cores’:8, ‘memory’:“32g”, ‘walltime’:“03:00:00”} spec = f”“” pixi run cooler balance -p 32 –cis-only –name cis_weights {cool_in} &amp;&amp;<br>
 touch {cool_out} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
 <section id="section-4" class="level47">
 <p class="heading"></p>
