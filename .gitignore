@@ -145,3 +145,6 @@ results/models
 results/traces
 data/bins
 data/eigs
+# pixi environments
+.pixi
+*.egg-info

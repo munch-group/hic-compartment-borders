@@ -1,0 +1,35 @@
+[workspace]
+authors = ["kaspermunch <kaspermunch@birc.au.dk>"]
+channels = ["conda-forge", "bioconda", "gwforg", "munch-group", "genomedk"]
+name = "hic-compartment-borders"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+gwf = "*"
+ipython = "*"
+jupyterlab = "*"
+pytables = "*"
+scipy = "*"
+seaborn = "*"
+statsmodels = "*"
+hicexplorer = "*"
+bwa = "*"
+cooler = "*"
+samtools = "*"
+jupyter = "*"
+bowtie2 = "*"
+natsort = "*"
+pybigwig = "*"
+pairtools = "*"
+multiqc = "*"
+pprintpp = "*"
+cooltools = "*"
+genome-intervals = "*"
+geneinfo = "*"
+tabulate = "*"
+pybbi = "*"
+tinytex = "*"
+genomepy = ">=0.16.3,<0.17"
