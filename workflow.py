@@ -161,7 +161,7 @@ def dedup(sorted_pairs, chromsizes):
                f"{pairs_prefix}.dedup.done"]
     options = {'cores':12, 'memory': "4g", 'walltime': "03:30:00"}
     spec = f"""
-pixi pairtools dedup \
+pixi run pairtools dedup \
     --max-mismatch 3 \
     --mark-dups \
     --chunksize 100000 \
