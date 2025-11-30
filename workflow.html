@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Søren Jørgensen">
-<meta name="dcterms.date" content="2025-11-13">
+<meta name="dcterms.date" content="2025-11-30">
 
 <title>master_workflow – Probabilistic Models for Hi-C Compartment Borders</title>
 <style>
@@ -316,7 +316,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 13, 2025</p>
+      <p class="date">November 30, 2025</p>
     </div>
   </div>
   
@@ -362,7 +362,7 @@ touch {read_dir}/dl_{srr_id}.done ““” return AnonymousTarget(inputs=inputs
 –walks-policy 5unique<br>
 {bam_merged} |<br>
 pairtools sort -o {sorted_pairs} ““” return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)</p>
-<p>def dedup(sorted_pairs, chromsizes): “““Deduplicate the sorted pairs with <code>pairtools dedup</code>”“” pairs_prefix = sorted_pairs.split(“.sorted”)[0] inputs = [sorted_pairs] outputs = [f”{pairs_prefix}.nodups.pairs.gz”, f”{pairs_prefix}.unmapped.pairs.gz”, f”{pairs_prefix}.dups.pairs.gz”, f”{pairs_prefix}.dedup.stats”, f”{pairs_prefix}.dedup.done”] options = {‘cores’:12, ‘memory’: “4g”, ‘walltime’: “03:30:00”} spec = f”“” pixi pairtools dedup<br>
+<p>def dedup(sorted_pairs, chromsizes): “““Deduplicate the sorted pairs with <code>pairtools dedup</code>”“” pairs_prefix = sorted_pairs.split(“.sorted”)[0] inputs = [sorted_pairs] outputs = [f”{pairs_prefix}.nodups.pairs.gz”, f”{pairs_prefix}.unmapped.pairs.gz”, f”{pairs_prefix}.dups.pairs.gz”, f”{pairs_prefix}.dedup.stats”, f”{pairs_prefix}.dedup.done”] options = {‘cores’:12, ‘memory’: “4g”, ‘walltime’: “03:30:00”} spec = f”“” pixi run pairtools dedup<br>
 –max-mismatch 3<br>
 –mark-dups<br>
 –chunksize 100000<br>

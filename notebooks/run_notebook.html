@@ -362,7 +362,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="imports-and-utility-functions" class="level2">
 <h2 class="anchored" data-anchor-id="imports-and-utility-functions">Imports and utility functions</h2>
-<div id="2bd7ebf3" class="cell" data-execution_count="1">
+<div id="d0874e4b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gwf <span class="im">import</span> Workflow, AnonymousTarget</span>
@@ -371,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="template-function-to-run-a-notebook" class="level2">
 <h2 class="anchored" data-anchor-id="template-function-to-run-a-notebook">Template function to run a notebook</h2>
-<div id="526a7076" class="cell" data-execution_count="2">
+<div id="71f5aa0f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_notebook(path, memory<span class="op">=</span><span class="st">'8g'</span>, walltime<span class="op">=</span><span class="st">'00:10:00'</span>, cores<span class="op">=</span><span class="dv">1</span>):    </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Executes a notebook inplace and saves the output.</span></span>
@@ -395,14 +395,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="list-the-available-notebooks-to-run" class="level2">
 <h2 class="anchored" data-anchor-id="list-the-available-notebooks-to-run">List the available notebooks to run</h2>
-<div id="180d77a2" class="cell" data-execution_count="3">
+<div id="89068ba4" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list all notebooks in the current directory</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>notebooks <span class="op">=</span> glob.glob(<span class="st">'*.ipynb'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="set-up-dynamic-workflow-generator" class="level2">
 <h2 class="anchored" data-anchor-id="set-up-dynamic-workflow-generator">Set up dynamic workflow generator</h2>
-<div id="97a06ba8" class="cell" data-execution_count="4">
+<div id="73330e7b" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loop through notebooks and generate a workflow object for each</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> notebook <span class="kw">in</span> notebooks:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define the name</span></span>
